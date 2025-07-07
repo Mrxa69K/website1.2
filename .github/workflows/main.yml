@@ -26,6 +26,7 @@ jobs:
             fi
           done
 
+
       - name: Commit changes
         run: |
           git config --global user.name "github-actions"
@@ -33,3 +34,15 @@ jobs:
           git add .
           git commit -m "Auto-inject favicon script" || echo "No changes to commit"
           git push
+
+
+
+
+      - name: Push changes
+        env:
+          TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:$TOKEN@github.com/${{ github.repository }}.git
+          git add .
+          git commit -m "Auto-inject favicon script" || echo "No changes to commit"
+          git push origin HEAD:main
