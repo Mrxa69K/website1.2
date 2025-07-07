@@ -1,39 +1,27 @@
-name: Add Favicon to Pages
+name: Inject Favicon Script
 
 on:
-  workflow_dispatch: # Lancement manuel uniquement
-
-permissions:
-  contents: write # IMPORTANT: Permission d'écriture
+  workflow_dispatch:
 
 jobs:
-  add-favicon:
+  inject-favicon:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Add favicon to HTML files
+      - name: Inject favicon
         run: |
-          echo "🎯 Ajout des balises favicon..."
-          
-          # Traiter les fichiers racine
-          for file in *.html; do
-            if [[ -f "$file" ]] && ! grep -q "favicon" "$file"; then
-              echo "✅ Ajout favicon à: $file"
-              sed -i '/<head>/a\    <!-- Favicon -->\n    <link rel="icon" type="image/x-icon" href="favicon.ico">\n    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">' "$file"
+          find . -name "*.html" | while read file; do
+            if ! grep -q "favicon" "$file"; then
+              sed -i 's|</head>|<link rel="icon" href="favicon.ico">\n</head>|' "$file"
             fi
           done
 
-      - name: Commit and push if changed
-        run: |
-          if git diff --quiet; then
-            echo "Aucun changement détecté"
-          else
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add .
-            git commit -m "🎯 Add favicon tags to all HTML pages"
-            git push
-          fi
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 🎯 Auto-inject favicon
+          commit_user_name: GitHub Action
+          commit_user_email: action@github.com
