@@ -1,0 +1,35 @@
+name: Inject Favicon Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  inject-favicon:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Inject favicon script
+        run: |
+          find . -name "*.html" -print0 | while IFS= read -r -d '' file; do
+            if ! grep -q "js/favicon.js" "$file"; then
+              sed -i 's|</head>|<script src="js/favicon.js"></script>\n</head>|' "$file"
+            fi
+          done
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Auto-inject favicon script" || echo "No changes to commit"
+          git push
