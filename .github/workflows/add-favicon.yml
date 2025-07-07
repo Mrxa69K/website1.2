@@ -1,0 +1,39 @@
+name: Add Favicon to Pages
+
+on:
+  workflow_dispatch: # Lancement manuel uniquement
+
+permissions:
+  contents: write # IMPORTANT: Permission d'écriture
+
+jobs:
+  add-favicon:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Add favicon to HTML files
+        run: |
+          echo "🎯 Ajout des balises favicon..."
+          
+          # Traiter les fichiers racine
+          for file in *.html; do
+            if [[ -f "$file" ]] && ! grep -q "favicon" "$file"; then
+              echo "✅ Ajout favicon à: $file"
+              sed -i '/<head>/a\    <!-- Favicon -->\n    <link rel="icon" type="image/x-icon" href="favicon.ico">\n    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">' "$file"
+            fi
+          done
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet; then
+            echo "Aucun changement détecté"
+          else
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "🎯 Add favicon tags to all HTML pages"
+            git push
+          fi
