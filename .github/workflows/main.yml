@@ -1,9 +1,10 @@
 name: Inject Favicon Script
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: # Manuel uniquement pour éviter les boucles
+
+permissions:
+  contents: write
 
 jobs:
   inject-favicon:
@@ -11,29 +12,29 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+        uses: actions/checkout@v4
 
       - name: Inject favicon script
         run: |
           find . -name "*.html" -print0 | while IFS= read -r -d '' file; do
-            if ! grep -q "js/favicon.js" "$file"; then
-              sed -i 's|</head>|<script src="js/favicon.js"></script>\n</head>|' "$file"
+            if ! grep -q "favicon" "$file"; then
+              sed -i 's|</head>|<link rel="icon" href="favicon.ico">\n</head>|' "$file"
+              echo "✅ Favicon ajouté à: $file"
             fi
           done
 
-
-
-
-      - name: Push changes
-        env:
-          TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Commit changes
         run: |
-          git remote set-url origin https://x-access-token:$TOKEN@github.com/${{ github.repository }}.git
-          git add .
-          git commit -m "Auto-inject favicon script" || echo "No changes to commit"
-          git push origin HEAD:main
+          # IMPORTANT: Configuration Git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Vérifier s'il y a des changements
+          if git diff --quiet; then
+            echo "Aucun changement à commiter"
+          else
+            git add .
+            git commit -m "🎯 Auto-inject favicon to HTML pages"
+            git push
+            echo "✅ Changements appliqués avec succès"
+          fi
