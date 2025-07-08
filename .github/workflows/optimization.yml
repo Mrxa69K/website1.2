@@ -20,6 +20,17 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Check Repository Structure
+      run: |
+        echo "Repository structure:"
+        ls -la
+        echo ""
+        echo "Looking for website files..."
+        find . -name "*.html" -type f | head -10
+        echo ""
+        echo "Looking for directories..."
+        find . -type d -name "*version*" -o -name "*website*" -o -name "*final*" | head -10
+
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -29,9 +40,28 @@ jobs:
       run: |
         pip install beautifulsoup4 pillow lxml
 
-    - name: Optimize Images and Add Lazy Loading
-      working-directory: ./final-version
+    - name: Find Website Directory and Optimize
       run: |
+        # Find the correct website directory
+        WEBSITE_DIR="."
+        
+        if [ -d "final-version" ]; then
+          WEBSITE_DIR="final-version"
+          echo "Found website files in: final-version/"
+        elif [ -d "WEBSITE/final-version" ]; then
+          WEBSITE_DIR="WEBSITE/final-version"
+          echo "Found website files in: WEBSITE/final-version/"
+        elif [ -d "website" ]; then
+          WEBSITE_DIR="website"
+          echo "Found website files in: website/"
+        else
+          echo "Using root directory"
+        fi
+        
+        echo "Working in directory: $WEBSITE_DIR"
+        cd "$WEBSITE_DIR"
+        
+        # Create optimization script
         cat > optimize_images.py << 'EOF'
         #!/usr/bin/env python3
         import os
@@ -52,6 +82,7 @@ jobs:
                 return None, None
 
         def optimize_html_images(html_file):
+            print(f"Processing: {html_file}")
             with open(html_file, 'r', encoding='utf-8') as f:
                 content = f.read()
             
@@ -102,11 +133,13 @@ jobs:
             if changes_made:
                 with open(html_file, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
-                print(f"Optimized: {html_file}")
-            
-            return changes_made
+                print(f"✅ Optimized: {html_file}")
+                return True
+            else:
+                print(f"⏭️ No changes needed: {html_file}")
+                return False
 
-        # Process all HTML files in current directory
+        # Process all HTML files
         html_files = []
         for root, dirs, files in os.walk('.'):
             if '.git' in root or 'node_modules' in root:
@@ -115,19 +148,18 @@ jobs:
                 if file.endswith('.html'):
                     html_files.append(os.path.join(root, file))
 
+        print(f"Found {len(html_files)} HTML files")
         optimized_count = 0
         for html_file in html_files:
             if optimize_html_images(html_file):
                 optimized_count += 1
 
-        print(f"Optimized {optimized_count} HTML files with images")
+        print(f"🎉 Optimized {optimized_count} HTML files with images")
         EOF
         
         python optimize_images.py
-
-    - name: CSS Minification
-      working-directory: ./final-version
-      run: |
+        
+        # CSS Minification
         cat > minify_css.py << 'EOF'
         #!/usr/bin/env python3
         import os
@@ -158,28 +190,6 @@ jobs:
             
             return min_file
 
-        def update_html_css_refs(html_file):
-            with open(html_file, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            soup = BeautifulSoup(content, 'html.parser')
-            links = soup.find_all('link', rel='stylesheet')
-            changes_made = False
-            
-            for link in links:
-                href = link.get('href', '')
-                if href and not href.startswith('http' ) and href.endswith('.css') and not href.endswith('.min.css'):
-                    min_href = href.replace('.css', '.min.css')
-                    if os.path.exists(min_href.lstrip('./')):
-                        link['href'] = min_href
-                        changes_made = True
-            
-            if changes_made:
-                with open(html_file, 'w', encoding='utf-8') as f:
-                    f.write(str(soup))
-            
-            return changes_made
-
         # Find and minify CSS files
         css_files = []
         for root, dirs, files in os.walk('.'):
@@ -189,37 +199,22 @@ jobs:
                 if file.endswith('.css') and not file.endswith('.min.css'):
                     css_files.append(os.path.join(root, file))
 
+        print(f"Found {len(css_files)} CSS files to minify")
         minified_count = 0
         for css_file in css_files:
             try:
                 min_file = minify_css_file(css_file)
                 minified_count += 1
-                print(f"Minified: {css_file}")
+                print(f"✅ Minified: {css_file}")
             except Exception as e:
-                print(f"Error minifying {css_file}: {e}")
+                print(f"❌ Error minifying {css_file}: {e}")
 
-        # Update HTML references
-        html_files = []
-        for root, dirs, files in os.walk('.'):
-            if '.git' in root:
-                continue
-            for file in files:
-                if file.endswith('.html'):
-                    html_files.append(os.path.join(root, file))
-
-        updated_count = 0
-        for html_file in html_files:
-            if update_html_css_refs(html_file):
-                updated_count += 1
-
-        print(f"Minified {minified_count} CSS files, updated {updated_count} HTML files")
+        print(f"🎉 Minified {minified_count} CSS files")
         EOF
         
         python minify_css.py
-
-    - name: SEO Optimization
-      working-directory: ./final-version
-      run: |
+        
+        # SEO Optimization
         cat > optimize_seo.py << 'EOF'
         #!/usr/bin/env python3
         import os
@@ -262,9 +257,9 @@ jobs:
             if changes_made:
                 with open(html_file, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
-                print(f"SEO optimized: {html_file}")
-            
-            return changes_made
+                print(f"✅ SEO optimized: {html_file}")
+                return True
+            return False
 
         # Process all HTML files
         html_files = []
@@ -280,15 +275,13 @@ jobs:
             if optimize_seo(html_file):
                 optimized_count += 1
 
-        print(f"SEO optimized {optimized_count} HTML files")
+        print(f"🎉 SEO optimized {optimized_count} HTML files")
         EOF
         
         python optimize_seo.py
-
-    - name: Update Sitemap and Robots
-      working-directory: ./final-version
-      run: |
-        cat > update_sitemap.py << 'EOF'
+        
+        # Update sitemap and robots
+        cat > update_config.py << 'EOF'
         #!/usr/bin/env python3
         import os
         from datetime import datetime
@@ -312,29 +305,17 @@ jobs:
                     if rel_path.count('/') <= 1:
                         html_files.append(rel_path)
 
-        # Page priorities
-        priorities = {
-            'index.html': '1.0',
-            'indexfr.html': '1.0',
-            'services.html': '0.9',
-            'servicesfr.html': '0.9',
-            'about.html': '0.8',
-            'aboutfr.html': '0.8'
-        }
-
         for page in sorted(html_files):
             if page == 'index.html':
                 url = f'{base_url}/'
             else:
                 url = f'{base_url}/{page}'
             
-            priority = priorities.get(page, '0.5')
-            
             sitemap_content += f'''  <url>
             <loc>{url}</loc>
             <lastmod>{current_date}</lastmod>
             <changefreq>monthly</changefreq>
-            <priority>{priority}</priority>
+            <priority>0.8</priority>
           </url>
         '''
 
@@ -346,32 +327,19 @@ jobs:
         # Update robots.txt
         robots_content = f'''User-agent: *
         Allow: /
-
         Sitemap: {base_url}/sitemap.xml
-
-        Disallow: /admin/
-        Disallow: /.git/
-        Disallow: /.vscode/
-        Disallow: /scss/
-
-        Allow: /css/
-        Allow: /js/
-        Allow: /images/
-        Allow: /fonts/
         '''
 
         with open('robots.txt', 'w') as f:
             f.write(robots_content)
 
-        print(f"Updated sitemap.xml with {len(html_files)} pages")
-        print("Updated robots.txt")
+        print(f"✅ Updated sitemap.xml with {len(html_files)} pages")
+        print("✅ Updated robots.txt")
         EOF
         
-        python update_sitemap.py
-
-    - name: Create Security Headers
-      working-directory: ./final-version
-      run: |
+        python update_config.py
+        
+        # Create security headers
         cat > _headers << 'EOF'
         /*
           X-Frame-Options: DENY
@@ -389,7 +357,11 @@ jobs:
         /images/*
           Cache-Control: public, max-age=2592000
         EOF
-        echo "Updated security headers in final-version folder"
+        
+        echo "✅ Created security headers"
+        
+        # Go back to root for git operations
+        cd ..
 
     - name: Commit Changes
       run: |
@@ -399,19 +371,16 @@ jobs:
         if git diff --quiet && git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git add final-version/
-          git commit -m "Auto-optimization: Images, CSS, SEO, Security improvements in final-version folder" || echo "Nothing to commit"
+          git add .
+          git commit -m "🚀 Auto-optimization: Images, CSS, SEO, Security improvements" || echo "Nothing to commit"
           git push || echo "Nothing to push"
         fi
 
     - name: Summary
       run: |
-        echo "Website optimization completed successfully in final-version folder!"
-        echo "Optimizations applied:"
-        echo "- Image lazy loading and dimensions"
-        echo "- CSS minification"
-        echo "- SEO meta tags"
-        echo "- Updated sitemap and robots.txt"
-        echo "- Security headers"
-        echo ""
-        echo "All changes made in: ./final-version/"
+        echo "🎉 Website optimization completed successfully!"
+        echo "✅ Image lazy loading and dimensions added"
+        echo "✅ CSS files minified"
+        echo "✅ SEO meta tags enhanced"
+        echo "✅ Sitemap and robots.txt updated"
+        echo "✅ Security headers created"
