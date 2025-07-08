@@ -30,6 +30,7 @@ jobs:
         pip install beautifulsoup4 pillow lxml
 
     - name: Optimize Images and Add Lazy Loading
+      working-directory: ./final-version
       run: |
         cat > optimize_images.py << 'EOF'
         #!/usr/bin/env python3
@@ -105,7 +106,7 @@ jobs:
             
             return changes_made
 
-        # Process all HTML files
+        # Process all HTML files in current directory
         html_files = []
         for root, dirs, files in os.walk('.'):
             if '.git' in root or 'node_modules' in root:
@@ -125,6 +126,7 @@ jobs:
         python optimize_images.py
 
     - name: CSS Minification
+      working-directory: ./final-version
       run: |
         cat > minify_css.py << 'EOF'
         #!/usr/bin/env python3
@@ -216,6 +218,7 @@ jobs:
         python minify_css.py
 
     - name: SEO Optimization
+      working-directory: ./final-version
       run: |
         cat > optimize_seo.py << 'EOF'
         #!/usr/bin/env python3
@@ -283,6 +286,7 @@ jobs:
         python optimize_seo.py
 
     - name: Update Sitemap and Robots
+      working-directory: ./final-version
       run: |
         cat > update_sitemap.py << 'EOF'
         #!/usr/bin/env python3
@@ -366,6 +370,7 @@ jobs:
         python update_sitemap.py
 
     - name: Create Security Headers
+      working-directory: ./final-version
       run: |
         cat > _headers << 'EOF'
         /*
@@ -384,7 +389,7 @@ jobs:
         /images/*
           Cache-Control: public, max-age=2592000
         EOF
-        echo "Updated security headers"
+        echo "Updated security headers in final-version folder"
 
     - name: Commit Changes
       run: |
@@ -394,17 +399,19 @@ jobs:
         if git diff --quiet && git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git add .
-          git commit -m "Auto-optimization: Images, CSS, SEO, Security improvements" || echo "Nothing to commit"
+          git add final-version/
+          git commit -m "Auto-optimization: Images, CSS, SEO, Security improvements in final-version folder" || echo "Nothing to commit"
           git push || echo "Nothing to push"
         fi
 
     - name: Summary
       run: |
-        echo "Website optimization completed successfully!"
+        echo "Website optimization completed successfully in final-version folder!"
         echo "Optimizations applied:"
         echo "- Image lazy loading and dimensions"
         echo "- CSS minification"
         echo "- SEO meta tags"
         echo "- Updated sitemap and robots.txt"
         echo "- Security headers"
+        echo ""
+        echo "All changes made in: ./final-version/"
