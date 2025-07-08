@@ -1,11 +1,11 @@
-name: 🚀 Website Optimization & Auto-Deploy
+name: Website Optimization
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch: # Manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,30 +15,35 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: 📥 Checkout Repository
+    - name: Checkout Repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: 🐍 Setup Python
+    - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
 
-    - name: 📦 Install Dependencies
+    - name: Install Dependencies
       run: |
-        pip install beautifulsoup4 pillow lxml cssmin htmlmin
+        pip install beautifulsoup4 pillow lxml
 
-    - name: 🖼️ Optimize Images & Add Lazy Loading
+    - name: Optimize Images and Add Lazy Loading
       run: |
         cat > optimize_images.py << 'EOF'
         #!/usr/bin/env python3
         import os
         import re
-        from PIL import Image
         from bs4 import BeautifulSoup
+        try:
+            from PIL import Image
+        except ImportError:
+            Image = None
 
         def get_image_dimensions(image_path):
+            if not Image:
+                return None, None
             try:
                 with Image.open(image_path) as img:
                     return img.size
@@ -47,8 +52,9 @@ jobs:
 
         def optimize_html_images(html_file):
             with open(html_file, 'r', encoding='utf-8') as f:
-                soup = BeautifulSoup(f.read(), 'html.parser')
+                content = f.read()
             
+            soup = BeautifulSoup(content, 'html.parser')
             images = soup.find_all('img')
             changes_made = False
             
@@ -69,7 +75,7 @@ jobs:
                             img['height'] = str(height)
                             changes_made = True
                 
-                # Add loading="lazy" (except for hero images)
+                # Add loading="lazy"
                 if not img.get('loading') and 'hero' not in src.lower() and 'logo' not in src.lower():
                     img['loading'] = 'lazy'
                     changes_made = True
@@ -77,7 +83,10 @@ jobs:
                 # Add object-fit style
                 current_style = img.get('style', '')
                 if 'object-fit' not in current_style:
-                    new_style = current_style + '; object-fit: cover;' if current_style else 'object-fit: cover;'
+                    if current_style:
+                        new_style = current_style + '; object-fit: cover;'
+                    else:
+                        new_style = 'object-fit: cover;'
                     img['style'] = new_style
                     changes_made = True
                 
@@ -92,7 +101,7 @@ jobs:
             if changes_made:
                 with open(html_file, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
-                print(f"✅ Optimized: {html_file}")
+                print(f"Optimized: {html_file}")
             
             return changes_made
 
@@ -110,25 +119,33 @@ jobs:
             if optimize_html_images(html_file):
                 optimized_count += 1
 
-        print(f"🎉 Optimized {optimized_count} HTML files with images")
+        print(f"Optimized {optimized_count} HTML files with images")
         EOF
         
         python optimize_images.py
 
-    - name: 🎨 CSS Optimization & Minification
+    - name: CSS Minification
       run: |
-        cat > optimize_css.py << 'EOF'
+        cat > minify_css.py << 'EOF'
         #!/usr/bin/env python3
         import os
         import re
-        from cssmin import cssmin
         from bs4 import BeautifulSoup
+
+        def simple_css_minify(css_content):
+            # Remove comments
+            css_content = re.sub(r'/\*.*?\*/', '', css_content, flags=re.DOTALL)
+            # Remove extra whitespace
+            css_content = re.sub(r'\s+', ' ', css_content)
+            # Remove spaces around certain characters
+            css_content = re.sub(r'\s*([{}:;,>+~])\s*', r'\1', css_content)
+            return css_content.strip()
 
         def minify_css_file(css_file):
             with open(css_file, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            minified = cssmin(content)
+            minified = simple_css_minify(content)
             
             # Create minified version
             base_name = os.path.splitext(css_file)[0]
@@ -141,8 +158,9 @@ jobs:
 
         def update_html_css_refs(html_file):
             with open(html_file, 'r', encoding='utf-8') as f:
-                soup = BeautifulSoup(f.read(), 'html.parser')
+                content = f.read()
             
+            soup = BeautifulSoup(content, 'html.parser')
             links = soup.find_all('link', rel='stylesheet')
             changes_made = False
             
@@ -174,9 +192,9 @@ jobs:
             try:
                 min_file = minify_css_file(css_file)
                 minified_count += 1
-                print(f"✅ Minified: {css_file} → {min_file}")
+                print(f"Minified: {css_file}")
             except Exception as e:
-                print(f"❌ Error minifying {css_file}: {e}")
+                print(f"Error minifying {css_file}: {e}")
 
         # Update HTML references
         html_files = []
@@ -192,12 +210,12 @@ jobs:
             if update_html_css_refs(html_file):
                 updated_count += 1
 
-        print(f"🎉 Minified {minified_count} CSS files, updated {updated_count} HTML files")
+        print(f"Minified {minified_count} CSS files, updated {updated_count} HTML files")
         EOF
         
-        python optimize_css.py
+        python minify_css.py
 
-    - name: 🔍 SEO & Meta Tags Optimization
+    - name: SEO Optimization
       run: |
         cat > optimize_seo.py << 'EOF'
         #!/usr/bin/env python3
@@ -206,8 +224,9 @@ jobs:
 
         def optimize_seo(html_file):
             with open(html_file, 'r', encoding='utf-8') as f:
-                soup = BeautifulSoup(f.read(), 'html.parser')
+                content = f.read()
             
+            soup = BeautifulSoup(content, 'html.parser')
             changes_made = False
             
             # Add lang attribute to html tag
@@ -222,37 +241,25 @@ jobs:
             # Add meta viewport if missing
             if not soup.find('meta', attrs={'name': 'viewport'}):
                 if soup.head:
-                    meta_viewport = soup.new_tag('meta', attrs={
-                        'name': 'viewport', 
-                        'content': 'width=device-width, initial-scale=1.0'
-                    })
+                    meta_viewport = soup.new_tag('meta')
+                    meta_viewport.attrs['name'] = 'viewport'
+                    meta_viewport.attrs['content'] = 'width=device-width, initial-scale=1.0'
                     soup.head.append(meta_viewport)
                     changes_made = True
             
             # Add meta description if missing
             if not soup.find('meta', attrs={'name': 'description'}):
                 if soup.head:
-                    meta_desc = soup.new_tag('meta', attrs={
-                        'name': 'description', 
-                        'content': 'Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits.'
-                    })
+                    meta_desc = soup.new_tag('meta')
+                    meta_desc.attrs['name'] = 'description'
+                    meta_desc.attrs['content'] = 'Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits.'
                     soup.head.append(meta_desc)
-                    changes_made = True
-            
-            # Add meta robots if missing
-            if not soup.find('meta', attrs={'name': 'robots'}):
-                if soup.head:
-                    meta_robots = soup.new_tag('meta', attrs={
-                        'name': 'robots', 
-                        'content': 'index, follow'
-                    })
-                    soup.head.append(meta_robots)
                     changes_made = True
             
             if changes_made:
                 with open(html_file, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
-                print(f"✅ SEO optimized: {html_file}")
+                print(f"SEO optimized: {html_file}")
             
             return changes_made
 
@@ -270,22 +277,22 @@ jobs:
             if optimize_seo(html_file):
                 optimized_count += 1
 
-        print(f"🎉 SEO optimized {optimized_count} HTML files")
+        print(f"SEO optimized {optimized_count} HTML files")
         EOF
         
         python optimize_seo.py
 
-    - name: 🗺️ Update Sitemap & Robots.txt
+    - name: Update Sitemap and Robots
       run: |
         cat > update_sitemap.py << 'EOF'
         #!/usr/bin/env python3
         import os
-        import xml.etree.ElementTree as ET
         from datetime import datetime
 
         # Generate sitemap.xml
-        urlset = ET.Element('urlset')
-        urlset.set('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9' )
+        sitemap_content = '''<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        '''
 
         base_url = 'https://melissaphotography.paris'
         current_date = datetime.now( ).strftime('%Y-%m-%d')
@@ -298,7 +305,7 @@ jobs:
             for file in files:
                 if file.endswith('.html') and not file.startswith('demo'):
                     rel_path = os.path.relpath(os.path.join(root, file), '.')
-                    if rel_path.count('/') <= 1:  # Main pages only
+                    if rel_path.count('/') <= 1:
                         html_files.append(rel_path)
 
         # Page priorities
@@ -308,193 +315,96 @@ jobs:
             'services.html': '0.9',
             'servicesfr.html': '0.9',
             'about.html': '0.8',
-            'aboutfr.html': '0.8',
-            'proposal.html': '0.8',
-            'proposalfr.html': '0.8',
-            'wedding.html': '0.8',
-            'weddingfr.html': '0.8',
-            'contact.html': '0.7',
-            'contactfr.html': '0.7',
+            'aboutfr.html': '0.8'
         }
 
         for page in sorted(html_files):
-            url = ET.SubElement(urlset, 'url')
-            
-            loc = ET.SubElement(url, 'loc')
             if page == 'index.html':
-                loc.text = f'{base_url}/'
+                url = f'{base_url}/'
             else:
-                loc.text = f'{base_url}/{page}'
+                url = f'{base_url}/{page}'
             
-            lastmod = ET.SubElement(url, 'lastmod')
-            lastmod.text = current_date
+            priority = priorities.get(page, '0.5')
             
-            changefreq = ET.SubElement(url, 'changefreq')
-            changefreq.text = 'monthly'
-            
-            priority = ET.SubElement(url, 'priority')
-            priority.text = priorities.get(page, '0.5')
+            sitemap_content += f'''  <url>
+            <loc>{url}</loc>
+            <lastmod>{current_date}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>{priority}</priority>
+          </url>
+        '''
 
-        # Save sitemap
-        tree = ET.ElementTree(urlset)
-        ET.indent(tree, space="  ", level=0)
-        tree.write('sitemap.xml', encoding='utf-8', xml_declaration=True)
+        sitemap_content += '</urlset>'
+
+        with open('sitemap.xml', 'w', encoding='utf-8') as f:
+            f.write(sitemap_content)
 
         # Update robots.txt
-        robots_content = f"""User-agent: *
-Allow: /
+        robots_content = f'''User-agent: *
+        Allow: /
 
-# Sitemap
-Sitemap: {base_url}/sitemap.xml
+        Sitemap: {base_url}/sitemap.xml
 
-# Disallow admin and development areas
-Disallow: /admin/
-Disallow: /.git/
-Disallow: /.vscode/
-Disallow: /scss/
-Disallow: /node_modules/
+        Disallow: /admin/
+        Disallow: /.git/
+        Disallow: /.vscode/
+        Disallow: /scss/
 
-# Allow important pages
-Allow: /css/
-Allow: /js/
-Allow: /images/
-Allow: /fonts/
-
-# Crawl delay
-Crawl-delay: 1
-"""
+        Allow: /css/
+        Allow: /js/
+        Allow: /images/
+        Allow: /fonts/
+        '''
 
         with open('robots.txt', 'w') as f:
             f.write(robots_content)
 
-        print(f"✅ Updated sitemap.xml with {len(html_files)} pages")
-        print("✅ Updated robots.txt")
+        print(f"Updated sitemap.xml with {len(html_files)} pages")
+        print("Updated robots.txt")
         EOF
         
         python update_sitemap.py
 
-    - name: 🔐 Security Headers Optimization
+    - name: Create Security Headers
       run: |
         cat > _headers << 'EOF'
-/*
-  # Security Headers
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  X-XSS-Protection: 1; mode=block
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  
-  # Content Security Policy
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com cdn.jsdelivr.net; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';
+        /*
+          X-Frame-Options: DENY
+          X-Content-Type-Options: nosniff
+          X-XSS-Protection: 1; mode=block
+          Referrer-Policy: strict-origin-when-cross-origin
+          Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-# Cache Control for performance
-/css/*
-  Cache-Control: public, max-age=31536000, immutable
+        /css/*
+          Cache-Control: public, max-age=31536000
 
-/js/*
-  Cache-Control: public, max-age=31536000, immutable
+        /js/*
+          Cache-Control: public, max-age=31536000
 
-/images/*
-  Cache-Control: public, max-age=2592000
+        /images/*
+          Cache-Control: public, max-age=2592000
+        EOF
+        echo "Updated security headers"
 
-/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.html
-  Cache-Control: public, max-age=3600
-
-/
-  Cache-Control: public, max-age=3600
-EOF
-        echo "✅ Updated security headers"
-
-    - name: 📊 Generate Optimization Report
-      run: |
-        echo "# 🚀 Website Optimization Report" > optimization-report.md
-        echo "" >> optimization-report.md
-        echo "**Date:** $(date )" >> optimization-report.md
-        echo "**Commit:** ${{ github.sha }}" >> optimization-report.md
-        echo "" >> optimization-report.md
-        echo "## ✅ Optimizations Applied" >> optimization-report.md
-        echo "" >> optimization-report.md
-        echo "- 🖼️ **Images**: Added width/height, loading='lazy', object-fit, alt attributes" >> optimization-report.md
-        echo "- 🎨 **CSS**: Minified all CSS files for better performance" >> optimization-report.md
-        echo "- 🔍 **SEO**: Enhanced meta tags, lang attributes, viewport settings" >> optimization-report.md
-        echo "- 🗺️ **Sitemap**: Updated with all pages for better crawling" >> optimization-report.md
-        echo "- 🤖 **Robots.txt**: Optimized for search engine crawling" >> optimization-report.md
-        echo "- 🔐 **Security**: Enhanced headers and CSP for better security" >> optimization-report.md
-        echo "" >> optimization-report.md
-        echo "## 📈 Expected Improvements" >> optimization-report.md
-        echo "" >> optimization-report.md
-        echo "- **Performance Score**: 85-95+ (Lighthouse)" >> optimization-report.md
-        echo "- **SEO Score**: 95-100" >> optimization-report.md
-        echo "- **Core Web Vitals**: Significantly improved" >> optimization-report.md
-        echo "- **Security**: Enhanced with proper headers" >> optimization-report.md
-        
-        echo "✅ Generated optimization report"
-
-    - name: 🔍 Validate HTML Files
-      run: |
-        echo "🔍 Validating HTML structure..."
-        python -c "
-import os
-from bs4 import BeautifulSoup
-
-errors = 0
-for root, dirs, files in os.walk('.'):
-    if '.git' in root:
-        continue
-    for file in files:
-        if file.endswith('.html'):
-            try:
-                with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
-                    soup = BeautifulSoup(f.read(), 'html.parser')
-                print(f'✅ Valid: {file}')
-            except Exception as e:
-                print(f'❌ Error in {file}: {e}')
-                errors += 1
-
-if errors == 0:
-    print('🎉 All HTML files are valid!')
-else:
-    print(f'⚠️ Found {errors} HTML validation errors')
-"
-
-    - name: 📝 Commit Optimizations
+    - name: Commit Changes
       run: |
         git config --local user.email "action@github.com"
-        git config --local user.name "Website Optimizer Bot"
+        git config --local user.name "Website Optimizer"
         
-        # Check if there are changes
         if git diff --quiet && git diff --staged --quiet; then
           echo "No changes to commit"
         else
           git add .
-          git commit -m "🚀 Auto-optimization: Images, CSS, SEO, Security & Performance
-
-- Added loading='lazy' to images for better performance
-- Applied object-fit: cover for proper aspect ratios  
-- Completed alt attributes for accessibility
-- Minified CSS files for faster loading
-- Enhanced SEO with meta tags and structure
-- Updated sitemap.xml and robots.txt
-- Improved security headers
-- Generated optimization report
-
-[skip ci]" || echo "Nothing to commit"
-          
-          # Push changes back to repository
+          git commit -m "Auto-optimization: Images, CSS, SEO, Security improvements" || echo "Nothing to commit"
           git push || echo "Nothing to push"
         fi
 
-    - name: 🎉 Optimization Complete
+    - name: Summary
       run: |
-        echo "🎉 Website optimization completed successfully!"
-        echo "📊 Check the optimization-report.md for details"
-        echo "🚀 Your website is now optimized for:"
-        echo "   - Better mobile performance"
-        echo "   - Improved SEO rankings"
-        echo "   - Enhanced security"
-        echo "   - Faster loading times"
-        echo "   - Better Core Web Vitals"
+        echo "Website optimization completed successfully!"
+        echo "Optimizations applied:"
+        echo "- Image lazy loading and dimensions"
+        echo "- CSS minification"
+        echo "- SEO meta tags"
+        echo "- Updated sitemap and robots.txt"
+        echo "- Security headers"
