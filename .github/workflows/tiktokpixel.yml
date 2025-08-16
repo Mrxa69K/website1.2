@@ -1,12 +1,13 @@
-name: Add TikTok Pixel
+name: Add TikTok Events Tracking
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
-  inject-pixel:
+  inject-events:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,19 +16,239 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-        
-      - name: Inject TikTok Pixel
-        run: |
-          # Create the pixel code as a variable
-          PIXEL='<!-- TikTok Pixel Code Start -->
-          <script>!function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)}; ttq.load("D2G8HPBC77U9U4KDPBTG"); ttq.page();}(window, document, "ttq");</script>
-          <!-- TikTok Pixel Code End -->'
           
-          # Inject before </head> in all HTML files
+      - name: Create TikTok Events Script
+        run: |
+          # Create the events tracking script for photography website
+          cat > tiktok-events.js << 'EOF'
+          // TikTok Events Tracking for Photography Website
+          
+          // Track page views on all pages
+          ttq.track('ViewContent', {
+            "contents": [
+              {
+                "content_type": "product", 
+                "content_category": "photography",
+                "content_name": document.title || "Photography Page"
+              }
+            ],
+            "description": "Photography website page view"
+          });
+          
+          // Track contact form submissions
+          function trackContactForm() {
+            ttq.track('CompleteRegistration', {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": "Contact Form Submission"
+                }
+              ],
+              "description": "Contact form completed"
+            });
+          }
+          
+          // Track portfolio/gallery views
+          function trackPortfolioView(portfolioName) {
+            ttq.track('ViewContent', {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": portfolioName || "Portfolio View"
+                }
+              ],
+              "description": "Portfolio gallery viewed"
+            });
+          }
+          
+          // Track booking/inquiry actions
+          function trackBookingInquiry() {
+            ttq.track('InitiateCheckout', {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": "Photography Booking Inquiry"
+                }
+              ],
+              "description": "Photography booking inquiry initiated"
+            });
+          }
+          
+          // Track service page views
+          function trackServiceView(serviceName) {
+            ttq.track('ViewContent', {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": serviceName || "Photography Service"
+                }
+              ],
+              "description": "Photography service page viewed"
+            });
+          }
+          
+          // Auto-track common events when page loads
+          document.addEventListener('DOMContentLoaded', function() {
+            // Track contact form submissions
+            const contactForms = document.querySelectorAll('form[action*="contact"], form.contact-form, #contact-form');
+            contactForms.forEach(form => {
+              form.addEventListener('submit', trackContactForm);
+            });
+            
+            // Track booking forms
+            const bookingForms = document.querySelectorAll('form[action*="book"], form.booking-form, #booking-form');
+            bookingForms.forEach(form => {
+              form.addEventListener('submit', trackBookingInquiry);
+            });
+            
+            // Track portfolio clicks
+            const portfolioLinks = document.querySelectorAll('a[href*="portfolio"], a[href*="gallery"], .portfolio-link, .gallery-link');
+            portfolioLinks.forEach(link => {
+              link.addEventListener('click', function() {
+                trackPortfolioView(this.textContent || this.getAttribute('data-portfolio-name'));
+              });
+            });
+            
+            // Auto-detect service pages and track views
+            const currentPath = window.location.pathname.toLowerCase();
+            if (currentPath.includes('wedding')) {
+              trackServiceView('Wedding Photography');
+            } else if (currentPath.includes('portrait')) {
+              trackServiceView('Portrait Photography');
+            } else if (currentPath.includes('event')) {
+              trackServiceView('Event Photography');
+            } else if (currentPath.includes('commercial')) {
+              trackServiceView('Commercial Photography');
+            } else if (currentPath.includes('service')) {
+              trackServiceView('Photography Services');
+            }
+          });
+          EOF
+          
+      - name: Inject TikTok Events into HTML files
+        run: |
+          # Inject the events script before </body> in all HTML files
           for f in $(find . -name "*.html"); do
-            if ! grep -q "TikTok Pixel Code Start" "$f"; then
-              # Use a temporary file to avoid sed issues with multiline replacement
-              awk -v pixel="$PIXEL" '/<\/head>/ {print pixel} {print}' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+            if ! grep -q "TikTok Events Tracking" "$f"; then
+              # Create the script tag with the events code
+              EVENTS_SCRIPT='<script>
+          // TikTok Events Tracking for Photography Website
+          
+          // Track page views on all pages
+          ttq.track("ViewContent", {
+            "contents": [
+              {
+                "content_type": "product", 
+                "content_category": "photography",
+                "content_name": document.title || "Photography Page"
+              }
+            ],
+            "description": "Photography website page view"
+          });
+          
+          // Track contact form submissions
+          function trackContactForm() {
+            ttq.track("CompleteRegistration", {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": "Contact Form Submission"
+                }
+              ],
+              "description": "Contact form completed"
+            });
+          }
+          
+          // Track portfolio/gallery views
+          function trackPortfolioView(portfolioName) {
+            ttq.track("ViewContent", {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": portfolioName || "Portfolio View"
+                }
+              ],
+              "description": "Portfolio gallery viewed"
+            });
+          }
+          
+          // Track booking/inquiry actions
+          function trackBookingInquiry() {
+            ttq.track("InitiateCheckout", {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": "Photography Booking Inquiry"
+                }
+              ],
+              "description": "Photography booking inquiry initiated"
+            });
+          }
+          
+          // Track service page views
+          function trackServiceView(serviceName) {
+            ttq.track("ViewContent", {
+              "contents": [
+                {
+                  "content_type": "product",
+                  "content_category": "photography",
+                  "content_name": serviceName || "Photography Service"
+                }
+              ],
+              "description": "Photography service page viewed"
+            });
+          }
+          
+          // Auto-track common events when page loads
+          document.addEventListener("DOMContentLoaded", function() {
+            // Track contact form submissions
+            const contactForms = document.querySelectorAll("form[action*=\"contact\"], form.contact-form, #contact-form");
+            contactForms.forEach(form => {
+              form.addEventListener("submit", trackContactForm);
+            });
+            
+            // Track booking forms
+            const bookingForms = document.querySelectorAll("form[action*=\"book\"], form.booking-form, #booking-form");
+            bookingForms.forEach(form => {
+              form.addEventListener("submit", trackBookingInquiry);
+            });
+            
+            // Track portfolio clicks
+            const portfolioLinks = document.querySelectorAll("a[href*=\"portfolio\"], a[href*=\"gallery\"], .portfolio-link, .gallery-link");
+            portfolioLinks.forEach(link => {
+              link.addEventListener("click", function() {
+                trackPortfolioView(this.textContent || this.getAttribute("data-portfolio-name"));
+              });
+            });
+            
+            // Auto-detect service pages and track views
+            const currentPath = window.location.pathname.toLowerCase();
+            if (currentPath.includes("wedding")) {
+              trackServiceView("Wedding Photography");
+            } else if (currentPath.includes("portrait")) {
+              trackServiceView("Portrait Photography");
+            } else if (currentPath.includes("event")) {
+              trackServiceView("Event Photography");
+            } else if (currentPath.includes("commercial")) {
+              trackServiceView("Commercial Photography");
+            } else if (currentPath.includes("service")) {
+              trackServiceView("Photography Services");
+            }
+          });
+          </script>'
+              
+              # Use awk to insert the script before </body>
+              awk -v script="$EVENTS_SCRIPT" '/<\/body>/ {print script} {print}' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+              echo "Added TikTok events tracking to $f"
+            else
+              echo "TikTok events already present in $f"
             fi
           done
           
@@ -36,5 +257,9 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Inject TikTok Pixel" || echo "No changes"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add TikTok events tracking to all HTML pages"
+            git push
+          fi
