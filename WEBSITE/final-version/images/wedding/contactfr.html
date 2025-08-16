@@ -24,6 +24,160 @@
 <!-- TikTok Pixel Code Start -->
 <script>!function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)}; ttq.load("D2G8HPBC77U9U4KDPBTG"); ttq.page();}(window, document, "ttq");</script>
 <!-- TikTok Pixel Code End -->
+<script>
+// TikTok Events for Photography Website
+
+// Track page view with photography-specific data
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_id": window.location.pathname,
+      "content_type": "product",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "value": 0,
+  "currency": "EUR"
+});
+
+// Function to track button clicks
+function trackButtonClick(buttonName) {
+  ttq.track("ClickButton", {
+    "contents": [
+      {
+        "content_id": buttonName,
+        "content_type": "product", 
+        "content_name": buttonName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track search
+function trackSearch(searchTerm) {
+  ttq.track("Search", {
+    "contents": [
+      {
+        "content_id": "photography_search",
+        "content_type": "product",
+        "content_name": "Photography Search"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR",
+    "search_string": searchTerm
+  });
+}
+
+// Function to track wishlist (portfolio favorites)
+function trackAddToWishlist(portfolioName) {
+  ttq.track("AddToWishlist", {
+    "contents": [
+      {
+        "content_id": portfolioName,
+        "content_type": "product",
+        "content_name": portfolioName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track newsletter subscription
+function trackSubscribe() {
+  ttq.track("Subscribe", {
+    "contents": [
+      {
+        "content_id": "newsletter",
+        "content_type": "product",
+        "content_name": "Newsletter Subscription"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track contact form completion
+function trackCompleteRegistration() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_id": "contact_form",
+        "content_type": "product",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Auto-setup when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // Track all button clicks
+  const buttons = document.querySelectorAll("button, .btn, [role="button"]");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      const buttonName = this.textContent.trim() || this.getAttribute("aria-label") || "Unknown Button";
+      trackButtonClick(buttonName);
+    });
+  });
+  
+  // Track search functionality
+  const searchInputs = document.querySelectorAll("input[type="search"], .search-input, #search");
+  searchInputs.forEach(input => {
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter" && this.value.trim()) {
+        trackSearch(this.value.trim());
+      }
+    });
+  });
+  
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], .contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackCompleteRegistration);
+  });
+  
+  // Track newsletter subscriptions
+  const newsletterForms = document.querySelectorAll("form[action*="newsletter"], form[action*="subscribe"], .newsletter-form");
+  newsletterForms.forEach(form => {
+    form.addEventListener("submit", trackSubscribe);
+  });
+  
+  // Track portfolio/gallery favorites
+  const favoriteButtons = document.querySelectorAll(".favorite, .wishlist, .save-photo");
+  favoriteButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const portfolioName = this.getAttribute("data-portfolio") || this.closest(".portfolio-item")?.querySelector("h3, .title")?.textContent || "Portfolio Item";
+      trackAddToWishlist(portfolioName);
+    });
+  });
+  
+  // Track service page navigation
+  const serviceLinks = document.querySelectorAll("a[href*="wedding"], a[href*="portrait"], a[href*="event"], a[href*="commercial"]");
+  serviceLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      const serviceName = this.textContent.trim() || this.getAttribute("data-service") || "Photography Service";
+      trackButtonClick("Service Link: " + serviceName);
+    });
+  });
+  
+  // Track call-to-action buttons
+  const ctaButtons = document.querySelectorAll(".cta, .book-now, .contact-btn, .get-quote");
+  ctaButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      trackButtonClick("CTA: " + (this.textContent.trim() || "Call to Action"));
+    });
+  });
+  
+});
+</script>
 <meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
 <body>
 <div class="site-wrap">
