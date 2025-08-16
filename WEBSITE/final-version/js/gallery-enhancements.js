@@ -42,35 +42,39 @@
             img.setAttribute('data-src', img.src);
             img.setAttribute('data-sub-html', img.alt || 'Photography by Melissa Paris');
             
-            // Make images clickable
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Create lightbox gallery
-                const gallery = lightGallery(img.closest('.row') || img.closest('.gallery-grid') || document.body, {
-                    selector: '.gallery-item img',
-                    thumbnail: true,
-                    animateThumb: true,
-                    showThumbByDefault: false,
-                    mode: 'lg-fade',
-                    cssEasing: 'cubic-bezier(0.25, 0, 0.25, 1)',
-                    speed: 600,
-                    addClass: 'lg-custom',
-                    download: false, // Disable download
-                    zoom: false, // Disable zoom for mobile
-                    fullScreen: false, // Disable fullscreen
-                    share: false, // Disable sharing
-                    autoplayFirstVideo: false,
-                    pager: false,
-                    galleryId: 'gallery-' + index,
-                    startAnimationDuration: 400,
-                    backdropDuration: 300
+            // Make images clickable - attach event to parent container to avoid conflicts
+            const parentItem = img.closest('.gallery-item');
+            if (parentItem) {
+                parentItem.style.cursor = 'pointer';
+                parentItem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Create lightbox gallery
+                    const gallery = lightGallery(img.closest('.row') || img.closest('.gallery-grid') || document.body, {
+                        selector: '.gallery-item img',
+                        thumbnail: true,
+                        animateThumb: true,
+                        showThumbByDefault: false,
+                        mode: 'lg-fade',
+                        cssEasing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+                        speed: 600,
+                        addClass: 'lg-custom',
+                        download: false, // Disable download
+                        zoom: false, // Disable zoom for mobile
+                        fullScreen: false, // Disable fullscreen
+                        share: false, // Disable sharing
+                        autoplayFirstVideo: false,
+                        pager: false,
+                        galleryId: 'gallery-' + index,
+                        startAnimationDuration: 400,
+                        backdropDuration: 300
+                    });
+                    
+                    // Open at clicked image
+                    gallery.openGallery(index);
                 });
-                
-                // Open at clicked image
-                gallery.openGallery(index);
-            });
+            }
         });
 
         // Add lightbox to home page gallery images
