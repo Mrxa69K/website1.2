@@ -1,0 +1,219 @@
+name: Install TikTok Events Tracking
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  install-tiktok-events:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Install TikTok Events in HTML files
+        run: |
+          # Define the TikTok events code adapted for photography website
+          TIKTOK_EVENTS_CODE='<script>
+          // TikTok Events for Photography Website
+          
+          // Track page view with photography-specific data
+          ttq.track("ViewContent", {
+            "contents": [
+              {
+                "content_id": window.location.pathname,
+                "content_type": "product",
+                "content_name": document.title || "Photography Page"
+              }
+            ],
+            "value": 0,
+            "currency": "EUR"
+          });
+          
+          // Function to track button clicks
+          function trackButtonClick(buttonName) {
+            ttq.track("ClickButton", {
+              "contents": [
+                {
+                  "content_id": buttonName,
+                  "content_type": "product", 
+                  "content_name": buttonName
+                }
+              ],
+              "value": 0,
+              "currency": "EUR"
+            });
+          }
+          
+          // Function to track search
+          function trackSearch(searchTerm) {
+            ttq.track("Search", {
+              "contents": [
+                {
+                  "content_id": "photography_search",
+                  "content_type": "product",
+                  "content_name": "Photography Search"
+                }
+              ],
+              "value": 0,
+              "currency": "EUR",
+              "search_string": searchTerm
+            });
+          }
+          
+          // Function to track wishlist (portfolio favorites)
+          function trackAddToWishlist(portfolioName) {
+            ttq.track("AddToWishlist", {
+              "contents": [
+                {
+                  "content_id": portfolioName,
+                  "content_type": "product",
+                  "content_name": portfolioName
+                }
+              ],
+              "value": 0,
+              "currency": "EUR"
+            });
+          }
+          
+          // Function to track newsletter subscription
+          function trackSubscribe() {
+            ttq.track("Subscribe", {
+              "contents": [
+                {
+                  "content_id": "newsletter",
+                  "content_type": "product",
+                  "content_name": "Newsletter Subscription"
+                }
+              ],
+              "value": 0,
+              "currency": "EUR"
+            });
+          }
+          
+          // Function to track contact form completion
+          function trackCompleteRegistration() {
+            ttq.track("CompleteRegistration", {
+              "contents": [
+                {
+                  "content_id": "contact_form",
+                  "content_type": "product",
+                  "content_name": "Contact Form Submission"
+                }
+              ],
+              "value": 0,
+              "currency": "EUR"
+            });
+          }
+          
+          // Auto-setup when page loads
+          document.addEventListener("DOMContentLoaded", function() {
+            
+            // Track all button clicks
+            const buttons = document.querySelectorAll("button, .btn, [role=\"button\"]");
+            buttons.forEach(button => {
+              button.addEventListener("click", function() {
+                const buttonName = this.textContent.trim() || this.getAttribute("aria-label") || "Unknown Button";
+                trackButtonClick(buttonName);
+              });
+            });
+            
+            // Track search functionality
+            const searchInputs = document.querySelectorAll("input[type=\"search\"], .search-input, #search");
+            searchInputs.forEach(input => {
+              input.addEventListener("keypress", function(e) {
+                if (e.key === "Enter" && this.value.trim()) {
+                  trackSearch(this.value.trim());
+                }
+              });
+            });
+            
+            // Track contact form submissions
+            const contactForms = document.querySelectorAll("form[action*=\"contact\"], .contact-form, #contact-form");
+            contactForms.forEach(form => {
+              form.addEventListener("submit", trackCompleteRegistration);
+            });
+            
+            // Track newsletter subscriptions
+            const newsletterForms = document.querySelectorAll("form[action*=\"newsletter\"], form[action*=\"subscribe\"], .newsletter-form");
+            newsletterForms.forEach(form => {
+              form.addEventListener("submit", trackSubscribe);
+            });
+            
+            // Track portfolio/gallery favorites
+            const favoriteButtons = document.querySelectorAll(".favorite, .wishlist, .save-photo");
+            favoriteButtons.forEach(button => {
+              button.addEventListener("click", function() {
+                const portfolioName = this.getAttribute("data-portfolio") || this.closest(".portfolio-item")?.querySelector("h3, .title")?.textContent || "Portfolio Item";
+                trackAddToWishlist(portfolioName);
+              });
+            });
+            
+            // Track service page navigation
+            const serviceLinks = document.querySelectorAll("a[href*=\"wedding\"], a[href*=\"portrait\"], a[href*=\"event\"], a[href*=\"commercial\"]");
+            serviceLinks.forEach(link => {
+              link.addEventListener("click", function() {
+                const serviceName = this.textContent.trim() || this.getAttribute("data-service") || "Photography Service";
+                trackButtonClick("Service Link: " + serviceName);
+              });
+            });
+            
+            // Track call-to-action buttons
+            const ctaButtons = document.querySelectorAll(".cta, .book-now, .contact-btn, .get-quote");
+            ctaButtons.forEach(button => {
+              button.addEventListener("click", function() {
+                trackButtonClick("CTA: " + (this.textContent.trim() || "Call to Action"));
+              });
+            });
+            
+          });
+          </script>'
+          
+          # Counter for modified files
+          modified_count=0
+          
+          # Process all HTML files
+          find . -name "*.html" -type f | while read -r file; do
+            echo "Processing: $file"
+            
+            # Check if TikTok events already exist
+            if grep -q "TikTok Events for Photography Website" "$file"; then
+              echo "  → TikTok events already exist, skipping"
+            else
+              # Check if TikTok pixel base code exists
+              if grep -q "TikTok Pixel Code" "$file"; then
+                # Insert events code after the TikTok pixel base code
+                awk -v code="$TIKTOK_EVENTS_CODE" '
+                  /TikTok Pixel Code End/ { print; print code; next }
+                  { print }
+                ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+                
+                echo "  ✓ Added TikTok events to $file"
+                modified_count=$((modified_count + 1))
+              else
+                echo "  ⚠ TikTok pixel base code not found in $file, skipping events"
+              fi
+            fi
+          done
+          
+          echo "Modified $modified_count HTML files"
+          
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add TikTok events tracking for photography website"
+            git push
+            echo "✓ Changes pushed to repository"
+          fi

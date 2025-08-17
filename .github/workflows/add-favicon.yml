@@ -1,0 +1,27 @@
+name: Inject Favicon Script
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inject-favicon:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject favicon
+        run: |
+          find . -name "*.html" | while read file; do
+            if ! grep -q "favicon" "$file"; then
+              sed -i 's|</head>|<link rel="icon" href="favicon.ico">\n</head>|' "$file"
+            fi
+          done
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 🎯 Auto-inject favicon
+          commit_user_name: GitHub Action
+          commit_user_email: action@github.com

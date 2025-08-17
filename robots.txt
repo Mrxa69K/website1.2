@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://melissaphotography.paris/sitemap.xml
+
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /scss/
+
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/

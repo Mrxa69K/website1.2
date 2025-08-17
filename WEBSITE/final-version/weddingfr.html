@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<title>Paris Love Photography</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="fonts/icomoon/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<link href="css/jquery-ui.css" rel="stylesheet"/>
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<link href="css/lightgallery.min.css" rel="stylesheet"/>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet"/>
+<link href="fonts/flaticon/font/flaticon.css" rel="stylesheet"/>
+<link href="css/swiper.css" rel="stylesheet"/>
+<link href="css/aos.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/animations.css" rel="stylesheet"/>
+<!-- CookieConsent CSS -->
+<link href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css" rel="stylesheet"/>
+<!-- TikTok Pixel Code Start -->
+<script>!function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)}; ttq.load("D2G8HPBC77U9U4KDPBTG"); ttq.page();}(window, document, "ttq");</script>
+<!-- TikTok Pixel Code End -->
+<script>
+// TikTok Events for Photography Website
+
+// Track page view with photography-specific data
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_id": window.location.pathname,
+      "content_type": "product",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "value": 0,
+  "currency": "EUR"
+});
+
+// Function to track button clicks
+function trackButtonClick(buttonName) {
+  ttq.track("ClickButton", {
+    "contents": [
+      {
+        "content_id": buttonName,
+        "content_type": "product", 
+        "content_name": buttonName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track search
+function trackSearch(searchTerm) {
+  ttq.track("Search", {
+    "contents": [
+      {
+        "content_id": "photography_search",
+        "content_type": "product",
+        "content_name": "Photography Search"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR",
+    "search_string": searchTerm
+  });
+}
+
+// Function to track wishlist (portfolio favorites)
+function trackAddToWishlist(portfolioName) {
+  ttq.track("AddToWishlist", {
+    "contents": [
+      {
+        "content_id": portfolioName,
+        "content_type": "product",
+        "content_name": portfolioName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track newsletter subscription
+function trackSubscribe() {
+  ttq.track("Subscribe", {
+    "contents": [
+      {
+        "content_id": "newsletter",
+        "content_type": "product",
+        "content_name": "Newsletter Subscription"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track contact form completion
+function trackCompleteRegistration() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_id": "contact_form",
+        "content_type": "product",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Auto-setup when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // Track all button clicks
+  const buttons = document.querySelectorAll("button, .btn, [role="button"]");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      const buttonName = this.textContent.trim() || this.getAttribute("aria-label") || "Unknown Button";
+      trackButtonClick(buttonName);
+    });
+  });
+  
+  // Track search functionality
+  const searchInputs = document.querySelectorAll("input[type="search"], .search-input, #search");
+  searchInputs.forEach(input => {
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter" && this.value.trim()) {
+        trackSearch(this.value.trim());
+      }
+    });
+  });
+  
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], .contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackCompleteRegistration);
+  });
+  
+  // Track newsletter subscriptions
+  const newsletterForms = document.querySelectorAll("form[action*="newsletter"], form[action*="subscribe"], .newsletter-form");
+  newsletterForms.forEach(form => {
+    form.addEventListener("submit", trackSubscribe);
+  });
+  
+  // Track portfolio/gallery favorites
+  const favoriteButtons = document.querySelectorAll(".favorite, .wishlist, .save-photo");
+  favoriteButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const portfolioName = this.getAttribute("data-portfolio") || this.closest(".portfolio-item")?.querySelector("h3, .title")?.textContent || "Portfolio Item";
+      trackAddToWishlist(portfolioName);
+    });
+  });
+  
+  // Track service page navigation
+  const serviceLinks = document.querySelectorAll("a[href*="wedding"], a[href*="portrait"], a[href*="event"], a[href*="commercial"]");
+  serviceLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      const serviceName = this.textContent.trim() || this.getAttribute("data-service") || "Photography Service";
+      trackButtonClick("Service Link: " + serviceName);
+    });
+  });
+  
+  // Track call-to-action buttons
+  const ctaButtons = document.querySelectorAll(".cta, .book-now, .contact-btn, .get-quote");
+  ctaButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      trackButtonClick("CTA: " + (this.textContent.trim() || "Call to Action"));
+    });
+  });
+  
+});
+</script>
+<meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
+<body>
+<div class="site-wrap">
+<div class="site-mobile-menu">
+<div class="site-mobile-menu-header">
+<div class="site-mobile-menu-close mt-3">
+<span class="icon-close2 js-menu-toggle"></span>
+</div>
+</div>
+<div class="site-mobile-menu-body"></div>
+</div>
+<header class="site-navbar py-3" role="banner">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-6 col-xl-2" data-aos="fade-down">
+<h1 class="mb-0"><a href="indexfr.html">
+<img alt="Melissa Photography Paris" class="img-fluid" height="938" src="images/logo-paris-love-photography-horizontal.webp" style="height: 90px;; object-fit: cover;" width="938"/>
+</a></h1>
+</div>
+<div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+<nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+<li><a href="indexfr.html">Accueil</a></li>
+<li class="has-children">
+<a>Galerie</a>
+<ul class="dropdown">
+<li><a href="proposalfr.html">Demande en mariage</a></li>
+<li><a href="portraitfr.html">Portrait</a></li>
+<li class="active"><a href="weddingfr.html">Mariage</a></li>
+<li><a href="eventfr.html">évenement</a></li>
+<li><a href="sportfr.html">Sports</a></li>
+<li class="has-children">
+</li>
+</ul>
+</li>
+<li><a href="servicesfr.html">Nos Services</a></li>
+<li><a href="reviewfr.html">Avis Clients</a></li>
+<li><a href="aboutfr.html">À Propos</a></li>
+<li><a href="contactfr.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+<div class="d-none d-xl-inline-block">
+<ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+<li class="pl-3 pr-3">
+<a href="weddingfr.html">
+<img alt="Français" src="https://flagcdn.com/w40/fr.webp" width="24"/>
+</a>
+<a href="wedding.html">
+<img alt="Anglais" src="https://flagcdn.com/w40/us.webp" width="24"/>
+</a>
+</li>
+<li>
+<a class="pl-3 pr-3" href="https://www.instagram.com/jpeg.apk/"><i class="fab fa-instagram"></i></a>
+</li>
+<li>
+<a class="pl-3 pr-3" href="https://www.tiktok.com/@thegirlwith1camera"><i class="fab fa-tiktok"></i></a>
+</li>
+</ul>
+</div>
+<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a class="site-menu-toggle js-menu-toggle text-black" href="#"><span class="icon-menu h3"></span></a></div>
+</div>
+</div>
+</div>
+</header>
+<div class="site-section" data-aos="fade">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-md-7">
+<div class="row mb-5">
+<div class="col-12">
+<h2 class="site-section-heading text-center">Galerie de Marriage</h2>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="">
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="1365" loading="lazy" src="images/wedding/018.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="2048"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/01.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1365"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/02.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1365"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/03.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1365"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/010.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1369"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/011.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1365"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="3840" loading="lazy" src="images/wedding/012.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="5760"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="1365" loading="lazy" src="images/wedding/08.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1646"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/09.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="1365"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="5760" loading="lazy" src="images/wedding/013.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="3840"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="3840" loading="lazy" src="images/wedding/014.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="5760"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="3840" loading="lazy" src="images/wedding/015.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="5760"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="5760" loading="lazy" src="images/wedding/016.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="3840"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="3840" loading="lazy" src="images/wedding/017.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="5760"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="3840" loading="lazy" src="images/wedding/00.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="5760"/>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;">
+<img alt="Image" class="img-fluid" height="3840" loading="lazy" src="images/wedding/019.webp" style="width: 200%; height: 500px; object-fit: cover; border-radius: 8px;" width="5760"/>
+</div>
+</div>
+</div>
+<div class="footer py-4">
+<div class="container-fluid text-center">
+<p>
+          
+          Copyright ©2025 Tous droits réservés
+          </p>
+</div>
+</div>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/picturefill.min.js"></script>
+<script src="js/lightgallery-all.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Melissa Photography Security & Animations -->
+<script src="js/security.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/performance.js"></script>
+<script>
+    $(document).ready(function(){
+      $('#lightgallery').lightGallery();
+    });
+  </script>
+<!-- CookieConsent Implementation -->
+<script defer="" src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script src="js/cookieconsent-config.js" type="module"></script>
+<script>
+// TikTok Events Tracking for Photography Website
+
+// Track page views on all pages
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_type": "product", 
+      "content_category": "photography",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "description": "Photography website page view"
+});
+
+// Track contact form submissions
+function trackContactForm() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "description": "Contact form completed"
+  });
+}
+
+// Track portfolio/gallery views
+function trackPortfolioView(portfolioName) {
+  ttq.track("ViewContent", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": portfolioName || "Portfolio View"
+      }
+    ],
+    "description": "Portfolio gallery viewed"
+  });
+}
+
+// Track booking/inquiry actions
+function trackBookingInquiry() {
+  ttq.track("InitiateCheckout", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": "Photography Booking Inquiry"
+      }
+    ],
+    "description": "Photography booking inquiry initiated"
+  });
+}
+
+// Track service page views
+function trackServiceView(serviceName) {
+  ttq.track("ViewContent", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": serviceName || "Photography Service"
+      }
+    ],
+    "description": "Photography service page viewed"
+  });
+}
+
+// Auto-track common events when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], form.contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackContactForm);
+  });
+  
+  // Track booking forms
+  const bookingForms = document.querySelectorAll("form[action*="book"], form.booking-form, #booking-form");
+  bookingForms.forEach(form => {
+    form.addEventListener("submit", trackBookingInquiry);
+  });
+  
+  // Track portfolio clicks
+  const portfolioLinks = document.querySelectorAll("a[href*="portfolio"], a[href*="gallery"], .portfolio-link, .gallery-link");
+  portfolioLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      trackPortfolioView(this.textContent || this.getAttribute("data-portfolio-name"));
+    });
+  });
+  
+  // Auto-detect service pages and track views
+  const currentPath = window.location.pathname.toLowerCase();
+  if (currentPath.includes("wedding")) {
+    trackServiceView("Wedding Photography");
+  } else if (currentPath.includes("portrait")) {
+    trackServiceView("Portrait Photography");
+  } else if (currentPath.includes("event")) {
+    trackServiceView("Event Photography");
+  } else if (currentPath.includes("commercial")) {
+    trackServiceView("Commercial Photography");
+  } else if (currentPath.includes("service")) {
+    trackServiceView("Photography Services");
+  }
+});
+</script>
+</div></body>
+</html>

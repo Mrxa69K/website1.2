@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://melissaphotography.paris/sitemap.xml

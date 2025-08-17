@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<title>Paris Love Photography - Services</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="fonts/icomoon/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<link href="css/jquery-ui.css" rel="stylesheet"/>
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<link href="css/lightgallery.min.css" rel="stylesheet"/>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet"/>
+<link href="fonts/flaticon/font/flaticon.css" rel="stylesheet"/>
+<link href="css/swiper.css" rel="stylesheet"/>
+<link href="css/aos.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/animations.css" rel="stylesheet"/>
+<!-- CookieConsent CSS -->
+<link href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css" rel="stylesheet"/>
+<!-- TikTok Pixel Code Start -->
+<script>!function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)}; ttq.load("D2G8HPBC77U9U4KDPBTG"); ttq.page();}(window, document, "ttq");</script>
+<!-- TikTok Pixel Code End -->
+<script>
+// TikTok Events for Photography Website
+
+// Track page view with photography-specific data
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_id": window.location.pathname,
+      "content_type": "product",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "value": 0,
+  "currency": "EUR"
+});
+
+// Function to track button clicks
+function trackButtonClick(buttonName) {
+  ttq.track("ClickButton", {
+    "contents": [
+      {
+        "content_id": buttonName,
+        "content_type": "product", 
+        "content_name": buttonName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track search
+function trackSearch(searchTerm) {
+  ttq.track("Search", {
+    "contents": [
+      {
+        "content_id": "photography_search",
+        "content_type": "product",
+        "content_name": "Photography Search"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR",
+    "search_string": searchTerm
+  });
+}
+
+// Function to track wishlist (portfolio favorites)
+function trackAddToWishlist(portfolioName) {
+  ttq.track("AddToWishlist", {
+    "contents": [
+      {
+        "content_id": portfolioName,
+        "content_type": "product",
+        "content_name": portfolioName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track newsletter subscription
+function trackSubscribe() {
+  ttq.track("Subscribe", {
+    "contents": [
+      {
+        "content_id": "newsletter",
+        "content_type": "product",
+        "content_name": "Newsletter Subscription"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track contact form completion
+function trackCompleteRegistration() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_id": "contact_form",
+        "content_type": "product",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Auto-setup when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // Track all button clicks
+  const buttons = document.querySelectorAll("button, .btn, [role="button"]");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      const buttonName = this.textContent.trim() || this.getAttribute("aria-label") || "Unknown Button";
+      trackButtonClick(buttonName);
+    });
+  });
+  
+  // Track search functionality
+  const searchInputs = document.querySelectorAll("input[type="search"], .search-input, #search");
+  searchInputs.forEach(input => {
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter" && this.value.trim()) {
+        trackSearch(this.value.trim());
+      }
+    });
+  });
+  
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], .contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackCompleteRegistration);
+  });
+  
+  // Track newsletter subscriptions
+  const newsletterForms = document.querySelectorAll("form[action*="newsletter"], form[action*="subscribe"], .newsletter-form");
+  newsletterForms.forEach(form => {
+    form.addEventListener("submit", trackSubscribe);
+  });
+  
+  // Track portfolio/gallery favorites
+  const favoriteButtons = document.querySelectorAll(".favorite, .wishlist, .save-photo");
+  favoriteButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const portfolioName = this.getAttribute("data-portfolio") || this.closest(".portfolio-item")?.querySelector("h3, .title")?.textContent || "Portfolio Item";
+      trackAddToWishlist(portfolioName);
+    });
+  });
+  
+  // Track service page navigation
+  const serviceLinks = document.querySelectorAll("a[href*="wedding"], a[href*="portrait"], a[href*="event"], a[href*="commercial"]");
+  serviceLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      const serviceName = this.textContent.trim() || this.getAttribute("data-service") || "Photography Service";
+      trackButtonClick("Service Link: " + serviceName);
+    });
+  });
+  
+  // Track call-to-action buttons
+  const ctaButtons = document.querySelectorAll(".cta, .book-now, .contact-btn, .get-quote");
+  ctaButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      trackButtonClick("CTA: " + (this.textContent.trim() || "Call to Action"));
+    });
+  });
+  
+});
+</script>
+<meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
+<body>
+<div class="site-wrap">
+<div class="site-mobile-menu">
+<div class="site-mobile-menu-header">
+<div class="site-mobile-menu-close mt-3">
+<span class="icon-close2 js-menu-toggle"></span>
+</div>
+</div>
+<div class="site-mobile-menu-body"></div>
+</div>
+<header class="site-navbar py-3" role="banner">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-6 col-xl-2" data-aos="fade-down">
+<a class="navbar-brand" href="indexfr.html">
+<img alt="Melissa Photography Paris" class="img-fluid" height="938" src="images/logo-paris-love-photography-horizontal.webp" style="height: 90px;; object-fit: cover;" width="938"/>
+</a>
+</div>
+<div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+<nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+<li><a href="indexfr.html">Accueil</a></li>
+<li class="has-children">
+<a>Galerie</a>
+<ul class="dropdown">
+<li><a href="proposalfr.html">Demande en mariage</a></li>
+<li><a href="portraitfr.html">Portrait</a></li>
+<li><a href="weddingfr.html">Mariage</a></li>
+<li><a href="eventfr.html">évenement</a></li>
+<li><a href="sportfr.html">Sports</a></li>
+<li class="has-children">
+</li>
+</ul>
+</li>
+<li class="active"><a href="servicesfr.html">Nos Services</a></li>
+<li><a href="reviewfr.html">Avis Clients</a></li>
+<li><a href="aboutfr.html">À Propos</a></li>
+<li><a href="contactfr.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+<div class="d-none d-xl-inline-block">
+<ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+<li class="pl-3 pr-3">
+<a href="servicesfr.html">
+<img alt="Français" src="https://flagcdn.com/w40/fr.webp" width="24"/>
+</a>
+<a href="servicesfr.html">
+<img alt="Anglais" src="https://flagcdn.com/w40/us.webp" width="24"/>
+</a>
+</li>
+<li>
+<a class="pl-3 pr-3" href="https://www.instagram.com/jpeg.apk/"><i class="fab fa-instagram"></i></a>
+</li>
+<li>
+<a class="pl-3 pr-3" href="https://www.tiktok.com/@thegirlwith1camera"><i class="fab fa-tiktok"></i></a>
+</li>
+</ul>
+</div>
+<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a class="site-menu-toggle js-menu-toggle text-black" href="#"><span class="icon-menu h3"></span></a></div>
+</div>
+</div>
+</div>
+</header>
+<div class="site-section" data-aos="fade">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-md-7">
+<div class="row mb-5">
+<div class="col-12">
+<h2 class="site-section-heading text-center">Nos Services Photographiques</h2>
+<p class="text-center text-muted mb-5">Spécialisés dans la photographie de mariage et demandes en mariage à Paris</p>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+<div class="h-100 p-4 p-lg-5 site-block-feature-7 service-card">
+<div class="service-icon mb-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+<circle cx="12" cy="8" r="3"></circle>
+</svg>
+</div>
+<a href="proposal.html">
+<h3 class="text-black h4">Proposal + Décoration</h3>
+</a>
+<p class="text-muted">Service complet incluant la décoration romantique (lettres lumineuses, bougies, tapis rouge, pétales) et reportage photo discret dans les plus beaux lieux de Paris.</p>
+<ul class="text-left text-muted mb-4">
+<li>Décoration complète ("MARRY ME", bougies, tapis rouge, etc..)</li>
+<li>Reportage photo discret (2h)</li>
+<li>40+ photos retouchées</li>
+<li>Galerie en ligne privée</li>
+</ul>
+<!--   <p><strong class="font-weight-bold" text-primary  style="color: rgb(0, 0, 0);">À partir de 690€</strong></p>/* !-->
+<a class="btn btn-primary btn-sm mt-3" href="contact.html">Réserver à partir de 450€</a>
+</div>
+</div>
+<div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+<div class="h-100 p-4 p-lg-5 site-block-feature-7 service-card">
+<div class="service-icon mb-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+<circle cx="12" cy="13" r="4"></circle>
+</svg>
+</div>
+<a href="wedding.html"> <h3 class="text-black h4">Photographie de Mariage</h3> </a>
+<p class="text-muted">Reportage complet de votre mariage avec couverture de la cérémonie, cocktail et soirée. Style naturel et authentique pour immortaliser vos plus beaux moments.</p>
+<ul class="text-left text-muted mb-4">
+<li>Couverture complète (8-10h)</li>
+<li>200+ photos retouchées</li>
+<li>Galerie en ligne + Album haute qualité</li>
+<li>Clé USB incluse</li>
+<li>Vidéos</li>
+</ul>
+<!-- <p><strong class="font-weight-bold text-primary">À partir de 1200€</strong></p>-->
+<a class="btn btn-primary btn-sm mt-3" href="contact.html">Réserver à partir de 1000€</a>
+</div>
+</div>
+<div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+<div class="h-100 p-4 p-lg-5 site-block-feature-7 service-card">
+<div class="service-icon mb-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<a href="proposal.html"> <h3 class="text-black h4">Séance shooting de Couple</h3></a>
+<p class="text-muted">Séance photo romantique à Paris pour célébrer votre amour. Parfait pour les fiançailles, anniversaires ou simplement pour créer de beaux souvenirs ensemble.</p>
+<ul class="text-left text-muted mb-4">
+<li>Séance 1h30 dans Paris</li>
+<li>25+ photos retouchées</li>
+<li>Conseils styling</li>
+<li>Galerie en ligne</li>
+</ul>
+<a class="btn btn-primary btn-sm mt-3" href="contact.html">Réserver à partir de 200€</a>
+</div>
+</div>
+<div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+<div class="h-100 p-4 p-lg-5 site-block-feature-7 service-card">
+<div class="service-icon mb-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14,2 14,8 20,8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+<line x1="16" x2="8" y1="17" y2="17"></line>
+<polyline points="10,9 9,9 8,9"></polyline>
+</svg>
+</div>
+<a href="proposal.html"> <h3 class="text-black h4">Séance Demande Simple</h3> </a>
+<p class="text-muted">Reportage photo discret de votre demande en mariage sans décoration. Idéal si vous avez déjà organisé votre mise en scène ou préférez un moment plus intime.</p>
+<ul class="text-left text-muted mb-4">
+<li>Reportage discret (1h)</li>
+<li>20+ photos retouchées</li>
+<li>Livraison rapide 48h</li>
+<li>Galerie en ligne</li>
+</ul>
+<a class="btn btn-primary btn-sm mt-3" href="contact.html">Réserver à partir de 250€</a>
+</div>
+</div>
+<div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+<div class="h-100 p-4 p-lg-5 site-block-feature-7 service-card">
+<div class="service-icon mb-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+</svg>
+</div>
+<a href="event.html"> <h3 class="text-black h4">Événements Privés</h3> </a>
+<p class="text-muted">Couverture photographique de vos événements privés : anniversaires, baptêmes, fêtes familiales. Reportage naturel et discret pour capturer l'émotion.</p>
+<ul class="text-left text-muted mb-4">
+<li>Couverture événement (3-5h)</li>
+<li>80+ photos retouchées</li>
+<li>Reportage naturel</li>
+<li>Galerie partageable</li>
+</ul>
+<a class="btn btn-primary btn-sm mt-3" href="contact.html">Réserver à partir de 300€</a>
+</div>
+</div>
+<div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+<div class="h-100 p-4 p-lg-5 site-block-feature-7 service-card">
+<div class="service-icon mb-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+<line x1="9" x2="9.01" y1="9" y2="9"></line>
+<line x1="15" x2="15.01" y1="9" y2="9"></line>
+</svg>
+</div>
+<a href="sport.html"> <h3 class="text-black h4">Photographie Sportive</h3> </a>
+<p class="text-muted">Spécialisé dans la photographie de sports de combat et événements sportifs. Capture de l'action, de l'émotion et de la performance avec un style dynamique.</p>
+<ul class="text-left text-muted mb-4">
+<li>Couverture compétition</li>
+<li>Photos d'action haute qualité</li>
+<li>Livraison rapide</li>
+<li>Usage commercial possible</li>
+</ul>
+<a class="btn btn-primary btn-sm mt-3" href="contact.html">Réserver à partir de 100€</a>
+</div>
+</div>
+</div>
+<!-- Section Exemples de Décoration -->
+<div class="row mt-5 pt-5" id="decoration-examples">
+<div class="col-12">
+<h2 class="site-section-heading text-center mb-5">Nos Exemples de Décoration</h2>
+<p class="text-center text-muted mb-5">Découvrez quelques-unes de nos plus belles réalisations pour les demandes en mariage à Paris</p>
+</div>
+<div class="col-md-6 col-lg-3 mb-4">
+<div class="decoration-example">
+<img alt="Décoration Trocadéro" class="img-fluid rounded shadow" height="2048" loading="lazy" src="images/decoration-trocadero.webp" style="width: 200%; height: 400px; object-fit: cover;" width="1536"/>
+<div class="decoration-info mt-3">
+<h5 class="text-black">Trocadéro - Vue Tour Eiffel</h5>
+<p class="text-muted small">Coeur lumineux avec bougies et vue imprenable sur la Tour Eiffel</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-lg-3 mb-4">
+<div class="decoration-example">
+<img alt="Décoration Intérieure" class="img-fluid rounded shadow" height="1536" loading="lazy" src="images/decoration-indoor.webp" style="width: 200%; height: 400px; object-fit: cover;" width="1024"/>
+<div class="decoration-info mt-3">
+<h5 class="text-black">Setup Intérieur</h5>
+<p class="text-muted small">Lettres "MARRY ME" lumineuses avec tapis rouge et bougies</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-lg-3 mb-4">
+<div class="decoration-example">
+<img alt="Décoration Extérieure" class="img-fluid rounded shadow" height="1536" loading="lazy" src="images/decoration-outdoor.webp" style="width: 200%; height: 400px; object-fit: cover;" width="1024"/>
+<div class="decoration-info mt-3">
+<h5 class="text-black">Pont de Bir-Hakeim</h5>
+<p class="text-muted small">Décoration romantique avec vue sur la Tour Eiffel</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-lg-3 mb-4">
+<div class="decoration-example">
+<img alt="Décoration Bir-Hakeim" class="img-fluid rounded shadow" height="575" loading="lazy" src="images/decoration-birhakeim.webp" style="width: 200%; height: 400px; object-fit: cover;" width="666"/>
+<div class="decoration-info mt-3">
+<h5 class="text-black">Moment Magique</h5>
+<p class="text-muted small">Capture de l'émotion avec décoration "MARRY ME"</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section informations supplémentaires -->
+<div class="row mt-5">
+<div class="col-12 text-center">
+<h2 class="site-section-heading text-center mb-5">Pourquoi choisir Melissa ?</h2>
+<div class="row">
+<div class="col-md-4 mb-4">
+<div class="p-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+<circle cx="12" cy="13" r="4"></circle>
+</svg>
+<h3 class="text-black h4">Expertise Parisienne</h3>
+<p class="text-white-50">Connaissance parfaite des plus beaux lieux de Paris pour vos photos</p>
+</div>
+</div>
+<div class="col-md-4 mb-4">
+<div class="p-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+</svg>
+<h3 class="text-black">Décorations Soignées</h3>
+<p class="text-white-50">Setups romantiques avec lettres lumineuses et décoration complète</p>
+</div>
+</div>
+<div class="col-md-4 mb-4">
+<div class="p-4">
+<svg fill="none" height="60" stroke="#2c2c2c" stroke-width="1.5" viewbox="0 0 24 24" width="60">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+<circle cx="12" cy="8" r="3"></circle>
+</svg>
+<h3 class="text-black">Rapport Qualité-Prix</h3>
+<p class="text-white-50">Services professionnels à des tarifs accessibles et compétitifs</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer py-4">
+<div class="container-fluid text-center">
+<p>
+          
+          Copyright ©2025 Tous droits réservés
+          </p>
+</div>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/picturefill.min.js"></script>
+<script src="js/lightgallery-all.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Melissa Photography Security & Animations -->
+<script src="js/security.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/performance.js"></script>
+<script>
+    $(document).ready(function(){
+      $('#lightgallery').lightGallery();
+    });
+  </script>
+<!-- CookieConsent Implementation -->
+<script defer="" src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script src="js/cookieconsent-config.js" type="module"></script>
+<script>
+// TikTok Events Tracking for Photography Website
+
+// Track page views on all pages
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_type": "product", 
+      "content_category": "photography",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "description": "Photography website page view"
+});
+
+// Track contact form submissions
+function trackContactForm() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "description": "Contact form completed"
+  });
+}
+
+// Track portfolio/gallery views
+function trackPortfolioView(portfolioName) {
+  ttq.track("ViewContent", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": portfolioName || "Portfolio View"
+      }
+    ],
+    "description": "Portfolio gallery viewed"
+  });
+}
+
+// Track booking/inquiry actions
+function trackBookingInquiry() {
+  ttq.track("InitiateCheckout", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": "Photography Booking Inquiry"
+      }
+    ],
+    "description": "Photography booking inquiry initiated"
+  });
+}
+
+// Track service page views
+function trackServiceView(serviceName) {
+  ttq.track("ViewContent", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": serviceName || "Photography Service"
+      }
+    ],
+    "description": "Photography service page viewed"
+  });
+}
+
+// Auto-track common events when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], form.contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackContactForm);
+  });
+  
+  // Track booking forms
+  const bookingForms = document.querySelectorAll("form[action*="book"], form.booking-form, #booking-form");
+  bookingForms.forEach(form => {
+    form.addEventListener("submit", trackBookingInquiry);
+  });
+  
+  // Track portfolio clicks
+  const portfolioLinks = document.querySelectorAll("a[href*="portfolio"], a[href*="gallery"], .portfolio-link, .gallery-link");
+  portfolioLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      trackPortfolioView(this.textContent || this.getAttribute("data-portfolio-name"));
+    });
+  });
+  
+  // Auto-detect service pages and track views
+  const currentPath = window.location.pathname.toLowerCase();
+  if (currentPath.includes("wedding")) {
+    trackServiceView("Wedding Photography");
+  } else if (currentPath.includes("portrait")) {
+    trackServiceView("Portrait Photography");
+  } else if (currentPath.includes("event")) {
+    trackServiceView("Event Photography");
+  } else if (currentPath.includes("commercial")) {
+    trackServiceView("Commercial Photography");
+  } else if (currentPath.includes("service")) {
+    trackServiceView("Photography Services");
+  }
+});
+</script>
+</body>
+</html>

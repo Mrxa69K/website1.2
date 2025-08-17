@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<title>Melissa Photography Paris - About</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="fonts/icomoon/style.css" rel="stylesheet"/>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<link href="css/jquery-ui.css" rel="stylesheet"/>
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<link href="css/lightgallery.min.css" rel="stylesheet"/>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet"/>
+<link href="fonts/flaticon/font/flaticon.css" rel="stylesheet"/>
+<link href="css/swiper.css" rel="stylesheet"/>
+<link href="css/aos.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/animations.css" rel="stylesheet"/>
+<!-- CookieConsent CSS -->
+<link href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css" rel="stylesheet"/>
+<!-- TikTok Pixel Code Start -->
+<script>!function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)}; ttq.load("D2G8HPBC77U9U4KDPBTG"); ttq.page();}(window, document, "ttq");</script>
+<!-- TikTok Pixel Code End -->
+<script>
+// TikTok Events for Photography Website
+
+// Track page view with photography-specific data
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_id": window.location.pathname,
+      "content_type": "product",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "value": 0,
+  "currency": "EUR"
+});
+
+// Function to track button clicks
+function trackButtonClick(buttonName) {
+  ttq.track("ClickButton", {
+    "contents": [
+      {
+        "content_id": buttonName,
+        "content_type": "product", 
+        "content_name": buttonName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track search
+function trackSearch(searchTerm) {
+  ttq.track("Search", {
+    "contents": [
+      {
+        "content_id": "photography_search",
+        "content_type": "product",
+        "content_name": "Photography Search"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR",
+    "search_string": searchTerm
+  });
+}
+
+// Function to track wishlist (portfolio favorites)
+function trackAddToWishlist(portfolioName) {
+  ttq.track("AddToWishlist", {
+    "contents": [
+      {
+        "content_id": portfolioName,
+        "content_type": "product",
+        "content_name": portfolioName
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track newsletter subscription
+function trackSubscribe() {
+  ttq.track("Subscribe", {
+    "contents": [
+      {
+        "content_id": "newsletter",
+        "content_type": "product",
+        "content_name": "Newsletter Subscription"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Function to track contact form completion
+function trackCompleteRegistration() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_id": "contact_form",
+        "content_type": "product",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "value": 0,
+    "currency": "EUR"
+  });
+}
+
+// Auto-setup when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // Track all button clicks
+  const buttons = document.querySelectorAll("button, .btn, [role="button"]");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      const buttonName = this.textContent.trim() || this.getAttribute("aria-label") || "Unknown Button";
+      trackButtonClick(buttonName);
+    });
+  });
+  
+  // Track search functionality
+  const searchInputs = document.querySelectorAll("input[type="search"], .search-input, #search");
+  searchInputs.forEach(input => {
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter" && this.value.trim()) {
+        trackSearch(this.value.trim());
+      }
+    });
+  });
+  
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], .contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackCompleteRegistration);
+  });
+  
+  // Track newsletter subscriptions
+  const newsletterForms = document.querySelectorAll("form[action*="newsletter"], form[action*="subscribe"], .newsletter-form");
+  newsletterForms.forEach(form => {
+    form.addEventListener("submit", trackSubscribe);
+  });
+  
+  // Track portfolio/gallery favorites
+  const favoriteButtons = document.querySelectorAll(".favorite, .wishlist, .save-photo");
+  favoriteButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const portfolioName = this.getAttribute("data-portfolio") || this.closest(".portfolio-item")?.querySelector("h3, .title")?.textContent || "Portfolio Item";
+      trackAddToWishlist(portfolioName);
+    });
+  });
+  
+  // Track service page navigation
+  const serviceLinks = document.querySelectorAll("a[href*="wedding"], a[href*="portrait"], a[href*="event"], a[href*="commercial"]");
+  serviceLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      const serviceName = this.textContent.trim() || this.getAttribute("data-service") || "Photography Service";
+      trackButtonClick("Service Link: " + serviceName);
+    });
+  });
+  
+  // Track call-to-action buttons
+  const ctaButtons = document.querySelectorAll(".cta, .book-now, .contact-btn, .get-quote");
+  ctaButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      trackButtonClick("CTA: " + (this.textContent.trim() || "Call to Action"));
+    });
+  });
+  
+});
+</script>
+<meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
+<body>
+<div class="site-wrap">
+<div class="site-mobile-menu">
+<div class="site-mobile-menu-header">
+<div class="site-mobile-menu-close mt-3">
+<span class="icon-close2 js-menu-toggle"></span>
+</div>
+</div>
+<div class="site-mobile-menu-body"></div>
+</div>
+<header class="site-navbar py-3" role="banner">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-6 col-xl-2" data-aos="fade-down">
+<a href="indexfr.html">
+<img alt="Melissa Photography Paris - Professional Photographer in Paris" class="img-fluid" height="938" src="images/logo-paris-love-photography-horizontal.webp" style="height: 90px;; object-fit: cover;" width="938"/>
+</a>
+</div>
+<div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+<nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+<li><a href="indexfr.html">Home</a></li>
+<li class="has-children">
+<a>Gallery</a>
+<ul class="dropdown">
+<li><a href="proposalfr.html">Proposal</a></li>
+<li><a href="portraitfr.html">Portrait</a></li>
+<li><a href="weddingfr.html">Wedding</a></li>
+<li><a href="eventfr.html">Event</a></li>
+<li><a href="sportfr.html">Sport</a></li>
+<li class="has-children">
+</li>
+</ul>
+</li>
+<li><a href="servicesfr.html">Services</a></li>
+<li><a href="reviewfr.html">Review</a></li>
+<li class="active"><a href="aboutfr.html">About</a></li>
+<li><a href="contactfr.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+<div class="d-none d-xl-inline-block">
+<ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+<li class="pl-3 pr-3">
+<a href="aboutfr.html">
+<img alt="Français" src="https://flagcdn.com/w40/fr.webp" width="24"/>
+</a>
+<a href="about.html">
+<img alt="Anglais" src="https://flagcdn.com/w40/us.webp" width="24"/>
+</a>
+</li>
+<li>
+<a class="pl-3 pr-3" href="https://www.instagram.com/jpeg.apk/"><i class="fab fa-instagram"></i></a>
+</li>
+<li>
+<a class="pl-3 pr-3" href="https://www.tiktok.com/@thegirlwith1camera"><i class="fab fa-tiktok"></i></a>
+</li>
+</ul>
+</div>
+<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a class="site-menu-toggle js-menu-toggle text-black" href="#"><span class="icon-menu h3"></span></a></div>
+</div>
+</div>
+</div>
+</header>
+<div class="site-section" data-aos="fade">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-md-7">
+<div class="row mb-5">
+<div class="col-12">
+<h2 class="site-section-heading text-center">About Melissa</h2>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Hero avec photo de Melissa 
+  
+          <div class="col-md-6 align-items-center">
+            <p  style="font-family: 'Josefin Sans', sans-serif;"class="lead text-muted mb-4">Photographe passionnée basée à Paris.</p>
+            <p  style="font-family: 'Josefin Sans', sans-serif;"class="lead text-muted mb-4"> 4ans d'experience.</p>
+
+            <h3 style="font-family: 'Josefin Sans', sans-serif;" class="text-black h4"></h3>
+            <h3 style="font-family: 'Josefin Sans', sans-serif;" class="text-black h4"> <strong>Ma mission ?</strong> Transformer vos émotions en souvenirs éternels à travers mon objectif, avec une approche discrète et authentique qui révèle la beauté naturelle de chaque instant. </h3>
+          </div>
+          </div>
+        </div>
+-->
+<!-- Section Mon Histoire -->
+<div class="row mb-5">
+<div class="col-md-12">
+<div class="bg-light p-5 rounded">
+<h3 class="text-center mb-4 text-black">My History</h3>
+<div class="col-md-6">
+<h3 class="text-black">  📸 Expertise </h3>
+<p class="text-black mb-4">I photograph couples and events, developing a particular expertise in wedding proposals in Paris..</p>
+</div>
+<div class="col-md-6">
+<h3 class="text-black">🏛️ Paris, Ma Toile</h3>
+<p class="text-black mb-4">In love with Paris, I know all the capital's romantic spots: from the Trocadero to the quays of the Seine, via Montmartre and the secret gardens.</p>
+<h3 class="text-black">💝 Philosophy</h3>
+<p class="text-black mb-4"> I believe that every couple has a unique story to tell. My role is to reveal it with authenticity and emotion.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Mes Spécialités -->
+<div class="row mb-5">
+<div class="col-md-12">
+<h2 class="site-section-heading text-center">My Specialties</h2>
+<div class="row">
+<div class="col-md-3 text-center mb-4">
+<div class="p-4 bg-white rounded shadow-sm h-100">
+<div class="mb-3">
+<i class="icon-heart" style="font-size: 3rem; color: #e91e63;"></i>
+</div>
+<h5 class="text-black">📸Proposals</h5>
+<p>Magical moments captured with discretion in the most beautiful places of Paris.</p>
+</div>
+</div>
+<div class="col-md-3 text-center mb-4">
+<div class="p-4 bg-white rounded shadow-sm h-100">
+<div class="mb-3">
+<i class="icon-camera" style="font-size: 3rem; color: #2196f3;"></i>
+</div>
+<h5 class="text-black">💝Weddings </h5>
+<p>Complete coverage of your big day, from preparation to the party.</p>
+</div>
+</div>
+<div class="col-md-3 text-center mb-4">
+<div class="p-4 bg-white rounded shadow-sm h-100">
+<div class="mb-3">
+<i class="icon-user" style="font-size: 3rem; color: #ff9800;"></i>
+</div>
+<h5 class="text-black">💝Couple Portraits</h5>
+<p>Intimate sessions that reveal your complicity and your love.</p></div>
+</div>
+<div class="col-md-3 text-center mb-4">
+<div class="p-4 bg-white rounded shadow-sm h-100">
+<div class="mb-3">
+<i class="icon-calendar" style="font-size: 3rem; color: #4caf50;"></i>
+</div>
+<h5 class="text-black">Events</h5>
+<p>Birthdays, engagements and memorable private celebrations.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Pourquoi Me Choisir
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="bg-primary text-white p-5 rounded">
+              <h3 class="text-center mb-4">Pourquoi Choisir Melissa Photography ?</h3>
+              <div class="row">
+                <div class="col-md-4 text-center mb-3">
+                  <h5>✨ Approche Discrète</h5>
+                  <p>Je capture vos émotions naturelles sans vous déranger.</p>
+                </div>
+                <div class="col-md-4 text-center mb-3">
+                  <h5>🗼 Expertise Parisienne</h5>
+                  <p>Connaissance parfaite des plus beaux spots de la capitale.</p>
+                </div>
+                <div class="col-md-4 text-center mb-3">
+                  <h5>💎 Qualité Professionnelle</h5>
+                  <p>Équipement professionnel et retouches soignées incluses.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ -->
+<!-- Section Call to Action -->
+<div class="row">
+<div class="col-md-12 text-center">
+<h2 class="site-section-heading text-center">Ready to Create Unforgettable Memories?</h2>
+<p class="lead text-muted mb-4">Contact me to discuss your project and book your photo shoot in Paris.</p>
+<a class="btn btn-primary btn-lg px-5 py-3" href="contactfr.html">Contact Me</a>
+</div>
+</div>
+</div>
+</div>
+<div class="footer py-4">
+<div class="container-fluid text-center">
+<p>
+          Copyright ©2025 All rights reserved 
+<p class="mt-2">
+<button class="btn btn-sm btn-outline-secondary" data-cc="show-preferencesModal" type="button">
+            🍪 Gérer les cookies
+          </button>
+</p>
+</p>
+</div>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/picturefill.min.js"></script>
+<script src="js/lightgallery-all.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Melissa Photography Security & Animations -->
+<script src="js/security.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/performance.js"></script>
+<script>
+    $(document).ready(function(){
+      $('#lightgallery').lightGallery();
+    });
+  </script>
+<!-- CookieConsent Implementation -->
+<script defer="" src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script src="js/cookieconsent-config.js" type="module"></script>
+<script>
+// TikTok Events Tracking for Photography Website
+
+// Track page views on all pages
+ttq.track("ViewContent", {
+  "contents": [
+    {
+      "content_type": "product", 
+      "content_category": "photography",
+      "content_name": document.title || "Photography Page"
+    }
+  ],
+  "description": "Photography website page view"
+});
+
+// Track contact form submissions
+function trackContactForm() {
+  ttq.track("CompleteRegistration", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": "Contact Form Submission"
+      }
+    ],
+    "description": "Contact form completed"
+  });
+}
+
+// Track portfolio/gallery views
+function trackPortfolioView(portfolioName) {
+  ttq.track("ViewContent", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": portfolioName || "Portfolio View"
+      }
+    ],
+    "description": "Portfolio gallery viewed"
+  });
+}
+
+// Track booking/inquiry actions
+function trackBookingInquiry() {
+  ttq.track("InitiateCheckout", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": "Photography Booking Inquiry"
+      }
+    ],
+    "description": "Photography booking inquiry initiated"
+  });
+}
+
+// Track service page views
+function trackServiceView(serviceName) {
+  ttq.track("ViewContent", {
+    "contents": [
+      {
+        "content_type": "product",
+        "content_category": "photography",
+        "content_name": serviceName || "Photography Service"
+      }
+    ],
+    "description": "Photography service page viewed"
+  });
+}
+
+// Auto-track common events when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  // Track contact form submissions
+  const contactForms = document.querySelectorAll("form[action*="contact"], form.contact-form, #contact-form");
+  contactForms.forEach(form => {
+    form.addEventListener("submit", trackContactForm);
+  });
+  
+  // Track booking forms
+  const bookingForms = document.querySelectorAll("form[action*="book"], form.booking-form, #booking-form");
+  bookingForms.forEach(form => {
+    form.addEventListener("submit", trackBookingInquiry);
+  });
+  
+  // Track portfolio clicks
+  const portfolioLinks = document.querySelectorAll("a[href*="portfolio"], a[href*="gallery"], .portfolio-link, .gallery-link");
+  portfolioLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      trackPortfolioView(this.textContent || this.getAttribute("data-portfolio-name"));
+    });
+  });
+  
+  // Auto-detect service pages and track views
+  const currentPath = window.location.pathname.toLowerCase();
+  if (currentPath.includes("wedding")) {
+    trackServiceView("Wedding Photography");
+  } else if (currentPath.includes("portrait")) {
+    trackServiceView("Portrait Photography");
+  } else if (currentPath.includes("event")) {
+    trackServiceView("Event Photography");
+  } else if (currentPath.includes("commercial")) {
+    trackServiceView("Commercial Photography");
+  } else if (currentPath.includes("service")) {
+    trackServiceView("Photography Services");
+  }
+});
+</script>
+</body>
+</html>
