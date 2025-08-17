@@ -1483,3 +1483,88 @@ h1, h2, h3, h4, h5, h6, .site-section-heading {
 }
 
 
+/* Body text remains sans-serif for readability */
+body, p, .form-control {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+/* Decoration Examples Section */
+.decoration-example {
+  transition: all 0.3s ease;
+}
+
+.decoration-example:hover {
+  transform: translateY(-5px);
+}
+
+.decoration-example img {
+  transition: all 0.3s ease;
+  border-radius: 10px !important;
+}
+
+.decoration-example:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.decoration-info h5 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.decoration-info p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Service icon styles */
+.service-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-icon svg {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon svg {
+  transform: scale(1.1);
+  stroke: #000000;
+}
+
+
+.logo-img {
+  height: 10%;
+  width: auto;
+}
+
+/* Logo Styles */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-img {
+    height: 35px;
+  }
+}
+
+.text-muted {
+  color: #ffffff !important;
+}
