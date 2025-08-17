@@ -1,12 +1,13 @@
 /* Gallery Mobile Responsiveness & Lightbox Improvements */
 
-/* Fix Gallery Mobile Issues */
+/* Enhanced Gallery Item Styles */
 .gallery-item {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   cursor: pointer;
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-bottom: 0; /* Remove margin since we're using grid gap */
+  padding: 0; /* Remove padding since we're using grid gap */
+  border-radius: 8px;
 }
 
 .gallery-item:hover {
@@ -17,33 +18,37 @@
 .gallery-item img {
   transition: transform 0.3s ease;
   width: 100% !important;
-  height: 400px !important;
+  height: 100% !important;
   object-fit: cover !important;
   border-radius: 8px;
   cursor: pointer;
+  
+  /* Perfect aspect ratio for photography */
+  aspect-ratio: 3/4;
 }
 
 .gallery-item:hover img {
   transform: scale(1.05);
 }
 
-/* Mobile Responsive Gallery */
-@media (max-width: 768px) {
-  .gallery-item {
-    margin-bottom: 15px !important;
-    padding: 5px !important;
-  }
-  
+/* Desktop - Larger images for better viewing */
+@media (min-width: 1200px) {
   .gallery-item img {
-    height: 280px !important;
-    width: 100% !important;
+    aspect-ratio: 3/4;
   }
 }
 
-@media (max-width: 576px) {
+/* Medium screens */
+@media (min-width: 768px) and (max-width: 1199px) {
   .gallery-item img {
-    height: 250px !important;
-    width: 100% !important;
+    aspect-ratio: 3/4;
+  }
+}
+
+/* Small screens - maintain mobile perfection */
+@media (max-width: 767px) {
+  .gallery-item img {
+    aspect-ratio: 3/4;
   }
 }
 
