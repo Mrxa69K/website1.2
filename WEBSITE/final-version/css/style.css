@@ -1093,7 +1093,7 @@ a {
     transform: scale(1.2); }
 
 
-  [class^="icon-"], [class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
   font-size: 24px !important;
   width: 45px !important;
   height: 45px !important;
@@ -1242,31 +1242,95 @@ a {
   opacity: 1;
   background: #2c2c2c; }
 
-#lightgallery .item {
-  margin-bottom: 30px; }
-  #lightgallery .item img {
-    /* filter: url(filters.svg#grayscale); Firefox 3.5+ */
-    filter: gray;
-    /* IE5+ */
-    -webkit-filter: grayscale(1);
-    /* Webkit Nightlies & Chrome Canary */
-    -webkit-transition: all .1s ease-in-out; }
-  #lightgallery .item:hover img {
-    filter: none;
-    -webkit-filter: grayscale(0);
-    -webkit-transform: scale(1.01); }
+/* FIXED GALLERY STYLES - Removed problematic grayscale filters */
+.gallery-item img, .proposal-gallery img, #lightgallery img {
+  filter: none !important;
+  -webkit-filter: none !important;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+}
 
-img {
-  /* filter: url(filters.svg#grayscale); Firefox 3.5+ */
-  filter: gray;
-  /* IE5+ */
+/* Mobile First Approach */
+.gallery-item img, .proposal-gallery img {
+  height: 280px;
+  min-height: 250px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .gallery-item img, .proposal-gallery img {
+    height: 320px;
+    min-height: 300px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .gallery-item img, .proposal-gallery img {
+    height: 400px;
+    min-height: 350px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .gallery-item img, .proposal-gallery img {
+    height: 450px;
+    min-height: 400px;
+  }
+}
+
+/* Hover effects for gallery images */
+.gallery-item:hover img, .proposal-gallery:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Container responsive styles */
+.gallery-container, .proposal-gallery-container {
+  display: grid;
+  gap: 20px;
+}
+
+/* Mobile */
+.gallery-container, .proposal-gallery-container {
+  grid-template-columns: 1fr;
+  padding: 10px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .gallery-container, .proposal-gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 15px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .gallery-container, .proposal-gallery-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px;
+  }
+}
+
+/* Keep grayscale effect ONLY for .image-wrap-2 and specific lightgallery items */
+#lightgallery .item img {
+  filter: grayscale(1);
   -webkit-filter: grayscale(1);
-  /* Webkit Nightlies & Chrome Canary */
-  -webkit-transition: all .1s ease-in-out; }
-  img:hover {
-    filter: none;
-    -webkit-filter: grayscale(0);
-    -webkit-transform: scale(1.01); }
+  transition: all 0.3s ease;
+}
+
+#lightgallery .item:hover img {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  transform: scale(1.02);
+}
 
 /* Custom Gallery Styles */
 .gallery-item {
@@ -1304,7 +1368,6 @@ img {
     height: 200px !important;
   }
 }
-
 
 /* Custom Service Cards Styles - Minimal Grey & White Theme */
 .service-card {
@@ -1381,7 +1444,6 @@ img {
   }
 }
 
-
 h1, h2, h3, h4, h5, h6, .site-section-heading {
   font-family: 'Playfair Display', serif !important;
   font-weight: 400;
@@ -1412,12 +1474,14 @@ h1, h2, h3, h4, h5, h6, .site-section-heading {
   padding: 10px 12px !important;
   letter-spacing: 0.3px !important;
 }
+
 /* Buttons with serif font */
 .btn {
   font-family: 'Playfair Display', serif;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
+
 
 /* Body text remains sans-serif for readability */
 body, p, .form-control {
