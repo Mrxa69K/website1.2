@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://melissaphotography.paris/sitemap.xml
+Sitemap: https://melissaphotographyparis.fr/sitemap.xml
 
 Disallow: /admin/
 Disallow: /.git/
