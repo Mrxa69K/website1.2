@@ -1,0 +1,3 @@
+[build]
+  base = "WEBSITE/final-version"
+  publish = "."
