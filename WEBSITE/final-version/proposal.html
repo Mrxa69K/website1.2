@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
-<body>
+<body data-category="proposal">
 <div class="site-wrap">
 <div class="site-mobile-menu">
 <div class="site-mobile-menu-header">
@@ -261,50 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 </div>
 </div>
-<div class="gallery-grid" id="">
-<div class="item gallery-item" data-aos="fade">
-<img alt="Proposal Photography Paris - Romantic Engagement Session" class="img-fluid" height="2048" loading="lazy" src="images/proposal/proposal2.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Paris Proposal Photography - Eiffel Tower Engagement" class="img-fluid" height="2640" loading="lazy" src="images/proposal/20.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Marriage Proposal Paris - Professional Photography" class="img-fluid" height="2048" loading="lazy" src="images/proposal/4.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Engagement Session Paris - Couple Photography" class="img-fluid" height="1280" loading="lazy" src="images/proposal/5.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Romantic Proposal Paris - Wedding Photography" class="img-fluid" height="2048" loading="lazy" src="images/proposal/proposal3.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Paris Love Photography - Proposal Session" class="img-fluid" height="2048" loading="lazy" src="images/proposal/6.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Engagement Photography Paris - Professional Service" class="img-fluid" height="2048" loading="lazy" src="images/proposal/13.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Marriage Proposal Photography - Paris Photographer" class="img-fluid" height="2048" loading="lazy" src="images/proposal/14.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Couple Session Paris - Romantic Photography" class="img-fluid" height="2048" loading="lazy" src="images/proposal/cute.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Proposal Paris Photographer - Engagement Photos" class="img-fluid" height="2048" loading="lazy" src="images/proposal/16.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Paris Engagement Photography - Wedding Proposal" class="img-fluid" height="3840" loading="lazy" src="images/proposal/21.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Romantic Paris Photography - Proposal Session" class="img-fluid" height="2560" loading="lazy" src="images/proposal/22.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Marriage Proposal Paris - Professional Photographer" class="img-fluid" height="2560" loading="lazy" src="images/proposal/23.webp"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Engagement Photos Paris - Couple Photography" class="img-fluid" height="3840" loading="lazy" src="images/proposal/24.webp"/>
-</div>
-</div>
+<div id="photoGallery" class="row"></div>
 </div>
 </div>
 <div class="footer py-4">
@@ -461,5 +418,10 @@ document.addEventListener("DOMContentLoaded", function() {
 <a href="contact.html" class="floating-book-btn">
 📸 Book Now
 </a>
+
+<!-- Supabase Dynamic Photo Loading -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/portfolio-loader.js"></script>
 </body>
 </html>

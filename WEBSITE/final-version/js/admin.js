@@ -1,8 +1,5 @@
-// Replace with your Supabase credentials
-const SUPABASE_URL = 'https://amrzoqmnkfnewujbeqdn.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_H0Wn5I1eqOad7xfx6oM9zQ_CYDSnKXw';
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Initialize Supabase client using config
+const supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
 
 // Check authentication on page load
 window.addEventListener('DOMContentLoaded', async () => {

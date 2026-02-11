@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
-<body>
+<body data-category="wedding">
 <div class="site-wrap">
 <div class="site-mobile-menu">
 <div class="site-mobile-menu-header">
@@ -261,52 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 </div>
 </div>
-<div class="gallery-grid" >
-<div class="item gallery-item">
-<img alt="Wedding Photography Paris" class="img-fluid" height="1365" loading="lazy" src="images/wedding/018.webp" width="2048"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/wedding/2.webp" width="1365"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/wedding/02.webp" width="1365"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/wedding/03.webp" width="1365"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/wedding/010.webp" width="1369"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/wedding/011.webp" width="1365"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="3840" loading="lazy" src="images/wedding/012.webp" width="5760"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="1365" loading="lazy" src="images/wedding/08.webp" width="1646"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/wedding/09.webp" width="1365"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="5760" loading="lazy" src="images/wedding/013.webp" width="3840"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="3840" loading="lazy" src="images/wedding/014.webp" width="5760"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="3840" loading="lazy" src="images/wedding/015.webp" width="5760"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="5760" loading="lazy" src="images/wedding/016.webp" width="3840"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="3840" loading="lazy" src="images/wedding/017.webp" width="5760"/>
-</div>
-<div class="item gallery-item" data-aos="fade">
-<img alt="Wedding Photography Paris" class="img-fluid" height="3840" loading="lazy" src="images/wedding/019.webp" width="5760"/>
-</div>
+<div id="photoGallery" class="row"></div>
 </div>
 </div>
 <div class="footer py-4">
@@ -464,5 +419,10 @@ document.addEventListener("DOMContentLoaded", function() {
 <a href="contact.html" class="floating-book-btn">
 📸 Book Now
 </a>
+
+<!-- Supabase Dynamic Photo Loading -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/portfolio-loader.js"></script>
 </body>
 </html>
