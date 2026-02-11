@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
-<body>
+<body data-category="portrait">
 <div class="site-wrap">
 <div class="site-mobile-menu">
 <div class="site-mobile-menu-header">
@@ -261,16 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 </div>
 </div>
-<div class="gallery-grid" id="">
-<div class="item gallery-item">
-<img alt="Professional Portrait Photography Paris" class="img-fluid" height="4896" loading="lazy" src="images/portrait/2p.webp" width="3672"/>
-</div>
-<div class="item gallery-item">
-<img alt="Professional Portrait Photography Paris" class="img-fluid" height="2560" loading="lazy" src="images/portrait/5p.webp" width="2048"/>
-</div>
-<div class="item gallery-item">
-<img alt="Professional Portrait Photography Paris" class="img-fluid" height="2048" loading="lazy" src="images/portrait/6p.webp" width="1660"/>
-</div>
+<div id="photoGallery" class="row"></div>
 </div>
 </div>
 </div>
@@ -429,5 +420,10 @@ document.addEventListener("DOMContentLoaded", function() {
 <a href="contact.html" class="floating-book-btn">
 📸 Book Now
 </a>
+
+<!-- Supabase Dynamic Photo Loading -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/portfolio-loader.js"></script>
 </body>
 </html>

@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
-<body>
+<body data-category="sport">
 <div class="site-wrap">
 <div class="site-mobile-menu">
 <div class="site-mobile-menu-header">
@@ -261,34 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 </div>
 </div>
-<div class="gallery-grid" id="">
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="907" loading="lazy" src="images/sport/1.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="894" loading="lazy" src="images/sport/10.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="884" loading="lazy" src="images/sport/12.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="890" loading="lazy" src="images/sport/13.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="885" loading="lazy" src="images/sport/14.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="897" loading="lazy" src="images/sport/2.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="892" loading="lazy" src="images/sport/22.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="890" loading="lazy" src="images/sport/5.webp" width="1080"/>
-</div>
-<div class="item gallery-item">
-<img alt="Sports Photography Paris" class="img-fluid" height="899" loading="lazy" src="images/sport/7.webp" width="1080"/>
-</div>
+<div id="photoGallery" class="row"></div>
 </div>
 </div>
 </div>
@@ -447,5 +420,10 @@ document.addEventListener("DOMContentLoaded", function() {
 <a href="contact.html" class="floating-book-btn">
 📸 Book Now
 </a>
+
+<!-- Supabase Dynamic Photo Loading -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/portfolio-loader.js"></script>
 </body>
 </html>
