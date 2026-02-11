@@ -1,0 +1,760 @@
+name: Setup Supabase Integration
+
+on:
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  setup-supabase:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 lxml
+      
+      - name: Create setup script
+        run: |
+          cat > setup_supabase_integration.py << 'PYTHON_SCRIPT_EOF'
+          #!/usr/bin/env python3
+          """
+          Automates adding Supabase dynamic photo loading to portfolio pages
+          """
+          import os
+          import re
+          from bs4 import BeautifulSoup
+
+          # Configuration
+          PORTFOLIO_PAGES = {
+              'proposal.html': 'proposal',
+              'wedding.html': 'wedding',
+              'portrait.html': 'portrait',
+              'event.html': 'event',
+              'sport.html': 'sport'
+          }
+
+          SUPABASE_CDN = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'
+
+          def add_supabase_to_page(html_file, category):
+              """Add Supabase integration to a portfolio page"""
+              
+              if not os.path.exists(html_file):
+                  print(f"⚠️  {html_file} not found, skipping...")
+                  return False
+              
+              print(f"📝 Processing {html_file}...")
+              
+              with open(html_file, 'r', encoding='utf-8') as f:
+                  content = f.read()
+              
+              soup = BeautifulSoup(content, 'html.parser')
+              
+              # Step 1: Add data-category to body tag
+              body = soup.find('body')
+              if body and not body.get('data-category'):
+                  body['data-category'] = category
+                  print(f"   ✅ Added data-category='{category}' to body tag")
+              
+              # Step 2: Check if Supabase script already exists
+              existing_supabase = soup.find('script', src=lambda x: x and 'supabase' in x)
+              if not existing_supabase:
+                  supabase_script = soup.new_tag('script', src=SUPABASE_CDN)
+                  if body:
+                      body.append(supabase_script)
+                      print(f"   ✅ Added Supabase CDN script")
+              
+              # Step 3: Check if config script exists
+              existing_config = soup.find('script', src='js/supabase-config.js')
+              if not existing_config:
+                  config_script = soup.new_tag('script', src='js/supabase-config.js')
+                  if body:
+                      body.append(config_script)
+                      print(f"   ✅ Added supabase-config.js")
+              
+              # Step 4: Check if portfolio loader script exists
+              existing_loader = soup.find('script', src='js/portfolio-loader.js')
+              if not existing_loader:
+                  loader_script = soup.new_tag('script', src='js/portfolio-loader.js')
+                  if body:
+                      body.append(loader_script)
+                      print(f"   ✅ Added portfolio-loader.js")
+              
+              # Step 5: Add gallery container div if it doesn't exist
+              gallery = soup.find(id='photoGallery')
+              if not gallery:
+                  main_content = soup.find('div', class_=re.compile(r'container|main|content'))
+                  if main_content:
+                      gallery_div = soup.new_tag('div', id='photoGallery')
+                      gallery_div['class'] = 'row'
+                      main_content.append(gallery_div)
+                      print(f"   ✅ Added #photoGallery container")
+              
+              with open(html_file, 'w', encoding='utf-8') as f:
+                  f.write(str(soup.prettify()))
+              
+              print(f"   ✅ {html_file} updated successfully!\n")
+              return True
+
+          def main():
+              print("🚀 Starting Supabase Integration Setup...\n")
+              
+              if os.path.exists('WEBSITE/final-version'):
+                  os.chdir('WEBSITE/final-version')
+                  print("📂 Working in WEBSITE/final-version/\n")
+              
+              updated_count = 0
+              for html_file, category in PORTFOLIO_PAGES.items():
+                  if add_supabase_to_page(html_file, category):
+                      updated_count += 1
+              
+              print(f"\n{'='*60}")
+              print(f"✨ Setup Complete! Updated {updated_count} pages")
+              print(f"{'='*60}\n")
+
+          if __name__ == '__main__':
+              main()
+          PYTHON_SCRIPT_EOF
+          
+          chmod +x setup_supabase_integration.py
+      
+      - name: Create Supabase config file
+        run: |
+          mkdir -p WEBSITE/final-version/js
+          cat > WEBSITE/final-version/js/supabase-config.js << 'EOF'
+          // Supabase Configuration
+          const SUPABASE_CONFIG = {
+              url: 'https://yspjuakdfukoawjjiulb.supabase.co',
+              anonKey: 'sb_publishable_7F_MmEp9qZtlYIF8imba4g_1KrhBzga'
+          };
+
+          // Export for use in other scripts
+          if (typeof module !== 'undefined' && module.exports) {
+              module.exports = SUPABASE_CONFIG;
+          }
+          EOF
+          echo "✅ Created supabase-config.js"
+      
+      - name: Create portfolio loader script
+        run: |
+          mkdir -p WEBSITE/final-version/js
+          cat > WEBSITE/final-version/js/portfolio-loader.js << 'EOF'
+          // Portfolio Photo Loader
+          // Dynamically loads photos from Supabase based on page category
+
+          (async function() {
+              // Check if Supabase is loaded
+              if (typeof supabase === 'undefined') {
+                  console.error('Supabase not loaded!');
+                  return;
+              }
+              
+              // Initialize Supabase client
+              const supabaseClient = window.supabase.createClient(
+                  SUPABASE_CONFIG.url,
+                  SUPABASE_CONFIG.anonKey
+              );
+              
+              // Get category from body data attribute
+              const category = document.body.dataset.category;
+              
+              if (!category) {
+                  console.warn('No category found on this page');
+                  return;
+              }
+              
+              console.log(`Loading ${category} photos...`);
+              
+              // Load photos from Supabase
+              const { data: photos, error } = await supabaseClient
+                  .from('photos')
+                  .select('*')
+                  .eq('category', category)
+                  .order('order_index', { ascending: true });
+              
+              if (error) {
+                  console.error('Error loading photos:', error);
+                  return;
+              }
+              
+              console.log(`Loaded ${photos.length} photos`);
+              
+              // Find gallery container
+              const gallery = document.getElementById('photoGallery');
+              
+              if (!gallery) {
+                  console.warn('Gallery container not found');
+                  return;
+              }
+              
+              // Clear existing content
+              gallery.innerHTML = '';
+              
+              // Generate photo cards
+              photos.forEach(photo => {
+                  const col = document.createElement('div');
+                  col.className = 'col-md-4 col-sm-6 mb-4';
+                  
+                  col.innerHTML = `
+                      <div class="photo-item" data-aos="fade-up">
+                          <a href="${photo.image_url}" data-fancybox="gallery" data-caption="${photo.title}">
+                              <img src="${photo.image_url}" 
+                                   alt="${photo.title}" 
+                                   class="img-fluid rounded"
+                                   loading="lazy">
+                              <div class="overlay">
+                                  <h5>${photo.title}</h5>
+                                  ${photo.description ? `<p>${photo.description}</p>` : ''}
+                              </div>
+                          </a>
+                      </div>
+                  `;
+                  
+                  gallery.appendChild(col);
+              });
+              
+              // Reinitialize AOS animations if present
+              if (typeof AOS !== 'undefined') {
+                  AOS.refresh();
+              }
+              
+              // Reinitialize lightbox if present
+              if (typeof lightGallery !== 'undefined') {
+                  lightGallery(gallery);
+              }
+          })();
+          EOF
+          echo "✅ Created portfolio-loader.js"
+      
+      - name: Create admin panel HTML
+        run: |
+          cat > WEBSITE/final-version/admin.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Admin Panel - Melissa Photography</title>
+              <link href="css/bootstrap.min.css" rel="stylesheet">
+              <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+              <style>
+                  body { 
+                      background: #f4f4f4; 
+                      font-family: 'Roboto', sans-serif;
+                  }
+                  .admin-container { 
+                      max-width: 1400px; 
+                      margin: 20px auto; 
+                      padding: 20px;
+                  }
+                  .login-box {
+                      max-width: 400px;
+                      margin: 100px auto;
+                      padding: 40px;
+                      background: white;
+                      border-radius: 10px;
+                      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                  }
+                  .photo-card {
+                      background: white;
+                      border-radius: 8px;
+                      padding: 15px;
+                      margin-bottom: 20px;
+                      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                  }
+                  .photo-card img {
+                      width: 100%;
+                      height: 200px;
+                      object-fit: cover;
+                      border-radius: 5px;
+                  }
+                  .form-section {
+                      background: white;
+                      padding: 30px;
+                      border-radius: 10px;
+                      margin-bottom: 30px;
+                      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                  }
+                  .preview-img {
+                      max-width: 300px;
+                      margin: 10px 0;
+                      border-radius: 5px;
+                  }
+                  .hidden { display: none; }
+              </style>
+          </head>
+          <body>
+              <!-- Login Section -->
+              <div id="loginSection" class="login-box">
+                  <h2 class="text-center mb-4">Admin Login</h2>
+                  <form id="loginForm">
+                      <div class="mb-3">
+                          <label class="form-label">Email</label>
+                          <input type="email" id="loginEmail" class="form-control" required>
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Password</label>
+                          <input type="password" id="loginPassword" class="form-control" required>
+                      </div>
+                      <button type="submit" class="btn btn-primary w-100">Login</button>
+                  </form>
+                  <div id="loginError" class="alert alert-danger mt-3 hidden"></div>
+              </div>
+
+              <!-- Admin Dashboard -->
+              <div id="adminSection" class="admin-container hidden">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                      <h1>Portfolio Admin</h1>
+                      <button onclick="logout()" class="btn btn-outline-danger">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </button>
+                  </div>
+
+                  <!-- Add/Edit Photo Form -->
+                  <div class="form-section">
+                      <h3 id="formTitle">Add New Photo</h3>
+                      <form id="photoForm">
+                          <input type="hidden" id="photoId">
+                          <div class="row">
+                              <div class="col-md-6 mb-3">
+                                  <label class="form-label">Photo Upload</label>
+                                  <input type="file" id="photoFile" class="form-control" accept="image/*">
+                                  <img id="previewImage" class="preview-img hidden">
+                                  <input type="hidden" id="currentImageUrl">
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                  <label class="form-label">Title *</label>
+                                  <input type="text" id="photoTitle" class="form-control" required>
+                              </div>
+                              <div class="col-md-12 mb-3">
+                                  <label class="form-label">Description</label>
+                                  <textarea id="photoDescription" class="form-control" rows="3"></textarea>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                  <label class="form-label">Category</label>
+                                  <select id="photoCategory" class="form-control">
+                                      <option value="proposal">Proposal</option>
+                                      <option value="wedding">Wedding</option>
+                                      <option value="portrait">Portrait</option>
+                                      <option value="event">Event</option>
+                                      <option value="sport">Sport</option>
+                                  </select>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                  <label class="form-label">Order Index</label>
+                                  <input type="number" id="photoOrder" class="form-control" value="0">
+                              </div>
+                          </div>
+                          <button type="submit" class="btn btn-success" id="submitBtn">
+                              <i class="fas fa-save"></i> Save Photo
+                          </button>
+                          <button type="button" class="btn btn-secondary" id="cancelBtn" onclick="resetForm()">
+                              Cancel
+                          </button>
+                      </form>
+                  </div>
+
+                  <!-- Photos Grid -->
+                  <div class="form-section">
+                      <h3>Existing Photos</h3>
+                      <div id="photosGrid" class="row"></div>
+                  </div>
+              </div>
+
+              <!-- Scripts -->
+              <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+              <script src="js/supabase-config.js"></script>
+              <script src="js/admin.js"></script>
+          </body>
+          </html>
+          EOF
+          echo "✅ Created admin.html"
+      
+      - name: Create admin JavaScript
+        run: |
+          mkdir -p WEBSITE/final-version/js
+          cat > WEBSITE/final-version/js/admin.js << 'EOF'
+          // Initialize Supabase
+          const supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+
+          // Check authentication on page load
+          window.addEventListener('DOMContentLoaded', async () => {
+              const { data: { session } } = await supabase.auth.getSession();
+              
+              if (session) {
+                  showAdminPanel();
+                  loadPhotos();
+              } else {
+                  showLogin();
+              }
+          });
+
+          // Login
+          document.getElementById('loginForm').addEventListener('submit', async (e) => {
+              e.preventDefault();
+              
+              const email = document.getElementById('loginEmail').value;
+              const password = document.getElementById('loginPassword').value;
+              const errorDiv = document.getElementById('loginError');
+              
+              const { data, error } = await supabase.auth.signInWithPassword({
+                  email,
+                  password
+              });
+              
+              if (error) {
+                  errorDiv.textContent = error.message;
+                  errorDiv.classList.remove('hidden');
+              } else {
+                  showAdminPanel();
+                  loadPhotos();
+              }
+          });
+
+          // Logout
+          async function logout() {
+              await supabase.auth.signOut();
+              showLogin();
+          }
+
+          // Show/Hide sections
+          function showLogin() {
+              document.getElementById('loginSection').classList.remove('hidden');
+              document.getElementById('adminSection').classList.add('hidden');
+          }
+
+          function showAdminPanel() {
+              document.getElementById('loginSection').classList.add('hidden');
+              document.getElementById('adminSection').classList.remove('hidden');
+          }
+
+          // Photo Form Submit
+          document.getElementById('photoForm').addEventListener('submit', async (e) => {
+              e.preventDefault();
+              
+              const submitBtn = document.getElementById('submitBtn');
+              submitBtn.disabled = true;
+              submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+              
+              const photoId = document.getElementById('photoId').value;
+              const photoFile = document.getElementById('photoFile').files[0];
+              const currentImageUrl = document.getElementById('currentImageUrl').value;
+              
+              let imageUrl = currentImageUrl;
+              
+              // Upload image if new file selected
+              if (photoFile) {
+                  const fileExt = photoFile.name.split('.').pop();
+                  const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+                  
+                  const { data: uploadData, error: uploadError } = await supabase.storage
+                      .from('photos')
+                      .upload(fileName, photoFile);
+                  
+                  if (uploadError) {
+                      alert('Error uploading image: ' + uploadError.message);
+                      submitBtn.disabled = false;
+                      submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
+                      return;
+                  }
+                  
+                  const { data: { publicUrl } } = supabase.storage
+                      .from('photos')
+                      .getPublicUrl(fileName);
+                  
+                  imageUrl = publicUrl;
+              }
+              
+              const photoData = {
+                  title: document.getElementById('photoTitle').value,
+                  description: document.getElementById('photoDescription').value,
+                  category: document.getElementById('photoCategory').value,
+                  order_index: parseInt(document.getElementById('photoOrder').value),
+                  image_url: imageUrl,
+                  updated_at: new Date().toISOString()
+              };
+              
+              if (photoId) {
+                  const { error } = await supabase
+                      .from('photos')
+                      .update(photoData)
+                      .eq('id', photoId);
+                  
+                  if (error) {
+                      alert('Error updating photo: ' + error.message);
+                  } else {
+                      alert('Photo updated successfully!');
+                      resetForm();
+                      loadPhotos();
+                  }
+              } else {
+                  const { error } = await supabase
+                      .from('photos')
+                      .insert([photoData]);
+                  
+                  if (error) {
+                      alert('Error adding photo: ' + error.message);
+                  } else {
+                      alert('Photo added successfully!');
+                      resetForm();
+                      loadPhotos();
+                  }
+              }
+              
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
+          });
+
+          // Image preview
+          document.getElementById('photoFile').addEventListener('change', (e) => {
+              const file = e.target.files[0];
+              if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (e) => {
+                      const preview = document.getElementById('previewImage');
+                      preview.src = e.target.result;
+                      preview.classList.remove('hidden');
+                  };
+                  reader.readAsDataURL(file);
+              }
+          });
+
+          // Load photos from database
+          async function loadPhotos() {
+              const { data: photos, error } = await supabase
+                  .from('photos')
+                  .select('*')
+                  .order('order_index', { ascending: true });
+              
+              if (error) {
+                  console.error('Error loading photos:', error);
+                  return;
+              }
+              
+              const grid = document.getElementById('photosGrid');
+              grid.innerHTML = '';
+              
+              photos.forEach(photo => {
+                  const card = document.createElement('div');
+                  card.className = 'col-md-4';
+                  card.innerHTML = `
+                      <div class="photo-card">
+                          <img src="${photo.image_url}" alt="${photo.title}">
+                          <h5 class="mt-2">${photo.title}</h5>
+                          <p class="text-muted">${photo.description || ''}</p>
+                          <span class="badge bg-primary">${photo.category}</span>
+                          <span class="badge bg-secondary">Order: ${photo.order_index}</span>
+                          <div class="mt-3">
+                              <button class="btn btn-sm btn-warning" onclick='editPhoto(${JSON.stringify(photo)})'>
+                                  <i class="fas fa-edit"></i> Edit
+                              </button>
+                              <button class="btn btn-sm btn-danger" onclick="deletePhoto('${photo.id}')">
+                                  <i class="fas fa-trash"></i> Delete
+                              </button>
+                          </div>
+                      </div>
+                  `;
+                  grid.appendChild(card);
+              });
+          }
+
+          // Edit photo
+          function editPhoto(photo) {
+              document.getElementById('formTitle').textContent = 'Edit Photo';
+              document.getElementById('photoId').value = photo.id;
+              document.getElementById('photoTitle').value = photo.title;
+              document.getElementById('photoDescription').value = photo.description || '';
+              document.getElementById('photoCategory').value = photo.category;
+              document.getElementById('photoOrder').value = photo.order_index;
+              document.getElementById('currentImageUrl').value = photo.image_url;
+              
+              const preview = document.getElementById('previewImage');
+              preview.src = photo.image_url;
+              preview.classList.remove('hidden');
+              
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+
+          // Delete photo
+          async function deletePhoto(id) {
+              if (!confirm('Are you sure you want to delete this photo?')) return;
+              
+              const { error } = await supabase
+                  .from('photos')
+                  .delete()
+                  .eq('id', id);
+              
+              if (error) {
+                  alert('Error deleting photo: ' + error.message);
+              } else {
+                  alert('Photo deleted successfully!');
+                  loadPhotos();
+              }
+          }
+
+          // Reset form
+          function resetForm() {
+              document.getElementById('formTitle').textContent = 'Add New Photo';
+              document.getElementById('photoForm').reset();
+              document.getElementById('photoId').value = '';
+              document.getElementById('currentImageUrl').value = '';
+              document.getElementById('previewImage').classList.add('hidden');
+          }
+          EOF
+          echo "✅ Created admin.js"
+      
+      - name: Run setup script
+        run: |
+          python3 setup_supabase_integration.py
+      
+      - name: Create README for admin
+        run: |
+          cat > WEBSITE/final-version/SUPABASE_SETUP.md << 'EOF'
+          # Supabase Admin Panel Setup
+
+          ## ✅ Files Created
+
+          - `admin.html` - Admin panel interface
+          - `js/admin.js` - Admin panel logic
+          - `js/supabase-config.js` - Supabase credentials
+          - `js/portfolio-loader.js` - Dynamic photo loader for portfolio pages
+
+          ## 🔧 Supabase Configuration
+
+          Your Supabase project is configured with:
+          - **URL**: https://yspjuakdfukoawjjiulb.supabase.co
+          - **Anon Key**: sb_publishable_7F_MmEp9qZtlYIF8imba4g_1KrhBzga
+
+          ## 📋 Next Steps
+
+          ### 1. Set up Supabase Database
+
+          Go to your Supabase project SQL Editor and run:
+
+          ```sql
+          -- Create photos table
+          create table photos (
+            id uuid default gen_random_uuid() primary key,
+            title text not null,
+            description text,
+            image_url text not null,
+            category text,
+            order_index integer default 0,
+            created_at timestamp with time zone default now(),
+            updated_at timestamp with time zone default now()
+          );
+
+          -- Enable RLS
+          alter table photos enable row level security;
+
+          -- Public can read
+          create policy "Anyone can view photos"
+            on photos for select
+            using (true);
+
+          -- Authenticated can modify
+          create policy "Authenticated users can insert"
+            on photos for insert
+            with check (auth.role() = 'authenticated');
+
+          create policy "Authenticated users can update"
+            on photos for update
+            using (auth.role() = 'authenticated');
+
+          create policy "Authenticated users can delete"
+            on photos for delete
+            using (auth.role() = 'authenticated');
+          ```
+
+          ### 2. Create Storage Bucket
+
+          1. Go to Storage in Supabase
+          2. Create a new bucket called `photos`
+          3. Make it public
+          4. Add these policies in SQL Editor:
+
+          ```sql
+          -- Storage policies
+          create policy "Anyone can view photos in storage"
+            on storage.objects for select
+            using (bucket_id = 'photos');
+
+          create policy "Authenticated users can upload"
+            on storage.objects for insert
+            with check (bucket_id = 'photos' and auth.role() = 'authenticated');
+
+          create policy "Authenticated users can delete"
+            on storage.objects for delete
+            using (bucket_id = 'photos' and auth.role() = 'authenticated');
+          ```
+
+          ### 3. Create Admin User
+
+          1. Go to Authentication → Users in Supabase
+          2. Click "Add user"
+          3. Choose "Create new user"
+          4. Enter email and password
+          5. Click "Create user"
+
+          ### 4. Test the Admin Panel
+
+          1. Upload these files to your website
+          2. Go to `https://yoursite.com/admin.html`
+          3. Login with your admin credentials
+          4. Upload a test photo
+
+          ### 5. Updated Portfolio Pages
+
+          These pages now load photos dynamically:
+          - proposal.html (category: proposal)
+          - wedding.html (category: wedding)
+          - portrait.html (category: portrait)
+          - event.html (category: event)
+          - sport.html (category: sport)
+
+          ## 🎉 You're Done!
+
+          Your portfolio now has a full admin panel for managing photos without editing code!
+          EOF
+          echo "✅ Created setup documentation"
+      
+      - name: Commit changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "🚀 Add Supabase admin panel and dynamic photo loading
+
+          - Created admin panel (admin.html, js/admin.js)
+          - Added Supabase configuration with credentials
+          - Created portfolio loader for dynamic photos
+          - Updated portfolio pages with data-category attributes
+          - Added documentation for setup"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## ✅ Supabase Integration Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Files Created:" >> $GITHUB_STEP_SUMMARY
+          echo "- \`WEBSITE/final-version/admin.html\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`WEBSITE/final-version/js/admin.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`WEBSITE/final-version/js/supabase-config.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`WEBSITE/final-version/js/portfolio-loader.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Check \`SUPABASE_SETUP.md\` for database setup SQL" >> $GITHUB_STEP_SUMMARY
+          echo "2. Create admin user in Supabase Authentication" >> $GITHUB_STEP_SUMMARY
+          echo "3. Deploy to your website" >> $GITHUB_STEP_SUMMARY
+          echo "4. Access admin panel at \`/admin.html\`" >> $GITHUB_STEP_SUMMARY
