@@ -1,46 +1,62 @@
-// Replace with your Supabase credentials
-const SUPABASE_URL = 'https://amrzoqmnkfnewujbeqdn.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_H0Wn5I1eqOad7xfx6oM9zQ_CYDSnKXw';
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Initialize Supabase
+let supabaseClient;
 
 // Check authentication on page load
 window.addEventListener('DOMContentLoaded', async () => {
-    const { data: { session } } = await supabase.auth.getSession();
+    console.log('Admin panel loading...');
+    
+    if (typeof SUPABASE_CONFIG === 'undefined') {
+        console.error('ERROR: SUPABASE_CONFIG not defined!');
+        alert('Configuration error! Check console.');
+        return;
+    }
+    
+    supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+    console.log('Supabase client created');
+    
+    const { data: { session } } = await supabaseClient.auth.getSession();
     
     if (session) {
+        console.log('User logged in:', session.user.email);
         showAdminPanel();
         loadPhotos();
     } else {
+        console.log('No session, showing login');
         showLogin();
     }
 });
 
 // Login
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    const errorDiv = document.getElementById('loginError');
-    
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
+if (document.getElementById('loginForm')) {
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const errorDiv = document.getElementById('loginError');
+        
+        console.log('Attempting login with:', email);
+        
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+        
+        if (error) {
+            console.error('Login error:', error);
+            errorDiv.textContent = error.message;
+            errorDiv.classList.remove('hidden');
+        } else {
+            console.log('Login success!');
+            showAdminPanel();
+            loadPhotos();
+        }
     });
-    
-    if (error) {
-        errorDiv.textContent = error.message;
-        errorDiv.classList.remove('hidden');
-    } else {
-        showAdminPanel();
-        loadPhotos();
-    }
-});
+}
 
 // Logout
 async function logout() {
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
     showLogin();
 }
 
@@ -55,102 +71,130 @@ function showAdminPanel() {
     document.getElementById('adminSection').classList.remove('hidden');
 }
 
-// Photo Form Submit
-document.getElementById('photoForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submitBtn');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-    
-    const photoId = document.getElementById('photoId').value;
-    const photoFile = document.getElementById('photoFile').files[0];
-    const currentImageUrl = document.getElementById('currentImageUrl').value;
-    
-    let imageUrl = currentImageUrl;
-    
-    // Upload image if new file selected
-    if (photoFile) {
-        const fileExt = photoFile.name.split('.').pop();
-        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+// Photo Form Submit - FIXED VERSION
+if (document.getElementById('photoForm')) {
+    document.getElementById('photoForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        const { data: uploadData, error: uploadError } = await supabase.storage
-            .from('photos')
-            .upload(fileName, photoFile);
+        console.log('📸 Form submitted!');
         
-        if (uploadError) {
-            alert('Error uploading image: ' + uploadError.message);
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        
+        const photoId = document.getElementById('photoId').value;
+        const photoFile = document.getElementById('photoFile').files[0];
+        const currentImageUrl = document.getElementById('currentImageUrl').value;
+        
+        let imageUrl = currentImageUrl;
+        
+        // Upload image if new file selected
+        if (photoFile) {
+            console.log('📤 Uploading file:', photoFile.name);
+            
+            const fileExt = photoFile.name.split('.').pop();
+            const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+            
+            const { data: uploadData, error: uploadError } = await supabaseClient.storage
+                .from('photos')
+                .upload(fileName, photoFile);
+            
+            if (uploadError) {
+                console.error('❌ Upload error:', uploadError);
+                alert('Error uploading image: ' + uploadError.message);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
+                return;
+            }
+            
+            console.log('✅ File uploaded:', uploadData);
+            
+            const { data: { publicUrl } } = supabaseClient.storage
+                .from('photos')
+                .getPublicUrl(fileName);
+            
+            imageUrl = publicUrl;
+            console.log('🔗 Public URL:', publicUrl);
+        }
+        
+        if (!imageUrl) {
+            alert('Please select an image!');
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
             return;
         }
         
-        const { data: { publicUrl } } = supabase.storage
-            .from('photos')
-            .getPublicUrl(fileName);
+        const photoData = {
+            title: document.getElementById('photoTitle').value,
+            description: document.getElementById('photoDescription').value || '',
+            category: document.getElementById('photoCategory').value,
+            order_index: parseInt(document.getElementById('photoOrder').value) || 0,
+            image_url: imageUrl
+        };
         
-        imageUrl = publicUrl;
-    }
-    
-    const photoData = {
-        title: document.getElementById('photoTitle').value,
-        description: document.getElementById('photoDescription').value,
-        category: document.getElementById('photoCategory').value,
-        order_index: parseInt(document.getElementById('photoOrder').value),
-        image_url: imageUrl,
-        updated_at: new Date().toISOString()
-    };
-    
-    if (photoId) {
-        // Update existing photo
-        const { error } = await supabase
-            .from('photos')
-            .update(photoData)
-            .eq('id', photoId);
+        console.log('💾 Saving to database:', photoData);
         
-        if (error) {
-            alert('Error updating photo: ' + error.message);
+        if (photoId) {
+            // Update existing photo
+            const { data, error } = await supabaseClient
+                .from('photos')
+                .update(photoData)
+                .eq('id', photoId)
+                .select();
+            
+            if (error) {
+                console.error('❌ Update error:', error);
+                alert('Error updating photo: ' + error.message);
+            } else {
+                console.log('✅ Photo updated:', data);
+                alert('Photo updated successfully!');
+                resetForm();
+                loadPhotos();
+            }
         } else {
-            alert('Photo updated successfully!');
-            resetForm();
-            loadPhotos();
+            // Insert new photo
+            const { data, error } = await supabaseClient
+                .from('photos')
+                .insert([photoData])
+                .select();
+            
+            if (error) {
+                console.error('❌ Insert error:', error);
+                alert('Error adding photo: ' + error.message);
+            } else {
+                console.log('✅ Photo added:', data);
+                alert('Photo added successfully!');
+                resetForm();
+                loadPhotos();
+            }
         }
-    } else {
-        // Insert new photo
-        const { error } = await supabase
-            .from('photos')
-            .insert([photoData]);
         
-        if (error) {
-            alert('Error adding photo: ' + error.message);
-        } else {
-            alert('Photo added successfully!');
-            resetForm();
-            loadPhotos();
-        }
-    }
-    
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
-});
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
+    });
+}
 
 // Image preview
-document.getElementById('photoFile').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const preview = document.getElementById('previewImage');
-            preview.src = e.target.result;
-            preview.classList.remove('hidden');
-        };
-        reader.readAsDataURL(file);
-    }
-});
+if (document.getElementById('photoFile')) {
+    document.getElementById('photoFile').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            console.log('📁 File selected:', file.name);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const preview = document.getElementById('previewImage');
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
 
 // Load photos from database
 async function loadPhotos() {
-    const { data: photos, error } = await supabase
+    console.log('Loading photos...');
+    const { data: photos, error } = await supabaseClient
         .from('photos')
         .select('*')
         .order('order_index', { ascending: true });
@@ -160,8 +204,15 @@ async function loadPhotos() {
         return;
     }
     
+    console.log('Loaded photos:', photos.length);
+    
     const grid = document.getElementById('photosGrid');
     grid.innerHTML = '';
+    
+    if (photos.length === 0) {
+        grid.innerHTML = '<p class="text-muted col-12">No photos yet. Upload your first photo!</p>';
+        return;
+    }
     
     photos.forEach(photo => {
         const card = document.createElement('div');
@@ -208,14 +259,18 @@ function editPhoto(photo) {
 async function deletePhoto(id) {
     if (!confirm('Are you sure you want to delete this photo?')) return;
     
-    const { error } = await supabase
+    console.log('🗑️ Deleting photo:', id);
+    
+    const { error } = await supabaseClient
         .from('photos')
         .delete()
         .eq('id', id);
     
     if (error) {
+        console.error('Delete error:', error);
         alert('Error deleting photo: ' + error.message);
     } else {
+        console.log('✅ Photo deleted');
         alert('Photo deleted successfully!');
         loadPhotos();
     }
