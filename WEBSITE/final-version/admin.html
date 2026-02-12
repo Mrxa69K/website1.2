@@ -24,6 +24,17 @@
             border-radius: 10px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
+        .debug-info {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .debug-info .status-ok { color: green; font-weight: bold; }
+        .debug-info .status-error { color: red; font-weight: bold; }
         .photo-card {
             background: white;
             border-radius: 8px;
@@ -53,21 +64,32 @@
     </style>
 </head>
 <body>
+    <!-- Debug Info -->
+    <div class="container mt-3">
+        <div class="debug-info" id="debugInfo">
+            <h6>🔍 Debug Information</h6>
+            <div id="debugContent">Checking configuration...</div>
+        </div>
+    </div>
+
     <!-- Login Section -->
     <div id="loginSection" class="login-box">
         <h2 class="text-center mb-4">Admin Login</h2>
         <form id="loginForm">
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" id="loginEmail" class="form-control" required>
+                <input type="email" id="loginEmail" class="form-control" required placeholder="admin@example.com">
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input type="password" id="loginPassword" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
         </form>
         <div id="loginError" class="alert alert-danger mt-3 hidden"></div>
+        <div id="loginSuccess" class="alert alert-success mt-3 hidden"></div>
     </div>
 
     <!-- Admin Dashboard -->
@@ -130,8 +152,189 @@
         </div>
     </div>
 
-    <!-- Supabase JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/admin.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script>
+        // Debug logging
+        function updateDebug(message, isError = false) {
+            const debugContent = document.getElementById('debugContent');
+            const statusClass = isError ? 'status-error' : 'status-ok';
+            const icon = isError ? '❌' : '✅';
+            debugContent.innerHTML += `<div class="${statusClass}">${icon} ${message}</div>`;
+            console.log(message);
+        }
+
+        // Check configuration on load
+        window.addEventListener('DOMContentLoaded', async () => {
+            updateDebug('Page loaded');
+            
+            // Check if Supabase is loaded
+            if (typeof supabase === 'undefined') {
+                updateDebug('ERROR: Supabase library not loaded!', true);
+                return;
+            }
+            updateDebug('Supabase library loaded');
+            
+            // Check if config exists
+            if (typeof SUPABASE_CONFIG === 'undefined') {
+                updateDebug('ERROR: SUPABASE_CONFIG not found!', true);
+                return;
+            }
+            updateDebug('Config found: ' + SUPABASE_CONFIG.url);
+            
+            // Try to create client
+            try {
+                window.supabaseClient = window.supabase.createClient(
+                    SUPABASE_CONFIG.url,
+                    SUPABASE_CONFIG.anonKey
+                );
+                updateDebug('Supabase client created successfully');
+            } catch (e) {
+                updateDebug('ERROR creating client: ' + e.message, true);
+                return;
+            }
+            
+            // Check if user is already logged in
+            try {
+                const { data: { session }, error } = await supabaseClient.auth.getSession();
+                if (error) {
+                    updateDebug('Session check error: ' + error.message, true);
+                } else if (session) {
+                    updateDebug('User already logged in: ' + session.user.email);
+                    showAdminPanel();
+                    loadPhotos();
+                } else {
+                    updateDebug('No active session - please login');
+                    showLogin();
+                }
+            } catch (e) {
+                updateDebug('ERROR checking session: ' + e.message, true);
+                showLogin();
+            }
+        });
+
+        // Login handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            const successDiv = document.getElementById('loginSuccess');
+            
+            updateDebug(`Attempting login with email: ${email}`);
+            
+            errorDiv.classList.add('hidden');
+            successDiv.classList.add('hidden');
+            
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+                
+                if (error) {
+                    updateDebug('Login error: ' + error.message, true);
+                    errorDiv.textContent = '❌ Login failed: ' + error.message;
+                    errorDiv.classList.remove('hidden');
+                } else {
+                    updateDebug('Login successful! User: ' + data.user.email);
+                    successDiv.textContent = '✅ Login successful! Loading admin panel...';
+                    successDiv.classList.remove('hidden');
+                    setTimeout(() => {
+                        showAdminPanel();
+                        loadPhotos();
+                    }, 1000);
+                }
+            } catch (e) {
+                updateDebug('EXCEPTION during login: ' + e.message, true);
+                errorDiv.textContent = '❌ Login exception: ' + e.message;
+                errorDiv.classList.remove('hidden');
+            }
+        });
+
+        // Logout
+        async function logout() {
+            await supabaseClient.auth.signOut();
+            updateDebug('User logged out');
+            showLogin();
+        }
+
+        // Show/Hide sections
+        function showLogin() {
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('adminSection').classList.add('hidden');
+        }
+
+        function showAdminPanel() {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('adminSection').classList.remove('hidden');
+        }
+
+        // Load photos
+        async function loadPhotos() {
+            try {
+                updateDebug('Loading photos from database...');
+                const { data: photos, error } = await supabaseClient
+                    .from('photos')
+                    .select('*')
+                    .order('order_index', { ascending: true });
+                
+                if (error) {
+                    updateDebug('Error loading photos: ' + error.message, true);
+                    return;
+                }
+                
+                updateDebug(`Loaded ${photos.length} photos`);
+                
+                const grid = document.getElementById('photosGrid');
+                grid.innerHTML = '';
+                
+                if (photos.length === 0) {
+                    grid.innerHTML = '<p class="text-muted">No photos yet. Upload your first photo above!</p>';
+                    return;
+                }
+                
+                photos.forEach(photo => {
+                    const card = document.createElement('div');
+                    card.className = 'col-md-4';
+                    card.innerHTML = `
+                        <div class="photo-card">
+                            <img src="${photo.image_url}" alt="${photo.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Not+Found'">
+                            <h5 class="mt-2">${photo.title}</h5>
+                            <p class="text-muted">${photo.description || ''}</p>
+                            <span class="badge bg-primary">${photo.category}</span>
+                            <span class="badge bg-secondary">Order: ${photo.order_index}</span>
+                            <div class="mt-3">
+                                <button class="btn btn-sm btn-warning" onclick='editPhoto(${JSON.stringify(photo)})'>
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-sm btn-danger" onclick="deletePhoto('${photo.id}')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (e) {
+                updateDebug('EXCEPTION loading photos: ' + e.message, true);
+            }
+        }
+
+        // Placeholder functions (add full implementation from original admin.js)
+        function editPhoto(photo) {
+            console.log('Edit photo:', photo);
+        }
+
+        function deletePhoto(id) {
+            console.log('Delete photo:', id);
+        }
+
+        function resetForm() {
+            console.log('Reset form');
+        }
+    </script>
 </body>
 </html>
