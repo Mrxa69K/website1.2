@@ -1,8 +1,7 @@
 // Initialize Supabase
 let supabaseClient;
 
-window.deletePhoto = deletePhoto;
-window.editPhoto = editPhoto;
+
 // Check authentication on page load
 window.addEventListener('DOMContentLoaded', async () => {
     console.log('Admin panel loading...');
@@ -241,7 +240,7 @@ async function loadPhotos() {
 }
 
 // Edit photo
-function editPhoto(photo) {
+window.editPhoto = function(photo) {
     document.getElementById('formTitle').textContent = 'Edit Photo';
     document.getElementById('photoId').value = photo.id;
     document.getElementById('photoTitle').value = photo.title;
@@ -255,10 +254,11 @@ function editPhoto(photo) {
     preview.classList.remove('hidden');
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+};
+
 
 // Delete photo
-async function deletePhoto(id) {
+window.deletePhoto = async function(id) {
     if (!confirm('Are you sure you want to delete this photo?')) return;
     
     console.log('🗑️ Deleting photo:', id);
@@ -276,7 +276,7 @@ async function deletePhoto(id) {
         alert('Photo deleted successfully!');
         loadPhotos();
     }
-}
+};
 
 // Reset form
 function resetForm() {
