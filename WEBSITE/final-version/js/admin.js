@@ -219,25 +219,37 @@ async function loadPhotos() {
         card.className = 'col-md-4';
         card.innerHTML = `
             <div class="photo-card">
-                <img src="${photo.image_url}" alt="${photo.title}">
+                <img src="${photo.image_url}" alt="${photo.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Error'">
                 <h5 class="mt-2">${photo.title}</h5>
                 <p class="text-muted">${photo.description || ''}</p>
                 <span class="badge bg-primary">${photo.category}</span>
                 <span class="badge bg-secondary">Order: ${photo.order_index}</span>
                 <div class="mt-3">
-                    <button class="btn btn-sm btn-warning" onclick='editPhoto(${JSON.stringify(photo)})'>
+                    <button class="btn btn-sm btn-warning edit-photo-btn" data-photo-id="${photo.id}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="deletePhoto('${photo.id}')">
+                    <button class="btn btn-sm btn-danger delete-photo-btn" data-photo-id="${photo.id}">
                         <i class="fas fa-trash"></i> Delete
                     </button>
                 </div>
             </div>
         `;
+        
         grid.appendChild(card);
+        
+        // Attach event listeners to the buttons
+        const editBtn = card.querySelector('.edit-photo-btn');
+        const deleteBtn = card.querySelector('.delete-photo-btn');
+        
+        editBtn.addEventListener('click', () => {
+            window.editPhoto(photo);
+        });
+        
+        deleteBtn.addEventListener('click', () => {
+            window.deletePhoto(photo.id);
+        });
     });
 }
-
 // Edit photo - GLOBAL FUNCTION
 window.editPhoto = function(photo) {
     document.getElementById('formTitle').textContent = 'Edit Photo';
