@@ -1,6 +1,8 @@
 // Initialize Supabase
 let supabaseClient;
 
+window.deletePhoto = deletePhoto;
+window.editPhoto = editPhoto;
 // Check authentication on page load
 window.addEventListener('DOMContentLoaded', async () => {
     console.log('Admin panel loading...');
