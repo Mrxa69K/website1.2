@@ -1,7 +1,6 @@
 // Initialize Supabase
 let supabaseClient;
 
-
 // Check authentication on page load
 window.addEventListener('DOMContentLoaded', async () => {
     console.log('Admin panel loading...');
@@ -72,7 +71,7 @@ function showAdminPanel() {
     document.getElementById('adminSection').classList.remove('hidden');
 }
 
-// Photo Form Submit - FIXED VERSION
+// Photo Form Submit
 if (document.getElementById('photoForm')) {
     document.getElementById('photoForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -239,7 +238,7 @@ async function loadPhotos() {
     });
 }
 
-// Edit photo
+// Edit photo - GLOBAL FUNCTION
 window.editPhoto = function(photo) {
     document.getElementById('formTitle').textContent = 'Edit Photo';
     document.getElementById('photoId').value = photo.id;
@@ -256,8 +255,7 @@ window.editPhoto = function(photo) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-
-// Delete photo
+// Delete photo - GLOBAL FUNCTION
 window.deletePhoto = async function(id) {
     if (!confirm('Are you sure you want to delete this photo?')) return;
     
