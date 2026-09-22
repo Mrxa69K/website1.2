@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-<title>Paris Love Photography</title>
+<title>Portrait Photography Paris | Melissa Photography</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -180,8 +180,23 @@ document.addEventListener("DOMContentLoaded", function() {
   
 });
 </script>
-<meta content="Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits." name="description"/></head>
-<body>
+<meta content="Professional portrait photography sessions in Paris. Natural, elegant portraits by Melissa Photography — English &amp; French speaking, from 200€." name="description"/>
+<link href="https://melissaphotographyparis.fr/portrait.html" rel="canonical"/>
+<meta content="index, follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="https://melissaphotographyparis.fr/portrait.html" property="og:url"/>
+<meta content="Portrait Photography Paris | Melissa Photography" property="og:title"/>
+<meta content="Professional portrait photography sessions in Paris. Natural, elegant portraits by Melissa Photography — English &amp; French speaking, from 200€." property="og:description"/>
+<meta content="https://melissaphotographyparis.fr/images/portrait/2p.webp" property="og:image"/>
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="https://melissaphotographyparis.fr/portrait.html" property="twitter:url"/>
+<meta content="Portrait Photography Paris | Melissa Photography" property="twitter:title"/>
+<meta content="Professional portrait photography sessions in Paris. Natural, elegant portraits by Melissa Photography — English &amp; French speaking, from 200€." property="twitter:description"/>
+<meta content="https://melissaphotographyparis.fr/images/portrait/2p.webp" property="twitter:image"/>
+<link href="https://melissaphotographyparis.fr/portrait.html" hreflang="en" rel="alternate"/>
+<link href="https://melissaphotographyparis.fr/portraitfr.html" hreflang="fr" rel="alternate"/>
+<link href="https://melissaphotographyparis.fr/portrait.html" hreflang="x-default" rel="alternate"/></head>
+<body data-category="portrait">
 <div class="site-wrap">
 <div class="site-mobile-menu">
 <div class="site-mobile-menu-header">
@@ -196,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="row align-items-center">
 <div class="col-6 col-xl-2" data-aos="fade-down">
 <h1 class="mb-0"><a href="index.html">
-<img alt="Melissa Photography Paris" class="img-fluid" height="938" src="images/logo-paris-love-photography-horizontal.webp"  width="938"/>
+<img alt="Melissa Photography Paris" class="img-fluid" height="938" src="images/logo-paris-love-photography-horizontal.webp" width="938"/>
 </a></h1>
 </div>
 <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
@@ -255,13 +270,12 @@ document.addEventListener("DOMContentLoaded", function() {
 <h2 class="site-section-heading text-center">Portrait Gallery</h2>
 <div class="text-center mt-4 mb-4">
 <a class="book-now-btn" href="contact.html">📸 Book Your Portrait Session</a>
-
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="gallery-grid" id="">
+<div class="gallery-grid" id="photoGallery">
 <div class="item gallery-item">
 <img alt="Professional Portrait Photography Paris" class="img-fluid" height="4896" loading="lazy" src="images/portrait/2p.webp" width="3672"/>
 </div>
@@ -424,10 +438,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
-
 <!-- Floating Book Now Button -->
-<a href="contact.html" class="floating-book-btn">
+<a class="floating-book-btn" href="contact.html">
 📸 Book Now
 </a>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/portfolio-loader.js"></script>
 </body>
 </html>

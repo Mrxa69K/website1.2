@@ -1,6 +1,14 @@
 // Initialize Supabase
 let supabaseClient;
 
+// Escape untrusted text before inserting into innerHTML (prevents stored XSS
+// if a photo's title/description/category ever contains HTML/script).
+function escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value === undefined || value === null ? '' : String(value);
+    return div.innerHTML;
+}
+
 // Check authentication on page load
 window.addEventListener('DOMContentLoaded', async () => {
     console.log('Admin panel loading...');
@@ -219,11 +227,11 @@ async function loadPhotos() {
         card.className = 'col-md-4';
         card.innerHTML = `
             <div class="photo-card">
-                <img src="${photo.image_url}" alt="${photo.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Error'">
-                <h5 class="mt-2">${photo.title}</h5>
-                <p class="text-muted">${photo.description || ''}</p>
-                <span class="badge bg-primary">${photo.category}</span>
-                <span class="badge bg-secondary">Order: ${photo.order_index}</span>
+                <img src="${escapeHtml(photo.image_url)}" alt="${escapeHtml(photo.title)}" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Error'">
+                <h5 class="mt-2">${escapeHtml(photo.title)}</h5>
+                <p class="text-muted">${escapeHtml(photo.description || '')}</p>
+                <span class="badge bg-primary">${escapeHtml(photo.category)}</span>
+                <span class="badge bg-secondary">Order: ${escapeHtml(photo.order_index)}</span>
                 <div class="mt-3">
                     <button class="btn btn-sm btn-warning edit-photo-btn" data-photo-id="${photo.id}">
                         <i class="fas fa-edit"></i> Edit
