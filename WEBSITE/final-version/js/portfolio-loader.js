@@ -72,10 +72,19 @@
             img.removeAttribute('height');
             img.removeAttribute('width');
         } else {
-            // No static items on this page yet to copy markup from — fall
-            // back to a plain grid item.
+            // No static items on this page to copy markup from — fall back
+            // to a plain grid item, matching the container's own layout
+            // (EN pages use a CSS-grid ".gallery-grid" with plain items; FR
+            // pages use a Bootstrap ".row" with per-item column classes).
             item = document.createElement('div');
-            item.className = 'item gallery-item';
+            const isBootstrapRow = gallery.classList.contains('row');
+            item.className = isBootstrapRow
+                ? 'col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item'
+                : 'item gallery-item';
+            if (isBootstrapRow) {
+                item.style.marginBottom = '20px';
+                item.style.padding = '10px';
+            }
             item.setAttribute('data-aos', 'fade');
             const img = document.createElement('img');
             img.src = photo.image_url;
