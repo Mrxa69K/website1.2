@@ -330,13 +330,17 @@ class MelissaSecurityModule {
 
     // 6. HEADERS DE SÉCURITÉ (côté client)
     setupCSPHeaders() {
-        // Ajouter meta tags de sécurité si pas présents
-        if (!document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
-            const csp = document.createElement('meta');
-            csp.httpEquiv = 'Content-Security-Policy';
-            csp.content = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;";
-            document.head.appendChild(csp);
-        }
+        // CSP is now set site-wide via the real HTTP response header (see
+        // _headers), which applies before the page even starts parsing.
+        // This used to inject a <meta> CSP here instead, on DOMContentLoaded
+        // — but that fires *after* other scripts on the page have already
+        // started running, and it was missing a connect-src rule, which
+        // made it a race: any script that made its API call (e.g. the
+        // Supabase-backed photo gallery) just after DOMContentLoaded got
+        // silently blocked ("TypeError: Failed to fetch") depending on
+        // timing, and its img-src was too narrow for the flag icons
+        // (flagcdn.com). Real HTTP headers don't have that race and don't
+        // need duplicating here.
 
         if (!document.querySelector('meta[http-equiv="X-Content-Type-Options"]')) {
             const nosniff = document.createElement('meta');
