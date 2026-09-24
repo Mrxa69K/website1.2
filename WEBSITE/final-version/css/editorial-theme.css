@@ -7,6 +7,35 @@
    and full-bleed category captions instead of boxed hover cards.
    ========================================================================== */
 
+/* ---------- Wordmark logo (text, no image) ---------- */
+.site-navbar h1.mb-0 a,
+.site-navbar a.navbar-brand {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none !important;
+  line-height: 1;
+}
+
+.wordmark-main {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.2px;
+  color: #1a1a1a;
+}
+
+.wordmark-sub {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin-top: 4px;
+}
+
 /* ---------- Overlay navigation on hero pages ---------- */
 .site-navbar.transparent.absolute {
   padding-top: 30px;
@@ -35,8 +64,12 @@
   color: #2b2622 !important;
 }
 
-.site-navbar.transparent.absolute h1 a img {
-  filter: brightness(0) invert(1);
+.site-navbar.transparent.absolute .wordmark-main {
+  color: #fff;
+}
+
+.site-navbar.transparent.absolute .wordmark-sub {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .site-navbar.transparent.absolute .site-menu-toggle {

@@ -68,7 +68,7 @@
 <!-- Debug Info -->
 <div class="container mt-3">
 <div class="debug-info" id="debugInfo">
-<h6>🔍 Debug Information</h6>
+<h6>Debug Information</h6>
 <div id="debugContent">Checking configuration...</div>
 </div>
 </div>
@@ -162,7 +162,7 @@
             function log(message, isError) {
                 const line = document.createElement('div');
                 line.className = isError ? 'status-error' : 'status-ok';
-                line.textContent = (isError ? '❌ ' : '✅ ') + message;
+                line.textContent = (isError ? 'Error: ' : 'OK: ') + message;
                 debugContent.appendChild(line);
             }
             log('Page loaded');
