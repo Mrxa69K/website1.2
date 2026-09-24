@@ -281,3 +281,100 @@
   font-style: italic;
   font-weight: 500;
 }
+
+/* ---------- Inner-page photo header (About, Contact, etc.) ---------- */
+.page-header {
+  position: relative;
+  height: 46vh;
+  min-height: 340px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+.page-header-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 16, 12, 0.15) 0%, rgba(20, 16, 12, 0.6) 100%);
+}
+
+.page-header-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 64px 56px;
+  max-width: 720px;
+}
+
+.page-header-content .hero-eyebrow {
+  opacity: 1;
+  transform: none;
+  margin-bottom: 14px;
+}
+
+.page-header-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 3rem;
+  color: #fff;
+  margin: 0;
+}
+
+.page-header-content p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 14px 0 0;
+  max-width: 480px;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    height: 38vh;
+    min-height: 260px;
+  }
+  .page-header-content {
+    padding: 0 24px 36px;
+  }
+  .page-header-content h1 {
+    font-size: 2.1rem;
+  }
+}
+
+/* ---------- Editorial CTA link (for light backgrounds) ---------- */
+.btn-editorial {
+  display: inline-block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #241f1c;
+  border-radius: 0;
+  padding: 0 0 6px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #241f1c;
+  transition: opacity 0.3s ease;
+}
+
+.btn-editorial:hover,
+.btn-editorial:focus {
+  color: #241f1c;
+  opacity: 0.55;
+  text-decoration: none;
+}
+
+/* ---------- Editorial label (small caps eyebrow above a heading) ---------- */
+.editorial-label {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin-bottom: 10px;
+}
