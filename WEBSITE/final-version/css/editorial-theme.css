@@ -1,0 +1,250 @@
+/* ==========================================================================
+   Editorial redesign layer
+   Layered on top of style.css + hero-slider.css. Same brand fonts/colors as
+   the rest of the site (Playfair Display / Josefin Sans, black/white),
+   just a cleaner, more editorial layout: overlay nav, lower-left hero copy,
+   underline-style CTAs instead of pill buttons, a credibility stats strip,
+   and full-bleed category captions instead of boxed hover cards.
+   ========================================================================== */
+
+/* ---------- Overlay navigation on hero pages ---------- */
+.site-navbar.transparent.absolute {
+  padding-top: 30px;
+  padding-bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.site-navbar.transparent.absolute .site-menu > li > a {
+  color: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.site-navbar.transparent.absolute .site-menu > li.active > a,
+.site-navbar.transparent.absolute .site-menu > li > a:hover {
+  color: #fff;
+  opacity: 0.72;
+}
+
+.site-navbar.transparent.absolute .site-menu .has-children .dropdown {
+  background: #fff;
+}
+
+.site-navbar.transparent.absolute .site-menu .has-children .dropdown a {
+  color: #2b2622 !important;
+}
+
+.site-navbar.transparent.absolute h1 a img {
+  filter: brightness(0) invert(1);
+}
+
+.site-navbar.transparent.absolute .site-menu-toggle {
+  color: #fff !important;
+}
+
+.site-navbar.transparent.absolute .fa-instagram,
+.site-navbar.transparent.absolute .fa-tiktok {
+  color: #fff;
+}
+
+/* ---------- Hero content: lower-left, editorial ---------- */
+.hero-content.editorial {
+  top: auto;
+  bottom: 76px;
+  left: 64px;
+  transform: none;
+  text-align: left;
+  max-width: 620px;
+  padding: 0;
+}
+
+.hero-eyebrow {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+}
+
+.hero-slide.active .hero-eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-content.editorial h1 {
+  text-align: left;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 3.1rem;
+}
+
+.hero-content.editorial p {
+  text-align: left;
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 300;
+}
+
+.hero-content.editorial .hero-cta-buttons {
+  justify-content: flex-start;
+  gap: 34px;
+  align-items: center;
+}
+
+/* Underline-style CTA links instead of pill buttons */
+.hero-btn-primary,
+.hero-btn-secondary {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0 0 6px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.hero-btn-secondary {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.hero-btn-primary:hover,
+.hero-btn-secondary:hover {
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+  border-bottom-color: #fff;
+  color: #fff !important;
+  opacity: 1;
+}
+
+/* ---------- Credibility stats strip ---------- */
+.stats-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 40px 64px;
+  border-bottom: 1px solid rgba(43, 38, 34, 0.08);
+}
+
+.stats-strip .stats-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  color: #241f1c;
+  max-width: 480px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.stats-strip .stats-numbers {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+}
+
+.stats-strip .stats-numbers .stat-value {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: #241f1c;
+  line-height: 1.2;
+}
+
+.stats-strip .stats-numbers .stat-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12.5px;
+  color: #6b6b6b;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 768px) {
+  .stats-strip {
+    padding: 32px 24px;
+    justify-content: flex-start;
+  }
+  .stats-strip .stats-numbers {
+    gap: 32px;
+  }
+}
+
+/* ---------- Editorial category strip (replaces boxed hover cards) ---------- */
+.editorial-categories {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.editorial-categories .cat-item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  min-height: 360px;
+}
+
+.editorial-categories .cat-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  filter: grayscale(0.1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+}
+
+.editorial-categories .cat-item:hover img {
+  transform: scale(1.04);
+  filter: grayscale(0);
+}
+
+.editorial-categories .cat-item .cat-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20, 16, 12, 0.6) 0%, rgba(20, 16, 12, 0) 45%);
+}
+
+.editorial-categories .cat-item .cat-label {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 19px;
+  color: #fff;
+  z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .editorial-categories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .editorial-categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .editorial-categories .cat-item {
+    min-height: 220px;
+  }
+}
+
+/* ---------- General editorial polish ---------- */
+.site-section-heading.editorial {
+  font-style: italic;
+  font-weight: 500;
+}

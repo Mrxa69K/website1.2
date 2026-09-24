@@ -33,19 +33,14 @@
 <link href="fonts/icomoon/style.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <link href="css/bootstrap.min.css" rel="stylesheet"/>
-<link href="css/magnific-popup.css" rel="stylesheet"/>
-<link href="css/jquery-ui.css" rel="stylesheet"/>
-<link href="css/owl.carousel.min.css" rel="stylesheet"/>
-<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
-<link href="css/lightgallery.min.css" rel="stylesheet"/>
-<link href="css/bootstrap-datepicker.css" rel="stylesheet"/>
 <link href="fonts/flaticon/font/flaticon.css" rel="stylesheet"/>
-<link href="css/swiper.css" rel="stylesheet"/>
 <link href="css/aos.css" rel="stylesheet"/>
 <link href="css/style.css" rel="stylesheet"/>
 <link href="css/animations.css" rel="stylesheet"/>
 <link href="css/gallery-improvements.css" rel="stylesheet"/>
 <link href="css/hero-slider.css" rel="stylesheet"/>
+<link href="css/editorial-theme.css" rel="stylesheet"/>
+<link rel="preload" as="image" href="images/wedding/020.webp" fetchpriority="high"/>
 <!-- Schema.org JSON-LD for Photographer - SECURITY: Escaped characters -->
 <script type="application/ld+json">
   {
@@ -321,7 +316,7 @@ setTimeout(function() {
 </div>
 <div class="site-mobile-menu-body"></div>
 </div>
-<header class="site-navbar py-3" role="banner">
+<header class="site-navbar py-3 transparent absolute" role="banner">
 <div class="container-fluid">
 <div class="row align-items-center">
 <div class="col-6 col-xl-2" data-aos="fade-down">
@@ -385,9 +380,10 @@ setTimeout(function() {
 <!-- Proposal Photography Slide -->
 <div aria-label="Beautiful proposal photography in Paris" class="hero-slide-bg" role="img" style="background-image: url('images/wedding/020.webp');">
 </div>
-<div class="hero-content">
-<h1>Mariage</h1>
-<p>Élégance &amp; Beauté</p>
+<div class="hero-content editorial">
+<span class="hero-eyebrow">Photographe Mariage — Paris</span>
+<h1>Élégance &amp; Beauté</h1>
+<p>Mariage</p>
 <div class="hero-cta-buttons">
 <a class="hero-btn-primary" href="contactfr.html">
 <i class="fa-solid"></i> Réserver Maintenant 📸
@@ -402,9 +398,10 @@ setTimeout(function() {
 <div class="hero-slide">
 <div aria-label="Beautiful proposal photography in Paris" class="hero-slide-bg" role="img" style="background-image: url('images/proposal/slider.webp');">
 </div>
-<div class="hero-content">
-<h1>Demande En Mariage</h1>
-<p>Capturer l'Instant</p>
+<div class="hero-content editorial">
+<span class="hero-eyebrow">Photographe Demande en Mariage — Paris</span>
+<h1>Capturer l'Instant</h1>
+<p>Demande En Mariage</p>
 <div class="hero-cta-buttons">
 <a class="hero-btn-primary" href="contactfr.html">
 <i class="fa-solid"></i> Réserver Maintenant 📸
@@ -419,9 +416,10 @@ setTimeout(function() {
 <div class="hero-slide">
 <div class="hero-slide-bg" role="img" style="background-image: url('images/portrait/5p.webp');">
 </div>
-<div class="hero-content">
-<h1>Portrait</h1>
-<p>Professionnel &amp; Authentique</p>
+<div class="hero-content editorial">
+<span class="hero-eyebrow">Photographe Portrait — Paris</span>
+<h1>Professionnel &amp; Authentique</h1>
+<p>Portrait</p>
 <div class="hero-cta-buttons">
 <a class="hero-btn-primary" href="contactfr.html">
 <i class="fa-solid"></i> Réserver Maintenant 📸
@@ -436,9 +434,10 @@ setTimeout(function() {
 <div class="hero-slide">
 <div class="hero-slide-bg" role="img" style="background-image: url('images/events/2.webp');">
 </div>
-<div class="hero-content">
-<h1>Photographie Événementielle</h1>
-<p>Dynamique &amp; Mémorable</p>
+<div class="hero-content editorial">
+<span class="hero-eyebrow">Photographe Événementiel — Paris</span>
+<h1>Dynamique &amp; Mémorable</h1>
+<p>Photographie Événementielle</p>
 <div class="hero-cta-buttons">
 <a class="hero-btn-primary" href="contactfr.html">
 <i class="fa-solid"></i> Réserver Maintenant 📸
@@ -453,14 +452,15 @@ setTimeout(function() {
 <div class="hero-slide">
 <div aria-label="BJJ in Paris" class="hero-slide-bg" role="img" style="background-image: url('images/sport/slider.webp');">
 </div>
-<div class="hero-content">
-<h1>Photographie Sportive</h1>
-<p>Action &amp; Précision</p>
+<div class="hero-content editorial">
+<span class="hero-eyebrow">Photographe Sportif — Paris</span>
+<h1>Action &amp; Précision</h1>
+<p>Photographie Sportive</p>
 <div class="hero-cta-buttons">
-<a class="hero-btn-primary" href="contact.html">
+<a class="hero-btn-primary" href="contactfr.html">
 <i class="fa-solid"></i> Réserver Maintenant 📸
         </a>
-<a class="hero-btn-secondary" href="sport.html">
+<a class="hero-btn-secondary" href="sportfr.html">
 <i class="fa-solid"></i>  Portfolio
         </a>
 </div>
@@ -488,58 +488,49 @@ setTimeout(function() {
 <!-- Progress Bar -->
 <div class="hero-progress"></div>
 </section>
-<div class="text-center mb-5">
-<h2 class="text-center"></h2>
-<p class="lead text-black"></p>
+<div class="stats-strip" data-aos="fade" data-aos-delay="200">
+<p class="stats-tagline">Quatre ans à capturer les moments qui comptent, entre le Trocadéro, Montmartre et les quais de la Seine.</p>
+<div class="stats-numbers">
+<div>
+<div class="stat-value">4 ans</div>
+<div class="stat-label">d'expérience à Paris</div>
 </div>
-<div class="container-fluid" data-aos="fade" data-aos-delay="500">
-<div class="row">
-<div class="col-lg-4">
-<div class="image-wrap-2">
-<div class="image-info">
-<h2 class="mb-3">Demande en mariage</h2>
-<a class="btn btn-outline-white py-2 px-4" href="proposalfr.html">Voir plus</a>
+<div>
+<div class="stat-value">★ 5.0</div>
+<div class="stat-label">avis clients</div>
 </div>
-<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/proposal/2.webp" style="width: 400%; height: 800px; object-fit: cover;" width="1365"/>
-</div>
-</div>
-<div class="col-lg-4">
-<div class="image-wrap-2">
-<div class="image-info">
-<h2 class="mb-3">Portrait</h2>
-<a class="btn btn-outline-white py-2 px-4" href="portraitfr.html">Voir plus</a>
-</div>
-<img alt="Image" class="img-fluid" height="2560" loading="lazy" src="images/portrait/2p.webp" style="width: 400%; height: 800px; object-fit: cover;" width="2048"/>
-</div>
-</div>
-<div class="col-lg-4">
-<div class="image-wrap-2">
-<div class="image-info">
-<h2 class="mb-3">Mariage</h2>
-<a class="btn btn-outline-white py-2 px-4" href="weddingfr.html">Voir plus</a>
-</div>
-<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/wedding/020.webp" style="width: 400%; height: 800px; object-fit: cover;" width="1365"/>
-</div>
-</div>
-<div class="col-lg-4">
-<div class="image-wrap-2">
-<div class="image-info">
-<h2 class="mb-3">évenement</h2>
-<a class="btn btn-outline-white py-2 px-4" href="eventfr.html">Voir plus</a>
-</div>
-<img alt="Image" class="img-fluid" height="2048" loading="lazy" src="images/events/1.webp" style="width: 400%; height: 800px; object-fit: cover;" width="1365"/>
-</div>
-</div>
-<div class="col-lg-4">
-<div class="image-wrap-2">
-<div class="image-info">
-<h2 class="mb-3">Sport</h2>
-<a class="btn btn-outline-white py-2 px-4" href="sportfr.html">Voir plus</a>
-</div>
-<img alt="Image" class="img-fluid" height="3262" loading="lazy" src="images/sport/12.webp" style="width: 400%; height: 800px; object-fit: cover;" width="2160"/>
+<div>
+<div class="stat-value">FR · EN · AR</div>
+<div class="stat-label">séances trilingues</div>
 </div>
 </div>
 </div>
+<div class="editorial-categories" data-aos="fade" data-aos-delay="300">
+<a class="cat-item" href="proposalfr.html">
+<img alt="Photographie de demande en mariage à Paris" loading="lazy" src="images/proposal/2.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Demande en mariage</span>
+</a>
+<a class="cat-item" href="weddingfr.html">
+<img alt="Photographie de mariage à Paris" loading="lazy" src="images/wedding/020.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Mariage</span>
+</a>
+<a class="cat-item" href="portraitfr.html">
+<img alt="Photographie de portrait à Paris" loading="lazy" src="images/portrait/2p.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Portrait</span>
+</a>
+<a class="cat-item" href="eventfr.html">
+<img alt="Photographie d'événement à Paris" loading="lazy" src="images/events/1.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Événement</span>
+</a>
+<a class="cat-item" href="sportfr.html">
+<img alt="Photographie sportive à Paris" loading="lazy" src="images/sport/12.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Sport</span>
+</a>
 </div>
 <div class="site-section bg-light" data-aos="fade">
 <div class="container">
@@ -587,19 +578,10 @@ Nos tarifs compétitifs débutent à 200€, avec des prix transparents, aucun f
 </div>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/jquery-ui.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/jquery.countdown.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/swiper.min.js"></script>
 <script src="js/aos.js"></script>
 <script src="js/picturefill.min.js"></script>
-<script src="js/lightgallery-all.min.js"></script>
-<script src="js/jquery.mousewheel.min.js"></script>
 <script src="js/main.js"></script>
 <!-- Melissa Photography Security & Animations -->
 <script src="js/security.js?v=20260923"></script>
@@ -607,11 +589,10 @@ Nos tarifs compétitifs débutent à 200€, avec des prix transparents, aucun f
 <script src="js/performance.js"></script>
 <script src="js/gallery-enhancements.js"></script>
 <script src="js/hero-slider.js"></script>
-<script>
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-  </script>
+<!-- Floating Book Now Button -->
+<a class="floating-book-btn" href="contactfr.html">
+📸 Réserver
+</a>
 <!-- CookieConsent Implementation -->
 <script defer="" src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
 <script src="js/cookieconsent-config.js" type="module"></script>

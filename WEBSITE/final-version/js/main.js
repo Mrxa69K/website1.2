@@ -124,40 +124,48 @@ jQuery(document).ready(function($) {
 
 
 	var siteMagnificPopup = function() {
-		$('.image-popup').magnificPopup({
-	    type: 'image',
-	    closeOnContentClick: true,
-	    closeBtnInside: false,
-	    fixedContentPos: true,
-	    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-	     gallery: {
-	      enabled: true,
-	      navigateByImgClick: true,
-	      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-	    },
-	    image: {
-	      verticalFit: true
-	    },
-	    zoom: {
-	      enabled: true,
-	      duration: 300 // don't foget to change the duration also in CSS
-	    }
-	  });
+		if ( !$.fn.magnificPopup ) { return; }
 
-	  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-	    disableOn: 700,
-	    type: 'iframe',
-	    mainClass: 'mfp-fade',
-	    removalDelay: 160,
-	    preloader: false,
+		if ( $('.image-popup').length > 0 ) {
+			$('.image-popup').magnificPopup({
+		    type: 'image',
+		    closeOnContentClick: true,
+		    closeBtnInside: false,
+		    fixedContentPos: true,
+		    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+		     gallery: {
+		      enabled: true,
+		      navigateByImgClick: true,
+		      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		    },
+		    image: {
+		      verticalFit: true
+		    },
+		    zoom: {
+		      enabled: true,
+		      duration: 300 // don't foget to change the duration also in CSS
+		    }
+		  });
+		}
 
-	    fixedContentPos: false
-	  });
+		if ( $('.popup-youtube, .popup-vimeo, .popup-gmaps').length > 0 ) {
+		  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+		    disableOn: 700,
+		    type: 'iframe',
+		    mainClass: 'mfp-fade',
+		    removalDelay: 160,
+		    preloader: false,
+
+		    fixedContentPos: false
+		  });
+		}
 	};
 	siteMagnificPopup();
 
 
 	var siteCarousel = function () {
+		if ( !$.fn.owlCarousel ) { return; }
+
 		if ( $('.nonloop-block-13').length > 0 ) {
 			$('.nonloop-block-13').owlCarousel({
 		    center: false,
@@ -186,21 +194,24 @@ jQuery(document).ready(function($) {
 			});
 		}
 
-		$('.slide-one-item').owlCarousel({
-	    center: false,
-	    items: 1,
-	    loop: true,
-			stagePadding: 0,
-	    margin: 0,
-	    autoplay: true,
-	    pauseOnHover: false,
-	    nav: true,
-	    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
-	  });
+		if ( $('.slide-one-item').length > 0 ) {
+			$('.slide-one-item').owlCarousel({
+		    center: false,
+		    items: 1,
+		    loop: true,
+				stagePadding: 0,
+		    margin: 0,
+		    autoplay: true,
+		    pauseOnHover: false,
+		    nav: true,
+		    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
+		  });
+		}
 	};
 	siteCarousel();
 
 	var siteStellar = function() {
+		if ( !$.fn.stellar ) { return; }
 		$(window).stellar({
 	    responsive: false,
 	    parallaxBackgrounds: true,
@@ -213,6 +224,8 @@ jQuery(document).ready(function($) {
 	siteStellar();
 
 	var siteCountDown = function() {
+		if ( !$.fn.countdown ) { return; }
+		if ( $('#date-countdown').length === 0 ) { return; }
 
 		$('#date-countdown').countdown('2020/10/10', function(event) {
 		  var $this = $(this).html(event.strftime(''
@@ -222,13 +235,13 @@ jQuery(document).ready(function($) {
 		    + '<span class="countdown-block"><span class="label">%M</span> min </span>'
 		    + '<span class="countdown-block"><span class="label">%S</span> sec</span>'));
 		});
-				
+
 	};
 	siteCountDown();
 
 	var siteDatePicker = function() {
 
-		if ( $('.datepicker').length > 0 ) {
+		if ( $.fn.datepicker && $('.datepicker').length > 0 ) {
 			$('.datepicker').datepicker();
 		}
 
@@ -236,6 +249,8 @@ jQuery(document).ready(function($) {
 	siteDatePicker();
 
 	var swiperSetting = function() {
+		if ( typeof Swiper === 'undefined' ) { return; }
+		if ( $('.swiper-container').length === 0 ) { return; }
 		var mySwiper = new Swiper ('.swiper-container', {
 	    // Optional parameters
 	    // direction: 'horizontal',
