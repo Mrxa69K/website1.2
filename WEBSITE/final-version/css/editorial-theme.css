@@ -261,6 +261,14 @@
   z-index: 2;
 }
 
+.editorial-categories.cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.editorial-categories.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 @media (max-width: 992px) {
   .editorial-categories {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -365,6 +373,59 @@
   color: #241f1c;
   opacity: 0.55;
   text-decoration: none;
+}
+
+/* ---------- Small autoplay image carousel (About page, etc.) ---------- */
+.mini-carousel {
+  position: relative;
+  height: 420px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.mini-carousel-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.2s ease, transform 6s ease;
+}
+
+.mini-carousel-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mini-carousel-dots {
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}
+
+.mini-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+  border: none;
+}
+
+.mini-carousel-dot.active {
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .mini-carousel {
+    height: 300px;
+  }
 }
 
 /* ---------- Editorial label (small caps eyebrow above a heading) ---------- */

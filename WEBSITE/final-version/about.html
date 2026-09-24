@@ -264,27 +264,23 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="site-section" data-aos="fade">
 <div class="container-fluid">
 <!-- Section Mon Histoire -->
-<div class="row mb-5">
-<div class="col-md-12">
-<div class="row">
-<div class="col-md-4 mb-4 mb-md-0">
+<div class="row mb-5 align-items-center">
+<div class="col-md-5 mb-4 mb-md-0" data-aos="fade-up">
 <span class="editorial-label">My Story</span>
 <h2 class="site-section-heading editorial" style="font-size: 1.9rem;">A Parisian eye for real moments</h2>
+<p class="text-black mb-0">From proposals at the Trocadéro to weddings along the Seine, I capture real emotion with a discreet, authentic eye, four years and counting.</p>
 </div>
-<div class="col-md-8">
-<div class="row">
-<div class="col-md-6">
-<h5 class="editorial-label">Expertise</h5>
-<p class="text-black mb-4">I photograph couples and events, developing a particular expertise in wedding proposals in Paris.</p>
-</div>
-<div class="col-md-6">
-<h5 class="editorial-label">Paris, My Canvas</h5>
-<p class="text-black mb-4">In love with Paris, I know all the capital's romantic spots: from the Trocadero to the quays of the Seine, via Montmartre and the secret gardens.</p>
-<h5 class="editorial-label">Philosophy</h5>
-<p class="text-black mb-4">I believe that every couple has a unique story to tell. My role is to reveal it with authenticity and emotion.</p>
-</div>
-</div>
-</div>
+<div class="col-md-7" data-aos="fade-up" data-aos-delay="150">
+<div class="mini-carousel">
+<div class="mini-carousel-slide active" style="background-image: url('images/proposal/2.webp');"></div>
+<div class="mini-carousel-slide" style="background-image: url('images/wedding/020.webp');"></div>
+<div class="mini-carousel-slide" style="background-image: url('images/portrait/6p.webp');"></div>
+<div class="mini-carousel-slide" style="background-image: url('images/wedding/019.webp');"></div>
+<div class="mini-carousel-dots">
+<button aria-label="Slide 1" class="mini-carousel-dot active"></button>
+<button aria-label="Slide 2" class="mini-carousel-dot"></button>
+<button aria-label="Slide 3" class="mini-carousel-dot"></button>
+<button aria-label="Slide 4" class="mini-carousel-dot"></button>
 </div>
 </div>
 </div>
@@ -292,43 +288,23 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- Section Mes Spécialités -->
 <div class="row mb-5">
 <div class="col-md-12">
-<h2 class="site-section-heading editorial text-center">My Specialties</h2>
-<div class="row">
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-heart" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Proposals</h5>
-<p>Magical moments captured with discretion in the most beautiful places of Paris.</p>
-</div>
-</div>
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-camera" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Weddings </h5>
-<p>Complete coverage of your big day, from preparation to the party.</p>
-</div>
-</div>
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-user" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Couple Portraits</h5>
-<p>Intimate sessions that reveal your complicity and your love.</p></div>
-</div>
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-calendar" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Events</h5>
-<p>Birthdays, engagements and memorable private celebrations.</p>
-</div>
-</div>
+<h2 class="site-section-heading editorial text-center mb-4">My Specialties</h2>
+<div class="editorial-categories cols-3" data-aos="fade-up">
+<a class="cat-item" href="proposal.html">
+<img alt="Proposal photography in Paris" loading="lazy" src="images/proposal/1.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Proposals</span>
+</a>
+<a class="cat-item" href="wedding.html">
+<img alt="Wedding photography in Paris" loading="lazy" src="images/wedding/019.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Weddings</span>
+</a>
+<a class="cat-item" href="portrait.html">
+<img alt="Portrait photography in Paris" loading="lazy" src="images/portrait/2p.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Couple Portraits</span>
+</a>
 </div>
 </div>
 </div>
@@ -384,6 +360,7 @@ Gérer les cookies
 <script src="js/aos.js"></script>
 <script src="js/picturefill.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/mini-carousel.js"></script>
 <!-- Melissa Photography Security & Animations -->
 <script src="js/security.js?v=20260923"></script>
 <script src="js/animations.js"></script>

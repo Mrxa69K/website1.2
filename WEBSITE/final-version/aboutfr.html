@@ -265,27 +265,23 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="site-section" data-aos="fade">
 <div class="container-fluid">
 <!-- Section Mon Histoire -->
-<div class="row mb-5">
-<div class="col-md-12">
-<div class="row">
-<div class="col-md-4 mb-4 mb-md-0">
+<div class="row mb-5 align-items-center">
+<div class="col-md-5 mb-4 mb-md-0" data-aos="fade-up">
 <span class="editorial-label">Mon Histoire</span>
 <h2 class="site-section-heading editorial" style="font-size: 1.9rem;">Un regard parisien sur des moments vrais</h2>
+<p class="text-black mb-0">Des demandes en mariage au Trocadéro aux mariages au fil de la Seine, je capture l'émotion vraie avec discrétion et authenticité, depuis quatre ans.</p>
 </div>
-<div class="col-md-8">
-<div class="row">
-<div class="col-md-6">
-<h5 class="editorial-label">Spécialisation</h5>
-<p class="text-black mb-4">Je me suis spécialisée dans la photographie de couple et d'événements, développant une expertise particulière dans les demandes en mariage à Paris.</p>
-</div>
-<div class="col-md-6">
-<h5 class="editorial-label">Paris, Ma Toile</h5>
-<p class="text-black mb-4">Amoureuse de Paris, je connais tous les spots romantiques de la capitale : du Trocadéro aux quais de Seine, en passant par Montmartre et les jardins secrets.</p>
-<h5 class="editorial-label">Philosophie</h5>
-<p class="text-black mb-4">Je crois que chaque couple a une histoire unique à raconter. Mon rôle est de la révéler avec authenticité et émotion.</p>
-</div>
-</div>
-</div>
+<div class="col-md-7" data-aos="fade-up" data-aos-delay="150">
+<div class="mini-carousel">
+<div class="mini-carousel-slide active" style="background-image: url('images/proposal/2.webp');"></div>
+<div class="mini-carousel-slide" style="background-image: url('images/wedding/020.webp');"></div>
+<div class="mini-carousel-slide" style="background-image: url('images/portrait/6p.webp');"></div>
+<div class="mini-carousel-slide" style="background-image: url('images/wedding/019.webp');"></div>
+<div class="mini-carousel-dots">
+<button aria-label="Photo 1" class="mini-carousel-dot active"></button>
+<button aria-label="Photo 2" class="mini-carousel-dot"></button>
+<button aria-label="Photo 3" class="mini-carousel-dot"></button>
+<button aria-label="Photo 4" class="mini-carousel-dot"></button>
 </div>
 </div>
 </div>
@@ -293,44 +289,23 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- Section Mes Spécialités -->
 <div class="row mb-5">
 <div class="col-md-12">
-<h2 class="site-section-heading editorial text-center">Mes Spécialités</h2>
-<div class="row">
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-heart" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Demandes en Mariage</h5>
-<p>Moments magiques capturés avec discrétion dans les plus beaux lieux de Paris.</p>
-</div>
-</div>
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-camera" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Mariages </h5>
-<p>Reportages complets de votre jour J, de la préparation à la soirée.</p>
-</div>
-</div>
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-user" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Portraits de Couple</h5>
-<p>Séances intimistes qui révèlent votre complicité et votre amour.</p>
-</div>
-</div>
-<div class="col-md-3 text-center mb-4">
-<div class="p-4 h-100" style="border-top: 2px solid #241f1c;">
-<div class="mb-3">
-<i class="icon-calendar" style="font-size: 2.4rem; color: #241f1c;"></i>
-</div>
-<h5 class="text-black">Événements</h5>
-<p>Anniversaires, fiançailles et célébrations privées mémorables.</p>
-</div>
-</div>
+<h2 class="site-section-heading editorial text-center mb-4">Mes Spécialités</h2>
+<div class="editorial-categories cols-3" data-aos="fade-up">
+<a class="cat-item" href="proposalfr.html">
+<img alt="Photographie de demande en mariage à Paris" loading="lazy" src="images/proposal/1.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Demandes en Mariage</span>
+</a>
+<a class="cat-item" href="weddingfr.html">
+<img alt="Photographie de mariage à Paris" loading="lazy" src="images/wedding/019.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Mariages</span>
+</a>
+<a class="cat-item" href="portraitfr.html">
+<img alt="Photographie de portrait à Paris" loading="lazy" src="images/portrait/2p.webp"/>
+<div class="cat-scrim"></div>
+<span class="cat-label">Portraits de Couple</span>
+</a>
 </div>
 </div>
 </div>
@@ -386,6 +361,7 @@ Gérer les cookies
 <script src="js/aos.js"></script>
 <script src="js/picturefill.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/mini-carousel.js"></script>
 <!-- Melissa Photography Security & Animations -->
 <script src="js/security.js?v=20260923"></script>
 <script src="js/animations.js"></script>
