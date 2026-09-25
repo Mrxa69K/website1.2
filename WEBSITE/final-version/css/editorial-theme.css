@@ -36,6 +36,21 @@
   margin-top: 4px;
 }
 
+/* ---------- Default (non-overlay) navigation on light backgrounds ----------
+   style.css's base nav-link color is translucent white (rgba(255,255,255,.5)),
+   meant to sit on the homepage's dark photo hero. Every other page uses a
+   plain white-background header, where that translucent white text is all
+   but invisible. Only .transparent (the homepage overlay nav) should keep
+   the white styling below; everything else gets a readable dark color. */
+.site-navbar:not(.transparent) .site-menu > li > a {
+  color: #2b2622;
+}
+
+.site-navbar:not(.transparent) .fa-instagram,
+.site-navbar:not(.transparent) .fa-tiktok {
+  color: #2b2622;
+}
+
 /* ---------- Overlay navigation on hero pages ---------- */
 .site-navbar.transparent.absolute {
   padding-top: 30px;
