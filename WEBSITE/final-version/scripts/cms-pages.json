@@ -1,0 +1,11 @@
+{
+  "_comment": "Registry of which HTML files are wired into the content CMS, and which page/locale each one is. Add a line here whenever a new file gets <!--cms:...--> markers.",
+  "files": [
+    { "file": "index.html", "page": "home", "locale": "en" },
+    { "file": "indexfr.html", "page": "home", "locale": "fr" },
+    { "file": "about.html", "page": "about", "locale": "en" },
+    { "file": "aboutfr.html", "page": "about", "locale": "fr" },
+    { "file": "contact.html", "page": "contact", "locale": "en" },
+    { "file": "contactfr.html", "page": "contact", "locale": "fr" }
+  ]
+}

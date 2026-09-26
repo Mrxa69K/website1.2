@@ -1,0 +1,39 @@
+name: Publish dashboard content
+
+# Triggered by the admin dashboard (via a Supabase Edge Function) right
+# after Melissa saves a photo or a text edit, so the live static pages
+# stay in sync with what's in the database. Can also be run by hand from
+# the Actions tab if a publish needs to be retried.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build site from CMS content
+        working-directory: WEBSITE/final-version
+        run: node scripts/build-site.js
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "melissa-photography-cms"
+          git config user.email "actions@users.noreply.github.com"
+          git add WEBSITE/final-version
+          if git diff --staged --quiet; then
+            echo "No content changes to publish."
+          else
+            git commit -m "chore: publish content updates from the dashboard"
+            git push
+          fi

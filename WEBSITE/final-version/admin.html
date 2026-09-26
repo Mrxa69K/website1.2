@@ -62,6 +62,63 @@
             border-radius: 5px;
         }
         .hidden { display: none; }
+        .admin-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .admin-tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            cursor: pointer;
+        }
+        .admin-tab-btn.active {
+            color: #000;
+            border-bottom-color: #000;
+        }
+        .admin-tab-pane { display: none; }
+        .admin-tab-pane.active { display: block; }
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .content-section h4 {
+            margin-bottom: 4px;
+        }
+        .content-section .section-meta {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+        .content-field {
+            margin-bottom: 16px;
+        }
+        .content-field label {
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .content-field textarea, .content-field input {
+            width: 100%;
+        }
+        .content-field.is-dirty textarea,
+        .content-field.is-dirty input {
+            border-color: #d4a017;
+            background: #fffbea;
+        }
+        .save-section-btn {
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -95,10 +152,25 @@
 <div class="admin-container hidden" id="adminSection">
 <div class="d-flex justify-content-between align-items-center mb-4">
 <h1>Portfolio Admin</h1>
+<div>
+<button class="btn btn-outline-primary me-2" id="republishBtn" type="button">
+<i class="fas fa-rocket"></i> Republish site
+            </button>
 <button class="btn btn-outline-danger" onclick="logout()">
 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
 </div>
+</div>
+<div class="alert hidden" id="publishStatus" role="status"></div>
+<p class="text-muted" style="font-size: 13px; margin-top: -12px; margin-bottom: 20px;">
+    Saving a photo or a text field publishes automatically. "Republish site" is only needed if a publish
+    seems stuck, or to retry a failed one.
+</p>
+<div class="admin-tabs">
+<button class="admin-tab-btn active" data-tab="photosTab" type="button">Photos</button>
+<button class="admin-tab-btn" data-tab="contentTab" type="button">Site text</button>
+</div>
+<div class="admin-tab-pane active" id="photosTab">
 <!-- Add/Edit Photo Form -->
 <div class="form-section">
 <h3 id="formTitle">Add New Photo</h3>
@@ -146,6 +218,13 @@
 <div class="form-section">
 <h3>Existing Photos</h3>
 <div class="row" id="photosGrid"></div>
+</div>
+</div>
+<!-- Site text: every editable paragraph/title, grouped by page -->
+<div class="admin-tab-pane" id="contentTab">
+<div id="contentSections">
+<p class="text-muted">Loading editable text&hellip;</p>
+</div>
 </div>
 </div>
 <!-- Scripts -->
