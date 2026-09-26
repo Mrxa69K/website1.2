@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Studio Panel theme (cpr.html)
+   Same brand language as the public site (Playfair Display / Josefin Sans,
+   warm black/white, thin hairline borders, underline-style CTAs) but built
+   as its own self-contained stylesheet rather than reusing editorial-theme.css
+   directly -- the panel is a tool, not a page, and shouldn't inherit rules
+   written for the hero/nav/gallery layout of the public site.
+   ========================================================================== */
+
+:root {
+  --panel-ink: #2b2622;
+  --panel-ink-soft: #6b6b6b;
+  --panel-paper: #f7f4f0;
+  --panel-card: #ffffff;
+  --panel-border: rgba(43, 38, 34, 0.14);
+  --panel-border-soft: rgba(43, 38, 34, 0.08);
+  --panel-warn: #b8860b;
+  --panel-warn-bg: #fffbea;
+  --panel-danger: #9a3b2c;
+  --panel-danger-bg: #fbeeec;
+  --panel-success-bg: #eef4ee;
+  --panel-success-ink: #33512f;
+}
+
+body {
+  background: var(--panel-paper);
+  color: var(--panel-ink);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--panel-ink);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Brand mark, reused on the login screen and the dashboard ---------- */
+.panel-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.panel-brand-main {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 21px;
+  color: var(--panel-ink);
+}
+
+.panel-brand-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--panel-ink-soft);
+  margin-top: 3px;
+}
+
+/* ---------- Diagnostics: collapsed by default, out of the way ---------- */
+.panel-diagnostics {
+  max-width: 1400px;
+  margin: 16px auto 0;
+  padding: 0 20px;
+}
+
+.panel-diagnostics summary {
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--panel-ink-soft);
+  list-style: none;
+  display: inline-block;
+}
+
+.panel-diagnostics summary::-webkit-details-marker { display: none; }
+.panel-diagnostics summary::before { content: '\25B8\0020'; }
+.panel-diagnostics[open] summary::before { content: '\25BE\0020'; }
+
+.panel-diagnostics #debugContent {
+  margin-top: 8px;
+  padding: 12px 14px;
+  background: var(--panel-card);
+  border: 1px solid var(--panel-border-soft);
+  border-radius: 4px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+}
+
+.panel-diagnostics .status-ok { color: var(--panel-success-ink); font-weight: 600; }
+.panel-diagnostics .status-error { color: var(--panel-danger); font-weight: 600; }
+
+/* ---------- Login screen ---------- */
+.login-box {
+  max-width: 380px;
+  margin: 70px auto 0;
+  padding: 0 20px;
+}
+
+.login-box .panel-brand {
+  align-items: center;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.login-box .panel-card {
+  background: var(--panel-card);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 40px 36px;
+}
+
+.login-box h2 {
+  font-style: italic;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.login-box .panel-login-subtitle {
+  text-align: center;
+  color: var(--panel-ink-soft);
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+
+/* ---------- Dashboard shell ---------- */
+.admin-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.panel-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.panel-topbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.panel-hint {
+  color: var(--panel-ink-soft);
+  font-size: 12.5px;
+  margin: -12px 0 22px;
+}
+
+/* ---------- Buttons: editorial black/white, letter-spaced, no bootstrap fills ---------- */
+.panel-btn,
+.admin-container .btn,
+.login-box .btn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 11px 22px;
+  border: 1px solid var(--panel-ink);
+  background: var(--panel-ink);
+  color: #fff;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.admin-container .btn:hover,
+.login-box .btn:hover {
+  opacity: 0.82;
+  color: #fff;
+}
+
+.admin-container .btn-outline-primary,
+.admin-container .btn-outline-danger,
+.admin-container .btn-secondary,
+.admin-container .btn-warning {
+  background: transparent;
+  color: var(--panel-ink);
+  border-color: var(--panel-border);
+}
+
+.admin-container .btn-outline-primary:hover,
+.admin-container .btn-secondary:hover,
+.admin-container .btn-warning:hover {
+  background: var(--panel-paper);
+  color: var(--panel-ink);
+  opacity: 1;
+}
+
+.admin-container .btn-outline-danger,
+.admin-container .btn-danger {
+  background: transparent;
+  color: var(--panel-danger);
+  border-color: rgba(154, 59, 44, 0.35);
+}
+
+.admin-container .btn-outline-danger:hover,
+.admin-container .btn-danger:hover {
+  background: var(--panel-danger-bg);
+  color: var(--panel-danger);
+  opacity: 1;
+}
+
+.admin-container .btn-success {
+  background: var(--panel-ink);
+  border-color: var(--panel-ink);
+}
+
+.admin-container .btn:disabled {
+  opacity: 0.5;
+}
+
+/* ---------- Alerts (publish status, login error) ---------- */
+.admin-container .alert,
+.login-box .alert {
+  border-radius: 3px;
+  border: 1px solid transparent;
+  font-size: 13.5px;
+  padding: 12px 16px;
+}
+
+.alert-danger {
+  background: var(--panel-danger-bg);
+  color: var(--panel-danger);
+  border-color: rgba(154, 59, 44, 0.25);
+}
+
+.alert-success {
+  background: var(--panel-success-bg);
+  color: var(--panel-success-ink);
+  border-color: rgba(51, 81, 47, 0.2);
+}
+
+.alert-info {
+  background: #eef1f4;
+  color: #364a5c;
+  border-color: rgba(54, 74, 92, 0.2);
+}
+
+.alert-warning {
+  background: var(--panel-warn-bg);
+  color: var(--panel-warn);
+  border-color: rgba(184, 134, 11, 0.25);
+}
+
+/* ---------- Tabs ---------- */
+.admin-tabs {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.admin-tab-btn {
+  background: none;
+  border: none;
+  padding: 4px 0 14px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--panel-ink-soft);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.admin-tab-btn.active {
+  color: var(--panel-ink);
+  border-bottom-color: var(--panel-ink);
+}
+
+.admin-tab-pane { display: none; }
+.admin-tab-pane.active { display: block; }
+
+/* ---------- Cards ---------- */
+.form-section,
+.content-section {
+  background: var(--panel-card);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(43, 38, 34, 0.04);
+}
+
+.form-section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 18px;
+}
+
+.photo-card {
+  background: var(--panel-card);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.photo-card h5 {
+  font-size: 1.05rem;
+  margin-top: 10px;
+}
+
+.photo-card .badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: var(--panel-paper) !important;
+  color: var(--panel-ink) !important;
+  border: 1px solid var(--panel-border);
+  border-radius: 3px;
+  padding: 5px 9px;
+}
+
+.preview-img {
+  max-width: 280px;
+  margin: 10px 0;
+  border-radius: 3px;
+  border: 1px solid var(--panel-border);
+}
+
+/* ---------- Form fields ---------- */
+.admin-container .form-label,
+.login-box .form-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--panel-ink);
+  margin-bottom: 6px;
+}
+
+.admin-container .form-control,
+.login-box .form-control,
+.content-field input,
+.content-field textarea {
+  border: 1px solid var(--panel-border);
+  border-radius: 3px;
+  padding: 9px 12px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px;
+  color: var(--panel-ink);
+  background: #fff;
+}
+
+.admin-container .form-control:focus,
+.login-box .form-control:focus,
+.content-field input:focus,
+.content-field textarea:focus {
+  border-color: var(--panel-ink);
+  box-shadow: 0 0 0 1px var(--panel-ink);
+  outline: none;
+}
+
+/* ---------- Site text tab ---------- */
+.content-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.content-section .section-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  color: var(--panel-ink-soft);
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+}
+
+.content-field { margin-bottom: 18px; }
+
+.content-field label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  display: block;
+  margin-bottom: 5px;
+  color: var(--panel-ink);
+}
+
+.content-field textarea, .content-field input { width: 100%; }
+
+.content-field.is-dirty textarea,
+.content-field.is-dirty input {
+  border-color: var(--panel-warn);
+  background: var(--panel-warn-bg);
+}
+
+.save-section-btn { margin-top: 6px; }

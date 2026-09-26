@@ -4,134 +4,27 @@
 <head><meta content="noindex, nofollow" name="robots"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Admin Panel - Melissa Photography</title>
+<title>Studio Panel &middot; Melissa Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="css/bootstrap.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<style>
-        body { 
-            background: #f4f4f4; 
-            font-family: 'Roboto', sans-serif;
-        }
-        .admin-container { 
-            max-width: 1400px; 
-            margin: 20px auto; 
-            padding: 20px;
-        }
-        .login-box {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-        .debug-info {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            font-family: monospace;
-            font-size: 12px;
-        }
-        .debug-info .status-ok { color: green; font-weight: bold; }
-        .debug-info .status-error { color: red; font-weight: bold; }
-        .photo-card {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .photo-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        .form-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .preview-img {
-            max-width: 300px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        .hidden { display: none; }
-        .admin-tabs {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 24px;
-            border-bottom: 2px solid #dee2e6;
-        }
-        .admin-tab-btn {
-            background: none;
-            border: none;
-            padding: 10px 20px;
-            font-weight: 600;
-            color: #666;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-            cursor: pointer;
-        }
-        .admin-tab-btn.active {
-            color: #000;
-            border-bottom-color: #000;
-        }
-        .admin-tab-pane { display: none; }
-        .admin-tab-pane.active { display: block; }
-        .content-section {
-            background: white;
-            border-radius: 10px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .content-section h4 {
-            margin-bottom: 4px;
-        }
-        .content-section .section-meta {
-            color: #888;
-            font-size: 13px;
-            margin-bottom: 18px;
-        }
-        .content-field {
-            margin-bottom: 16px;
-        }
-        .content-field label {
-            font-weight: 600;
-            font-size: 14px;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .content-field textarea, .content-field input {
-            width: 100%;
-        }
-        .content-field.is-dirty textarea,
-        .content-field.is-dirty input {
-            border-color: #d4a017;
-            background: #fffbea;
-        }
-        .save-section-btn {
-            margin-top: 8px;
-        }
-    </style>
+<link href="css/panel-theme.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- Debug Info -->
-<div class="container mt-3">
-<div class="debug-info" id="debugInfo">
-<h6>Debug Information</h6>
+<details class="panel-diagnostics" id="debugInfo">
+<summary>Diagnostics</summary>
 <div id="debugContent">Checking configuration...</div>
-</div>
-</div>
+</details>
 <!-- Login Section -->
 <div class="login-box" id="loginSection">
-<h2 class="text-center mb-4">Admin Login</h2>
+<div class="panel-brand">
+<span class="panel-brand-main">Melissa Photography</span>
+<span class="panel-brand-sub">Studio Panel</span>
+</div>
+<div class="panel-card">
+<h2>Studio Access</h2>
+<p class="panel-login-subtitle">Sign in to manage photos and site text.</p>
 <form id="loginForm">
 <div class="mb-3">
 <label class="form-label">Email</label>
@@ -148,12 +41,16 @@
 <div class="alert alert-danger mt-3 hidden" id="loginError"></div>
 <div class="alert alert-success mt-3 hidden" id="loginSuccess"></div>
 </div>
+</div>
 <!-- Admin Dashboard -->
 <div class="admin-container hidden" id="adminSection">
-<div class="d-flex justify-content-between align-items-center mb-4">
-<h1>Portfolio Admin</h1>
-<div>
-<button class="btn btn-outline-primary me-2" id="republishBtn" type="button">
+<div class="panel-topbar">
+<div class="panel-brand">
+<span class="panel-brand-main">Melissa Photography</span>
+<span class="panel-brand-sub">Studio Panel</span>
+</div>
+<div class="panel-topbar-actions">
+<button class="btn btn-outline-primary" id="republishBtn" type="button">
 <i class="fas fa-rocket"></i> Republish site
             </button>
 <button class="btn btn-outline-danger" onclick="logout()">
@@ -162,7 +59,7 @@
 </div>
 </div>
 <div class="alert hidden" id="publishStatus" role="status"></div>
-<p class="text-muted" style="font-size: 13px; margin-top: -12px; margin-bottom: 20px;">
+<p class="panel-hint">
     Saving a photo or a text field publishes automatically. "Republish site" is only needed if a publish
     seems stuck, or to retry a failed one.
 </p>
