@@ -441,7 +441,7 @@ function renderContentSections(container, manifest, savedByKey) {
             section.dataset.locale = locale;
 
             const title = document.createElement('h4');
-            title.textContent = `${PAGE_LABELS[page] || page} — ${LOCALE_LABELS[locale] || locale}`;
+            title.textContent = `${PAGE_LABELS[page] || page} · ${LOCALE_LABELS[locale] || locale}`;
             section.appendChild(title);
 
             const meta = document.createElement('div');

@@ -11,7 +11,7 @@
 //
 // Run in GitHub Actions (see .github/workflows/publish-content.yml),
 // pointed at the project's public anon key (site_content is publicly
-// readable — RLS only restricts writes to authenticated users, i.e. the
+// readable; RLS only restricts writes to authenticated users, i.e. the
 // dashboard). Nothing here needs a service-role key.
 //
 // Usage: node scripts/build-site.js
