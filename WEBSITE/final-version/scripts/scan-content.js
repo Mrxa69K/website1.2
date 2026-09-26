@@ -11,11 +11,13 @@
 
 const {
   MANIFEST_PATH,
+  GALLERY_PAGE,
   loadRegistry,
   readFile,
   extractMarkers,
   detectContentType,
   humanizeKey,
+  parseFieldRaw,
 } = require('./cms-lib');
 
 function main() {
@@ -30,16 +32,19 @@ function main() {
     if (!pages[entry.page][entry.locale]) pages[entry.page][entry.locale] = [];
 
     for (const { page, key, value } of markers) {
+      if (page === GALLERY_PAGE) continue; // photo grid, not a text field -- managed on the Photos tab
       if (page !== entry.page) {
         console.warn(
           `Warning: marker page "${page}" in ${entry.file} doesn't match registry page "${entry.page}" (key: ${key})`
         );
       }
+      const parsed = parseFieldRaw(value);
       pages[entry.page][entry.locale].push({
         key,
         label: humanizeKey(key),
-        default: value,
-        content_type: detectContentType(value),
+        default: parsed.value,
+        content_type: parsed.kind === 'title' || parsed.kind === 'meta' ? 'text' : detectContentType(parsed.value),
+        field_kind: parsed.kind, // 'title' | 'meta' | 'plain' -- lets the dashboard flag SEO fields
       });
     }
   }

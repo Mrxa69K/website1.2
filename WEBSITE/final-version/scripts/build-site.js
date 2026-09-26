@@ -28,6 +28,9 @@ const {
   readFile,
   writeFile,
   applyReplacements,
+  applyGalleryReplacements,
+  escapeHtmlText,
+  escapeAttr,
 } = require('./cms-lib');
 
 function loadSupabaseConfigFallback() {
@@ -64,14 +67,49 @@ function fetchSiteContent(url, anonKey) {
   });
 }
 
-// Escape a plain-text value before it goes back into HTML (dashboard
-// edits are free-form text; content_type 'html' rows are trusted as-is
-// since only the authenticated admin -- i.e. Melissa -- can write them).
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+function fetchPhotos(url, anonKey) {
+  return new Promise((resolve, reject) => {
+    const endpoint = `${url.replace(/\/$/, '')}/rest/v1/photos?select=category,order_index,image_url,title,alt_text&order=category.asc,order_index.asc`;
+    https
+      .get(endpoint, { headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` } }, (res) => {
+        let body = '';
+        res.on('data', (chunk) => (body += chunk));
+        res.on('end', () => {
+          if (res.statusCode !== 200) {
+            reject(new Error(`Supabase REST error ${res.statusCode}: ${body}`));
+            return;
+          }
+          try {
+            resolve(JSON.parse(body));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      })
+      .on('error', reject);
+  });
+}
+
+// Two exact HTML shapes the gallery grids on the live site use today.
+// "grid" = EN pages (plain .item.gallery-item), "bootstrap" = FR pages
+// (Bootstrap column classes). Confirmed against the live static markup.
+function renderPhotoItem(flavor, photo) {
+  const alt = escapeAttr(photo.alt_text || photo.title || '');
+  const src = escapeAttr(photo.image_url || '');
+  if (flavor === 'bootstrap') {
+    return `<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item gallery-item" data-aos="fade" style="margin-bottom: 20px; padding: 10px;"><img alt="${alt}" class="img-fluid" loading="lazy" src="${src}"/></div>`;
+  }
+  return `<div class="item gallery-item" data-aos="fade"><img alt="${alt}" class="img-fluid" loading="lazy" src="${src}"/></div>`;
+}
+
+function renderGalleryHtml(photosByCategory, key) {
+  const dot = key.indexOf('.');
+  if (dot === -1) return null;
+  const category = key.slice(0, dot);
+  const flavor = key.slice(dot + 1);
+  const photos = photosByCategory[category];
+  if (!photos) return ''; // category has no photos left -- render an empty grid, not "leave stale HTML"
+  return photos.map((p) => renderPhotoItem(flavor, p)).join('');
 }
 
 async function main() {
@@ -83,12 +121,23 @@ async function main() {
   const rows = await fetchSiteContent(config.url, config.anonKey);
   console.log(`Fetched ${rows.length} row(s).`);
 
+  console.log('Fetching photos ...');
+  const photos = await fetchPhotos(config.url, config.anonKey);
+  console.log(`Fetched ${photos.length} photo(s).`);
+
   // page -> locale -> key -> {content, content_type}
   const byPageLocale = {};
   for (const row of rows) {
     byPageLocale[row.page] = byPageLocale[row.page] || {};
     byPageLocale[row.page][row.locale] = byPageLocale[row.page][row.locale] || {};
     byPageLocale[row.page][row.locale][row.key] = row;
+  }
+
+  // category -> [photo, ...] in order_index order (already sorted by the query)
+  const photosByCategory = {};
+  for (const photo of photos) {
+    photosByCategory[photo.category] = photosByCategory[photo.category] || [];
+    photosByCategory[photo.category].push(photo);
   }
 
   const registry = loadRegistry();
@@ -98,19 +147,24 @@ async function main() {
     const rowsForFile = (byPageLocale[entry.page] || {})[entry.locale] || {};
     const replacements = {};
     for (const [key, row] of Object.entries(rowsForFile)) {
-      replacements[key] = row.content_type === 'html' ? row.content : escapeHtml(row.content);
+      replacements[key] = { value: row.content, contentType: row.content_type };
     }
 
-    if (Object.keys(replacements).length === 0) {
-      continue; // nothing in the DB for this page/locale yet -> leave file's fallback text as-is
+    let original = readFile(entry.file);
+    let updated = original;
+
+    if (Object.keys(replacements).length > 0) {
+      updated = applyReplacements(updated, replacements);
     }
 
-    const original = readFile(entry.file);
-    const updated = applyReplacements(original, replacements);
+    if (entry.gallery) {
+      updated = applyGalleryReplacements(updated, (key) => renderGalleryHtml(photosByCategory, key));
+    }
+
     if (updated !== original) {
       writeFile(entry.file, updated);
       changedFiles += 1;
-      console.log(`Updated ${entry.file} (${Object.keys(replacements).length} field(s) considered).`);
+      console.log(`Updated ${entry.file}.`);
     }
   }
 

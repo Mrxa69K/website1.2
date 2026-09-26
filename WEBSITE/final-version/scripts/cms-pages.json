@@ -1,11 +1,21 @@
 {
-  "_comment": "Registry of which HTML files are wired into the content CMS, and which page/locale each one is. Add a line here whenever a new file gets <!--cms:...--> markers.",
+  "_comment": "Registry of which HTML files are wired into the content CMS, and which page/locale each one is. Add a line here whenever a new file gets <!--cms:...--> markers. \"gallery\": true marks a file that also has <!--cms:gallery:category.flavor--> photo-grid markers, rendered from the photos table at build time instead of text replacement.",
   "files": [
     { "file": "index.html", "page": "home", "locale": "en" },
     { "file": "indexfr.html", "page": "home", "locale": "fr" },
     { "file": "about.html", "page": "about", "locale": "en" },
     { "file": "aboutfr.html", "page": "about", "locale": "fr" },
     { "file": "contact.html", "page": "contact", "locale": "en" },
-    { "file": "contactfr.html", "page": "contact", "locale": "fr" }
+    { "file": "contactfr.html", "page": "contact", "locale": "fr" },
+    { "file": "proposal.html", "page": "proposal", "locale": "en", "gallery": true },
+    { "file": "proposalfr.html", "page": "proposal", "locale": "fr", "gallery": true },
+    { "file": "wedding.html", "page": "wedding", "locale": "en", "gallery": true },
+    { "file": "weddingfr.html", "page": "wedding", "locale": "fr", "gallery": true },
+    { "file": "portrait.html", "page": "portrait", "locale": "en", "gallery": true },
+    { "file": "portraitfr.html", "page": "portrait", "locale": "fr", "gallery": true },
+    { "file": "event.html", "page": "event", "locale": "en", "gallery": true },
+    { "file": "eventfr.html", "page": "event", "locale": "fr", "gallery": true },
+    { "file": "sport.html", "page": "sport", "locale": "en", "gallery": true },
+    { "file": "sportfr.html", "page": "sport", "locale": "fr", "gallery": true }
   ]
 }

@@ -1,641 +1,848 @@
 {
-  "generated_at": "2026-09-26T13:32:50.332Z",
+  "generated_at": "2026-09-26T14:39:14.302Z",
   "pages": {
     "home": {
       "en": [
         {
+          "key": "seo.title",
+          "label": "Seo › Title",
+          "default": "Photographer Paris - Professional Photo Sessions | Melissa Photography",
+          "content_type": "text",
+          "field_kind": "title"
+        },
+        {
+          "key": "seo.description",
+          "label": "Seo › Description",
+          "default": "Professional photographer in Paris specializing in proposals, couples, weddings and portraits. English & French speaking. Book your Paris photo session from 200€.",
+          "content_type": "text",
+          "field_kind": "meta"
+        },
+        {
           "key": "hero.slide1.eyebrow",
           "label": "Hero › Slide1 › Eyebrow",
           "default": "Wedding Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide1.title",
           "label": "Hero › Slide1 › Title",
           "default": "Timeless &amp; Elegant",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide1.subtitle",
           "label": "Hero › Slide1 › Subtitle",
           "default": "Wedding Photography",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide2.eyebrow",
           "label": "Hero › Slide2 › Eyebrow",
           "default": "Proposal Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide2.title",
           "label": "Hero › Slide2 › Title",
           "default": "Capture The Moment",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide2.subtitle",
           "label": "Hero › Slide2 › Subtitle",
           "default": "Proposal Photography",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide3.eyebrow",
           "label": "Hero › Slide3 › Eyebrow",
           "default": "Portrait Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide3.title",
           "label": "Hero › Slide3 › Title",
           "default": "Professional &amp; Authentic",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide3.subtitle",
           "label": "Hero › Slide3 › Subtitle",
           "default": "Portrait Photography",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide4.eyebrow",
           "label": "Hero › Slide4 › Eyebrow",
           "default": "Event Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide4.title",
           "label": "Hero › Slide4 › Title",
           "default": "Dynamic &amp; Memorable",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide4.subtitle",
           "label": "Hero › Slide4 › Subtitle",
           "default": "Event Photography",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide5.eyebrow",
           "label": "Hero › Slide5 › Eyebrow",
           "default": "Sports Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide5.title",
           "label": "Hero › Slide5 › Title",
           "default": "Action &amp; Precision",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide5.subtitle",
           "label": "Hero › Slide5 › Subtitle",
           "default": "Sports Photography",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "stats.tagline",
           "label": "Stats › Tagline",
           "default": "Four years capturing the moments that matter, from the Trocadéro to Montmartre and the banks of the Seine.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.heading",
           "label": "Intro › Heading",
           "default": "Professional Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.subheading",
           "label": "Intro › Subheading",
           "default": "Capturing your most precious moments in the City of Light",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.why.heading",
           "label": "Intro › Why › Heading",
           "default": "Why Choose Our Paris Photography Services?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.why.p1",
           "label": "Intro › Why › P1",
           "default": "As a professional <strong>photographer in Paris</strong>, Melissa specializes in creating timeless memories against the backdrop of the world's most romantic city. With 4 years of experience and a passion for authentic storytelling, she offers comprehensive photography services for couples, families, and individuals visiting Paris.",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "intro.why.p2",
           "label": "Intro › Why › P2",
           "default": "Our <strong>Paris photographer</strong> services include proposal photography, couple sessions, wedding coverage, portrait photography, and event documentation. Whether you're planning a surprise proposal at the Eiffel Tower, celebrating your honeymoon in Montmartre, or capturing family memories at the Louvre, we provide professional, discreet, and artistic photography that reflects the magic of Paris.",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "intro.locations.heading",
           "label": "Intro › Locations › Heading",
           "default": "Iconic Paris Photography Locations",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.locations.p1",
           "label": "Intro › Locations › P1",
           "default": "As your dedicated <strong>photographer Paris</strong>, Melissa knows all the best locations for stunning photos. From the iconic Trocadéro with its perfect Eiffel Tower views to the charming cobblestone streets of Montmartre, we'll guide you to the most photogenic spots in the city.",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "intro.locations.intro",
           "label": "Intro › Locations › Intro",
           "default": "Popular locations for our <strong>Paris photography</strong> sessions include:",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "intro.locations.list",
           "label": "Intro › Locations › List",
           "default": "<li>Eiffel Tower and Trocadéro Gardens</li>\n<li>Louvre Museum and Tuileries Garden</li>\n<li>Notre-Dame Cathedral and Île de la Cité</li>\n<li>Montmartre and Sacré-Cœur Basilica</li>\n<li>Seine River banks and romantic bridges</li>\n<li>Luxembourg Gardens and Palace</li>",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "intro.trilingual.heading",
           "label": "Intro › Trilingual › Heading",
           "default": "Trilingual Photographer (FR / EN / AR)",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.trilingual.p1",
           "label": "Intro › Trilingual › P1",
           "default": "Trilingual Photographer in Paris (French, English, Arabic), Melissa makes communication easy for visitors from around the world. Her language skills ensure that every photo session in Paris is smooth, enjoyable, and tailored to your vision.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.trilingual.p2",
           "label": "Intro › Trilingual › P2",
           "default": "Our competitive rates start at €200, with transparent pricing, no hidden fees, 24-hour delivery, and high-resolution images perfect for printing or sharing.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         }
       ],
       "fr": [
         {
+          "key": "seo.title",
+          "label": "Seo › Title",
+          "default": "Melissa Photography Paris| Photographe Paris ",
+          "content_type": "text",
+          "field_kind": "title"
+        },
+        {
+          "key": "seo.description",
+          "label": "Seo › Description",
+          "default": "Photographe professionnel à Paris spécialisé dans les demandes en mariage, couples, mariages et portraits. Parlant français et anglais. Réservez votre séance photo parisienne à partir de 200€.",
+          "content_type": "text",
+          "field_kind": "meta"
+        },
+        {
           "key": "hero.slide1.eyebrow",
           "label": "Hero › Slide1 › Eyebrow",
           "default": "Photographe Mariage à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide1.title",
           "label": "Hero › Slide1 › Title",
           "default": "Élégance &amp; Beauté",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide1.subtitle",
           "label": "Hero › Slide1 › Subtitle",
           "default": "Mariage",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide2.eyebrow",
           "label": "Hero › Slide2 › Eyebrow",
           "default": "Photographe Demande en Mariage à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide2.title",
           "label": "Hero › Slide2 › Title",
           "default": "Capturer l'Instant",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide2.subtitle",
           "label": "Hero › Slide2 › Subtitle",
           "default": "Demande En Mariage",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide3.eyebrow",
           "label": "Hero › Slide3 › Eyebrow",
           "default": "Photographe Portrait à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide3.title",
           "label": "Hero › Slide3 › Title",
           "default": "Professionnel &amp; Authentique",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide3.subtitle",
           "label": "Hero › Slide3 › Subtitle",
           "default": "Portrait",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide4.eyebrow",
           "label": "Hero › Slide4 › Eyebrow",
           "default": "Photographe Événementiel à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide4.title",
           "label": "Hero › Slide4 › Title",
           "default": "Dynamique &amp; Mémorable",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide4.subtitle",
           "label": "Hero › Slide4 › Subtitle",
           "default": "Photographie Événementielle",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide5.eyebrow",
           "label": "Hero › Slide5 › Eyebrow",
           "default": "Photographe Sportif à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide5.title",
           "label": "Hero › Slide5 › Title",
           "default": "Action &amp; Précision",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "hero.slide5.subtitle",
           "label": "Hero › Slide5 › Subtitle",
           "default": "Photographie Sportive",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "stats.tagline",
           "label": "Stats › Tagline",
           "default": "Quatre ans à capturer les moments qui comptent, entre le Trocadéro, Montmartre et les quais de la Seine.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.heading",
           "label": "Intro › Heading",
           "default": "Photographe professionnel à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.subheading",
           "label": "Intro › Subheading",
           "default": "Capturer les moments les plus précieux dans \"City of Light\"",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.why.heading",
           "label": "Intro › Why › Heading",
           "default": "Pourquoi choisir nos services de photographie à Paris ?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.why.p1",
           "label": "Intro › Why › P1",
           "default": "Photographe professionnelle à Paris, Melissa capture des souvenirs intemporels dans la ville la plus romantique du monde. Forte de 4 ans d'expérience et passionnée par la narration authentique, elle propose des services photo complets pour couples, familles et voyageurs.\n\n                  Nos prestations incluent : photographie de demande en mariage, séances couple, mariages, portraits et événements. Que ce soit une demande surprise à la Tour Eiffel, une lune de miel à Montmartre ou des souvenirs en famille au Louvre, Melissa vous offre des images artistiques et pleines de la magie de Paris.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.trilingual.heading",
           "label": "Intro › Trilingual › Heading",
           "default": " Photographe Paris international – Français, anglais, arabe ",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.trilingual.p1",
           "label": "Intro › Trilingual › P1",
           "default": "Photographe trilingue à Paris (français, anglais, arabe), Melissa facilite la communication pour les visiteurs du monde entier. Grâce à cette aisance linguistique, chaque séance photo à Paris est fluide, conviviale et parfaitement adaptée à vos attentes.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "intro.trilingual.p2",
           "label": "Intro › Trilingual › P2",
           "default": "Nos tarifs compétitifs débutent à 200€, avec des prix transparents, aucun frais caché, une livraison rapide en 24h et des photos haute résolution, idéales à imprimer ou partager.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         }
       ]
     },
     "about": {
       "en": [
         {
+          "key": "seo.title",
+          "label": "Seo › Title",
+          "default": "Melissa Photography Paris - About",
+          "content_type": "text",
+          "field_kind": "title"
+        },
+        {
+          "key": "seo.description",
+          "label": "Seo › Description",
+          "default": "Meet Melissa, professional photographer in Paris. English & French speaking, specializing in proposals, weddings, portraits and events.",
+          "content_type": "text",
+          "field_kind": "meta"
+        },
+        {
           "key": "header.eyebrow",
           "label": "Header › Eyebrow",
           "default": "Photographer in Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "header.title",
           "label": "Header › Title",
           "default": "About Melissa",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "story.label",
           "label": "Story › Label",
           "default": "My Story",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "story.heading",
           "label": "Story › Heading",
           "default": "A Parisian eye for real moments",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "story.paragraph",
           "label": "Story › Paragraph",
           "default": "From proposals at the Trocadéro to weddings along the Seine, I capture real emotion with a discreet, authentic eye, four years and counting.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.heading",
           "label": "Specialties › Heading",
           "default": "My Specialties",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.proposals",
           "label": "Specialties › Proposals",
           "default": "Proposals",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.weddings",
           "label": "Specialties › Weddings",
           "default": "Weddings",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.portraits",
           "label": "Specialties › Portraits",
           "default": "Couple Portraits",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "cta.heading",
           "label": "Cta › Heading",
           "default": "Ready to Create Unforgettable Memories?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "cta.subheading",
           "label": "Cta › Subheading",
           "default": "Contact me to discuss your project and book your photo shoot in Paris.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "cta.button",
           "label": "Cta › Button",
           "default": "Contact Me",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         }
       ],
       "fr": [
         {
+          "key": "seo.title",
+          "label": "Seo › Title",
+          "default": "About Melissa - Professional Photographer Paris | Paris Photography Services",
+          "content_type": "text",
+          "field_kind": "title"
+        },
+        {
+          "key": "seo.description",
+          "label": "Seo › Description",
+          "default": "Rencontrez Melissa, photographe professionnelle à Paris. Français et anglais, spécialisée en demande en mariage, mariage, portrait et événement.",
+          "content_type": "text",
+          "field_kind": "meta"
+        },
+        {
           "key": "header.eyebrow",
           "label": "Header › Eyebrow",
           "default": "Photographe à Paris",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "header.title",
           "label": "Header › Title",
           "default": "À Propos de Melissa",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "story.label",
           "label": "Story › Label",
           "default": "Mon Histoire",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "story.heading",
           "label": "Story › Heading",
           "default": "Un regard parisien sur des moments vrais",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "story.paragraph",
           "label": "Story › Paragraph",
           "default": "Des demandes en mariage au Trocadéro aux mariages au fil de la Seine, je capture l'émotion vraie avec discrétion et authenticité, depuis quatre ans.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.heading",
           "label": "Specialties › Heading",
           "default": "Mes Spécialités",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.proposals",
           "label": "Specialties › Proposals",
           "default": "Demandes en Mariage",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.weddings",
           "label": "Specialties › Weddings",
           "default": "Mariages",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "specialties.portraits",
           "label": "Specialties › Portraits",
           "default": "Portraits de Couple",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "cta.heading",
           "label": "Cta › Heading",
           "default": "Prêt(e) à Créer des Souvenirs Inoubliables ?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "cta.subheading",
           "label": "Cta › Subheading",
           "default": "Contactez-moi pour discuter de votre projet et réserver votre séance photo à Paris.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "cta.button",
           "label": "Cta › Button",
           "default": "Me Contacter",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         }
       ]
     },
     "contact": {
       "en": [
         {
+          "key": "seo.title",
+          "label": "Seo › Title",
+          "default": "Melissa Photography Paris - Contact",
+          "content_type": "text",
+          "field_kind": "title"
+        },
+        {
+          "key": "seo.description",
+          "label": "Seo › Description",
+          "default": "Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits.",
+          "content_type": "text",
+          "field_kind": "meta"
+        },
+        {
           "key": "header.eyebrow",
           "label": "Header › Eyebrow",
           "default": "Let's Talk",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "header.title",
           "label": "Header › Title",
           "default": "Contact Me",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "header.subtitle",
           "label": "Header › Subtitle",
           "default": "Ready to capture your precious moments? Let's talk about your project.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "coverage.label",
           "label": "Coverage › Label",
           "default": "Coverage Area",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "coverage.list",
           "label": "Coverage › List",
           "default": "<li class=\"mb-1\">✓Paris (all arrondissements)</li>\n<li class=\"mb-1\">✓ Hauts-de-Seine (92)</li>\n<li class=\"mb-1\">✓ Seine-Saint-Denis (93)</li>\n<li class=\"mb-1\">✓ Val-de-Marne (94)</li>\n<li class=\"mb-1\">✓ Versailles &amp; châteaux</li>\n<li class=\"mb-0\">✓ Others on request</li>",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "faq.heading",
           "label": "Faq › Heading",
           "default": "Frequently asked questions",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q1.question",
           "label": "Faq › Q1 › Question",
           "default": "How far in advance should I book?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q1.answer",
           "label": "Faq › Q1 › Answer",
           "default": "Ideally 2-4 weeks for marriage proposals, 2-6 months for weddings.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q2.question",
           "label": "Faq › Q2 › Question",
           "default": "How many photos are delivered?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q2.answer",
           "label": "Faq › Q2 › Answer",
           "default": "Between 50 and 200+ photos depending on the service, all professionally retouched.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q3.question",
           "label": "Faq › Q3 › Question",
           "default": "What if it rains?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q3.answer",
           "label": "Faq › Q3 › Answer",
           "default": "We postpone or find covered alternatives. Paris is full of magical places!",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q4.question",
           "label": "Faq › Q4 › Question",
           "default": "How do I pay?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q4.answer",
           "label": "Faq › Q4 › Answer",
           "default": "Paypal or Cash and 30% deposit on booking.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         }
       ],
       "fr": [
         {
+          "key": "seo.title",
+          "label": "Seo › Title",
+          "default": "Contact - Melissa Photography Paris",
+          "content_type": "text",
+          "field_kind": "title"
+        },
+        {
+          "key": "seo.description",
+          "label": "Seo › Description",
+          "default": "Professional photographer in Paris - Melissa Photography. Specializing in proposals, couples, weddings and portraits.",
+          "content_type": "text",
+          "field_kind": "meta"
+        },
+        {
           "key": "header.eyebrow",
           "label": "Header › Eyebrow",
           "default": "Parlons-en",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "header.title",
           "label": "Header › Title",
           "default": "Contactez-Moi",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "header.subtitle",
           "label": "Header › Subtitle",
           "default": "Prêt(e) à capturer vos moments précieux ? Parlons de votre projet.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "coverage.label",
           "label": "Coverage › Label",
           "default": "Zone de Couverture",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "coverage.list",
           "label": "Coverage › List",
           "default": "<li class=\"mb-1\">✓ Paris (tous arrondissements)</li>\n<li class=\"mb-1\">✓ Hauts-de-Seine (92)</li>\n<li class=\"mb-1\">✓ Seine-Saint-Denis (93)</li>\n<li class=\"mb-1\">✓ Val-de-Marne (94)</li>\n<li class=\"mb-1\">✓ Versailles et châteaux</li>\n<li class=\"mb-0\">✓ Autres sur demande</li>",
-          "content_type": "html"
+          "content_type": "html",
+          "field_kind": "plain"
         },
         {
           "key": "faq.heading",
           "label": "Faq › Heading",
           "default": "Questions Fréquentes",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q1.question",
           "label": "Faq › Q1 › Question",
           "default": "Combien de temps à l'avance réserver ?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q1.answer",
           "label": "Faq › Q1 › Answer",
           "default": "Idéalement 2-4 semaines pour les demandes en mariage, 2-6 mois pour les mariages.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q2.question",
           "label": "Faq › Q2 › Question",
           "default": "Combien de photos livrées ?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q2.answer",
           "label": "Faq › Q2 › Answer",
           "default": "Entre 50 et 200+ photos selon le service, toutes retouchées professionnellement.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q3.question",
           "label": "Faq › Q3 › Question",
           "default": "Et si il pleut ?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q3.answer",
           "label": "Faq › Q3 › Answer",
           "default": "Nous reportons ou trouvons des alternatives couvertes. Paris regorge de lieux magiques !",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q4.question",
           "label": "Faq › Q4 › Question",
           "default": "Modalités de paiement ?",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         },
         {
           "key": "faq.q4.answer",
           "label": "Faq › Q4 › Answer",
           "default": "Acompte de 30% à la réservation, solde après livraison des photos.",
-          "content_type": "text"
+          "content_type": "text",
+          "field_kind": "plain"
         }
       ]
+    },
+    "proposal": {
+      "en": [],
+      "fr": []
+    },
+    "wedding": {
+      "en": [],
+      "fr": []
+    },
+    "portrait": {
+      "en": [],
+      "fr": []
+    },
+    "event": {
+      "en": [],
+      "fr": []
+    },
+    "sport": {
+      "en": [],
+      "fr": []
     }
   }
 }
