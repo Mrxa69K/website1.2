@@ -3,9 +3,15 @@ name: Publish dashboard content
 # Triggered by the admin dashboard (via a Supabase Edge Function) right
 # after Melissa saves a photo or a text edit, so the live static pages
 # stay in sync with what's in the database. Can also be run by hand from
-# the Actions tab if a publish needs to be retried.
+# the Actions tab if a publish needs to be retried (log_id is optional --
+# a manual run just skips the publish_log update at the end).
 on:
   workflow_dispatch:
+    inputs:
+      log_id:
+        description: 'publish_log row id to update with the result (optional)'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -23,10 +29,12 @@ jobs:
           node-version: '20'
 
       - name: Build site from CMS content
+        id: build
         working-directory: WEBSITE/final-version
         run: node scripts/build-site.js
 
       - name: Commit and push if anything changed
+        id: commit
         run: |
           git config user.name "melissa-photography-cms"
           git config user.email "actions@users.noreply.github.com"
@@ -37,3 +45,34 @@ jobs:
             git commit -m "chore: publish content updates from the dashboard"
             git push
           fi
+
+      - name: Report success to publish_log
+        if: ${{ success() && inputs.log_id != '' }}
+        env:
+          SUPABASE_URL: https://amrzoqmnkfnewujbeqdn.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          LOG_ID: ${{ inputs.log_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          curl -sS -X PATCH "$SUPABASE_URL/rest/v1/publish_log?id=eq.$LOG_ID" \
+            -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$(node -e "console.log(JSON.stringify({status:'success', finished_at:new Date().toISOString(), run_url:process.env.RUN_URL}))")"
+
+      # Runs whenever the job reaches this point having already failed
+      # (build-site.js threw, or the git push failed) -- always() would
+      # also fire on a cancelled run, which we don't want to mark failed.
+      - name: Report failure to publish_log
+        if: ${{ failure() && inputs.log_id != '' }}
+        env:
+          SUPABASE_URL: https://amrzoqmnkfnewujbeqdn.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          LOG_ID: ${{ inputs.log_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          curl -sS -X PATCH "$SUPABASE_URL/rest/v1/publish_log?id=eq.$LOG_ID" \
+            -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$(node -e "console.log(JSON.stringify({status:'failed', finished_at:new Date().toISOString(), run_url:process.env.RUN_URL, error:'Build or publish step failed -- see the workflow run for details.'}))")"
