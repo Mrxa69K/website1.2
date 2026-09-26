@@ -22,7 +22,7 @@
 <span class="panel-brand-main">Melissa Photography</span>
 <span class="panel-brand-sub">Studio Panel</span>
 </div>
-<div class="panel-card">
+<div class="panel-card" id="loginPanel">
 <h2>Studio Access</h2>
 <p class="panel-login-subtitle">Sign in to manage photos and site text.</p>
 <form id="loginForm">
@@ -38,8 +38,47 @@
 <i class="fas fa-sign-in-alt"></i> Login
             </button>
 </form>
+<button class="panel-link-btn" id="forgotPasswordLink" type="button">Forgot your password?</button>
 <div class="alert alert-danger mt-3 hidden" id="loginError"></div>
 <div class="alert alert-success mt-3 hidden" id="loginSuccess"></div>
+</div>
+<!-- Forgot password: request a reset email -->
+<div class="panel-card hidden" id="forgotPasswordSection">
+<h2>Reset Password</h2>
+<p class="panel-login-subtitle">We'll email you a link to set a new password.</p>
+<form id="forgotPasswordForm">
+<div class="mb-3">
+<label class="form-label">Email</label>
+<input class="form-control" id="forgotEmail" placeholder="admin@example.com" required="" type="email"/>
+</div>
+<button class="btn btn-primary w-100" id="forgotSubmitBtn" type="submit">
+<i class="fas fa-paper-plane"></i> Send reset link
+            </button>
+</form>
+<button class="panel-link-btn" id="forgotBackLink" type="button">Back to login</button>
+<div class="alert alert-danger mt-3 hidden" id="forgotError"></div>
+<div class="alert alert-success mt-3 hidden" id="forgotSuccess"></div>
+</div>
+<!-- Shown after clicking the reset link from the email (Supabase fires a
+     PASSWORD_RECOVERY auth event and admin.js reveals this panel). -->
+<div class="panel-card hidden" id="resetPasswordSection">
+<h2>Set New Password</h2>
+<p class="panel-login-subtitle">Choose a new password for your account.</p>
+<form id="resetPasswordForm">
+<div class="mb-3">
+<label class="form-label">New password</label>
+<input class="form-control" id="newPassword" minlength="8" required="" type="password"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Confirm new password</label>
+<input class="form-control" id="newPasswordConfirm" minlength="8" required="" type="password"/>
+</div>
+<button class="btn btn-primary w-100" type="submit">
+<i class="fas fa-check"></i> Set password
+            </button>
+</form>
+<div class="alert alert-danger mt-3 hidden" id="resetError"></div>
+<div class="alert alert-success mt-3 hidden" id="resetSuccess"></div>
 </div>
 </div>
 <!-- Admin Dashboard -->
@@ -50,6 +89,9 @@
 <span class="panel-brand-sub">Studio Panel</span>
 </div>
 <div class="panel-topbar-actions">
+<button class="btn btn-outline-primary" id="publishHistoryBtn" type="button">
+<i class="fas fa-history"></i> Publish history
+            </button>
 <button class="btn btn-outline-primary" id="republishBtn" type="button">
 <i class="fas fa-rocket"></i> Republish site
             </button>
@@ -59,6 +101,10 @@
 </div>
 </div>
 <div class="alert hidden" id="publishStatus" role="status"></div>
+<div class="panel-history-panel hidden" id="publishHistoryPanel">
+<h5>Recent publishes</h5>
+<div id="publishHistoryList"><p class="text-muted">Loading&hellip;</p></div>
+</div>
 <p class="panel-hint">
     Saving a photo or a text field publishes automatically. "Republish site" is only needed if a publish
     seems stuck, or to retry a failed one.
@@ -88,6 +134,11 @@
 <label class="form-label">Description</label>
 <textarea class="form-control" id="photoDescription" rows="3"></textarea>
 </div>
+<div class="col-md-12 mb-3">
+<label class="form-label">Alt text</label>
+<input class="form-control" id="photoAltText" placeholder="Describes the image for screen readers and image search -- falls back to the title if left blank." type="text"/>
+<span class="field-hint">Describes the image for screen readers and image search. Leave blank to reuse the title.</span>
+</div>
 <div class="col-md-6 mb-3">
 <label class="form-label">Category</label>
 <select class="form-control" id="photoCategory">
@@ -114,16 +165,31 @@
 <!-- Photos Grid -->
 <div class="form-section">
 <h3>Existing Photos</h3>
+<div class="photos-toolbar">
+<input class="form-control" id="photoSearchInput" placeholder="Search by title, description or alt text&hellip;" type="text"/>
+<select class="form-control" id="photoCategoryFilter">
+<option value="">All categories</option>
+<option value="proposal">Proposal</option>
+<option value="wedding">Wedding</option>
+<option value="portrait">Portrait</option>
+<option value="event">Event</option>
+<option value="sport">Sport</option>
+</select>
+</div>
+<p class="field-hint" id="reorderHint">Filter to a single category to drag photos into a new order.</p>
 <div class="row" id="photosGrid"></div>
 </div>
 </div>
 <!-- Site text: every editable paragraph/title, grouped by page -->
 <div class="admin-tab-pane" id="contentTab">
+<input class="form-control content-search" id="contentSearchInput" placeholder="Search fields by page, label or text&hellip;" type="text"/>
 <div id="contentSections">
 <p class="text-muted">Loading editable text&hellip;</p>
 </div>
 </div>
 </div>
+<!-- Toasts (delete-undo, etc.) -->
+<div id="toastContainer"></div>
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
