@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
 Disallow: /en/
 
 Sitemap: https://melissaphotographyparis.fr/sitemap.xml

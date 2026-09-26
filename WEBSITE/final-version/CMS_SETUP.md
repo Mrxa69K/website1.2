@@ -4,7 +4,7 @@ This adds a second thing the admin dashboard can manage besides photos:
 **page text** (titles, paragraphs, FAQ, coverage list, etc.), with changes
 auto-publishing to the live site. Three setup steps below are one-time and
 need to happen in your Supabase project and GitHub repo (things I can't do
-from here) - after that, everything happens from `admin.html`.
+from here) - after that, everything happens from `cpr.html`.
 
 ## How it works
 
@@ -62,7 +62,7 @@ workflow is allowed to commit/push the regenerated pages.)
 
 ## Using it day to day
 
-Open `admin.html`, log in as usual. Two tabs now:
+Open `cpr.html`, log in as usual. Two tabs now:
 
 - **Photos** - unchanged, same add/edit/delete you already had.
 - **Site text** - every editable title/paragraph, grouped by page
