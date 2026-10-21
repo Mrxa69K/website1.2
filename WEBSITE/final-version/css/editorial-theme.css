@@ -454,3 +454,110 @@
   color: #6b6b6b;
   margin-bottom: 10px;
 }
+
+/* ==========================================================================
+   Header: responsive fixes (phone + desktop)
+   ========================================================================== */
+
+/* Keep the wordmark on one line at every width */
+.wordmark-main {
+  white-space: nowrap;
+}
+
+/* Size the header columns to their content instead of fixed Bootstrap
+   widths, so the logo never gets squeezed onto two lines. */
+.site-navbar .container-fluid > .row {
+  flex-wrap: nowrap;
+}
+
+.site-navbar .container-fluid > .row > div:first-child {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none;
+}
+
+.site-navbar .container-fluid > .row > div:last-child {
+  flex: 1 1 auto;
+  width: auto;
+  max-width: none;
+}
+
+@media (min-width: 1200px) {
+  .site-navbar .container-fluid > .row > .d-xl-block {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: none;
+  }
+  .site-navbar .container-fluid > .row > div:last-child {
+    flex: 0 0 auto;
+  }
+}
+
+/* Hamburger + close icons: style.css forces every icon to translucent
+   white, which made them invisible on the white-header pages. */
+.site-navbar:not(.transparent) .site-menu-toggle .icon-menu,
+.site-navbar:not(.transparent) .site-menu-toggle .icon-menu:hover {
+  color: #2b2622 !important;
+}
+
+.site-navbar.transparent .site-menu-toggle .icon-menu,
+.site-navbar.transparent .site-menu-toggle .icon-menu:hover {
+  color: #fff !important;
+}
+
+.site-mobile-menu .icon-close2,
+.site-mobile-menu .icon-close2:hover {
+  color: #2b2622 !important;
+}
+
+/* Flags side by side in the mobile menu */
+.site-mobile-menu .site-nav-wrap a:has(> img) {
+  display: inline-block;
+  padding-right: 14px;
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 575.98px) {
+  .wordmark-main {
+    font-size: 19px;
+  }
+  .wordmark-sub {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+}
+
+/* Homepage hero text on phones/small tablets */
+@media (max-width: 768px) {
+  .hero-content.editorial {
+    left: 20px;
+    right: 20px;
+    bottom: 56px;
+    width: auto;
+    max-width: none;
+  }
+  .hero-content.editorial .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .hero-content.editorial h1 {
+    font-size: 2.3rem;
+    margin-bottom: 0.6rem;
+  }
+  .hero-content.editorial p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .hero-content.editorial .hero-cta-buttons {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+  .hero-content.editorial .hero-btn-primary,
+  .hero-content.editorial .hero-btn-secondary {
+    padding: 0 0 6px;
+    width: auto;
+  }
+}

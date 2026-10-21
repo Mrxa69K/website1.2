@@ -3,9 +3,9 @@
  * Cache intelligent et sécurisé pour performance optimale
  */
 
-const CACHE_NAME = 'melissa-photography-v1.0';
-const STATIC_CACHE = 'melissa-static-v1.0';
-const DYNAMIC_CACHE = 'melissa-dynamic-v1.0';
+const CACHE_NAME = 'melissa-photography-v1.1';
+const STATIC_CACHE = 'melissa-static-v1.1';
+const DYNAMIC_CACHE = 'melissa-dynamic-v1.1';
 
 // Ressources critiques à mettre en cache
 const STATIC_ASSETS = [
@@ -102,11 +102,12 @@ self.addEventListener('fetch', (event) => {
 
 // Vérifier si c'est un asset statique
 function isStaticAsset(url) {
-  return STATIC_ASSETS.some(asset => url.includes(asset)) ||
-         url.includes('.css') ||
-         url.includes('.js') ||
-         url.includes('.woff') ||
-         url.includes('.woff2');
+  // Match on the file extension only. The old check also tested
+  // STATIC_ASSETS with url.includes(), and since that list contains '/',
+  // every request (HTML included) was served cache-first, so visitors kept
+  // seeing old pages after an update.
+  const path = new URL(url).pathname;
+  return /\.(css|js|woff2?)$/i.test(path);
 }
 
 // Vérifier si c'est une image
