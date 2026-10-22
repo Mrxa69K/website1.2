@@ -153,3 +153,13 @@ body.lp { min-height: 100%; }
   .js .reveal { opacity: 1; translate: none; transition: none; }
 }
 @media (max-width: 640px) { [dir="rtl"] .post-print { float: none; margin: 6px auto 16px; } }
+.spot-addr { margin: -4px 0 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.spot-addr .addr { font-size: 14px; color: var(--navy); background: rgba(253,246,234,.7); border-radius: 8px; padding: 3px 9px; text-align: left; }
+.map-btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px 7px 10px; border-radius: 999px;
+  background: var(--pink); color: var(--navy); border: 2px solid var(--navy); box-shadow: 0 3px 0 var(--navy);
+  font-weight: 800; font-size: 14px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease;
+}
+.map-btn svg { width: 18px; height: 18px; color: var(--rose-ink); }
+.map-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--navy); }
+[dir="rtl"] .map-btn { padding: 7px 10px 7px 14px; }

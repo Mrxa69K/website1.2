@@ -147,7 +147,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=4">
-<link rel="stylesheet" href="/css/landing.css?v=4">
+<link rel="stylesheet" href="/css/landing.css?v=5">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -267,7 +267,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=4">
-<link rel="stylesheet" href="/css/landing.css?v=4">
+<link rel="stylesheet" href="/css/landing.css?v=5">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -419,12 +419,13 @@ ${t.honest ? `      <aside class="honest reveal">
 ${t.honest.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
         <p class="honest-sign">${escHTML(t.honest.sign)}</p>
       </aside>` : ''}
-${t.spots.map(sp => `      <section class="post-spot reveal">
+${t.spots.map((sp, si) => { const pl = (p.places || [])[si]; return `      <section class="post-spot reveal">
         <h2>${escHTML(sp.h2)}</h2>
         ${sp.kicker ? `<p class="spot-kicker"><span>${escHTML(u.practical)}</span> ${escHTML(sp.kicker)}</p>` : ''}
+        ${pl ? `<p class="spot-addr"><span class="addr" dir="ltr" lang="fr">${escHTML(pl.addr)}</span><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(pl.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg>${escHTML(u.mapBtn)}</a></p>` : ''}
         ${sp.photo ? print(sp.photo, [-2, 1.8, -1.2, 2.2][k++ % 4], k === 1) : ''}
 ${sp.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
-      </section>`).join('\n')}
+      </section>`; }).join('\n')}
       <aside class="lp-card post-tips reveal">
         <h2>${escHTML(u.tipsTitle)}</h2>
         <ul>
