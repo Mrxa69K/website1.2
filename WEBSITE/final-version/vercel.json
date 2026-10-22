@@ -1,0 +1,274 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/proposal.html",
+      "destination": "/?go=proposals",
+      "permanent": true
+    },
+    {
+      "source": "/proposalfr.html",
+      "destination": "/?go=proposals&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/proposal",
+      "destination": "/?go=proposals",
+      "permanent": true
+    },
+    {
+      "source": "/proposalfr",
+      "destination": "/?go=proposals&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/wedding.html",
+      "destination": "/?go=weddings",
+      "permanent": true
+    },
+    {
+      "source": "/weddingfr.html",
+      "destination": "/?go=weddings&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/wedding",
+      "destination": "/?go=weddings",
+      "permanent": true
+    },
+    {
+      "source": "/weddingfr",
+      "destination": "/?go=weddings&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/portrait.html",
+      "destination": "/?go=portraits",
+      "permanent": true
+    },
+    {
+      "source": "/portraitfr.html",
+      "destination": "/?go=portraits&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/portrait",
+      "destination": "/?go=portraits",
+      "permanent": true
+    },
+    {
+      "source": "/portraitfr",
+      "destination": "/?go=portraits&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/event.html",
+      "destination": "/?go=concerts",
+      "permanent": true
+    },
+    {
+      "source": "/eventfr.html",
+      "destination": "/?go=concerts&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/event",
+      "destination": "/?go=concerts",
+      "permanent": true
+    },
+    {
+      "source": "/eventfr",
+      "destination": "/?go=concerts&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/sport.html",
+      "destination": "/?go=sport",
+      "permanent": true
+    },
+    {
+      "source": "/sportfr.html",
+      "destination": "/?go=sport&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/sport",
+      "destination": "/?go=sport",
+      "permanent": true
+    },
+    {
+      "source": "/sportfr",
+      "destination": "/?go=sport&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/aboutfr.html",
+      "destination": "/?go=me&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/aboutfr",
+      "destination": "/?go=me&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/review.html",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/reviewfr.html",
+      "destination": "/?go=me&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/review",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/reviewfr",
+      "destination": "/?go=me&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/servicesfr.html",
+      "destination": "/?go=book&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/servicesfr",
+      "destination": "/?go=book&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/contactfr.html",
+      "destination": "/?go=book&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/contactfr",
+      "destination": "/?go=book&lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/indexfr.html",
+      "destination": "/?lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/indexfr",
+      "destination": "/?lang=fr",
+      "permanent": true
+    },
+    {
+      "source": "/en",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/services.html",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/en/contact.html",
+      "destination": "/?go=book",
+      "permanent": true
+    }
+  ],
+  "images": {
+    "sizes": [
+      640,
+      1080,
+      1920
+    ],
+    "formats": [
+      "image/webp"
+    ],
+    "minimumCacheTTL": 2678400,
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "amrzoqmnkfnewujbeqdn.supabase.co",
+        "pathname": "/storage/v1/object/public/**"
+      }
+    ]
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/images/shop/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    }
+  ]
+}

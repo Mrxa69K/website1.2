@@ -608,3 +608,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .content-field.field-hidden { display: none; }
 .content-section.section-hidden { display: none; }
+
+/* ---------- Orders tab ---------- */
+.orders-badge { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 4px; border-radius: 999px; background: #e58aa2; color: #fff; font-size: 12px; line-height: 20px; text-align: center; }
+.orders-toolbar { display: flex; gap: 10px; margin-bottom: 16px; max-width: 420px; }
+.orders-note { padding: 14px 16px; border-radius: 10px; background: var(--panel-warn-bg); border: 1px solid var(--panel-border); }
+.order-card { background: var(--panel-card); border: 1px solid var(--panel-border); border-left: 5px solid #e58aa2; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+.order-card.status-replied { border-left-color: #7ab8cb; }
+.order-card.status-booked { border-left-color: #33512f; }
+.order-card.status-archived { border-left-color: #bbb; opacity: .75; }
+.order-card header { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.order-card .order-session { background: #f6c3cf; border-radius: 999px; padding: 1px 10px; font-size: 13px; }
+.order-card time { margin-left: auto; color: var(--panel-ink-soft); font-size: 13px; }
+.order-meta { margin: 8px 0; font-size: 14px; }
+.order-msg { white-space: pre-wrap; background: var(--panel-paper); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+.order-card label { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 6px 0 0; }
+.order-card select { width: auto; }

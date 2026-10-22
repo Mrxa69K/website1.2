@@ -112,6 +112,7 @@
 <div class="admin-tabs">
 <button class="admin-tab-btn active" data-tab="photosTab" type="button">Photos</button>
 <button class="admin-tab-btn" data-tab="contentTab" type="button">Site text</button>
+<button class="admin-tab-btn" data-tab="ordersTab" type="button">Orders <span class="orders-badge" id="ordersBadge" hidden></span></button>
 </div>
 <div class="admin-tab-pane active" id="photosTab">
 <!-- Add/Edit Photo Form -->
@@ -187,6 +188,21 @@
 <p class="text-muted">Loading editable text&hellip;</p>
 </div>
 </div>
+<!-- Orders: envelopes sent from the homepage -->
+<div class="admin-tab-pane" id="ordersTab">
+<div class="orders-toolbar">
+<select class="form-control" id="ordersFilter">
+<option value="open">New + replied</option>
+<option value="new">New</option>
+<option value="replied">Replied</option>
+<option value="booked">Booked</option>
+<option value="archived">Archived</option>
+<option value="all">All</option>
+</select>
+<button class="btn btn-secondary" id="ordersRefresh" type="button">Refresh</button>
+</div>
+<div id="ordersList"><p class="text-muted">Open this tab to load orders&hellip;</p></div>
+</div>
 </div>
 <!-- Toasts (delete-undo, etc.) -->
 <div id="toastContainer"></div>
@@ -222,5 +238,6 @@
     </script>
     <!-- Real admin logic: login, session check, photo CRUD, image upload -->
     <script src="js/admin.js"></script>
+    <script src="js/admin-orders.js"></script>
 </body>
 </html>
