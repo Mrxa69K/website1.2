@@ -28,7 +28,7 @@ module.exports = {
         honest: {
           title: 'My honest take on Trocadéro',
           p: [
-            "It's packed from late morning until midnight, and where there's a crowd, there are pickpockets. During one of my shoots there, a couple had a necklace stolen. Another time, a man tried to hit me while I was working.",
+            "It's packed from late morning until midnight, and where there's a crowd, there are pickpockets. During one of my shoots there, a couple had a necklace stolen. Honestly, it's not a comfortable place to work.",
             "So I now steer couples elsewhere. If you really want that view of the tower, go a few streets away (spots 1 to 3 below). You get the same magic, and you can actually enjoy the moment.",
           ],
           sign: '— Melissa',
@@ -78,7 +78,7 @@ module.exports = {
         honest: {
           title: 'Mon avis honnête sur le Trocadéro',
           p: [
-            "C'est bondé de la fin de matinée jusqu'à minuit, et là où il y a la foule, il y a des pickpockets. Pendant un de mes shootings, un couple s'est fait voler un collier. Une autre fois, un homme a tenté de me frapper pendant que je travaillais.",
+            "C'est bondé de la fin de matinée jusqu'à minuit, et là où il y a la foule, il y a des pickpockets. Pendant un de mes shootings, un couple s'est fait voler un collier. Honnêtement, ce n'est pas un endroit où l'on se sent à l'aise pour travailler.",
             "Alors aujourd'hui, j'oriente les couples ailleurs. Si vous tenez vraiment à cette vue sur la tour, allez à quelques rues de là (lieux 1 à 3 ci-dessous). Vous aurez la même magie, et vous pourrez vraiment profiter du moment.",
           ],
           sign: '— Melissa',
