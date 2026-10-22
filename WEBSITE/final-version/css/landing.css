@@ -79,3 +79,31 @@ body.lp { min-height: 100%; }
 .lp-more div { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .lp-more a { background: var(--cream); border: 2px solid var(--navy); border-radius: 999px; padding: 8px 16px; color: var(--navy); font-weight: 700; text-decoration: none; }
 .lp-more a:hover { background: var(--pink); }
+
+/* ---------- blog ---------- */
+.post-list { margin-top: 30px; display: grid; gap: 26px; }
+.post-card a { display: grid; grid-template-columns: 220px 1fr; gap: 26px; align-items: center; text-decoration: none; color: var(--navy);
+  background: var(--cream); border: 3px solid var(--navy); border-radius: 12px; padding: 18px; box-shadow: 7px 7px 0 var(--navy); }
+.post-card .lp-print { transform: rotate(-2deg); }
+.post-card .lp-print img { aspect-ratio: 4 / 5; }
+.post-card time { font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft); }
+.post-card h2 { margin-top: 6px; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 3vw, 30px); line-height: 1.15; }
+.post-card p { margin-top: 8px; }
+.post-read { display: inline-block; margin-top: 12px; font-weight: 800; color: var(--rose-ink); }
+.post-card a:hover h2 { text-decoration: underline; text-decoration-color: var(--pink-deep); }
+@media (max-width: 640px) { .post-card a { grid-template-columns: 1fr; } .post-card .lp-print { max-width: 240px; margin: 0 auto; } }
+
+.post-hero h1 { font-size: clamp(30px, 5vw, 50px); max-width: 22ch; margin-inline: auto; }
+.post-by { margin-top: 10px; font-family: var(--hand); font-size: 24px; color: var(--rose-ink); }
+.post-body { max-width: 68ch; margin: 26px auto 0; font-size: 18px; display: grid; gap: 14px; }
+.post-spot { margin-top: 22px; display: flow-root; }
+.post-spot h2 { font-family: var(--display); font-weight: 400; color: var(--navy); font-size: clamp(23px, 3.2vw, 30px); line-height: 1.15; margin-bottom: 10px; }
+.post-spot p + p { margin-top: 12px; }
+.post-print { float: right; width: 40%; margin: 6px 0 14px 26px; transform: rotate(var(--tilt, 0deg)); }
+[dir="rtl"] .post-print { float: left; margin: 6px 26px 14px 0; }
+.post-print figcaption { margin-top: 6px; text-align: center; font-family: var(--hand); font-size: 20px; }
+@media (max-width: 640px) { .post-print { float: none; width: 78%; margin: 6px auto 16px; } }
+.post-tips { margin-top: 30px; }
+.post-cta { background: var(--pink); border: 3px solid var(--navy); border-radius: 12px; padding: 26px 22px; box-shadow: 7px 7px 0 var(--navy); max-width: 760px; }
+.post-back { margin-top: 30px; text-align: center; font-weight: 700; }
+.post-back a { color: var(--navy); }

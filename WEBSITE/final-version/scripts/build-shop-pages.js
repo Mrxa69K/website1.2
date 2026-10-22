@@ -23,6 +23,10 @@ const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'js/shop-i18n.js'), 'utf8'), sandbox);
 const I18N = sandbox.window.SHOP_I18N;
 const C = require('./landing-content.js');
+const B = require('./blog-content.js');
+const BLOG_LANGS = ['en', 'fr'];
+const blogPath = l => (l === 'en' ? '/blog/' : `/${l}/blog/`);
+const postPath = (p, l) => blogPath(l) + p.slug[l] + '/';
 const template = fs.readFileSync(path.join(__dirname, 'shop-template.html'), 'utf8');
 
 const escHTML = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -69,7 +73,8 @@ function translateHTML(html, l) {
   return html;
 }
 function serviceLinks(l, cls) {
-  const links = C.services.map(s => `<a href="${servicePath(s, l)}">${escHTML(s[l].nav)}</a>`).join('\n      ');
+  const links = C.services.map(s => `<a href="${servicePath(s, l)}">${escHTML(s[l].nav)}</a>`)
+    .concat(BLOG_LANGS.includes(l) ? [`<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a>`] : []).join('\n      ');
   return `<nav class="${cls}" aria-label="${escAttr(C.ui[l].more)}">\n      ${links}\n    </nav>`;
 }
 function buildHome(l) {
@@ -142,7 +147,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=3">
-<link rel="stylesheet" href="/css/landing.css?v=1">
+<link rel="stylesheet" href="/css/landing.css?v=2">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -214,7 +219,7 @@ ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHT
 
   <nav class="lp-more" aria-label="${escAttr(ui.more)}">
     <h2>${escHTML(ui.more)}</h2>
-    <div>${others.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}</div>
+    <div>${others.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}${BLOG_LANGS.includes(l) ? `<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a>` : ''}</div>
   </nav>
 </main>
 
@@ -236,7 +241,162 @@ ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHT
   write(here + 'index.html', html);
 }
 
-/* ---------- 3. sitemap ---------- */
+/* ---------- 3. blog ---------- */
+function shell({ l, title, desc, here, alt, ogImage, jsonld, body, switchTo }) {
+  const ui = C.ui[l], home = homePath(l);
+  return `<!doctype html>
+<html lang="${l}" dir="${dirOf(l)}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>${escHTML(title)}</title>
+<meta name="description" content="${escAttr(desc)}">
+<meta name="theme-color" content="#7ab8cb">
+<link rel="canonical" href="${SITE}${here}">
+${alt}
+<meta property="og:type" content="${jsonld.some(j => j['@type'] === 'BlogPosting') ? 'article' : 'website'}">
+<meta property="og:site_name" content="Melissa Photography Paris">
+<meta property="og:locale" content="${ogLocale[l]}">
+<meta property="og:url" content="${SITE}${here}">
+<meta property="og:title" content="${escAttr(title)}">
+<meta property="og:description" content="${escAttr(desc)}">
+<meta property="og:image" content="${SITE}${ogImage}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="/css/shop.css?v=3">
+<link rel="stylesheet" href="/css/landing.css?v=2">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
+<script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
+${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
+${pixel}
+<!-- TikTok Events for Photography Website: page view only -->
+</head>
+<body class="lp">
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="${home}">Melissa's</a>
+    <nav aria-label="${escAttr(ui.home)}">
+      <a href="${home}#catalogue">${escHTML(ui.catalogue)}</a>
+      <a href="${home}#me">${escHTML(ui.about)}</a>
+      <a href="${home}#book">${escHTML(ui.bookNav)}</a>
+    </nav>
+    ${langSwitch(l, switchTo)}
+  </div>
+</header>
+${body}
+<footer class="shopfoot">
+  <span>Melissa Photography · Paris</span>
+  <a href="https://www.instagram.com/melissa_photography_paris" target="_blank" rel="noopener">Instagram</a>
+  <a href="https://www.tiktok.com/@thegirlwith0tattoo" target="_blank" rel="noopener">TikTok</a>
+  <a href="${legal(l).terms}">${escHTML(I18N.dict['Terms of use'][l] || 'Terms of use')}</a>
+  <a href="${legal(l).privacy}">${escHTML(I18N.dict['Privacy'][l] || 'Privacy')}</a>
+  ${langSwitch(l, switchTo)}
+</footer>
+<script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script src="/js/cookieconsent-config.js" type="module"></script>
+</body>
+</html>
+`;
+}
+function langSwitch(l, to) {
+  return `<div class="lang-switch" role="group" aria-label="${escAttr(I18N.dict['Choose your language'][l] || 'Choose your language')}">${LANGS.map(x => `<a href="${to(x)}" lang="${x}" hreflang="${x}" data-lang="${x}"${x === l ? ' aria-current="true"' : ''}>${x === 'ar' ? 'ع' : x.toUpperCase()}</a>`).join('')}</div>`;
+}
+const blogAlternates = pathFor => BLOG_LANGS.map(x => `<link rel="alternate" hreflang="${x}" href="${SITE}${pathFor(x)}">`).join('\n')
+  + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${pathFor('en')}">`;
+const fmtDate = (d, l) => new Date(d + 'T12:00').toLocaleDateString(l === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const print = ([src, alt, cap], tilt, eager) => `<figure class="post-print" style="--tilt:${tilt}deg"><span class="lp-print"><img src="${src}" alt="${escAttr(alt)}" loading="${eager ? 'eager' : 'lazy'}" width="667" height="1000"></span><figcaption>${escHTML(cap)}</figcaption></figure>`;
+
+function buildBlogIndex(l) {
+  const u = B.ui[l], ui = C.ui[l], here = blogPath(l);
+  const posts = B.posts.filter(p => p[l]);
+  const body = `<main class="lp-main">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${homePath(l)}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(u.blog)}</span></nav>
+  <header class="lp-hero">
+    <p class="lp-kicker">Melissa Photography · Paris</p>
+    <h1>${escHTML(u.blogTitle)}</h1>
+    <p class="lede">${escHTML(u.blogLede)}</p>
+  </header>
+  <section class="post-list">
+${posts.map((p, i) => `    <article class="post-card">
+      <a href="${postPath(p, l)}">
+        <span class="lp-print"><img src="${p.cover}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000"></span>
+        <span class="post-card-text">
+          <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time>
+          <h2>${escHTML(p[l].title)}</h2>
+          <p>${escHTML(p[l].short)}</p>
+          <span class="post-read">${escHTML(u.read)} →</span>
+        </span>
+      </a>
+    </article>`).join('\n')}
+  </section>
+</main>`;
+  write(here + 'index.html', shell({
+    l, title: `${u.blogTitle} · Melissa Photography Paris`, desc: u.blogLede, here, alt: blogAlternates(blogPath),
+    ogImage: posts[0].cover, body, switchTo: x => (BLOG_LANGS.includes(x) ? blogPath(x) : homePath(x)),
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: u.blogTitle, url: SITE + here, inLanguage: l,
+      blogPost: posts.map(p => ({ '@type': 'BlogPosting', headline: p[l].title, url: SITE + postPath(p, l), datePublished: p.date })) }],
+  }));
+}
+
+function buildPost(p, l) {
+  const u = B.ui[l], ui = C.ui[l], t = p[l], here = postPath(p, l), home = homePath(l);
+  const svc = C.services.find(s => s.key === p.service);
+  let k = 0;
+  const body = `<main class="lp-main post">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <a href="${blogPath(l)}">${escHTML(u.blog)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.title.split('(')[0].trim())}</span></nav>
+  <article>
+    <header class="lp-hero post-hero">
+      <p class="lp-kicker">${escHTML(u.blog)} · <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time></p>
+      <h1>${escHTML(t.title)}</h1>
+      <p class="lede">${escHTML(t.short)}</p>
+      <p class="post-by">${escHTML(u.by)}</p>
+    </header>
+    <div class="post-body">
+${t.intro.map(x => `      <p>${escHTML(x)}</p>`).join('\n')}
+${t.spots.map(sp => `      <section class="post-spot">
+        <h2>${escHTML(sp.h2)}</h2>
+        ${sp.photo ? print(sp.photo, [-2, 1.8, -1.2, 2.2][k++ % 4], k === 1) : ''}
+${sp.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
+      </section>`).join('\n')}
+      <aside class="lp-card post-tips">
+        <h2>${escHTML(u.tipsTitle)}</h2>
+        <ul>
+${t.tips.map(x => `          <li>${escHTML(x)}</li>`).join('\n')}
+        </ul>
+      </aside>
+    </div>
+  </article>
+  <section class="lp-final post-cta">
+    <h2>${escHTML(u.ctaTitle)}</h2>
+    <p>${escHTML(u.ctaText)}</p>
+    <div class="lp-cta">
+      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}">${escHTML(u.ctaBtn)}</a>
+      ${svc ? `<a class="btn" href="${servicePath(svc, l)}">${escHTML(u.ctaMore)}</a>` : ''}
+    </div>
+  </section>
+  <p class="post-back"><a href="${blogPath(l)}">← ${escHTML(u.back)}</a></p>
+</main>`;
+  write(here + 'index.html', shell({
+    l, title: `${t.title} · Melissa Photography Paris`, desc: t.desc, here, alt: blogAlternates(x => postPath(p, x)),
+    ogImage: p.cover, body, switchTo: x => (BLOG_LANGS.includes(x) && p[x] ? postPath(p, x) : homePath(x)),
+    jsonld: [
+      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: t.title, description: t.desc, image: SITE + p.cover,
+        datePublished: p.date, dateModified: p.updated || p.date, inLanguage: l, mainEntityOfPage: SITE + here,
+        author: { '@type': 'Person', name: 'Melissa', url: SITE + home },
+        publisher: { '@type': 'Organization', name: 'Melissa Photography Paris', url: SITE + '/' } },
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: ui.home, item: SITE + home },
+        { '@type': 'ListItem', position: 2, name: u.blog, item: SITE + blogPath(l) },
+        { '@type': 'ListItem', position: 3, name: t.title, item: SITE + here },
+      ] },
+    ],
+  }));
+}
+
+/* ---------- 4. sitemap ---------- */
 function sitemap() {
   const groups = [homePath, ...C.services.map(s => l => servicePath(s, l))];
   const urls = [];
@@ -251,6 +411,14 @@ ${LANGS.map(x => `    <xhtml:link rel="alternate" hreflang="${x}" href="${SITE}$
   </url>`);
     });
   });
+  const blogGroups = [blogPath, ...B.posts.map(p => l => postPath(p, l))];
+  blogGroups.forEach(pathFor => BLOG_LANGS.forEach(l => urls.push(`  <url>
+    <loc>${SITE}${pathFor(l)}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <priority>0.7</priority>
+${BLOG_LANGS.map(x => `    <xhtml:link rel="alternate" hreflang="${x}" href="${SITE}${pathFor(x)}"/>`).join('\n')}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${pathFor('en')}"/>
+  </url>`)));
   ['/terms.html', '/termsfr.html', '/policy.html', '/politique.html'].forEach(p => urls.push(`  <url><loc>${SITE}${p}</loc><priority>0.2</priority></url>`));
   write('/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -268,4 +436,6 @@ function write(rel, content) {
 
 LANGS.forEach(buildHome);
 C.services.forEach(s => LANGS.forEach(l => buildService(s, l)));
+BLOG_LANGS.forEach(buildBlogIndex);
+B.posts.forEach(p => BLOG_LANGS.forEach(l => p[l] && buildPost(p, l)));
 sitemap();
