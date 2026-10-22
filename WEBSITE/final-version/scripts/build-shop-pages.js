@@ -108,7 +108,7 @@ function buildService(s, l) {
     {
       '@context': 'https://schema.org', '@type': 'Service', name: t.h1, description: t.desc, url: SITE + here,
       serviceType: t.nav, areaServed: { '@type': 'City', name: 'Paris' },
-      provider: { '@type': 'ProfessionalService', name: "Melissa's Photography Paris", url: SITE + '/', image: SITE + '/images/proposal/16.webp',
+      provider: { '@type': 'ProfessionalService', name: 'Melissa Photography Paris', alternateName: "Melissa's Photography", url: SITE + '/', image: SITE + '/images/proposal/16.webp',
         aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '12', bestRating: '5' } },
       offers: s.packages.map(p => ({ '@type': 'Offer', name: p.name[l], price: String(p.price), priceCurrency: 'EUR' })),
     },
