@@ -34,7 +34,7 @@ window.SHOP_I18N = {
     'Portraits & Couples': { fr: 'Portraits & Couples', ar: 'بورتريه وأزواج' },
     'Open': { fr: 'Ouvert', ar: 'مفتوح' },
     'Enter': { fr: 'Entrer', ar: 'ادخلوا' },
-    'The door is open, darling. Come on in.': { fr: 'La porte est ouverte, mon cœur. Entrez donc !', ar: 'الباب مفتوح يا أعزّائي، تفضّلوا بالدخول.' },
+    'The door is open, darling. Come on in.': { fr: 'La porte est ouverte. Entrez, je vous attends !', ar: 'الباب مفتوح يا أعزّائي، تفضّلوا بالدخول.' },
     'Choose your language': { fr: 'Choisissez votre langue', ar: 'اختاروا لغتكم' },
 
     // ---------- top bar ----------
