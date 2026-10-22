@@ -728,7 +728,7 @@ footer.shopfoot a { color: var(--navy); font-weight: 700; }
   .topbar .brand { font-size: 19px; flex: none; }
   .topbar nav { flex-wrap: nowrap; gap: 0; }
   .topbar nav button { font-size: 13.5px; padding: 0 8px; }
-  .groovy { font-size: clamp(40px, 12.5vw, 64px); white-space: nowrap; text-shadow: 2px 2px 0 var(--butter), 4px 4px 0 var(--pink-deep), 6px 6px 0 var(--navy); }
+  .groovy { font-size: clamp(40px, 12.5vw, 64px); white-space: normal; max-width: 100%; text-shadow: 2px 2px 0 var(--butter), 4px 4px 0 var(--pink-deep), 6px 6px 0 var(--navy); }
   #welcome { padding-block: 32px; }
   .welcome-card { gap: 18px; }
   .welcome-card .lede { font-size: 17px; padding: 12px 16px; }
@@ -901,3 +901,5 @@ footer.shopfoot .lang-switch { flex-basis: auto; }
 @media (min-width: 861px) {
   [dir="rtl"] .bubble::before { left: auto; right: -16px; border: 12px solid transparent; border-left: 18px solid var(--paper); border-right: 0; }
 }
+/* long welcome titles (FR "Bienvenue chez moi !") break between words on a phone, never mid-word */
+.groovy span { white-space: nowrap; }
