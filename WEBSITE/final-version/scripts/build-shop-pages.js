@@ -85,7 +85,7 @@ function buildHome(l) {
     CANONICAL: SITE + homePath(l), ALTERNATES: alternates(homePath), OG_LOCALE: ogLocale[l],
     ARABIC_FONTS: l === 'ar' ? ARABIC_FONTS : '',
     CAT_LINKS: serviceLinks(l, 'shelf-links'), SERVICE_LINKS: serviceLinks(l, 'foot-services'),
-    TERMS: legal(l).terms, PRIVACY: legal(l).privacy,
+    TERMS: legal(l).terms, PRIVACY: legal(l).privacy, BLOG_HREF: blogPath(BLOG_LANGS.includes(l) ? l : 'en'),
     ...switchVars(homePath, l),
   });
   write(homePath(l) + 'index.html', out);
@@ -146,7 +146,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=3">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=4">
 <link rel="stylesheet" href="/css/landing.css?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
@@ -266,7 +266,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-<link rel="stylesheet" href="/css/shop.css?v=3">
+<link rel="stylesheet" href="/css/shop.css?v=4">
 <link rel="stylesheet" href="/css/landing.css?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>

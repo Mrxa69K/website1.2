@@ -319,7 +319,7 @@ a { color: inherit; }
 .screen-head { text-align: center; padding-top: 44px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
 .screen-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 6vw, 58px); color: var(--navy); line-height: 1.05; text-shadow: 3px 3px 0 var(--pink); }
 .screen-head p { color: var(--navy); font-style: italic; max-width: 46ch; }
-.doors { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.doors { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
 .choice {
   border: 0; cursor: pointer; text-align: center;
   border-radius: 220px 220px 24px 24px;
@@ -910,3 +910,25 @@ footer.shopfoot .lang-switch { flex-basis: auto; }
 .shelf-links { margin-top: 14px; }
 .shelf-links a, .foot-services a { color: var(--navy); font-weight: 700; }
 .foot-services { flex-basis: 100%; }
+
+/* ---------- third door: Melissa's notebook (blog) ---------- */
+a.choice { text-decoration: none; position: relative; }
+.choice.tips { background: var(--cream); color: var(--navy); outline: 3px dashed var(--navy); outline-offset: -12px; }
+.choice.tips .art { background: var(--pink); }
+.mini-notebook { width: 124px; height: 124px; }
+.choice:nth-child(3):hover { transform: translateY(-6px) rotate(-1deg); }
+.new-sticker {
+  position: absolute; top: 18px; right: 18px; z-index: 2; padding: 6px 12px; border-radius: 999px;
+  background: var(--pink-deep); color: #fff; font-weight: 800; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  box-shadow: 0 3px 0 var(--navy); animation: sticker 2.6s ease-in-out infinite;
+}
+[dir="rtl"] .new-sticker { right: auto; left: 18px; }
+@keyframes sticker { 0%, 100% { transform: rotate(8deg) scale(1); } 50% { transform: rotate(14deg) scale(1.08); } }
+.nb-pencil { transform-box: view-box; transform-origin: 78px 100px; animation: nb-write 1.4s ease-in-out infinite; }
+@keyframes nb-write { 0%, 100% { transform: translate(0, 0) rotate(0); } 25% { transform: translate(-6px, -2px) rotate(-4deg); } 50% { transform: translate(-12px, 1px) rotate(2deg); } 75% { transform: translate(-6px, -1px) rotate(-3deg); } }
+.nb-heart { transform-box: fill-box; transform-origin: center; animation: sk-twinkle 1.8s ease-in-out infinite; }
+@media (max-width: 1000px) and (min-width: 721px) {
+  .doors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .choice.tips { grid-column: 1 / -1; border-radius: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .new-sticker, .nb-pencil, .nb-heart { animation: none; } }

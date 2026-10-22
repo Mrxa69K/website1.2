@@ -57,7 +57,14 @@ window.SHOP_I18N = {
 
     // ---------- two doors ----------
     "So, what'll it be?": { fr: 'Alors, on commence par quoi ?', ar: 'إذن، ماذا تختارون؟' },
-    'Two doors. Pick the one that feels right.': { fr: 'Deux portes. Choisissez celle qui vous parle.', ar: 'بابان. اختاروا الذي يناسبكم.' },
+    'Three doors. Pick the one that feels right.': { fr: 'Trois portes. Choisissez celle qui vous parle.', ar: 'ثلاثة أبواب. اختاروا الذي يناسبكم.' },
+    'New': { fr: 'Nouveau', ar: 'جديد' },
+    'Psst… want my Paris secrets?': { fr: 'Psst… envie de mes secrets parisiens ?', ar: 'هل تريدون أسرار باريس؟' },
+    'Where Parisians say yes, when to go and what to avoid: honest tips from behind the camera.': {
+      fr: "Où les Parisiens disent oui, à quelle heure y aller et ce qu'il faut éviter : mes conseils honnêtes, de derrière l'objectif.",
+      ar: 'أين يقول الباريسيون «نعم»، متى تذهبون وما الذي تتجنّبونه: نصائح صادقة من خلف الكاميرا.',
+    },
+    "Read Melissa's notebook": { fr: 'Lire le carnet de Melissa', ar: 'اقرأوا دفتر ميليسا' },
     'Do you wanna get to know me?': { fr: 'Envie de me connaître ?', ar: 'هل تريدون التعرّف عليّ؟' },
     "Who's behind the camera, how I shoot, and the languages I'll chat with you in.": {
       fr: "Qui se cache derrière l'appareil, ma façon de photographier, et les langues dans lesquelles on peut discuter.",
