@@ -11,15 +11,15 @@ window.SHOP_I18N = {
   meta: {
     en: {
       title: "Melissa's Photography Paris · Proposal & Wedding Photographer",
-      description: 'Proposal, wedding, couple and event photographer in Paris. Discreet, natural photos at Trocadéro, Bir-Hakeim, the Louvre and beyond. Speaks French, English and Arabic. Proposals from €290.',
+      description: 'Proposal, wedding, couple and event photographer in Paris. Discreet, natural photos at Bir-Hakeim, by the Eiffel Tower, the Palais-Royal and beyond. Speaks French, English and Arabic. Proposals from €290.',
     },
     fr: {
       title: "Melissa's Photography Paris · Photographe demande en mariage & mariage",
-      description: "Photographe de demande en mariage, mariage, couple et événements à Paris. Des photos discrètes et naturelles au Trocadéro, à Bir-Hakeim, au Louvre et ailleurs. Français, anglais et arabe. Demandes dès 290 €.",
+      description: "Photographe de demande en mariage, mariage, couple et événements à Paris. Des photos discrètes et naturelles à Bir-Hakeim, près de la tour Eiffel, au Palais-Royal et ailleurs. Français, anglais et arabe. Demandes dès 290 €.",
     },
     ar: {
       title: 'ميليسا للتصوير باريس · مصوّرة طلبات الزواج والأعراس',
-      description: 'مصوّرة طلبات زواج وأعراس وأزواج ومناسبات في باريس. صور طبيعية وبتكتّم في تروكاديرو وبير حكيم واللوفر وغيرها. أتحدث الفرنسية والإنجليزية والعربية. طلبات الزواج ابتداءً من 290 €.',
+      description: 'مصوّرة طلبات زواج وأعراس وأزواج ومناسبات في باريس. صور طبيعية وبتكتّم عند جسر بير حكيم وقرب برج إيفل وفي القصر الملكي وغيرها. أتحدث الفرنسية والإنجليزية والعربية. طلبات الزواج ابتداءً من 290 €.',
     },
   },
   // names of the languages, as written in each UI language
@@ -175,9 +175,9 @@ window.SHOP_I18N = {
     },
     "Let's talk in": { fr: 'On peut se parler en', ar: 'لنتحدث بـ' },
     "Where you'll find me": { fr: 'Où me trouver', ar: 'أين تجدونني' },
-    'Trocadéro, Bir-Hakeim, the Louvre arcades, Montmartre and the banks of the Seine.': {
-      fr: 'Trocadéro, Bir-Hakeim, les arcades du Louvre, Montmartre et les quais de Seine.',
-      ar: 'تروكاديرو، بير حكيم، أروقة اللوفر، مونمارتر وضفاف نهر السين.',
+    'Bir-Hakeim, the Allée des Cygnes, the Palais-Royal, Montmartre and the banks of the Seine.': {
+      fr: 'Bir-Hakeim, l’allée des Cygnes, le Palais-Royal, Montmartre et les quais de Seine.',
+      ar: 'بير حكيم، ممشى البجع، القصر الملكي، مونمارتر وضفاف نهر السين.',
     },
     'See my albums': { fr: 'Voir mes albums', ar: 'شاهدوا ألبوماتي' },
     'Book me': { fr: 'Me réserver', ar: 'احجزوني' },
@@ -196,7 +196,7 @@ window.SHOP_I18N = {
     '4 · Preferred date': { fr: '4 · Date souhaitée', ar: '4 · التاريخ المفضّل' },
     '5 · Language': { fr: '5 · Langue', ar: '5 · اللغة' },
     '6 · Tell me the story': { fr: '6 · Racontez-moi votre histoire', ar: '6 · احكوا لي القصة' },
-    'He has no idea. Trocadéro at sunset?': { fr: 'Il ne se doute de rien. Trocadéro au coucher du soleil ?', ar: 'لا يعلم شيئاً. تروكاديرو عند الغروب؟' },
+    'He has no idea. Bir-Hakeim at sunset?': { fr: 'Il ne se doute de rien. Bir-Hakeim au coucher du soleil ?', ar: 'لا يعلم شيئاً. بير حكيم عند الغروب؟' },
     'Add your name and an email or WhatsApp number so I can reply.': {
       fr: 'Ajoutez votre nom et un e-mail ou un numéro WhatsApp pour que je puisse vous répondre.',
       ar: 'أضيفوا اسمكم وبريداً إلكترونياً أو رقم واتساب لأتمكن من الرد.',

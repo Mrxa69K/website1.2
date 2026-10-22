@@ -147,7 +147,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=3">
-<link rel="stylesheet" href="/css/landing.css?v=2">
+<link rel="stylesheet" href="/css/landing.css?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -267,14 +267,14 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 <link rel="stylesheet" href="/css/shop.css?v=3">
-<link rel="stylesheet" href="/css/landing.css?v=2">
+<link rel="stylesheet" href="/css/landing.css?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
-<script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
+<script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
 ${pixel}
 <!-- TikTok Events for Photography Website: page view only -->
 </head>
-<body class="lp">
+<body class="lp lp-blog">
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="${home}">Melissa's</a>
@@ -308,6 +308,61 @@ const blogAlternates = pathFor => BLOG_LANGS.map(x => `<link rel="alternate" hre
   + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${pathFor('en')}">`;
 const fmtDate = (d, l) => new Date(d + 'T12:00').toLocaleDateString(l === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const print = ([src, alt, cap], tilt, eager) => `<figure class="post-print" style="--tilt:${tilt}deg"><span class="lp-print"><img src="${src}" alt="${escAttr(alt)}" loading="${eager ? 'eager' : 'lazy'}" width="667" height="1000"></span><figcaption>${escHTML(cap)}</figcaption></figure>`;
+
+// Animated illustration: Bir-Hakeim bridge, the metro crossing it, the tower sparkling, a proposal.
+function heroBirHakeim(label) {
+  const cx = 432, cy = 214, rays = [];
+  for (let i = 0; i < 24; i++) {
+    const a1 = Math.PI + (i / 24) * Math.PI * 2, a2 = a1 + Math.PI / 24;
+    rays.push(`<polygon points="${cx},${cy} ${(cx + 190 * Math.cos(a1)).toFixed(1)},${(cy + 190 * Math.sin(a1)).toFixed(1)} ${(cx + 190 * Math.cos(a2)).toFixed(1)},${(cy + 190 * Math.sin(a2)).toFixed(1)}"/>`);
+  }
+  const cols = [];
+  for (let x = 6; x < 600; x += 38) cols.push(`<rect x="${x}" y="176" width="7" height="38" rx="2"/>`);
+  const sparks = [[396, 70], [470, 96], [420, 132], [452, 40], [398, 160], [478, 150]]
+    .map(([x, y], i) => `<path class="bh-spark" style="animation-delay:${(i * 0.35).toFixed(2)}s" d="M${x} ${y - 7} Q${x} ${y} ${x + 7} ${y} Q${x} ${y} ${x} ${y + 7} Q${x} ${y} ${x - 7} ${y} Q${x} ${y} ${x} ${y - 7}Z"/>`).join('');
+  return `<svg class="bh" viewBox="0 0 600 300" role="img" aria-label="${escAttr(label)}">
+  <defs><clipPath id="bh-sky"><rect x="0" y="0" width="600" height="214"/></clipPath></defs>
+  <g clip-path="url(#bh-sky)">
+    <g class="sk-sunrise"><circle cx="${cx}" cy="${cy}" r="130" fill="#fdf6ea"/><g class="bh-rays" fill="#f6c3cf">${rays.join('')}</g><circle cx="${cx}" cy="${cy}" r="40" fill="#f5d67f"/></g>
+  </g>
+  <g class="sk-mon sk-tower" transform="translate(${cx} 214)" fill="#1f3a4d">
+    <path d="M-46 0 L-31 -56 L-37 -59 L-37 -66 L37 -66 L37 -59 L31 -56 L46 0 L27 0 Q0 -42 -27 0 Z"/>
+    <path d="M-27 -66 L-16 -122 L-21 -124 L-21 -130 L21 -130 L21 -124 L16 -122 L27 -66 Z"/>
+    <path d="M-14 -130 L-4 -186 L-3 -192 L3 -192 L4 -186 L14 -130 Z"/>
+    <path d="M-1.6 -192 L-1 -206 L1 -206 L1.6 -192 Z"/>
+  </g>
+  <g class="bh-sparks" fill="#fffaf1">${sparks}</g>
+  <!-- the metro deck, its columns and a train crossing -->
+  <g class="bh-train"><rect x="0" y="150" width="128" height="18" rx="5" fill="#e58aa2"/><rect x="8" y="154" width="18" height="8" rx="2" fill="#fdf6ea"/><rect x="34" y="154" width="18" height="8" rx="2" fill="#fdf6ea"/><rect x="60" y="154" width="18" height="8" rx="2" fill="#fdf6ea"/><rect x="86" y="154" width="18" height="8" rx="2" fill="#fdf6ea"/><rect x="110" y="154" width="12" height="8" rx="2" fill="#fdf6ea"/></g>
+  <rect x="0" y="168" width="600" height="9" fill="#1f3a4d"/>
+  <g fill="#2c4d63">${cols.join('')}</g>
+  <rect x="0" y="212" width="600" height="6" fill="#1f3a4d"/>
+  <!-- the couple on the walkway -->
+  <g class="sk-couple" transform="translate(214 212) scale(.64)">
+    <g stroke="#1f3a4d" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M-22 -14 L-30 0 L-14 0"/><path d="M-8 -14 L6 -14 L6 0"/><path d="M-10 -32 L4 -40"/></g>
+    <path d="M-24 -40 L-8 -40 L-6 -14 L-24 -14 Z" fill="#1f3a4d"/><circle cx="-16" cy="-50" r="8" fill="#1f3a4d"/>
+    <path d="M18 -48 L32 -48 L42 0 L10 0 Z" fill="#e58aa2"/><path d="M20 -46 L10 -40" stroke="#e58aa2" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="25" cy="-58" r="8" fill="#1f3a4d"/><path d="M18 -62 q7 -10 15 0 q4 8 1 14" fill="#1f3a4d"/>
+    <path class="sk-ring" d="M7 -46 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2Z" fill="#f5d67f"/>
+    <path class="sk-heart" d="M0 -70 c-4 -6 -12 -2 -8 4 l8 7 8 -7 c4 -6 -4 -10 -8 -4Z" fill="#e58aa2"/>
+  </g>
+  <!-- the Seine -->
+  <g class="bh-river" stroke="#fdf6ea" stroke-width="3" stroke-linecap="round" fill="none" opacity=".75">
+    <path d="M-40 240 q20 -6 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+    <path d="M-20 262 q20 -6 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+    <path d="M-40 284 q20 -6 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+  </g>
+</svg>`;
+}
+const REVEAL = `<script>
+  // fade the sections in as they scroll into view (skipped if the visitor prefers less motion)
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>`;
 
 function buildBlogIndex(l) {
   const u = B.ui[l], ui = C.ui[l], here = blogPath(l);
@@ -345,31 +400,41 @@ function buildPost(p, l) {
   const u = B.ui[l], ui = C.ui[l], t = p[l], here = postPath(p, l), home = homePath(l);
   const svc = C.services.find(s => s.key === p.service);
   let k = 0;
+  const heroLabel = l === 'fr' ? "Illustration animée : le pont de Bir-Hakeim, un métro qui passe, la tour Eiffel qui scintille et une demande en mariage" : 'Animated illustration: Bir-Hakeim bridge, a metro passing, the Eiffel Tower sparkling and a proposal';
   const body = `<main class="lp-main post">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <a href="${blogPath(l)}">${escHTML(u.blog)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.title.split('(')[0].trim())}</span></nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <a href="${blogPath(l)}">${escHTML(u.blog)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.title.split(':')[0].trim())}</span></nav>
   <article>
     <header class="lp-hero post-hero">
       <p class="lp-kicker">${escHTML(u.blog)} · <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time></p>
       <h1>${escHTML(t.title)}</h1>
+      ${p.hero === 'bir-hakeim' ? heroBirHakeim(heroLabel) : ''}
       <p class="lede">${escHTML(t.short)}</p>
       <p class="post-by">${escHTML(u.by)}</p>
     </header>
     <div class="post-body">
-${t.intro.map(x => `      <p>${escHTML(x)}</p>`).join('\n')}
-${t.spots.map(sp => `      <section class="post-spot">
+${t.intro.map(x => `      <p class="reveal">${escHTML(x)}</p>`).join('\n')}
+${t.honest ? `      <aside class="honest reveal">
+        <span class="honest-tape" aria-hidden="true"></span>
+        <h2>${escHTML(t.honest.title)}</h2>
+${t.honest.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
+        <p class="honest-sign">${escHTML(t.honest.sign)}</p>
+      </aside>` : ''}
+${t.spots.map(sp => `      <section class="post-spot reveal">
         <h2>${escHTML(sp.h2)}</h2>
+        ${sp.kicker ? `<p class="spot-kicker"><span>${escHTML(u.practical)}</span> ${escHTML(sp.kicker)}</p>` : ''}
         ${sp.photo ? print(sp.photo, [-2, 1.8, -1.2, 2.2][k++ % 4], k === 1) : ''}
 ${sp.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
       </section>`).join('\n')}
-      <aside class="lp-card post-tips">
+      <aside class="lp-card post-tips reveal">
         <h2>${escHTML(u.tipsTitle)}</h2>
         <ul>
 ${t.tips.map(x => `          <li>${escHTML(x)}</li>`).join('\n')}
         </ul>
       </aside>
+      ${t.ending && t.ending.photo ? `<div class="post-ending reveal">${print(t.ending.photo, -1.5, false)}</div>` : ''}
     </div>
   </article>
-  <section class="lp-final post-cta">
+  <section class="lp-final post-cta reveal">
     <h2>${escHTML(u.ctaTitle)}</h2>
     <p>${escHTML(u.ctaText)}</p>
     <div class="lp-cta">
@@ -378,7 +443,8 @@ ${t.tips.map(x => `          <li>${escHTML(x)}</li>`).join('\n')}
     </div>
   </section>
   <p class="post-back"><a href="${blogPath(l)}">← ${escHTML(u.back)}</a></p>
-</main>`;
+</main>
+${REVEAL}`;
   write(here + 'index.html', shell({
     l, title: `${t.title} · Melissa Photography Paris`, desc: t.desc, here, alt: blogAlternates(x => postPath(p, x)),
     ogImage: p.cover, body, switchTo: x => (BLOG_LANGS.includes(x) && p[x] ? postPath(p, x) : homePath(x)),

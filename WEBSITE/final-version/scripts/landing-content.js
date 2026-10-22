@@ -52,7 +52,7 @@ module.exports = {
         title: "Proposal Photographer in Paris · Melissa's Photography",
         desc: 'Discreet marriage proposal photographer in Paris: Eiffel Tower, Trocadéro, Bir-Hakeim, the Louvre. 20+ photos delivered within 24 hours. French, English, Arabic. From €290.',
         h1: 'Proposal photographer in Paris',
-        lede: 'You plan the question, I hide in the crowd and catch the yes. Discreet proposal photos at the Eiffel Tower, Trocadéro, Bir-Hakeim or the Louvre, delivered within 24 hours.',
+        lede: 'You plan the question, I hide in the crowd and catch the yes. Discreet proposal photos at Bir-Hakeim, by the Eiffel Tower, at the Palais-Royal or along the Seine, delivered within 24 hours.',
         story: [
           "Before the big day we choose the spot and the timing together, in French, English or Arabic. You'll know exactly where I'll be standing, and your partner won't suspect a thing: to them I'm just another tourist with a camera.",
           'When the knee drops, I photograph the whole moment: the surprise, the tears, the ring, the hug. Then we take a few relaxed portraits of the two of you, with Paris right behind you.',
@@ -60,7 +60,7 @@ module.exports = {
         ],
         included: ['1 hour on location', '20+ edited photos', 'Delivered within 24 hours', 'A private online gallery to download and share', 'Help choosing the spot and the right time'],
         faq: [
-          ['Where are the best places to propose in Paris?', 'Trocadéro for the full Eiffel Tower view, the Bir-Hakeim bridge, the Louvre arcades, Montmartre and the banks of the Seine. Sunset is beautiful, and after dark the Eiffel Tower sparkles for five minutes at the start of every hour.'],
+          ['Where are the best places to propose in Paris?', 'My favourite is the Bir-Hakeim bridge, with the Allée des Cygnes just below it. Avenue de Camoëns, Square du Vert-Galant and the Palais-Royal are lovely too. I avoid Trocadéro: it is very crowded and full of pickpockets. Read my full guide on the blog.'],
           ['How will my partner not notice you?', 'We agree on the exact spot and a signal beforehand. I arrive early, blend in with the other visitors and start shooting from a distance, then come closer once the yes is said.'],
           ['What if it rains?', 'We watch the forecast together. We can move the time, or pick a covered spot such as the Louvre arcades.'],
           ['When do we get the photos?', 'Within 24 hours, in a private online gallery you can download and share with family and friends.'],
@@ -71,7 +71,7 @@ module.exports = {
         title: "Photographe demande en mariage à Paris · Melissa's Photography",
         desc: 'Photographe discrète pour votre demande en mariage à Paris : tour Eiffel, Trocadéro, Bir-Hakeim, Louvre. 20+ photos livrées en 24 h. Français, anglais, arabe. Dès 290 €.',
         h1: 'Photographe de demande en mariage à Paris',
-        lede: 'Vous préparez la question, je me cache dans la foule et je capture le oui. Des photos discrètes de votre demande à la tour Eiffel, au Trocadéro, à Bir-Hakeim ou au Louvre, livrées en 24 h.',
+        lede: 'Vous préparez la question, je me cache dans la foule et je capture le oui. Des photos discrètes de votre demande à Bir-Hakeim, près de la tour Eiffel, au Palais-Royal ou sur les quais de Seine, livrées en 24 h.',
         story: [
           "Avant le grand jour, on choisit ensemble le lieu et l'heure, en français, en anglais ou en arabe. Vous saurez exactement où je me trouve, et votre moitié ne se doutera de rien : pour elle, je ne suis qu'une touriste de plus avec un appareil photo.",
           "Quand le genou touche le sol, je photographie tout le moment : la surprise, les larmes, la bague, l'étreinte. Ensuite, on fait quelques portraits détendus de vous deux, avec Paris juste derrière.",
@@ -79,7 +79,7 @@ module.exports = {
         ],
         included: ['1 heure sur place', '20+ photos retouchées', 'Livrées en 24 h', 'Une galerie privée en ligne pour télécharger et partager', "Mes conseils pour choisir le lieu et l'heure"],
         faq: [
-          ['Quels sont les plus beaux endroits pour une demande à Paris ?', "Le Trocadéro pour la vue sur la tour Eiffel, le pont de Bir-Hakeim, les arcades du Louvre, Montmartre et les quais de Seine. Le coucher du soleil est magnifique, et une fois la nuit tombée, la tour Eiffel scintille pendant cinq minutes au début de chaque heure."],
+          ['Quels sont les plus beaux endroits pour une demande à Paris ?', "Mon préféré, c'est le pont de Bir-Hakeim, avec l'allée des Cygnes juste en dessous. L'avenue de Camoëns, le square du Vert-Galant et le Palais-Royal sont superbes aussi. J'évite le Trocadéro : il y a énormément de monde et beaucoup de pickpockets. Lisez mon guide complet sur le blog."],
           ['Comment faire pour que ma moitié ne vous remarque pas ?', "On convient à l'avance du lieu exact et d'un signal. J'arrive en avance, je me fonds parmi les visiteurs et je commence à photographier de loin, puis je m'approche une fois le oui prononcé."],
           ['Et s’il pleut ?', "On surveille la météo ensemble. On peut décaler l'heure, ou choisir un endroit abrité comme les arcades du Louvre."],
           ['Quand recevons-nous les photos ?', 'Sous 24 h, dans une galerie privée en ligne que vous pouvez télécharger et partager avec vos proches.'],
@@ -90,7 +90,7 @@ module.exports = {
         title: 'مصوّرة طلبات الزواج في باريس · ميليسا للتصوير',
         desc: 'مصوّرة متحفّظة لطلب الزواج في باريس: برج إيفل، تروكاديرو، بير حكيم، اللوفر. أكثر من 20 صورة تُسلَّم خلال 24 ساعة. العربية والفرنسية والإنجليزية. ابتداءً من 290 €.',
         h1: 'مصوّرة طلبات الزواج في باريس',
-        lede: 'أنتم تحضّرون السؤال، وأنا أختبئ بين الحشود لألتقط لحظة «نعم». صور متحفّظة لطلب الزواج عند برج إيفل أو تروكاديرو أو بير حكيم أو اللوفر، تصلكم خلال 24 ساعة.',
+        lede: 'أنتم تحضّرون السؤال، وأنا أختبئ بين الحشود لألتقط لحظة «نعم». صور متحفّظة لطلب الزواج عند جسر بير حكيم أو قرب برج إيفل أو في القصر الملكي أو على ضفاف السين، تصلكم خلال 24 ساعة.',
         story: [
           'قبل اليوم الكبير نختار معاً المكان والتوقيت، بالعربية أو الفرنسية أو الإنجليزية. ستعرفون بالضبط أين سأقف، ولن يشكّ شريككم في شيء: بالنسبة له أنا مجرد سائحة أخرى تحمل كاميرا.',
           'عندما تركعون، أصوّر اللحظة كاملة: المفاجأة، الدموع، الخاتم، والعناق. ثم نلتقط بعض الصور الهادئة لكما معاً وباريس خلفكما.',
@@ -98,7 +98,7 @@ module.exports = {
         ],
         included: ['ساعة في المكان', 'أكثر من 20 صورة معدّلة', 'التسليم خلال 24 ساعة', 'معرض خاص على الإنترنت للتحميل والمشاركة', 'مساعدة في اختيار المكان والتوقيت المناسب'],
         faq: [
-          ['ما هي أجمل الأماكن لطلب الزواج في باريس؟', 'تروكاديرو لإطلالة كاملة على برج إيفل، وجسر بير حكيم، وأروقة اللوفر، ومونمارتر وضفاف نهر السين. الغروب رائع، وبعد حلول الظلام يتلألأ برج إيفل لمدة خمس دقائق في بداية كل ساعة.'],
+          ['ما هي أجمل الأماكن لطلب الزواج في باريس؟', 'المكان المفضل لدي هو جسر بير حكيم، مع ممشى البجع (Allée des Cygnes) أسفله مباشرة. شارع كامويش وحديقة فير غالان والقصر الملكي (Palais-Royal) جميلة أيضاً. أتجنب تروكاديرو: فهو مزدحم جداً وكثير النشّالين.'],
           ['كيف لن يلاحظكِ شريكي؟', 'نتفق مسبقاً على المكان بالضبط وعلى إشارة. أصل مبكراً وأندمج بين الزوار وأبدأ التصوير من بعيد، ثم أقترب بعد قول «نعم».'],
           ['ماذا لو أمطرت؟', 'نتابع حالة الطقس معاً. يمكننا تغيير الموعد أو اختيار مكان مسقوف مثل أروقة اللوفر.'],
           ['متى نستلم الصور؟', 'خلال 24 ساعة، في معرض خاص على الإنترنت يمكنكم تحميله ومشاركته مع العائلة والأصدقاء.'],
