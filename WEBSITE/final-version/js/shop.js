@@ -16,7 +16,6 @@
   const I18N = window.SHOP_I18N;
   const SB = window.SUPABASE_CONFIG || (typeof SUPABASE_CONFIG !== 'undefined' ? SUPABASE_CONFIG : null);
   const FORMSPREE = 'https://formspree.io/f/manjpdzw';
-  const ON_VERCEL = /(^|\.)melissaphotographyparis\.fr$|\.vercel\.app$/.test(location.hostname);
 
   /* ---------- Language ---------- */
   let lang = document.documentElement.lang || 'en';
@@ -169,10 +168,15 @@
   ];
 
   /* ---------- Photos from the admin page (Supabase) ---------- */
-  // Big originals are resized by Vercel on the live site; elsewhere the original is used.
-  function sized(src, w) {
-    if (!ON_VERCEL || !/^https:\/\//.test(src)) return src;
-    return `/_vercel/image?url=${encodeURIComponent(src)}&w=${w}&q=75`;
+  // Some older uploads are huge (up to 13 MB). Light copies of those live in images/live/;
+  // anything uploaded since then is already resized by the admin page.
+  const LIGHT = new Set(['1790200390392-6m8veg', '1790200514571-l44u2', '1790200535508-08iyk', '1790200582838-eg5v2v',
+    '1790200737974-00zcz', '1790200777055-a85wf7', '1790200799271-uga9j', '1790200818854-w25go8', '1790200858613-kltmt',
+    '1790200870601-ck8mbo', '1790200883372-luv3lv', '1790200921384-oibita', '1790200956751-r57q7l', '1790200972663-va7ti8',
+    '1790201426158-whqkwp', '1790201440471-97l05', '1792614636066-sh867v']);
+  function sized(src) {
+    const m = /\/([^/?#]+)\.(?:jpe?g|png|webp)(?:[?#].*)?$/i.exec(src);
+    return m && LIGHT.has(m[1]) ? `images/live/${m[1]}.webp` : src;
   }
   const CAT_TO_ALBUM = {};
   Object.entries(ALBUMS).forEach(([k, a]) => { CAT_TO_ALBUM[a.category] = k; });
@@ -316,8 +320,8 @@
     const tilt = (Math.random() * 4 - 2).toFixed(2);
     const deckle = !live && k % 4 === 3;  // every so often, an old deckle-edged print
     const label = esc(live ? cap : t(cap));
-    const src = live ? sized(img, 1080) : img;
-    const full = live ? sized(img, 1920) : img;
+    const src = live ? sized(img) : img;
+    const full = src;
     const onload = live ? ' data-live="1"' : '';
     const inner = `<span class="print ${o}${deckle ? ' deckle' : ''}">${deckle ? '' : '<span class="tape"></span>'}<img src="${esc(src)}" data-full="${esc(full)}" data-orig="${esc(img)}" alt="${label}" loading="lazy"${onload}>${deckle || o === 'l' ? '' : '<span class="tape b"></span>'}</span>`;
     return `<figure style="transform:rotate(${tilt}deg)">${deckle ? `<span class="deckle-wrap">${inner}</span>` : inner}${label ? `<figcaption>${label}</figcaption>` : ''}</figure>`;
@@ -383,7 +387,7 @@
       };
       if (img.complete && img.naturalWidth) fit(); else img.addEventListener('load', fit, { once: true });
       img.addEventListener('error', () => {
-        if (img.src.includes('/_vercel/image')) { img.src = img.dataset.orig; img.dataset.full = img.dataset.orig; }
+        if (img.src.includes('/images/live/')) { img.src = img.dataset.orig; img.dataset.full = img.dataset.orig; }
       }, { once: true });
     });
     cur = Math.min(keep, leaves.length); render(true);

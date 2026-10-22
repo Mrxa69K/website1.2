@@ -212,24 +212,6 @@
       "permanent": true
     }
   ],
-  "images": {
-    "sizes": [
-      640,
-      1080,
-      1920
-    ],
-    "formats": [
-      "image/webp"
-    ],
-    "minimumCacheTTL": 2678400,
-    "remotePatterns": [
-      {
-        "protocol": "https",
-        "hostname": "amrzoqmnkfnewujbeqdn.supabase.co",
-        "pathname": "/storage/v1/object/public/**"
-      }
-    ]
-  },
   "headers": [
     {
       "source": "/(.*)",
