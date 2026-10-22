@@ -2,83 +2,147 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "destination": "/fr/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "destination": "/ar/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "ar"
+        }
+      ]
+    },
+    {
       "source": "/proposal.html",
-      "destination": "/?go=proposals",
+      "destination": "/proposal-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/proposalfr.html",
-      "destination": "/?go=proposals&lang=fr",
+      "destination": "/fr/photographe-demande-en-mariage-paris/",
       "permanent": true
     },
     {
       "source": "/proposal",
-      "destination": "/?go=proposals",
+      "destination": "/proposal-photographer-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/proposal/",
+      "destination": "/proposal-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/proposalfr",
-      "destination": "/?go=proposals&lang=fr",
+      "destination": "/fr/photographe-demande-en-mariage-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/proposalfr/",
+      "destination": "/fr/photographe-demande-en-mariage-paris/",
       "permanent": true
     },
     {
       "source": "/wedding.html",
-      "destination": "/?go=weddings",
+      "destination": "/wedding-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/weddingfr.html",
-      "destination": "/?go=weddings&lang=fr",
+      "destination": "/fr/photographe-mariage-paris/",
       "permanent": true
     },
     {
       "source": "/wedding",
-      "destination": "/?go=weddings",
+      "destination": "/wedding-photographer-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/wedding/",
+      "destination": "/wedding-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/weddingfr",
-      "destination": "/?go=weddings&lang=fr",
+      "destination": "/fr/photographe-mariage-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/weddingfr/",
+      "destination": "/fr/photographe-mariage-paris/",
       "permanent": true
     },
     {
       "source": "/portrait.html",
-      "destination": "/?go=portraits",
+      "destination": "/couple-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/portraitfr.html",
-      "destination": "/?go=portraits&lang=fr",
+      "destination": "/fr/photographe-couple-paris/",
       "permanent": true
     },
     {
       "source": "/portrait",
-      "destination": "/?go=portraits",
+      "destination": "/couple-photographer-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/portrait/",
+      "destination": "/couple-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/portraitfr",
-      "destination": "/?go=portraits&lang=fr",
+      "destination": "/fr/photographe-couple-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/portraitfr/",
+      "destination": "/fr/photographe-couple-paris/",
       "permanent": true
     },
     {
       "source": "/event.html",
-      "destination": "/?go=concerts",
+      "destination": "/concert-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/eventfr.html",
-      "destination": "/?go=concerts&lang=fr",
+      "destination": "/fr/photographe-concert-evenement-paris/",
       "permanent": true
     },
     {
       "source": "/event",
-      "destination": "/?go=concerts",
+      "destination": "/concert-photographer-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/event/",
+      "destination": "/concert-photographer-paris/",
       "permanent": true
     },
     {
       "source": "/eventfr",
-      "destination": "/?go=concerts&lang=fr",
+      "destination": "/fr/photographe-concert-evenement-paris/",
+      "permanent": true
+    },
+    {
+      "source": "/eventfr/",
+      "destination": "/fr/photographe-concert-evenement-paris/",
       "permanent": true
     },
     {
@@ -88,17 +152,7 @@
     },
     {
       "source": "/sportfr.html",
-      "destination": "/?go=sport&lang=fr",
-      "permanent": true
-    },
-    {
-      "source": "/sport",
-      "destination": "/?go=sport",
-      "permanent": true
-    },
-    {
-      "source": "/sportfr",
-      "destination": "/?go=sport&lang=fr",
+      "destination": "/fr/?go=sport",
       "permanent": true
     },
     {
@@ -108,17 +162,7 @@
     },
     {
       "source": "/aboutfr.html",
-      "destination": "/?go=me&lang=fr",
-      "permanent": true
-    },
-    {
-      "source": "/about",
-      "destination": "/?go=me",
-      "permanent": true
-    },
-    {
-      "source": "/aboutfr",
-      "destination": "/?go=me&lang=fr",
+      "destination": "/fr/?go=me",
       "permanent": true
     },
     {
@@ -128,17 +172,7 @@
     },
     {
       "source": "/reviewfr.html",
-      "destination": "/?go=me&lang=fr",
-      "permanent": true
-    },
-    {
-      "source": "/review",
-      "destination": "/?go=me",
-      "permanent": true
-    },
-    {
-      "source": "/reviewfr",
-      "destination": "/?go=me&lang=fr",
+      "destination": "/fr/?go=me",
       "permanent": true
     },
     {
@@ -148,17 +182,7 @@
     },
     {
       "source": "/servicesfr.html",
-      "destination": "/?go=book&lang=fr",
-      "permanent": true
-    },
-    {
-      "source": "/services",
-      "destination": "/?go=book",
-      "permanent": true
-    },
-    {
-      "source": "/servicesfr",
-      "destination": "/?go=book&lang=fr",
+      "destination": "/fr/?go=book",
       "permanent": true
     },
     {
@@ -168,7 +192,92 @@
     },
     {
       "source": "/contactfr.html",
-      "destination": "/?go=book&lang=fr",
+      "destination": "/fr/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/indexfr.html",
+      "destination": "/fr/",
+      "permanent": true
+    },
+    {
+      "source": "/sport",
+      "destination": "/?go=sport",
+      "permanent": true
+    },
+    {
+      "source": "/sport/",
+      "destination": "/?go=sport",
+      "permanent": true
+    },
+    {
+      "source": "/sportfr",
+      "destination": "/fr/?go=sport",
+      "permanent": true
+    },
+    {
+      "source": "/sportfr/",
+      "destination": "/fr/?go=sport",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/aboutfr",
+      "destination": "/fr/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/aboutfr/",
+      "destination": "/fr/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/review",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/review/",
+      "destination": "/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/reviewfr",
+      "destination": "/fr/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/reviewfr/",
+      "destination": "/fr/?go=me",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/services/",
+      "destination": "/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/servicesfr",
+      "destination": "/fr/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/servicesfr/",
+      "destination": "/fr/?go=book",
       "permanent": true
     },
     {
@@ -177,22 +286,37 @@
       "permanent": true
     },
     {
-      "source": "/contactfr",
-      "destination": "/?go=book&lang=fr",
+      "source": "/contact/",
+      "destination": "/?go=book",
       "permanent": true
     },
     {
-      "source": "/indexfr.html",
-      "destination": "/?lang=fr",
+      "source": "/contactfr",
+      "destination": "/fr/?go=book",
+      "permanent": true
+    },
+    {
+      "source": "/contactfr/",
+      "destination": "/fr/?go=book",
       "permanent": true
     },
     {
       "source": "/indexfr",
-      "destination": "/?lang=fr",
+      "destination": "/fr/",
+      "permanent": true
+    },
+    {
+      "source": "/indexfr/",
+      "destination": "/fr/",
       "permanent": true
     },
     {
       "source": "/en",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/",
       "destination": "/",
       "permanent": true
     },
@@ -252,5 +376,6 @@
         }
       ]
     }
-  ]
+  ],
+  "trailingSlash": true
 }

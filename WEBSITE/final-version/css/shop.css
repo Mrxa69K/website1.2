@@ -852,13 +852,14 @@ footer.shopfoot a { color: var(--navy); font-weight: 700; }
 
 /* ---------- language switch ---------- */
 .lang-switch { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(253,246,234,.55); border: 2px solid var(--navy); direction: ltr; }
-.lang-switch button {
+.lang-switch a, .lang-switch button {
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
   min-width: 38px; min-height: 34px; padding: 0 8px; border: 0; border-radius: 999px; cursor: pointer; background: none;
-  font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 1px; color: var(--navy);
+  font-family: 'Fraunces', Georgia, serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; color: var(--navy);
 }
-.lang-switch button[lang="ar"] { font-family: 'Tajawal', 'Amiri', var(--body); font-size: 16px; letter-spacing: 0; }
-.lang-switch button[aria-pressed="true"] { background: var(--navy); color: var(--cream); }
-.lang-switch button:not([aria-pressed="true"]):hover { background: var(--pink); }
+.lang-switch [lang="ar"] { font-family: 'Tajawal', 'Amiri', serif; font-size: 16px; letter-spacing: 0; }
+.lang-switch [aria-current="true"] { background: var(--navy); color: var(--cream); }
+.lang-switch :not([aria-current="true"]):hover { background: var(--pink); }
 .shop-lang { display: flex; justify-content: flex-end; max-width: 1100px; margin: 0 auto; padding-top: max(12px, env(safe-area-inset-top, 0px)); }
 .shop-lang + .awning { margin-top: 10px; }
 .topbar .lang-switch { flex: none; }
@@ -883,7 +884,7 @@ footer.shopfoot .lang-switch { flex-basis: auto; }
 }
 [dir="rtl"] .btn svg { transform: scaleX(-1); }
 :root[lang="ar"] body { font-size: 18px; }
-[dir="rtl"] *:not(.lang-switch button) { letter-spacing: 0 !important; }
+[dir="rtl"] *:not(.lang-switch a) { letter-spacing: 0 !important; }
 [dir="rtl"] .groovy, [dir="rtl"] .emboss { font-style: normal; }
 /* the album, the envelope and the photo pages keep their physical layout */
 [dir="rtl"] .album-stage, [dir="rtl"] .book-viewport, [dir="rtl"] .album-controls, [dir="rtl"] .mail, [dir="rtl"] .storefront, [dir="rtl"] .burst, [dir="rtl"] .mock { direction: ltr; }
@@ -903,3 +904,9 @@ footer.shopfoot .lang-switch { flex-basis: auto; }
 }
 /* long welcome titles (FR "Bienvenue chez moi !") break between words on a phone, never mid-word */
 .groovy span { white-space: nowrap; }
+
+/* ---------- links to the service pages (catalogue + footer) ---------- */
+.shelf-links, .foot-services { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
+.shelf-links { margin-top: 14px; }
+.shelf-links a, .foot-services a { color: var(--navy); font-weight: 700; }
+.foot-services { flex-basis: 100%; }

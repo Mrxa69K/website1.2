@@ -8,31 +8,33 @@
 <meta name="theme-color" content="#7ab8cb">
 <link rel="canonical" href="https://melissaphotographyparis.fr/">
 <link rel="alternate" hreflang="en" href="https://melissaphotographyparis.fr/">
-<link rel="alternate" hreflang="fr" href="https://melissaphotographyparis.fr/?lang=fr">
-<link rel="alternate" hreflang="ar" href="https://melissaphotographyparis.fr/?lang=ar">
+<link rel="alternate" hreflang="fr" href="https://melissaphotographyparis.fr/fr/">
+<link rel="alternate" hreflang="ar" href="https://melissaphotographyparis.fr/ar/">
 <link rel="alternate" hreflang="x-default" href="https://melissaphotographyparis.fr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Melissa's Photography Paris">
+<meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://melissaphotographyparis.fr/">
 <meta property="og:title" content="Melissa's Photography Paris · Proposal &amp; Wedding Photographer">
-<meta property="og:description" content="Discreet, natural proposal and wedding photos in Paris. FR · EN · AR. Proposals from €290.">
+<meta property="og:description" content="Proposal, wedding, couple and event photographer in Paris. Discreet, natural photos at Trocadéro, Bir-Hakeim, the Louvre and beyond. Speaks French, English and Arabic. Proposals from €290.">
 <meta property="og:image" content="https://melissaphotographyparis.fr/images/proposal/16.webp">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-<link rel="stylesheet" href="css/shop.css?v=2">
+
+<link rel="stylesheet" href="/css/shop.css?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>
-  // pick the language before anything paints, so Arabic never flashes left-to-right
+  // This page is in en. On the English homepage only, send visitors who chose
+  // (or whose phone speaks) French or Arabic to their own version.
   (function () {
+    if (location.pathname !== '/' || 'en' !== 'en') return;
     var l = null;
-    try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('shop-lang'); } catch (e) {}
+    try { l = localStorage.getItem('shop-lang'); } catch (e) {}
     if (!l) { var n = (navigator.language || 'en').slice(0, 2); l = n === 'fr' || n === 'ar' ? n : 'en'; }
-    if (l !== 'fr' && l !== 'ar') l = 'en';
-    document.documentElement.lang = l;
-    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    if (l === 'fr' || l === 'ar') location.replace('/' + l + '/' + location.search + location.hash);
   })();
 </script>
 <script type="application/ld+json">
@@ -78,7 +80,7 @@
 <!-- ================= 1. STOREFRONT ================= -->
 <section class="screen" id="shop" aria-labelledby="shop-title">
   <div class="shop-lang"><div class="lang-switch" role="group" aria-label="Choose your language">
-      <button type="button" data-lang="fr" lang="fr">FR</button><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="ar" lang="ar">ع</button>
+      <a href="/fr/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/" data-lang="en" lang="en" hreflang="en" aria-current="true">EN</a><a href="/ar/" data-lang="ar" lang="ar" hreflang="ar">ع</a>
     </div></div>
   <div class="awning" aria-hidden="true"></div>
   <div class="facade">
@@ -90,8 +92,8 @@
       <div class="shop-window" aria-hidden="true">
         <div class="transom"><span>Proposals &amp; Weddings</span></div>
         <div class="pane">
-          <div class="framed easel tilt"><img src="images/shop/proposal-16.webp" alt=""><span class="ptag" data-from="290"></span></div>
-          <div class="framed small"><img src="images/shop/wedding-016.webp" alt=""></div>
+          <div class="framed easel tilt"><img src="/images/shop/proposal-16.webp" alt=""><span class="ptag" data-from="290"></span></div>
+          <div class="framed small"><img src="/images/shop/wedding-016.webp" alt=""></div>
           <div class="ledge"></div>
         </div>
         <div class="kickplate"><i></i><i></i></div>
@@ -107,8 +109,8 @@
       <div class="shop-window" aria-hidden="true">
         <div class="transom"><span>Portraits &amp; Couples</span></div>
         <div class="pane">
-          <div class="framed small"><img src="images/shop/proposal-proposal3.webp" alt=""></div>
-          <div class="framed easel" style="transform: rotate(3deg)"><img src="images/shop/portrait-2p.webp" alt=""><span class="ptag" data-from="250"></span></div>
+          <div class="framed small"><img src="/images/shop/proposal-proposal3.webp" alt=""></div>
+          <div class="framed easel" style="transform: rotate(3deg)"><img src="/images/shop/portrait-2p.webp" alt=""><span class="ptag" data-from="250"></span></div>
           <div class="ledge"></div>
         </div>
         <div class="kickplate"><i></i><i></i></div>
@@ -130,7 +132,7 @@
       <button type="button" data-go="book">Book</button>
     </nav>
     <div class="lang-switch" role="group" aria-label="Choose your language">
-      <button type="button" data-lang="fr" lang="fr">FR</button><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="ar" lang="ar">ع</button>
+      <a href="/fr/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/" data-lang="en" lang="en" hreflang="en" aria-current="true">EN</a><a href="/ar/" data-lang="ar" lang="ar" hreflang="ar">ع</a>
     </div>
   </div>
 </div>
@@ -246,6 +248,12 @@
       <div class="plank" aria-hidden="true"></div>
     </div>
     <p class="shelf-hint">Prices are starting points. Every session ends in a private online gallery.</p>
+    <nav class="shelf-links" aria-label="Other sessions">
+      <a href="/proposal-photographer-paris/">Proposal photographer</a>
+      <a href="/wedding-photographer-paris/">Wedding photographer</a>
+      <a href="/couple-photographer-paris/">Couple photographer</a>
+      <a href="/concert-photographer-paris/">Concert photographer</a>
+    </nav>
     <div id="ad-slot-cat"></div>
   </div>
 </section>
@@ -564,8 +572,8 @@
         <div class="mock" aria-hidden="true">
           <div class="mock-head"><b>Sofia &amp; Karim</b><span>48 photos</span></div>
           <div class="mock-grid">
-            <img src="images/shop/proposal-16.webp" alt=""><img src="images/shop/proposal-13.webp" alt=""><img src="images/shop/proposal-proposal2.webp" alt="">
-            <img src="images/shop/proposal-22.webp" alt=""><img src="images/shop/proposal-2.webp" alt=""><img src="images/shop/proposal-7.webp" alt="">
+            <img src="/images/shop/proposal-16.webp" alt=""><img src="/images/shop/proposal-13.webp" alt=""><img src="/images/shop/proposal-proposal2.webp" alt="">
+            <img src="/images/shop/proposal-22.webp" alt=""><img src="/images/shop/proposal-2.webp" alt=""><img src="/images/shop/proposal-7.webp" alt="">
           </div>
           <div class="mock-foot"><span>on ArtyDrop</span><span>Download all</span></div>
         </div>
@@ -578,13 +586,19 @@
     </aside>
   </div>
   <footer class="shopfoot">
+    <nav class="foot-services" aria-label="Other sessions">
+      <a href="/proposal-photographer-paris/">Proposal photographer</a>
+      <a href="/wedding-photographer-paris/">Wedding photographer</a>
+      <a href="/couple-photographer-paris/">Couple photographer</a>
+      <a href="/concert-photographer-paris/">Concert photographer</a>
+    </nav>
     <span>Melissa Photography · Paris</span>
     <a href="https://www.instagram.com/melissa_photography_paris" target="_blank" rel="noopener">Instagram</a>
     <a href="https://www.tiktok.com/@thegirlwith1camera" target="_blank" rel="noopener">TikTok</a>
-    <a href="terms.html" data-href-fr="termsfr.html">Terms of use</a>
-    <a href="policy.html" data-href-fr="politique.html">Privacy</a>
+    <a href="/terms.html">Terms of use</a>
+    <a href="/policy.html">Privacy</a>
     <div class="lang-switch" role="group" aria-label="Choose your language">
-      <button type="button" data-lang="fr" lang="fr">FR</button><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="ar" lang="ar">ع</button>
+      <a href="/fr/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/" data-lang="en" lang="en" hreflang="en" aria-current="true">EN</a><a href="/ar/" data-lang="ar" lang="ar" hreflang="ar">ع</a>
     </div>
   </footer>
 </section>
@@ -594,10 +608,10 @@
   <figure><img id="zoom-img" alt=""><figcaption id="zoom-cap"></figcaption></figure>
 </div>
 
-<script src="js/supabase-config.js"></script>
-<script src="js/shop-i18n.js?v=2"></script>
-<script src="js/shop.js?v=2"></script>
+<script src="/js/supabase-config.js"></script>
+<script src="/js/shop-i18n.js?v=3"></script>
+<script src="/js/shop.js?v=3"></script>
 <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
-<script src="js/cookieconsent-config.js" type="module"></script>
+<script src="/js/cookieconsent-config.js" type="module"></script>
 </body>
 </html>

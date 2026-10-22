@@ -279,6 +279,10 @@ window.SHOP_I18N = {
     'Try it for €1': { fr: 'Essayer pour 1 €', ar: 'جرّبوه بـ 1 €' },
 
     // ---------- footer ----------
+    'This shop needs JavaScript to open its door. You can still reach Melissa on': {
+      fr: "Cette boutique a besoin de JavaScript pour ouvrir sa porte. Vous pouvez toujours joindre Melissa sur",
+      ar: 'يحتاج هذا المتجر إلى JavaScript ليفتح بابه. يمكنكم دائماً التواصل مع ميليسا عبر',
+    },
     'Terms of use': { fr: "Conditions d'utilisation", ar: 'شروط الاستخدام' },
     'Privacy': { fr: 'Confidentialité', ar: 'الخصوصية' },
   },

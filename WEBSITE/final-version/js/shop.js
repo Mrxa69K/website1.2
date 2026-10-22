@@ -87,7 +87,7 @@
     document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
     if (l === 'ar') loadArabicFonts();
     try { localStorage.setItem('shop-lang', l); } catch (e) { /* private mode */ }
-    document.querySelectorAll('.lang-switch button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+    document.querySelectorAll('.lang-switch [data-lang]').forEach(b => { if (b.dataset.lang === l) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
     translateStatic();
     renderShelves();
     renderSessions();
@@ -96,13 +96,16 @@
     if (current === 'album') { setAlbumTitle(); buildAlbum(albumKey, true); }
     else updateCounter();
   }
+  // Each language has its own address (/, /fr/, /ar/). Remember the choice and keep the current screen.
   document.addEventListener('click', e => {
-    const b = e.target.closest('.lang-switch button');
-    if (b) setLang(b.dataset.lang);
+    const a = e.target.closest('.lang-switch a[data-lang]');
+    if (!a) return;
+    try { localStorage.setItem('shop-lang', a.dataset.lang); } catch (err) { /* private mode */ }
+    if (location.hash) { e.preventDefault(); location.href = a.getAttribute('href') + location.hash; }
   });
 
   /* ---------- Content ---------- */
-  const S = 'images/shop/';
+  const S = '/images/shop/';
   const ALBUMS = {
     // each inner array is one album page: one or two photos [file, caption, orientation p|l]
     proposals: {
@@ -176,7 +179,7 @@
     '1790201426158-whqkwp', '1790201440471-97l05', '1792614636066-sh867v']);
   function sized(src) {
     const m = /\/([^/?#]+)\.(?:jpe?g|png|webp)(?:[?#].*)?$/i.exec(src);
-    return m && LIGHT.has(m[1]) ? `images/live/${m[1]}.webp` : src;
+    return m && LIGHT.has(m[1]) ? `/images/live/${m[1]}.webp` : src;
   }
   const CAT_TO_ALBUM = {};
   Object.entries(ALBUMS).forEach(([k, a]) => { CAT_TO_ALBUM[a.category] = k; });
@@ -634,8 +637,11 @@
   // old links (?go=proposals, ?go=book …) and bookmarks (#book, #album/weddings)
   const params = new URLSearchParams(location.search);
   const goParam = params.get('go');
-  if (goParam && !location.hash) {
-    const hash = ALBUMS[goParam] ? `#album/${goParam}` : SCREENS.includes(goParam) ? `#${goParam}` : '';
+  const sessParam = params.get('session');
+  if (sessParam && SESSIONS.some(x => x.id === sessParam)) document.getElementById(sessParam).checked = true;
+  if (sessParam) params.delete('session');
+  if ((goParam || sessParam) && !location.hash) {
+    const hash = !goParam ? '' : ALBUMS[goParam] ? `#album/${goParam}` : SCREENS.includes(goParam) ? `#${goParam}` : '';
     params.delete('go');
     const qs = params.toString();
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + hash);
