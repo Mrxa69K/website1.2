@@ -15,7 +15,7 @@ const path = require('path');
 const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
-const SITE = 'https://melissaphotographyparis.fr';
+const SITE = 'https://www.melissaphotographyparis.fr';
 const LANGS = ['en', 'fr', 'ar'];
 const TODAY = new Date().toISOString().slice(0, 10);
 

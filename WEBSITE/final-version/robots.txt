@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /en/
 
-Sitemap: https://melissaphotographyparis.fr/sitemap.xml
+Sitemap: https://www.melissaphotographyparis.fr/sitemap.xml
