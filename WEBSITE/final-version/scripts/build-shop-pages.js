@@ -24,7 +24,7 @@ vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'js/shop-i18n.js'), 'utf8'), 
 const I18N = sandbox.window.SHOP_I18N;
 const C = require('./landing-content.js');
 const B = require('./blog-content.js');
-const BLOG_LANGS = ['en', 'fr'];
+const BLOG_LANGS = ['en', 'fr', 'ar'];
 const blogPath = l => (l === 'en' ? '/blog/' : `/${l}/blog/`);
 const postPath = (p, l) => blogPath(l) + p.slug[l] + '/';
 const template = fs.readFileSync(path.join(__dirname, 'shop-template.html'), 'utf8');
@@ -147,7 +147,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=4">
-<link rel="stylesheet" href="/css/landing.css?v=3">
+<link rel="stylesheet" href="/css/landing.css?v=4">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -266,8 +266,8 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-<link rel="stylesheet" href="/css/shop.css?v=4">
-<link rel="stylesheet" href="/css/landing.css?v=3">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=4">
+<link rel="stylesheet" href="/css/landing.css?v=4">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -306,7 +306,7 @@ function langSwitch(l, to) {
 }
 const blogAlternates = pathFor => BLOG_LANGS.map(x => `<link rel="alternate" hreflang="${x}" href="${SITE}${pathFor(x)}">`).join('\n')
   + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${pathFor('en')}">`;
-const fmtDate = (d, l) => new Date(d + 'T12:00').toLocaleDateString(l === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const fmtDate = (d, l) => new Date(d + 'T12:00').toLocaleDateString({ fr: 'fr-FR', ar: 'ar-u-nu-latn' }[l] || 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const print = ([src, alt, cap], tilt, eager) => `<figure class="post-print" style="--tilt:${tilt}deg"><span class="lp-print"><img src="${src}" alt="${escAttr(alt)}" loading="${eager ? 'eager' : 'lazy'}" width="667" height="1000"></span><figcaption>${escHTML(cap)}</figcaption></figure>`;
 
 // Animated illustration: Bir-Hakeim bridge, the metro crossing it, the tower sparkling, a proposal.
@@ -400,7 +400,7 @@ function buildPost(p, l) {
   const u = B.ui[l], ui = C.ui[l], t = p[l], here = postPath(p, l), home = homePath(l);
   const svc = C.services.find(s => s.key === p.service);
   let k = 0;
-  const heroLabel = l === 'fr' ? "Illustration animée : le pont de Bir-Hakeim, un métro qui passe, la tour Eiffel qui scintille et une demande en mariage" : 'Animated illustration: Bir-Hakeim bridge, a metro passing, the Eiffel Tower sparkling and a proposal';
+  const heroLabel = { fr: "Illustration animée : le pont de Bir-Hakeim, un métro qui passe, la tour Eiffel qui scintille et une demande en mariage", ar: 'رسم متحرّك: جسر بير حكيم، مترو يمرّ، برج إيفل يتلألأ وطلب زواج' }[l] || 'Animated illustration: Bir-Hakeim bridge, a metro passing, the Eiffel Tower sparkling and a proposal';
   const body = `<main class="lp-main post">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <a href="${blogPath(l)}">${escHTML(u.blog)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.title.split(':')[0].trim())}</span></nav>
   <article>

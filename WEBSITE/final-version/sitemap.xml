@@ -141,6 +141,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/blog/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/blog/"/>
   </url>
   <url>
@@ -149,6 +150,16 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/blog/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/blog/"/>
+  </url>
+  <url>
+    <loc>https://www.melissaphotographyparis.fr/ar/blog/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/blog/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/blog/"/>
   </url>
   <url>
@@ -157,6 +168,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/blog/best-places-to-propose-in-paris/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/blog/ou-faire-sa-demande-en-mariage-a-paris/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/blog/best-places-to-propose-in-paris/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/blog/best-places-to-propose-in-paris/"/>
   </url>
   <url>
@@ -165,6 +177,16 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/blog/best-places-to-propose-in-paris/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/blog/ou-faire-sa-demande-en-mariage-a-paris/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/blog/best-places-to-propose-in-paris/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/blog/best-places-to-propose-in-paris/"/>
+  </url>
+  <url>
+    <loc>https://www.melissaphotographyparis.fr/ar/blog/best-places-to-propose-in-paris/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/blog/best-places-to-propose-in-paris/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/blog/ou-faire-sa-demande-en-mariage-a-paris/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/blog/best-places-to-propose-in-paris/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/blog/best-places-to-propose-in-paris/"/>
   </url>
   <url><loc>https://www.melissaphotographyparis.fr/terms.html</loc><priority>0.2</priority></url>

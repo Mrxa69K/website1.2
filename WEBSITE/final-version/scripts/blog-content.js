@@ -1,4 +1,4 @@
-// Blog posts. Each post exists in English and French (Arabic can be added per post).
+// Blog posts, in English, French and Arabic.
 // Edit here, then run:  node scripts/build-shop-pages.js
 // Sections ("spots") are rendered in order; "photo" is optional. "honest" is Melissa's own note.
 
@@ -8,6 +8,7 @@ module.exports = {
   ui: {
     en: { blog: 'Blog', blogTitle: "Melissa's notebook", blogLede: 'Spots, tips and real stories from proposals, weddings and couple sessions in Paris.', read: 'Read', by: 'By Melissa, proposal photographer in Paris', tipsTitle: 'Good to know', ctaTitle: 'Planning yours?', ctaText: "Tell me your idea in the order envelope. I'll help you pick the spot and the time, and I'll hide in the crowd for the yes.", ctaBtn: 'Book a proposal shoot', ctaMore: 'See the proposal page', back: 'All articles', practical: 'Practical' },
     fr: { blog: 'Blog', blogTitle: 'Le carnet de Melissa', blogLede: 'Des lieux, des conseils et de vraies histoires de demandes en mariage, de mariages et de séances couple à Paris.', read: 'Lire', by: 'Par Melissa, photographe de demandes en mariage à Paris', tipsTitle: 'Bon à savoir', ctaTitle: 'Vous préparez la vôtre ?', ctaText: "Racontez-moi votre idée dans l'enveloppe de commande. Je vous aide à choisir le lieu et l'heure, et je me cache dans la foule pour le oui.", ctaBtn: 'Réserver une demande en mariage', ctaMore: 'Voir la page demande en mariage', back: 'Tous les articles', practical: 'Pratique' },
+    ar: { blog: 'المدونة', blogTitle: 'دفتر ميليسا', blogLede: 'أماكن ونصائح وقصص حقيقية من طلبات الزواج والأعراس وجلسات الأزواج في باريس.', read: 'اقرأوا', by: 'بقلم ميليسا، مصوّرة طلبات الزواج في باريس', tipsTitle: 'معلومات مفيدة', ctaTitle: 'تحضّرون طلبكم؟', ctaText: 'احكوا لي فكرتكم في ظرف الطلب. سأساعدكم في اختيار المكان والتوقيت، وسأختبئ بين الحشود لألتقط لحظة «نعم».', ctaBtn: 'احجزوا تصوير طلب الزواج', ctaMore: 'صفحة طلبات الزواج', back: 'كل المقالات', practical: 'معلومات عملية' },
   },
   posts: [
     {
@@ -17,7 +18,7 @@ module.exports = {
       session: 's-prop',
       cover: P + 'proposal-22.webp',
       hero: 'bir-hakeim',
-      slug: { en: 'best-places-to-propose-in-paris', fr: 'ou-faire-sa-demande-en-mariage-a-paris' },
+      slug: { en: 'best-places-to-propose-in-paris', fr: 'ou-faire-sa-demande-en-mariage-a-paris', ar: 'best-places-to-propose-in-paris' },
       en: {
         title: 'Skip Trocadéro: 6 proposal spots Parisians actually love',
         short: "An honest guide from a Paris proposal photographer: where locals say yes, when to go, and why I don't shoot at Trocadéro any more.",
@@ -117,6 +118,56 @@ module.exports = {
           "Envie de lumières, de bougies, d'un tapis ou des lettres « MARRY ME » ? Je peux installer la décoration pour vous.",
         ],
         ending: { photo: [P + 'proposal-7.webp', 'Un couple qui repart fiancé', 'Repartis fiancés'] },
+      },
+      ar: {
+        title: 'انسوا تروكاديرو: 6 أماكن يختارها الباريسيون فعلاً لطلب الزواج',
+        short: 'دليل صادق من مصوّرة طلبات زواج في باريس: أين يقول الباريسيون «نعم»، متى تذهبون، ولماذا لم أعد أصوّر في تروكاديرو.',
+        desc: 'أين تطلبون الزواج في باريس بعيداً عن الزحام: جسر بير حكيم، ممشى البجع، شارع كامويش، حديقة فير غالان، القصر الملكي وحديقة سرّية. نصائح صادقة من مصوّرة طلبات زواج في باريس.',
+        intro: [
+          'كل الأدلة السياحية ترسلكم إلى تروكاديرو. صوّرت هناك طلبات زواج، وسأكون صريحة معكم: ليس المكان الذي أنصح به من أحب. إليكم أولاً تجربتي، ثم الأماكن الستة التي يختارها الباريسيون فعلاً: برج إيفل بلا زحام، ضفاف السين، حدائق مخفية وخطة بديلة في حال المطر.',
+        ],
+        honest: {
+          title: 'رأيي الصريح في تروكاديرو',
+          p: [
+            'المكان مزدحم من آخر الصباح حتى منتصف الليل، وحيث يكون الزحام يكون النشّالون. خلال إحدى جلسات التصوير هناك، سُرقت قلادة من أحد الأزواج. بصراحة، ليس مكاناً مريحاً للعمل.',
+            'لذلك صرت أوجّه الأزواج إلى أماكن أخرى. إن كنتم تريدون هذه الإطلالة على البرج حقاً، فاذهبوا إلى شوارع قريبة (الأماكن من 1 إلى 3 أدناه). ستحصلون على السحر نفسه، وستستمتعون باللحظة فعلاً.',
+          ],
+          sign: '— ميليسا',
+        },
+        spots: [
+          { h2: '1. جسر بير حكيم: المفضّل لديّ', kicker: 'الدائرة 15 · مترو Bir-Hakeim (الخط 6) أو Passy',
+            photo: [P + 'proposal-22.webp', 'خطيبان جديدان أمام برج إيفل المتلألئ', 'حين يتلألأ البرج'],
+            p: ['هنا أرسل معظم الأزواج. يمرّ ممشى المشاة تحت المترو المعلّق، تحيط به صفوف من الأعمدة الحديدية، وبرج إيفل على بعد خطوات. المشهد سينمائي وأكثر خصوصية بكثير من تروكاديرو.',
+                'الصباح الباكر هو الأهدأ. لاحقاً في النهار يأتي أزواج آخرون، فنختار مكاناً بين عمودين لا يمرّ فيه أحد أثناء لحظتكم. ميزة إضافية: سطح المترو فوقكم يحميكم قليلاً من المطر الخفيف.'] },
+          { h2: '2. ممشى البجع: الجزيرة السرّية', kicker: 'الدائرة 15 · مفتوح 24/24 · الدخول من منتصف جسر بير حكيم',
+            photo: null,
+            p: ['من منتصف جسر بير حكيم، ينزل درج إلى جزيرة ضيّقة وسط نهر السين: نحو 850 متراً من الممشى تظلّله أكثر من 300 شجرة. يأتي الباريسيون إليها للركض والقراءة ونزهة الكلاب، ونادراً ما يجدها السيّاح.',
+                'امشوا نحو تمثال الحرية الصغير في آخر الجزيرة، أو ابقوا قرب الجسر لرؤية البرج بين الأشجار. مثالي إن أردتم أن يبدو الطلب كنزهة هادئة لا كعرض أمام الناس.'] },
+          { h2: '3. شارع كامويش: البرج من شارع باريسي', kicker: 'الدائرة 16 · على بعد دقائق من مترو Trocadéro · مجاني، 24/24',
+            photo: null,
+            p: ['شارع سكني صغير مغلق النهاية، فيه درج حجري وإطلالة كالشرفة على برج إيفل فوق الأسطح. يبعد دقائق عن ساحة تروكاديرو، لكنك تشعر وكأنك في عالم آخر.',
+                'أصبح المكان معروفاً أكثر لدى المصوّرين مؤخراً، فتعالوا عند شروق الشمس أو في أيام الأسبوع. مثالي لمن يريد البرج في الخلفية بلا زحام خلفه.'] },
+          { h2: '4. حديقة فير غالان: طرف الجزيرة', kicker: 'الدائرة 1 · Place du Pont-Neuf · مفتوحة 24/24، تُغلق عند الرياح القوية',
+            photo: null,
+            p: ['بعد النزول على درج جسر Pont-Neuf، في الطرف الأقصى لجزيرة لا سيتيه، حديقة صغيرة فيها صفصافة باكية على مستوى الماء تقريباً. يأتي إليها الباريسيون للنزهات ومشاهدة الغروب، مقابل متحف اللوفر وجسر الفنون.',
+                'الساعة الذهبية هنا ساحرة. تُغلق الحديقة عند الرياح القوية أو سوء الطقس، فاحتفظوا بخطة بديلة.'] },
+          { h2: '5. القصر الملكي: أروقة وحديقة وأعمدة مخطّطة', kicker: 'الدائرة 1 · مترو Palais-Royal–Musée du Louvre · مجاني · من 8:00 إلى 20:30 (أكتوبر–مارس)، وحتى 22:30 (أبريل–سبتمبر)',
+            photo: [P + 'proposal-2.webp', 'طلب زواج تحت أروقة حجرية في وسط باريس', 'أروقة اللوفر، على بعد خطوات'],
+            p: ['ممرّات تظلّلها الأشجار، ونافورة، وأروقة حجرية طويلة، وأعمدة دانيال بورين المخطّطة بالأبيض والأسود في الساحة: مكان أنيق وباريسي جداً، وهادئ في الصباح.',
+                'وهو أيضاً خطتي البديلة المفضّلة في حال المطر: تحت أروقة القصر الملكي، أو أروقة اللوفر على بعد دقيقتين، تبقون بعيداً عن المطر وتبقى الصور جميلة.'] },
+          { h2: '6. حديقة متحف الحياة الرومانسية', kicker: 'الدائرة 9 · 16 rue Chaptal · الحديقة مجانية، من 10:00 إلى 18:00',
+            photo: null,
+            p: ['ساحة خضراء عند سفح مونمارتر، فيها ورود وأشجار وصالون شاي صغير. تشعرون وكأنكم في بيت ريفي مخبّأ وسط المدينة، ومعظم زوار باريس لم يسمعوا به قط.',
+                'مثالية لطلب هادئ في النهار يتبعه كوب شاي. تعالوا عند الافتتاح لأهدأ لحظة.'] },
+        ],
+        tips: [
+          'التوقيت: شروق الشمس لأماكن خالية، والساعة الذهبية لضوء دافئ، وبعد حلول الظلام لأضواء برج إيفل (يتلألأ خمس دقائق في بداية كل ساعة).',
+          'أينما ذهبتم، أبقوا الهاتف والحقيبة والخاتم قريبين منكم: الأماكن السياحية المزدحمة تجذب النشّالين.',
+          'اتفقوا على إشارة مع المصوّرة، وأخبروني بالضبط أين ستتوقفون. أصل مبكراً وأندمج بين الناس.',
+          'ضعوا الخاتم في جيب أمامي لا في حقيبة، حتى لا تبحثوا عنه في اللحظة الكبرى.',
+          'تريدون أضواء أو شموعاً أو سجادة أو حروف «MARRY ME»؟ يمكنني تجهيز الديكور لكم.',
+        ],
+        ending: { photo: [P + 'proposal-7.webp', 'زوجان يغادران خطيبين', 'غادرا خطيبين'] },
       },
     },
   ],

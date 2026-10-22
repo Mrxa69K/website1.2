@@ -152,3 +152,4 @@ body.lp { min-height: 100%; }
   .bh-spark { opacity: 1; }
   .js .reveal { opacity: 1; translate: none; transition: none; }
 }
+@media (max-width: 640px) { [dir="rtl"] .post-print { float: none; margin: 6px auto 16px; } }
