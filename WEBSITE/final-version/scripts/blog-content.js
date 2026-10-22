@@ -21,7 +21,7 @@ module.exports = {
       slug: { en: 'best-places-to-propose-in-paris', fr: 'ou-faire-sa-demande-en-mariage-a-paris', ar: 'best-places-to-propose-in-paris' },
       en: {
         title: 'Skip Trocadéro: 6 proposal spots Parisians actually love',
-        short: "An honest guide from a Paris proposal photographer: where locals say yes, when to go, and why I don't shoot at Trocadéro any more.",
+        short: "An honest guide from a Paris proposal photographer: where locals say yes, when to go, and why I avoid Trocadéro.",
         desc: 'Where to propose in Paris without the crowds: Bir-Hakeim bridge, Allée des Cygnes, Avenue de Camoëns, Square du Vert-Galant, Palais-Royal and a secret garden. Honest tips from a Paris proposal photographer.',
         intro: [
           "Every guidebook sends you to Trocadéro. I've photographed proposals there, and I'll be honest with you: it's not where I'd send someone I love. Below is my own experience, then the six places Parisians actually choose: the Eiffel Tower without the circus, river views, hidden gardens and a plan B for rain.",
@@ -29,7 +29,7 @@ module.exports = {
         honest: {
           title: 'My honest take on Trocadéro',
           p: [
-            "It's packed from late morning until midnight, and where there's a crowd, there are pickpockets. During one of my shoots there, a couple had a necklace stolen. Honestly, it's not a comfortable place to work.",
+            "I avoid it. It's packed from late morning until midnight, with people walking through every shot, and that's not what you want for a moment this personal. A proposal deserves a little calm.",
             "So I now steer couples elsewhere. If you really want that view of the tower, go a few streets away (spots 1 to 3 below). You get the same magic, and you can actually enjoy the moment.",
           ],
           sign: '— Melissa',
@@ -71,7 +71,7 @@ module.exports = {
       },
       fr: {
         title: 'Oubliez le Trocadéro : 6 lieux où les Parisiens font vraiment leur demande en mariage',
-        short: "Le guide honnête d'une photographe de demandes à Paris : où les Parisiens disent oui, à quelle heure y aller, et pourquoi je ne shoote plus au Trocadéro.",
+        short: "Le guide honnête d'une photographe de demandes à Paris : où les Parisiens disent oui, à quelle heure y aller, et pourquoi j'évite le Trocadéro.",
         desc: "Où faire sa demande en mariage à Paris sans la foule : pont de Bir-Hakeim, allée des Cygnes, avenue de Camoëns, square du Vert-Galant, Palais-Royal et un jardin secret. Les conseils honnêtes d'une photographe de demandes à Paris.",
         intro: [
           "Tous les guides vous envoient au Trocadéro. J'y ai photographié des demandes, et je vais être honnête : ce n'est pas là que j'enverrais quelqu'un que j'aime. Voici d'abord mon expérience, puis les six lieux que les Parisiens choisissent vraiment : la tour Eiffel sans le cirque, la Seine, des jardins cachés et un plan B pour la pluie.",
@@ -79,7 +79,7 @@ module.exports = {
         honest: {
           title: 'Mon avis honnête sur le Trocadéro',
           p: [
-            "C'est bondé de la fin de matinée jusqu'à minuit, et là où il y a la foule, il y a des pickpockets. Pendant un de mes shootings, un couple s'est fait voler un collier. Honnêtement, ce n'est pas un endroit où l'on se sent à l'aise pour travailler.",
+            "Je l'évite. C'est bondé de la fin de matinée jusqu'à minuit, avec du monde qui passe dans chaque photo, et ce n'est pas ce qu'on veut pour un moment aussi intime. Une demande en mariage mérite un peu de calme.",
             "Alors aujourd'hui, j'oriente les couples ailleurs. Si vous tenez vraiment à cette vue sur la tour, allez à quelques rues de là (lieux 1 à 3 ci-dessous). Vous aurez la même magie, et vous pourrez vraiment profiter du moment.",
           ],
           sign: '— Melissa',
@@ -121,7 +121,7 @@ module.exports = {
       },
       ar: {
         title: 'انسوا تروكاديرو: 6 أماكن يختارها الباريسيون فعلاً لطلب الزواج',
-        short: 'دليل صادق من مصوّرة طلبات زواج في باريس: أين يقول الباريسيون «نعم»، متى تذهبون، ولماذا لم أعد أصوّر في تروكاديرو.',
+        short: 'دليل صادق من مصوّرة طلبات زواج في باريس: أين يقول الباريسيون «نعم»، متى تذهبون، ولماذا أتجنّب تروكاديرو.',
         desc: 'أين تطلبون الزواج في باريس بعيداً عن الزحام: جسر بير حكيم، ممشى البجع، شارع كامويش، حديقة فير غالان، القصر الملكي وحديقة سرّية. نصائح صادقة من مصوّرة طلبات زواج في باريس.',
         intro: [
           'كل الأدلة السياحية ترسلكم إلى تروكاديرو. صوّرت هناك طلبات زواج، وسأكون صريحة معكم: ليس المكان الذي أنصح به من أحب. إليكم أولاً تجربتي، ثم الأماكن الستة التي يختارها الباريسيون فعلاً: برج إيفل بلا زحام، ضفاف السين، حدائق مخفية وخطة بديلة في حال المطر.',
@@ -129,7 +129,7 @@ module.exports = {
         honest: {
           title: 'رأيي الصريح في تروكاديرو',
           p: [
-            'المكان مزدحم من آخر الصباح حتى منتصف الليل، وحيث يكون الزحام يكون النشّالون. خلال إحدى جلسات التصوير هناك، سُرقت قلادة من أحد الأزواج. بصراحة، ليس مكاناً مريحاً للعمل.',
+            'أتجنّبه. المكان مزدحم من آخر الصباح حتى منتصف الليل، والناس يمرّون في كل صورة، وهذا ليس ما تريدونه للحظة بهذه الخصوصية. طلب الزواج يستحق شيئاً من الهدوء.',
             'لذلك صرت أوجّه الأزواج إلى أماكن أخرى. إن كنتم تريدون هذه الإطلالة على البرج حقاً، فاذهبوا إلى شوارع قريبة (الأماكن من 1 إلى 3 أدناه). ستحصلون على السحر نفسه، وستستمتعون باللحظة فعلاً.',
           ],
           sign: '— ميليسا',

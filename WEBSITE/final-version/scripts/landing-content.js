@@ -60,7 +60,7 @@ module.exports = {
         ],
         included: ['1 hour on location', '20+ edited photos', 'Delivered within 24 hours', 'A private online gallery to download and share', 'Help choosing the spot and the right time'],
         faq: [
-          ['Where are the best places to propose in Paris?', 'My favourite is the Bir-Hakeim bridge, with the Allée des Cygnes just below it. Avenue de Camoëns, Square du Vert-Galant and the Palais-Royal are lovely too. I avoid Trocadéro: it is very crowded and full of pickpockets. Read my full guide on the blog.'],
+          ['Where are the best places to propose in Paris?', 'My favourite is the Bir-Hakeim bridge, with the Allée des Cygnes just below it. Avenue de Camoëns, Square du Vert-Galant and the Palais-Royal are lovely too. I avoid Trocadéro: it is far too crowded for such a personal moment. Read my full guide on the blog.'],
           ['How will my partner not notice you?', 'We agree on the exact spot and a signal beforehand. I arrive early, blend in with the other visitors and start shooting from a distance, then come closer once the yes is said.'],
           ['What if it rains?', 'We watch the forecast together. We can move the time, or pick a covered spot such as the Louvre arcades.'],
           ['When do we get the photos?', 'Within 24 hours, in a private online gallery you can download and share with family and friends.'],
@@ -79,7 +79,7 @@ module.exports = {
         ],
         included: ['1 heure sur place', '20+ photos retouchées', 'Livrées en 24 h', 'Une galerie privée en ligne pour télécharger et partager', "Mes conseils pour choisir le lieu et l'heure"],
         faq: [
-          ['Quels sont les plus beaux endroits pour une demande à Paris ?', "Mon préféré, c'est le pont de Bir-Hakeim, avec l'allée des Cygnes juste en dessous. L'avenue de Camoëns, le square du Vert-Galant et le Palais-Royal sont superbes aussi. J'évite le Trocadéro : il y a énormément de monde et beaucoup de pickpockets. Lisez mon guide complet sur le blog."],
+          ['Quels sont les plus beaux endroits pour une demande à Paris ?', "Mon préféré, c'est le pont de Bir-Hakeim, avec l'allée des Cygnes juste en dessous. L'avenue de Camoëns, le square du Vert-Galant et le Palais-Royal sont superbes aussi. J'évite le Trocadéro : il y a beaucoup trop de monde pour un moment aussi intime. Lisez mon guide complet sur le blog."],
           ['Comment faire pour que ma moitié ne vous remarque pas ?', "On convient à l'avance du lieu exact et d'un signal. J'arrive en avance, je me fonds parmi les visiteurs et je commence à photographier de loin, puis je m'approche une fois le oui prononcé."],
           ['Et s’il pleut ?', "On surveille la météo ensemble. On peut décaler l'heure, ou choisir un endroit abrité comme les arcades du Louvre."],
           ['Quand recevons-nous les photos ?', 'Sous 24 h, dans une galerie privée en ligne que vous pouvez télécharger et partager avec vos proches.'],
@@ -98,7 +98,7 @@ module.exports = {
         ],
         included: ['ساعة في المكان', 'أكثر من 20 صورة معدّلة', 'التسليم خلال 24 ساعة', 'معرض خاص على الإنترنت للتحميل والمشاركة', 'مساعدة في اختيار المكان والتوقيت المناسب'],
         faq: [
-          ['ما هي أجمل الأماكن لطلب الزواج في باريس؟', 'المكان المفضل لدي هو جسر بير حكيم، مع ممشى البجع (Allée des Cygnes) أسفله مباشرة. شارع كامويش وحديقة فير غالان والقصر الملكي (Palais-Royal) جميلة أيضاً. أتجنب تروكاديرو: فهو مزدحم جداً وكثير النشّالين.'],
+          ['ما هي أجمل الأماكن لطلب الزواج في باريس؟', 'المكان المفضل لدي هو جسر بير حكيم، مع ممشى البجع (Allée des Cygnes) أسفله مباشرة. شارع كامويش وحديقة فير غالان والقصر الملكي (Palais-Royal) جميلة أيضاً. أتجنب تروكاديرو: فهو مزدحم جداً للحظة بهذه الخصوصية.'],
           ['كيف لن يلاحظكِ شريكي؟', 'نتفق مسبقاً على المكان بالضبط وعلى إشارة. أصل مبكراً وأندمج بين الزوار وأبدأ التصوير من بعيد، ثم أقترب بعد قول «نعم».'],
           ['ماذا لو أمطرت؟', 'نتابع حالة الطقس معاً. يمكننا تغيير الموعد أو اختيار مكان مسقوف مثل أروقة اللوفر.'],
           ['متى نستلم الصور؟', 'خلال 24 ساعة، في معرض خاص على الإنترنت يمكنكم تحميله ومشاركته مع العائلة والأصدقاء.'],
