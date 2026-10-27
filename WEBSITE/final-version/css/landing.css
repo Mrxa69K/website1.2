@@ -198,3 +198,73 @@ body.lp { min-height: 100%; }
   .about-facts dl div { grid-template-columns: 1fr; gap: 2px; }
   .about-steps ol { grid-template-columns: 1fr 1fr; }
 }
+
+/* ---------- pro blog ---------- */
+.cat-chip { display: inline-block; background: var(--pink); color: var(--navy); border: 2px solid var(--navy); border-radius: 999px; padding: 1px 10px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+.lp-blog .lp-kicker .cat-chip { margin-inline-end: 2px; }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+.post-meta time { text-transform: none; letter-spacing: 0; font-size: 13px; }
+
+.featured-label { margin: 34px 0 10px; text-align: center; font-weight: 800; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
+.post-card a { display: grid; grid-template-columns: 1fr; gap: 0; text-decoration: none; color: var(--navy); background: var(--cream); border: 3px solid var(--navy); border-radius: 14px; padding: 0; overflow: hidden; box-shadow: 7px 7px 0 var(--navy); height: 100%; transition: transform .2s ease, box-shadow .2s ease; }
+.post-card a:hover { transform: translateY(-4px); box-shadow: 9px 11px 0 var(--navy); }
+.post-cover { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--sheet); }
+.post-cover img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(.1) saturate(.95); transition: transform .5s ease; }
+.post-card a:hover .post-cover img { transform: scale(1.04); }
+.post-card-text { display: grid; gap: 8px; padding: 18px 20px 20px; }
+.post-card h2 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(20px, 2.4vw, 24px); line-height: 1.15; color: var(--navy); text-shadow: none; }
+.post-card p { margin: 0; font-size: 15px; }
+.post-read { margin-top: 4px; font-weight: 800; color: var(--rose-ink); }
+.post-card-big a { grid-template-columns: 1.15fr 1fr; align-items: stretch; }
+.post-card-big .post-cover { aspect-ratio: auto; min-height: 320px; }
+.post-card-big h2 { font-size: clamp(24px, 3.2vw, 34px); }
+.post-card-big .post-card-text { align-content: center; padding: 26px 28px; }
+.cat-filter { margin: 34px 0 6px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.cat-filter button { cursor: pointer; border: 2px solid var(--navy); background: var(--cream); color: var(--navy); border-radius: 999px; padding: 6px 14px; font: inherit; font-weight: 700; font-size: 14px; }
+.cat-filter button[aria-pressed="true"] { background: var(--navy); color: var(--cream); }
+.post-grid { margin-top: 26px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+@media (max-width: 900px) { .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .post-grid { grid-template-columns: 1fr; }
+  .post-card-big a { grid-template-columns: 1fr; }
+  .post-card-big .post-cover { min-height: 0; aspect-ratio: 16 / 10; }
+}
+
+.post-cover-hero { margin: 24px auto 0; width: min(300px, 70%); }
+.post-cover-hero .post-print { float: none; width: 100%; max-width: none; margin: 0; }
+
+.post-toc { background: var(--cream); border: 2px dashed var(--navy); border-radius: 12px; padding: 16px 20px; }
+.post-toc p { font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--rose-ink); }
+.post-toc ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
+.post-toc a { color: var(--navy); font-weight: 700; }
+.post-spot { scroll-margin-top: 80px; }
+
+.post-table-wrap { margin: 14px 0; overflow-x: auto; border: 3px solid var(--navy); border-radius: 12px; background: var(--cream); box-shadow: 5px 5px 0 var(--navy); }
+.post-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.post-table th, .post-table td { padding: 10px 12px; text-align: start; border-bottom: 1px dashed rgba(31,58,77,.25); vertical-align: top; }
+.post-table thead th { background: var(--pink); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+.post-table tbody tr:last-child th, .post-table tbody tr:last-child td { border-bottom: 0; }
+.post-table tbody th { font-weight: 800; }
+.table-note { font-size: 14px; font-style: italic; }
+.post-list-items { margin: 10px 0; padding-inline-start: 22px; display: grid; gap: 6px; }
+
+.post-sources { margin-top: 26px; font-size: 14px; }
+.post-sources h2 { font-family: var(--body); font-weight: 800; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); }
+.post-sources ul { margin: 8px 0 0; padding-inline-start: 20px; display: grid; gap: 4px; }
+.post-sources a { color: var(--navy); }
+
+.post-share { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.post-share span { font-weight: 800; margin-inline-end: 4px; }
+.post-share a { border: 2px solid var(--navy); background: var(--cream); color: var(--navy); border-radius: 999px; padding: 5px 12px; font-weight: 700; font-size: 14px; text-decoration: none; }
+.post-share a:hover { background: var(--pink); }
+
+.author-box { margin-top: 26px; display: grid; grid-template-columns: 96px 1fr; gap: 18px; align-items: center; background: var(--cream); border: 3px solid var(--navy); border-radius: 14px; padding: 18px; box-shadow: 6px 6px 0 var(--pink-deep); }
+.about-avatar.small { width: 96px; border-width: 3px; box-shadow: none; }
+.author-box h2 { font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--navy); }
+.author-box p { margin-top: 4px; font-size: 15px; }
+.author-box a { display: inline-block; margin-top: 6px; color: var(--rose-ink); font-weight: 800; }
+@media (max-width: 520px) { .author-box { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+
+.post-related { margin-top: 50px; }
+.post-related > h2 { text-align: center; font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.4vw, 32px); color: #fff; text-shadow: 2px 2px 0 var(--navy), 4px 4px 0 var(--pink-deep); }
+.post-table td:last-child { white-space: nowrap; font-weight: 800; color: var(--rose-ink); }

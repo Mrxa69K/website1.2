@@ -1,182 +1,24 @@
-// Blog posts, in English, French and Arabic.
-// Edit here, then run:  node scripts/build-shop-pages.js
-// Sections ("spots") are rendered in order; "photo" is optional. "honest" is Melissa's own note.
+// Blog settings: labels and categories. The articles themselves live in scripts/posts/*.json
+// (one file per article, all languages inside). Build with:  node scripts/build-shop-pages.js
+const fs = require('fs');
+const path = require('path');
 
-const P = '/images/shop/';
+const dir = path.join(__dirname, 'posts');
+const posts = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort().reverse()
+  .map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')))
+  .filter(p => !p.draft);
 
 module.exports = {
   ui: {
-    en: { blog: 'Blog', blogTitle: "Melissa's notebook", blogLede: 'Spots, tips and real stories from proposals, weddings and couple sessions in Paris.', read: 'Read', by: 'By Melissa, proposal photographer in Paris', tipsTitle: 'Good to know', ctaTitle: 'Planning yours?', ctaText: "Tell me your idea in the order envelope. I'll help you pick the spot and the time, and I'll hide in the crowd for the yes.", ctaBtn: 'Book a proposal shoot', ctaMore: 'See the proposal page', back: 'All articles', practical: 'Practical', mapBtn: 'Open in Maps' },
-    fr: { blog: 'Blog', blogTitle: 'Le carnet de Melissa', blogLede: 'Des lieux, des conseils et de vraies histoires de demandes en mariage, de mariages et de séances couple à Paris.', read: 'Lire', by: 'Par Melissa, photographe de demandes en mariage à Paris', tipsTitle: 'Bon à savoir', ctaTitle: 'Vous préparez la vôtre ?', ctaText: "Racontez-moi votre idée dans l'enveloppe de commande. Je vous aide à choisir le lieu et l'heure, et je me cache dans la foule pour le oui.", ctaBtn: 'Réserver une demande en mariage', ctaMore: 'Voir la page demande en mariage', back: 'Tous les articles', practical: 'Pratique', mapBtn: 'Ouvrir dans Maps' },
-    ar: { blog: 'المدونة', blogTitle: 'دفتر ميليسا', blogLede: 'أماكن ونصائح وقصص حقيقية من طلبات الزواج والأعراس وجلسات الأزواج في باريس.', read: 'اقرأوا', by: 'بقلم ميليسا، مصوّرة طلبات الزواج في باريس', tipsTitle: 'معلومات مفيدة', ctaTitle: 'تحضّرون طلبكم؟', ctaText: 'احكوا لي فكرتكم في ظرف الطلب. سأساعدكم في اختيار المكان والتوقيت، وسأختبئ بين الحشود لألتقط لحظة «نعم».', ctaBtn: 'احجزوا تصوير طلب الزواج', ctaMore: 'صفحة طلبات الزواج', back: 'كل المقالات', practical: 'معلومات عملية', mapBtn: 'افتحوا في الخرائط' },
+    en: { blog: 'Blog', blogTitle: "Melissa's notebook", blogLede: 'Spots, tips and real stories from proposals, weddings and couple sessions in Paris.', read: 'Read', by: 'By Melissa, proposal photographer in Paris', tipsTitle: 'Good to know', ctaTitle: 'Planning yours?', ctaText: "Tell me your idea in the order envelope. I'll help you pick the spot and the time, and I'll hide in the crowd for the yes.", ctaBtn: 'Book a proposal shoot', ctaMore: 'See the proposal page', back: 'All articles', practical: 'Practical', mapBtn: 'Open in Maps', all: 'All', minRead: n => `${n} min read`, toc: 'In this article', updatedOn: 'Updated', related: 'Keep reading', authorTitle: 'About the author', authorBio: 'Melissa is a proposal, wedding and couple photographer based in Paris. She speaks French, English and Arabic and has been photographing real moments across the city for four years.', authorLink: 'More about Melissa', share: 'Share', sources: 'Sources', featured: 'Latest article' },
+    fr: { blog: 'Blog', blogTitle: 'Le carnet de Melissa', blogLede: 'Des lieux, des conseils et de vraies histoires de demandes en mariage, de mariages et de séances couple à Paris.', read: 'Lire', by: 'Par Melissa, photographe de demandes en mariage à Paris', tipsTitle: 'Bon à savoir', ctaTitle: 'Vous préparez la vôtre ?', ctaText: "Racontez-moi votre idée dans l'enveloppe de commande. Je vous aide à choisir le lieu et l'heure, et je me cache dans la foule pour le oui.", ctaBtn: 'Réserver une demande en mariage', ctaMore: 'Voir la page demande en mariage', back: 'Tous les articles', practical: 'Pratique', mapBtn: 'Ouvrir dans Maps', all: 'Tout', minRead: n => `${n} min de lecture`, toc: 'Au sommaire', updatedOn: 'Mis à jour le', related: 'À lire aussi', authorTitle: 'L’autrice', authorBio: 'Melissa est photographe de demandes en mariage, de mariages et de couples à Paris. Elle parle français, anglais et arabe, et photographie les vrais moments de la ville depuis quatre ans.', authorLink: 'En savoir plus sur Melissa', share: 'Partager', sources: 'Sources', featured: 'Dernier article' },
+    ar: { blog: 'المدونة', blogTitle: 'دفتر ميليسا', blogLede: 'أماكن ونصائح وقصص حقيقية من طلبات الزواج والأعراس وجلسات الأزواج في باريس.', read: 'اقرأوا', by: 'بقلم ميليسا، مصوّرة طلبات الزواج في باريس', tipsTitle: 'معلومات مفيدة', ctaTitle: 'تحضّرون طلبكم؟', ctaText: 'احكوا لي فكرتكم في ظرف الطلب. سأساعدكم في اختيار المكان والتوقيت، وسأختبئ بين الحشود لألتقط لحظة «نعم».', ctaBtn: 'احجزوا تصوير طلب الزواج', ctaMore: 'صفحة طلبات الزواج', back: 'كل المقالات', practical: 'معلومات عملية', mapBtn: 'افتحوا في الخرائط', all: 'الكل', minRead: n => `${n} دقائق للقراءة`, toc: 'في هذا المقال', updatedOn: 'آخر تحديث', related: 'اقرأوا أيضاً', authorTitle: 'عن الكاتبة', authorBio: 'ميليسا مصوّرة طلبات زواج وأعراس وأزواج مقيمة في باريس. تتحدث العربية والفرنسية والإنجليزية، وتصوّر اللحظات الحقيقية في المدينة منذ أربع سنوات.', authorLink: 'المزيد عن ميليسا', share: 'شاركوا', sources: 'المصادر', featured: 'أحدث مقال' },
   },
-  posts: [
-    {
-      key: 'proposal-spots',
-      date: '2026-10-22',
-      service: 'proposal',
-      session: 's-prop',
-      cover: P + 'proposal-22.webp',
-      hero: 'bir-hakeim',
-      places: [
-        { addr: 'Pont de Bir-Hakeim, 75015 Paris · Métro Bir-Hakeim (6)', q: 'Pont de Bir-Hakeim, Paris' },
-        { addr: 'Allée des Cygnes, 75015 Paris · Métro Bir-Hakeim (6)', q: 'Allée des Cygnes, Paris' },
-        { addr: 'Avenue de Camoëns, 75016 Paris · Métro Trocadéro (6, 9)', q: 'Avenue de Camoëns, 75016 Paris' },
-        { addr: 'Square du Vert-Galant, Place du Pont-Neuf, 75001 Paris · Métro Pont Neuf (7)', q: 'Square du Vert-Galant, Paris' },
-        { addr: 'Jardin du Palais-Royal, 75001 Paris · Métro Palais-Royal–Musée du Louvre (1, 7)', q: 'Jardin du Palais-Royal, Paris' },
-        { addr: 'Musée de la Vie romantique, 16 rue Chaptal, 75009 Paris · Métro Blanche / Pigalle', q: 'Musée de la Vie romantique, 16 Rue Chaptal, Paris' },
-      ],
-      slug: { en: 'best-places-to-propose-in-paris', fr: 'ou-faire-sa-demande-en-mariage-a-paris', ar: 'best-places-to-propose-in-paris' },
-      en: {
-        title: 'Skip Trocadéro: 6 proposal spots Parisians actually love',
-        short: "An honest guide from a Paris proposal photographer: where locals say yes, when to go, and why I avoid Trocadéro.",
-        desc: 'Where to propose in Paris without the crowds: Bir-Hakeim bridge, Allée des Cygnes, Avenue de Camoëns, Square du Vert-Galant, Palais-Royal and a secret garden. Honest tips from a Paris proposal photographer.',
-        intro: [
-          "Every guidebook sends you to Trocadéro. I've photographed proposals there, and I'll be honest with you: it's not where I'd send someone I love. Below is my own experience, then the six places Parisians actually choose: the Eiffel Tower without the circus, river views, hidden gardens and a plan B for rain.",
-        ],
-        honest: {
-          title: 'My honest take on Trocadéro',
-          p: [
-            "I avoid it. It's packed from late morning until midnight, with people walking through every shot, and that's not what you want for a moment this personal. A proposal deserves a little calm.",
-            "So I now steer couples elsewhere. If you really want that view of the tower, go a few streets away (spots 1 to 3 below). You get the same magic, and you can actually enjoy the moment.",
-          ],
-          sign: 'xo Melissa',
-        },
-        spots: [
-          { h2: '1. Bir-Hakeim bridge: my favourite', kicker: "Calmest early in the morning",
-            photo: [P + 'proposal-22.webp', 'Newly engaged couple in front of the sparkling Eiffel Tower', 'When the tower sparkles'],
-            p: ["This is where I send most couples. The pedestrian walkway runs under the elevated metro, framed by rows of iron columns, with the Eiffel Tower right there. It feels cinematic and much more intimate than Trocadéro.",
-                'Early morning is the calmest. Later in the day other couples come too, so we choose a spot between two columns where nobody walks through your moment. Bonus: the metro deck above gives some shelter if it drizzles.'] },
-          { h2: '2. Allée des Cygnes: the secret island', kicker: "Open 24/7 · stairs from the middle of Bir-Hakeim bridge",
-            photo: null,
-            p: ["From the middle of Bir-Hakeim bridge, stairs lead down to a narrow island in the Seine: about 850 metres of tree-lined path, with more than 300 trees. Parisians come here to run, read and walk the dog; tourists rarely find it.",
-                "Walk towards the small Statue of Liberty at the far end, or stay near the bridge for a view of the tower through the trees. It's perfect if you want the proposal to feel like a quiet walk rather than a show."] },
-          { h2: '3. Avenue de Camoëns: the tower from a Parisian street', kicker: "Free, open 24/7 · best at sunrise",
-            photo: null,
-            p: ["A short residential dead-end with a stone staircase and a balcony-like view of the Eiffel Tower over the rooftops. It's a few minutes from the Trocadéro esplanade, but it feels like another world.",
-                "It has become more popular with photographers lately, so come at sunrise or on a weekday. It's ideal for couples who want the tower in the background without the crowd behind them."] },
-          { h2: '4. Square du Vert-Galant: the tip of the island', kicker: "Open 24/7, closed in strong wind",
-            photo: null,
-            p: ["Down the stairs from Pont Neuf, at the very tip of Île de la Cité, a small garden with a weeping willow sits almost at water level. Parisians come here for picnics and sunsets, with the Louvre and Pont des Arts across the river.",
-                'Golden hour is magical here. The garden closes in strong wind or bad weather, so keep a plan B in mind.'] },
-          { h2: '5. Palais-Royal: arcades, garden and striped columns', kicker: "Free · 8:00–20:30 (Oct–Mar), until 22:30 (Apr–Sep)",
-            photo: [P + 'proposal-2.webp', 'Proposal under stone arcades in central Paris', 'The Louvre arcades, right next door'],
-            p: ["Tree-lined alleys, a fountain, long stone arcades and Daniel Buren's black-and-white striped columns in the courtyard: elegant, very Parisian, and calm in the morning.",
-                "It's also my favourite rain plan: under the arcades here, or the Louvre arcades two minutes away, you stay dry and the photos stay beautiful."] },
-          { h2: '6. The garden of the Musée de la Vie Romantique', kicker: "Garden free, 10:00–18:00",
-            photo: null,
-            p: ['A green courtyard at the foot of Montmartre, with roses, trees and a small tea room. It feels like a country house hidden in the city, and most visitors to Paris have never heard of it.',
-                'Perfect for a gentle, daytime proposal followed by tea. Arrive at opening for the quietest moment.'] },
-        ],
-        tips: [
-          'Timing: sunrise for empty spots, golden hour for warm light, and after dark for the Eiffel Tower lights (it sparkles for five minutes at the start of every hour).',
-          'Wherever you go, keep your phone, bag and ring close. Busy tourist spots attract pickpockets.',
-          'Agree on a signal with your photographer and tell me exactly where you will stop. I arrive early and blend in.',
-          'Keep the ring in a front pocket, not in a bag, so you are not searching for it at the big moment.',
-          'Want lights, candles, a carpet or the "MARRY ME" letters? I can set up the decoration for you.',
-        ],
-        ending: { photo: [P + 'proposal-7.webp', 'A couple walking away newly engaged', 'Off as fiancés'] },
-      },
-      fr: {
-        title: 'Oubliez le Trocadéro : 6 lieux où les Parisiens font vraiment leur demande en mariage',
-        short: "Le guide honnête d'une photographe de demandes à Paris : où les Parisiens disent oui, à quelle heure y aller, et pourquoi j'évite le Trocadéro.",
-        desc: "Où faire sa demande en mariage à Paris sans la foule : pont de Bir-Hakeim, allée des Cygnes, avenue de Camoëns, square du Vert-Galant, Palais-Royal et un jardin secret. Les conseils honnêtes d'une photographe de demandes à Paris.",
-        intro: [
-          "Tous les guides vous envoient au Trocadéro. J'y ai photographié des demandes, et je vais être honnête : ce n'est pas là que j'enverrais quelqu'un que j'aime. Voici d'abord mon expérience, puis les six lieux que les Parisiens choisissent vraiment : la tour Eiffel sans le cirque, la Seine, des jardins cachés et un plan B pour la pluie.",
-        ],
-        honest: {
-          title: 'Mon avis honnête sur le Trocadéro',
-          p: [
-            "Je l'évite. C'est bondé de la fin de matinée jusqu'à minuit, avec du monde qui passe dans chaque photo, et ce n'est pas ce qu'on veut pour un moment aussi intime. Une demande en mariage mérite un peu de calme.",
-            "Alors aujourd'hui, j'oriente les couples ailleurs. Si vous tenez vraiment à cette vue sur la tour, allez à quelques rues de là (lieux 1 à 3 ci-dessous). Vous aurez la même magie, et vous pourrez vraiment profiter du moment.",
-          ],
-          sign: 'xo Melissa',
-        },
-        spots: [
-          { h2: '1. Le pont de Bir-Hakeim : mon préféré', kicker: "Le plus calme tôt le matin",
-            photo: [P + 'proposal-22.webp', 'Jeunes fiancés devant la tour Eiffel qui scintille', 'Quand la tour scintille'],
-            p: ["C'est là que j'envoie la plupart des couples. L'allée piétonne passe sous le métro aérien, encadrée de rangées de colonnes en fer, avec la tour Eiffel juste à côté. C'est très cinématographique, et beaucoup plus intime que le Trocadéro.",
-                "Le matin tôt est le plus calme. Plus tard, d'autres couples viennent aussi : on choisit alors un endroit entre deux colonnes où personne ne traversera votre moment. Bonus : le tablier du métro au-dessus abrite un peu en cas de petite pluie."] },
-          { h2: "2. L'allée des Cygnes : l'île secrète", kicker: "Ouverte 24 h/24 · escalier au milieu du pont de Bir-Hakeim",
-            photo: null,
-            p: ["Du milieu du pont de Bir-Hakeim, un escalier descend vers une île étroite au milieu de la Seine : environ 850 mètres d'allée bordée de plus de 300 arbres. Les Parisiens y courent, y lisent, y promènent le chien ; les touristes la trouvent rarement.",
-                "Marchez jusqu'à la petite statue de la Liberté au bout de l'île, ou restez près du pont pour voir la tour à travers les arbres. Parfait si vous voulez que la demande ressemble à une balade tranquille plutôt qu'à un spectacle."] },
-          { h2: "3. L'avenue de Camoëns : la tour depuis une rue parisienne", kicker: "Gratuit, 24 h/24 · idéal au lever du soleil",
-            photo: null,
-            p: ["Une petite impasse résidentielle avec un escalier en pierre et une vue en balcon sur la tour Eiffel au-dessus des toits. C'est à quelques minutes de l'esplanade du Trocadéro, mais on se croirait dans un autre monde.",
-                "L'endroit est devenu plus connu des photographes ces derniers temps : venez au lever du soleil ou en semaine. Idéal pour avoir la tour en fond sans la foule derrière vous."] },
-          { h2: '4. Le square du Vert-Galant : la pointe de l’île', kicker: "Ouvert 24 h/24, fermé en cas de vent fort",
-            photo: null,
-            p: ["En descendant l'escalier du Pont-Neuf, tout au bout de l'île de la Cité, un petit jardin avec un saule pleureur au ras de l'eau. Les Parisiens y viennent pique-niquer et regarder le coucher du soleil, face au Louvre et au pont des Arts.",
-                "L'heure dorée y est magique. Le square ferme en cas de vent fort ou d'intempéries : gardez un plan B en tête."] },
-          { h2: '5. Le Palais-Royal : arcades, jardin et colonnes rayées', kicker: "Gratuit · 8 h–20 h 30 (oct.–mars), jusqu'à 22 h 30 (avr.–sept.)",
-            photo: [P + 'proposal-2.webp', 'Demande en mariage sous des arcades en pierre au centre de Paris', 'Les arcades du Louvre, juste à côté'],
-            p: ["Des allées d'arbres, une fontaine, de longues arcades en pierre et les colonnes rayées noir et blanc de Daniel Buren dans la cour : élégant, très parisien, et calme le matin.",
-                "C'est aussi mon plan B préféré en cas de pluie : sous les arcades du Palais-Royal, ou celles du Louvre à deux minutes, vous restez au sec et les photos restent belles."] },
-          { h2: '6. Le jardin du musée de la Vie romantique', kicker: "Jardin gratuit, 10 h–18 h",
-            photo: null,
-            p: ["Une cour verdoyante au pied de Montmartre, avec des roses, des arbres et un petit salon de thé. On se croirait dans une maison de campagne cachée en pleine ville, et la plupart des visiteurs de Paris n'en ont jamais entendu parler.",
-                "Parfait pour une demande douce, en journée, suivie d'un thé. Arrivez à l'ouverture pour le moment le plus calme."] },
-        ],
-        tips: [
-          "L'horaire : le lever du soleil pour des lieux vides, l'heure dorée pour une lumière chaude, et la nuit pour les lumières de la tour Eiffel (elle scintille cinq minutes au début de chaque heure).",
-          'Où que vous alliez, gardez téléphone, sac et bague près de vous : les lieux très touristiques attirent les pickpockets.',
-          "Convenez d'un signal avec votre photographe, et dites-moi exactement où vous vous arrêterez. J'arrive en avance et je me fonds dans le décor.",
-          'Gardez la bague dans une poche avant, pas dans un sac, pour ne pas la chercher au grand moment.',
-          "Envie de lumières, de bougies, d'un tapis ou des lettres « MARRY ME » ? Je peux installer la décoration pour vous.",
-        ],
-        ending: { photo: [P + 'proposal-7.webp', 'Un couple qui repart fiancé', 'Repartis fiancés'] },
-      },
-      ar: {
-        title: 'انسوا تروكاديرو: 6 أماكن يختارها الباريسيون فعلاً لطلب الزواج',
-        short: 'دليل صادق من مصوّرة طلبات زواج في باريس: أين يقول الباريسيون «نعم»، متى تذهبون، ولماذا أتجنّب تروكاديرو.',
-        desc: 'أين تطلبون الزواج في باريس بعيداً عن الزحام: جسر بير حكيم، ممشى البجع، شارع كامويش، حديقة فير غالان، القصر الملكي وحديقة سرّية. نصائح صادقة من مصوّرة طلبات زواج في باريس.',
-        intro: [
-          'كل الأدلة السياحية ترسلكم إلى تروكاديرو. صوّرت هناك طلبات زواج، وسأكون صريحة معكم: ليس المكان الذي أنصح به من أحب. إليكم أولاً تجربتي، ثم الأماكن الستة التي يختارها الباريسيون فعلاً: برج إيفل بلا زحام، ضفاف السين، حدائق مخفية وخطة بديلة في حال المطر.',
-        ],
-        honest: {
-          title: 'رأيي الصريح في تروكاديرو',
-          p: [
-            'أتجنّبه. المكان مزدحم من آخر الصباح حتى منتصف الليل، والناس يمرّون في كل صورة، وهذا ليس ما تريدونه للحظة بهذه الخصوصية. طلب الزواج يستحق شيئاً من الهدوء.',
-            'لذلك صرت أوجّه الأزواج إلى أماكن أخرى. إن كنتم تريدون هذه الإطلالة على البرج حقاً، فاذهبوا إلى شوارع قريبة (الأماكن من 1 إلى 3 أدناه). ستحصلون على السحر نفسه، وستستمتعون باللحظة فعلاً.',
-          ],
-          sign: 'ميليسا',
-        },
-        spots: [
-          { h2: '1. جسر بير حكيم: المفضّل لديّ', kicker: "الأهدأ في الصباح الباكر",
-            photo: [P + 'proposal-22.webp', 'خطيبان جديدان أمام برج إيفل المتلألئ', 'حين يتلألأ البرج'],
-            p: ['هنا أرسل معظم الأزواج. يمرّ ممشى المشاة تحت المترو المعلّق، تحيط به صفوف من الأعمدة الحديدية، وبرج إيفل على بعد خطوات. المشهد سينمائي وأكثر خصوصية بكثير من تروكاديرو.',
-                'الصباح الباكر هو الأهدأ. لاحقاً في النهار يأتي أزواج آخرون، فنختار مكاناً بين عمودين لا يمرّ فيه أحد أثناء لحظتكم. ميزة إضافية: سطح المترو فوقكم يحميكم قليلاً من المطر الخفيف.'] },
-          { h2: '2. ممشى البجع: الجزيرة السرّية', kicker: "مفتوح 24/24 · الدرج من منتصف جسر بير حكيم",
-            photo: null,
-            p: ['من منتصف جسر بير حكيم، ينزل درج إلى جزيرة ضيّقة وسط نهر السين: نحو 850 متراً من الممشى تظلّله أكثر من 300 شجرة. يأتي الباريسيون إليها للركض والقراءة ونزهة الكلاب، ونادراً ما يجدها السيّاح.',
-                'امشوا نحو تمثال الحرية الصغير في آخر الجزيرة، أو ابقوا قرب الجسر لرؤية البرج بين الأشجار. مثالي إن أردتم أن يبدو الطلب كنزهة هادئة لا كعرض أمام الناس.'] },
-          { h2: '3. شارع كامويش: البرج من شارع باريسي', kicker: "مجاني، مفتوح 24/24 · الأفضل عند الشروق",
-            photo: null,
-            p: ['شارع سكني صغير مغلق النهاية، فيه درج حجري وإطلالة كالشرفة على برج إيفل فوق الأسطح. يبعد دقائق عن ساحة تروكاديرو، لكنك تشعر وكأنك في عالم آخر.',
-                'أصبح المكان معروفاً أكثر لدى المصوّرين مؤخراً، فتعالوا عند شروق الشمس أو في أيام الأسبوع. مثالي لمن يريد البرج في الخلفية بلا زحام خلفه.'] },
-          { h2: '4. حديقة فير غالان: طرف الجزيرة', kicker: "مفتوحة 24/24، تُغلق عند الرياح القوية",
-            photo: null,
-            p: ['بعد النزول على درج جسر Pont-Neuf، في الطرف الأقصى لجزيرة لا سيتيه، حديقة صغيرة فيها صفصافة باكية على مستوى الماء تقريباً. يأتي إليها الباريسيون للنزهات ومشاهدة الغروب، مقابل متحف اللوفر وجسر الفنون.',
-                'الساعة الذهبية هنا ساحرة. تُغلق الحديقة عند الرياح القوية أو سوء الطقس، فاحتفظوا بخطة بديلة.'] },
-          { h2: '5. القصر الملكي: أروقة وحديقة وأعمدة مخطّطة', kicker: "مجاني · من 8:00 إلى 20:30 (أكتوبر–مارس)، وحتى 22:30 (أبريل–سبتمبر)",
-            photo: [P + 'proposal-2.webp', 'طلب زواج تحت أروقة حجرية في وسط باريس', 'أروقة اللوفر، على بعد خطوات'],
-            p: ['ممرّات تظلّلها الأشجار، ونافورة، وأروقة حجرية طويلة، وأعمدة دانيال بورين المخطّطة بالأبيض والأسود في الساحة: مكان أنيق وباريسي جداً، وهادئ في الصباح.',
-                'وهو أيضاً خطتي البديلة المفضّلة في حال المطر: تحت أروقة القصر الملكي، أو أروقة اللوفر على بعد دقيقتين، تبقون بعيداً عن المطر وتبقى الصور جميلة.'] },
-          { h2: '6. حديقة متحف الحياة الرومانسية', kicker: "الحديقة مجانية، من 10:00 إلى 18:00",
-            photo: null,
-            p: ['ساحة خضراء عند سفح مونمارتر، فيها ورود وأشجار وصالون شاي صغير. تشعرون وكأنكم في بيت ريفي مخبّأ وسط المدينة، ومعظم زوار باريس لم يسمعوا به قط.',
-                'مثالية لطلب هادئ في النهار يتبعه كوب شاي. تعالوا عند الافتتاح لأهدأ لحظة.'] },
-        ],
-        tips: [
-          'التوقيت: شروق الشمس لأماكن خالية، والساعة الذهبية لضوء دافئ، وبعد حلول الظلام لأضواء برج إيفل (يتلألأ خمس دقائق في بداية كل ساعة).',
-          'أينما ذهبتم، أبقوا الهاتف والحقيبة والخاتم قريبين منكم: الأماكن السياحية المزدحمة تجذب النشّالين.',
-          'اتفقوا على إشارة مع المصوّرة، وأخبروني بالضبط أين ستتوقفون. أصل مبكراً وأندمج بين الناس.',
-          'ضعوا الخاتم في جيب أمامي لا في حقيبة، حتى لا تبحثوا عنه في اللحظة الكبرى.',
-          'تريدون أضواء أو شموعاً أو سجادة أو حروف «MARRY ME»؟ يمكنني تجهيز الديكور لكم.',
-        ],
-        ending: { photo: [P + 'proposal-7.webp', 'زوجان يغادران خطيبين', 'غادرا خطيبين'] },
-      },
-    },
-  ],
+  categories: {
+    places: { en: 'Places', fr: 'Lieux', ar: 'أماكن' },
+    prices: { en: 'Prices & advice', fr: 'Prix et conseils', ar: 'الأسعار والنصائح' },
+    weddings: { en: 'Weddings', fr: 'Mariages', ar: 'الأعراس' },
+    stories: { en: 'Real stories', fr: 'Vraies histoires', ar: 'قصص حقيقية' },
+  },
+  posts,
 };

@@ -1,0 +1,443 @@
+{
+  "key": "proposal-photographer-price",
+  "date": "2026-10-27",
+  "updated": "2026-10-27",
+  "category": "prices",
+  "service": "proposal",
+  "session": "s-prop",
+  "cover": "/images/shop/proposal-13.webp",
+  "slug": {
+    "en": "proposal-photographer-paris-price",
+    "fr": "prix-photographe-demande-en-mariage-paris",
+    "ar": "proposal-photographer-paris-price"
+  },
+  "fr": {
+    "title": "Combien coûte un photographe de demande en mariage à Paris en 2026 ?",
+    "short": "Les vrais prix du marché, ce qui fait grimper la note, les pièges à éviter, et mes tarifs, sans détour.",
+    "desc": "Prix d'un photographe de demande en mariage à Paris en 2026 : de 200 € à plus de 500 € pour une heure selon les prestataires. Ce qui est inclus, ce qui fait varier le prix, les pièges à éviter et les tarifs de Melissa.",
+    "intro": [
+      "Vous avez la bague, vous avez presque le lieu, et maintenant la question qui fâche : combien prévoir pour le photographe ? Les prix vont du simple au triple selon qui vous contactez. Voici ce que j'ai relevé chez les autres en octobre 2026, ce qui explique les écarts, et ce que je facture moi-même."
+    ],
+    "sections": [
+      {
+        "h2": "1. La réponse courte",
+        "p": [
+          "Pour une heure de photos d'une demande en mariage à Paris, comptez en général entre 200 € et un peu plus de 500 €. Avec une décoration installée (lumières, bougies, lettres géantes), on passe facilement de 700 € à 2 000 € et plus.",
+          "La différence ne tient pas seulement au talent du photographe : la préparation, la discrétion, le nombre de photos retouchées et le délai de livraison changent tout."
+        ]
+      },
+      {
+        "h2": "2. Ce que demandent les photographes à Paris",
+        "p": [
+          "Quelques repères relevés sur les sites des prestataires :"
+        ],
+        "table": {
+          "head": [
+            "Prestataire",
+            "Ce qui est inclus",
+            "Prix"
+          ],
+          "rows": [
+            [
+              "ApoteoSurprise (agence de demandes)",
+              "Photographe jusqu'à 1 h, leur tarif standard depuis 2023",
+              "environ 200 €"
+            ],
+            [
+              "Kiss in Paris",
+              "1 h de photos, 20 photos retouchées, préparation du lieu",
+              "à partir de 300 €"
+            ],
+            [
+              "Flytographer (plateforme)",
+              "30 min, 1 h ou 2 h de photos",
+              "425 $, 525 $ ou 815 $"
+            ],
+            [
+              "Moyenne en France (Plateya)",
+              "Séance de fiançailles",
+              "de 200 € à 600 €"
+            ]
+          ],
+          "note": "Prix relevés sur leurs sites en octobre 2026, à titre indicatif. Ils peuvent changer."
+        }
+      },
+      {
+        "h2": "3. Mes tarifs",
+        "p": [
+          "Je préfère les annoncer clairement :"
+        ],
+        "table": {
+          "head": [
+            "Formule",
+            "Ce qui est inclus",
+            "Prix"
+          ],
+          "rows": [
+            [
+              "Demande en mariage",
+              "1 h sur place, 20+ photos retouchées, livraison en 24 h, galerie privée, aide pour choisir le lieu et l'heure",
+              "dès 290 €"
+            ],
+            [
+              "Demande + décoration",
+              "2 h, lumières, bougies et tapis installés",
+              "dès 690 €"
+            ],
+            [
+              "Séance couple",
+              "1 h 30, 25+ photos retouchées, galerie privée",
+              "dès 250 €"
+            ]
+          ]
+        },
+        "after": [
+          "Je parle français, anglais et arabe, ce qui simplifie la préparation pour les couples qui viennent de l'étranger."
+        ]
+      },
+      {
+        "h2": "4. Ce qui fait varier le prix",
+        "list": [
+          "La durée : 30 minutes suffisent pour le moment lui-même, une heure permet d'ajouter de vrais portraits de couple.",
+          "La décoration : lumières, fleurs, bougies, lettres « MARRY ME ». Chez ApoteoSurprise, les lettres géantes face à la tour Eiffel sont annoncées à 1 990 €.",
+          "Le lieu : un lieu public est gratuit, un rooftop privé commence autour de 1 750 € selon Kiss in Paris.",
+          "La période : d'avril à octobre, entre le 20 décembre et le 3 janvier et à la Saint-Valentin, les prestataires sont très demandés.",
+          "La vidéo : filmer le moment demande souvent une deuxième personne, donc un budget en plus.",
+          "Le nombre de photos retouchées et le délai de livraison : 20 photos en 24 h, ce n'est pas la même chose que 10 photos en trois semaines."
+        ]
+      },
+      {
+        "h2": "5. Les pièges à éviter",
+        "p": [
+          "Près du pont d'Iéna, des photographes de rue proposent des photos pour une dizaine d'euros. Pour un souvenir de vacances, pourquoi pas. Pour une demande, il n'y a ni préparation, ni discrétion, ni plan B, et souvent aucune retouche.",
+          "Avant de réserver, vérifiez toujours :"
+        ],
+        "list": [
+          "le nombre de photos retouchées, pas seulement « toutes les photos »",
+          "le délai de livraison et la façon de recevoir les photos",
+          "les éventuels frais de déplacement ou de galerie",
+          "ce qui se passe s'il pleut",
+          "si le photographe vous aide à choisir le lieu et le moment"
+        ]
+      },
+      {
+        "h2": "6. Comment payer moins sans rater le moment",
+        "list": [
+          "Choisissez un lieu public magnifique et gratuit, comme le pont de Bir-Hakeim.",
+          "Visez un jour de semaine ou le petit matin : moins de monde, plus de lumière douce.",
+          "Une heure suffit largement pour la demande et quelques portraits.",
+          "Une décoration simple (quelques bougies, un bouquet) fait souvent autant d'effet qu'une grande installation.",
+          "Pour Noël ou la Saint-Valentin, réservez tôt."
+        ],
+        "after": [
+          "Si vous hésitez sur le lieu, j'ai écrit un guide sur les endroits que les Parisiens préfèrent pour leur demande, juste à côté de cet article."
+        ]
+      }
+    ],
+    "tips": [],
+    "sources": [
+      [
+        "ApoteoSurprise : prix d'une demande en mariage à Paris",
+        "https://www.apoteosurprise.com/en/blog-marriage-proposal-price-paris"
+      ],
+      [
+        "Kiss in Paris : combien coûte une demande à Paris",
+        "https://kissinparis.com/paris-proposal/how-much-paris-proposal-cost/"
+      ],
+      [
+        "Flytographer : photographes de demande à Paris",
+        "https://www.flytographer.com/destinations/paris/proposal/"
+      ],
+      [
+        "Plateya : prix photographe mariage 2026",
+        "https://www.plateya.fr/blog/detail/prix-photographe-mariage-2026-guide-tarifaire-complet"
+      ]
+    ]
+  },
+  "en": {
+    "title": "How much does a proposal photographer cost in Paris in 2026?",
+    "short": "Real market prices, what pushes the price up, the traps to avoid, and my own rates, straight to the point.",
+    "desc": "Proposal photographer prices in Paris in 2026: from about €200 to over €500 for one hour depending on who you book. What's included, what changes the price, what to avoid, and Melissa's rates.",
+    "intro": [
+      "You have the ring, you almost have the spot, and now the awkward question: how much should you budget for the photographer? Prices vary a lot depending on who you contact. Here is what I found on other providers' websites in October 2026, why prices differ, and what I charge myself."
+    ],
+    "sections": [
+      {
+        "h2": "1. The short answer",
+        "p": [
+          "For one hour of proposal photography in Paris, expect roughly €200 to a little over €500. Add decoration (lights, candles, giant letters) and you easily reach €700 to €2,000 or more.",
+          "The difference isn't only about talent: preparation, discretion, the number of edited photos and the delivery time change everything."
+        ]
+      },
+      {
+        "h2": "2. What photographers charge in Paris",
+        "p": [
+          "A few benchmarks from providers' websites:"
+        ],
+        "table": {
+          "head": [
+            "Provider",
+            "What's included",
+            "Price"
+          ],
+          "rows": [
+            [
+              "ApoteoSurprise (proposal agency)",
+              "Photographer for up to 1 hour, their standard rate since 2023",
+              "about €200"
+            ],
+            [
+              "Kiss in Paris",
+              "1 hour of photos, 20 edited photos, location planning",
+              "from €300"
+            ],
+            [
+              "Flytographer (platform)",
+              "30 min, 1 hour or 2 hours of photos",
+              "$425, $525 or $815"
+            ],
+            [
+              "French average (Plateya)",
+              "Engagement session",
+              "€200 to €600"
+            ]
+          ],
+          "note": "Prices taken from their websites in October 2026, for reference only. They may change."
+        }
+      },
+      {
+        "h2": "3. My rates",
+        "p": [
+          "I prefer to be upfront:"
+        ],
+        "table": {
+          "head": [
+            "Package",
+            "What's included",
+            "Price"
+          ],
+          "rows": [
+            [
+              "Proposal",
+              "1 hour on location, 20+ edited photos, delivered within 24 hours, private gallery, help choosing the spot and time",
+              "from €290"
+            ],
+            [
+              "Proposal + decoration",
+              "2 hours, lights, candles and carpet set up",
+              "from €690"
+            ],
+            [
+              "Couple session",
+              "1h30, 25+ edited photos, private gallery",
+              "from €250"
+            ]
+          ]
+        },
+        "after": [
+          "I speak French, English and Arabic, which makes planning easier for couples travelling to Paris."
+        ]
+      },
+      {
+        "h2": "4. What changes the price",
+        "list": [
+          "Duration: 30 minutes is enough for the moment itself, one hour adds real couple portraits.",
+          "Decoration: lights, flowers, candles, \"MARRY ME\" letters. ApoteoSurprise lists the giant letters facing the Eiffel Tower at €1,990.",
+          "Location: public spots are free, a private rooftop starts around €1,750 according to Kiss in Paris.",
+          "Season: April to October, 20 December to 3 January and Valentine's Day are the busiest times.",
+          "Video: filming the moment usually needs a second person, so a bigger budget.",
+          "Number of edited photos and delivery time: 20 photos in 24 hours is not the same as 10 photos in three weeks."
+        ]
+      },
+      {
+        "h2": "5. Traps to avoid",
+        "p": [
+          "Near the Iéna bridge, street photographers offer photos for about ten euros. Fine for a holiday snap. For a proposal, there's no planning, no discretion, no plan B and often no editing.",
+          "Before you book, always check:"
+        ],
+        "list": [
+          "how many edited photos you get, not just \"all the photos\"",
+          "the delivery time and how you receive the photos",
+          "any travel or gallery fees",
+          "what happens if it rains",
+          "whether the photographer helps you choose the spot and the moment"
+        ]
+      },
+      {
+        "h2": "6. How to pay less without missing the moment",
+        "list": [
+          "Choose a beautiful free public spot, like the Bir-Hakeim bridge.",
+          "Go on a weekday or early in the morning: fewer people, softer light.",
+          "One hour is plenty for the proposal and a few portraits.",
+          "Simple decoration (a few candles, a bouquet) often works as well as a big set-up.",
+          "For Christmas or Valentine's Day, book early."
+        ],
+        "after": [
+          "If you're still choosing the spot, I wrote a guide to the places Parisians prefer for their proposal, right next to this article."
+        ]
+      }
+    ],
+    "tips": [],
+    "sources": [
+      [
+        "ApoteoSurprise: price of a marriage proposal in Paris",
+        "https://www.apoteosurprise.com/en/blog-marriage-proposal-price-paris"
+      ],
+      [
+        "Kiss in Paris: how much a Paris proposal costs",
+        "https://kissinparis.com/paris-proposal/how-much-paris-proposal-cost/"
+      ],
+      [
+        "Flytographer: proposal photographers in Paris",
+        "https://www.flytographer.com/destinations/paris/proposal/"
+      ],
+      [
+        "Plateya: wedding photographer prices 2026 (French)",
+        "https://www.plateya.fr/blog/detail/prix-photographe-mariage-2026-guide-tarifaire-complet"
+      ]
+    ]
+  },
+  "ar": {
+    "title": "كم تكلّف مصوّرة طلب الزواج في باريس في 2026؟",
+    "short": "أسعار السوق الحقيقية، وما يرفع السعر، والفخاخ التي يجب تجنّبها، وأسعاري بوضوح.",
+    "desc": "أسعار مصوّري طلبات الزواج في باريس في 2026: من نحو 200 € إلى أكثر من 500 € للساعة حسب مقدّم الخدمة. ماذا يشمل السعر، وما الذي يغيّره، وما يجب تجنّبه، وأسعار ميليسا.",
+    "intro": [
+      "لديكم الخاتم، وتقريباً المكان، والآن السؤال المحرج: كم يجب أن تخصّصوا للمصوّر؟ الأسعار تختلف كثيراً حسب من تتواصلون معه. إليكم ما وجدته على مواقع مقدّمي الخدمة الآخرين في أكتوبر 2026، ولماذا تختلف الأسعار، وكم أطلب أنا."
+    ],
+    "sections": [
+      {
+        "h2": "1. الجواب المختصر",
+        "p": [
+          "لساعة تصوير لطلب زواج في باريس، توقّعوا عادةً بين 200 € وما يزيد قليلاً عن 500 €. ومع ديكور مجهّز (أضواء، شموع، حروف كبيرة) يصل المبلغ بسهولة إلى ما بين 700 € و2000 € أو أكثر.",
+          "الفرق لا يتعلق بموهبة المصوّر فقط: التحضير، والتحفّظ، وعدد الصور المعدّلة، ومدة التسليم تغيّر كل شيء."
+        ]
+      },
+      {
+        "h2": "2. كم يطلب المصوّرون في باريس",
+        "p": [
+          "بعض الأرقام من مواقع مقدّمي الخدمة:"
+        ],
+        "table": {
+          "head": [
+            "مقدّم الخدمة",
+            "ماذا يشمل",
+            "السعر"
+          ],
+          "rows": [
+            [
+              "ApoteoSurprise (وكالة طلبات زواج)",
+              "مصوّر حتى ساعة، سعرهم المعتاد منذ 2023",
+              "نحو 200 €"
+            ],
+            [
+              "Kiss in Paris",
+              "ساعة تصوير، 20 صورة معدّلة، تحضير المكان",
+              "من 300 €"
+            ],
+            [
+              "Flytographer (منصّة)",
+              "30 دقيقة أو ساعة أو ساعتان",
+              "425 $ أو 525 $ أو 815 $"
+            ],
+            [
+              "المتوسط في فرنسا (Plateya)",
+              "جلسة خطوبة",
+              "من 200 € إلى 600 €"
+            ]
+          ],
+          "note": "أسعار مأخوذة من مواقعهم في أكتوبر 2026، للاستئناس فقط. قد تتغيّر."
+        }
+      },
+      {
+        "h2": "3. أسعاري",
+        "p": [
+          "أفضّل أن أعلنها بوضوح:"
+        ],
+        "table": {
+          "head": [
+            "الباقة",
+            "ماذا تشمل",
+            "السعر"
+          ],
+          "rows": [
+            [
+              "طلب زواج",
+              "ساعة في المكان، أكثر من 20 صورة معدّلة، التسليم خلال 24 ساعة، معرض خاص، مساعدة في اختيار المكان والتوقيت",
+              "من 290 €"
+            ],
+            [
+              "طلب زواج + ديكور",
+              "ساعتان، تجهيز الأضواء والشموع والسجادة",
+              "من 690 €"
+            ],
+            [
+              "جلسة للأزواج",
+              "ساعة ونصف، أكثر من 25 صورة معدّلة، معرض خاص",
+              "من 250 €"
+            ]
+          ]
+        },
+        "after": [
+          "أتحدث العربية والفرنسية والإنجليزية، وهذا يسهّل التحضير على الأزواج القادمين من الخارج."
+        ]
+      },
+      {
+        "h2": "4. ما الذي يغيّر السعر",
+        "list": [
+          "المدة: 30 دقيقة تكفي للحظة نفسها، والساعة تضيف صوراً حقيقية لكما.",
+          "الديكور: أضواء، زهور، شموع، حروف «MARRY ME». لدى ApoteoSurprise، الحروف الكبيرة أمام برج إيفل بسعر 1990 €.",
+          "المكان: الأماكن العامة مجانية، وسطح خاص يبدأ من نحو 1750 € حسب Kiss in Paris.",
+          "الموسم: من أبريل إلى أكتوبر، ومن 20 ديسمبر إلى 3 يناير، وعيد الحب هي أكثر الفترات طلباً.",
+          "الفيديو: تصوير اللحظة بالفيديو يحتاج غالباً شخصاً ثانياً، أي ميزانية إضافية.",
+          "عدد الصور المعدّلة ومدة التسليم: 20 صورة خلال 24 ساعة ليست مثل 10 صور بعد ثلاثة أسابيع."
+        ]
+      },
+      {
+        "h2": "5. فخاخ يجب تجنّبها",
+        "p": [
+          "قرب جسر إيينا، يعرض مصوّرو الشارع صوراً بنحو عشرة يوروهات. لا بأس لصورة تذكارية. أما لطلب الزواج، فلا تحضير ولا تحفّظ ولا خطة بديلة، وغالباً بلا أي تعديل.",
+          "قبل الحجز، تأكّدوا دائماً من:"
+        ],
+        "list": [
+          "عدد الصور المعدّلة، لا «كل الصور» فقط",
+          "مدة التسليم وطريقة استلام الصور",
+          "أي رسوم تنقّل أو معرض",
+          "ماذا يحدث إن أمطرت",
+          "هل يساعدكم المصوّر في اختيار المكان واللحظة"
+        ]
+      },
+      {
+        "h2": "6. كيف تدفعون أقل دون أن تفوّتوا اللحظة",
+        "list": [
+          "اختاروا مكاناً عاماً جميلاً ومجانياً، مثل جسر بير حكيم.",
+          "اختاروا يوماً من أيام الأسبوع أو الصباح الباكر: ناس أقل وضوء أنعم.",
+          "ساعة واحدة تكفي تماماً للطلب وبعض الصور.",
+          "ديكور بسيط (بعض الشموع، باقة ورد) يعطي غالباً نفس الأثر.",
+          "لعيد الميلاد أو عيد الحب، احجزوا مبكراً."
+        ],
+        "after": [
+          "إن كنتم ما زلتم تختارون المكان، كتبت دليلاً عن الأماكن التي يفضّلها الباريسيون لطلب الزواج، بجانب هذا المقال."
+        ]
+      }
+    ],
+    "tips": [],
+    "sources": [
+      [
+        "ApoteoSurprise: سعر طلب الزواج في باريس",
+        "https://www.apoteosurprise.com/en/blog-marriage-proposal-price-paris"
+      ],
+      [
+        "Kiss in Paris: تكلفة طلب الزواج في باريس",
+        "https://kissinparis.com/paris-proposal/how-much-paris-proposal-cost/"
+      ],
+      [
+        "Flytographer: مصوّرو طلبات الزواج في باريس",
+        "https://www.flytographer.com/destinations/paris/proposal/"
+      ],
+      [
+        "Plateya: أسعار مصوّري الأعراس 2026 (بالفرنسية)",
+        "https://www.plateya.fr/blog/detail/prix-photographe-mariage-2026-guide-tarifaire-complet"
+      ]
+    ]
+  }
+}

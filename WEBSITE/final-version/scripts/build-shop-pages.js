@@ -149,7 +149,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=5">
-<link rel="stylesheet" href="/css/landing.css?v=7">
+<link rel="stylesheet" href="/css/landing.css?v=9">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -175,7 +175,7 @@ ${pixel}
   <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.nav)}</span></nav>
 
   <header class="lp-hero">
-    <p class="lp-kicker">Melissa's Photography · Paris</p>
+    <p class="lp-kicker">Melissa Photography · Paris</p>
     <h1>${escHTML(t.h1)}</h1>
     <p class="lede">${escHTML(t.lede)}</p>
     <p class="lp-stars"><span aria-hidden="true">★★★★★</span> ${escHTML(ui.reviews)}</p>
@@ -269,7 +269,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=5">
-<link rel="stylesheet" href="/css/landing.css?v=7">
+<link rel="stylesheet" href="/css/landing.css?v=9">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -389,75 +389,161 @@ const REVEAL = `<script>
   })();
 </script>`;
 
+const avatarArt = (() => {
+  const a = template.indexOf('<g id="avatar-art">');
+  let depth = 0, i = a;
+  const re = /<g\b|<\/g>/g; re.lastIndex = a;
+  let m;
+  while ((m = re.exec(template))) { depth += m[0] === '</g>' ? -1 : 1; if (depth === 0) { i = m.index + 4; break; } }
+  return template.slice(a, i).replace('id="avatar-art"', '');
+})();
+// ---- helpers for the pro blog ----
+const slugify = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9؀-ۿ]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'section';
+function postText(t) {
+  const parts = [t.title, t.short, ...(t.intro || [])];
+  if (t.honest) parts.push(...t.honest.p);
+  (t.sections || []).forEach(s => { parts.push(s.h2, ...(s.p || []), ...(s.list || [])); if (s.table) parts.push(...s.table.rows.flat()); });
+  parts.push(...(t.tips || []));
+  return parts.join(' ');
+}
+const readMinutes = (t, l) => Math.max(2, Math.round(postText(t).split(/\s+/).length / (l === 'ar' ? 180 : 220)));
+const catLabel = (p, l) => (B.categories[p.category] || {})[l] || '';
+const postLangs = p => BLOG_LANGS.filter(l => p[l]);
+
+function postCard(p, l, i, big) {
+  const u = B.ui[l], t = p[l];
+  return `<article class="post-card${big ? ' post-card-big' : ''}" data-cat="${p.category}">
+      <a href="${postPath(p, l)}">
+        <span class="post-cover"><img src="${p.cover}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000"></span>
+        <span class="post-card-text">
+          <span class="post-meta"><span class="cat-chip">${escHTML(catLabel(p, l))}</span> <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time> · ${escHTML(u.minRead(readMinutes(t, l)))}</span>
+          <h2>${escHTML(t.title)}</h2>
+          <p>${escHTML(t.short)}</p>
+          <span class="post-read">${escHTML(u.read)} →</span>
+        </span>
+      </a>
+    </article>`;
+}
+
 function buildBlogIndex(l) {
   const u = B.ui[l], ui = C.ui[l], here = blogPath(l);
   const posts = B.posts.filter(p => p[l]);
-  const body = `<main class="lp-main">
+  const cats = [...new Set(posts.map(p => p.category))];
+  const body = `<main class="lp-main blog-index">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="${homePath(l)}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(u.blog)}</span></nav>
   <header class="lp-hero">
     <p class="lp-kicker">Melissa Photography · Paris</p>
     <h1>${escHTML(u.blogTitle)}</h1>
     <p class="lede">${escHTML(u.blogLede)}</p>
   </header>
-  <section class="post-list">
-${posts.map((p, i) => `    <article class="post-card">
-      <a href="${postPath(p, l)}">
-        <span class="lp-print"><img src="${p.cover}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000"></span>
-        <span class="post-card-text">
-          <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time>
-          <h2>${escHTML(p[l].title)}</h2>
-          <p>${escHTML(p[l].short)}</p>
-          <span class="post-read">${escHTML(u.read)} →</span>
-        </span>
-      </a>
-    </article>`).join('\n')}
+  ${posts.length ? `<section class="post-featured" aria-label="${escAttr(u.featured)}">
+    <p class="featured-label">${escHTML(u.featured)}</p>
+    ${postCard(posts[0], l, 0, true)}
+  </section>` : ''}
+  ${cats.length > 1 ? `<div class="cat-filter" role="group" aria-label="${escAttr(u.blog)}">
+    <button type="button" data-cat="all" aria-pressed="true">${escHTML(u.all)}</button>${cats.map(c => `<button type="button" data-cat="${c}" aria-pressed="false">${escHTML((B.categories[c] || {})[l] || c)}</button>`).join('')}
+  </div>` : ''}
+  <section class="post-grid">
+${posts.slice(1).map((p, i) => '    ' + postCard(p, l, i + 1, false)).join('\n')}
   </section>
-</main>`;
+</main>
+<script>
+  (function () {
+    var btns = document.querySelectorAll('.cat-filter button');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        document.querySelectorAll('.post-grid .post-card, .post-featured .post-card').forEach(function (c) {
+          c.hidden = b.dataset.cat !== 'all' && c.dataset.cat !== b.dataset.cat;
+        });
+      });
+    });
+  })();
+</script>`;
   write(here + 'index.html', shell({
     l, title: `${u.blogTitle} · Melissa Photography Paris`, desc: u.blogLede, here, alt: blogAlternates(blogPath),
-    ogImage: posts[0].cover, body, switchTo: x => (BLOG_LANGS.includes(x) ? blogPath(x) : homePath(x)),
+    ogImage: posts[0] ? posts[0].cover : '/images/shop/proposal-22.webp', body, switchTo: x => (BLOG_LANGS.includes(x) ? blogPath(x) : homePath(x)),
     jsonld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: u.blogTitle, url: SITE + here, inLanguage: l,
-      blogPost: posts.map(p => ({ '@type': 'BlogPosting', headline: p[l].title, url: SITE + postPath(p, l), datePublished: p.date })) }],
+      blogPost: posts.map(p => ({ '@type': 'BlogPosting', headline: p[l].title, url: SITE + postPath(p, l), datePublished: p.date, dateModified: p.updated || p.date })) }],
   }));
 }
 
 function buildPost(p, l) {
   const u = B.ui[l], ui = C.ui[l], t = p[l], here = postPath(p, l), home = homePath(l);
   const svc = C.services.find(s => s.key === p.service);
+  const minutes = readMinutes(t, l);
+  const sections = (t.sections || []).map((s, i) => ({ ...s, id: `${i + 1}-${slugify(s.h2)}` }));
   let k = 0;
   const heroLabel = { fr: "Illustration animée : le pont de Bir-Hakeim, un métro qui passe, la tour Eiffel qui scintille et une demande en mariage", ar: 'رسم متحرّك: جسر بير حكيم، مترو يمرّ، برج إيفل يتلألأ وطلب زواج' }[l] || 'Animated illustration: Bir-Hakeim bridge, a metro passing, the Eiffel Tower sparkling and a proposal';
+  const related = B.posts.filter(x => x !== p && x[l]).sort((a, b) => (b.category === p.category) - (a.category === p.category)).slice(0, 3);
+  const shareUrl = encodeURIComponent(SITE + here), shareText = encodeURIComponent(t.title);
+  const sectionHTML = s => `      <section class="post-spot reveal" id="${s.id}">
+        <h2>${escHTML(s.h2)}</h2>
+        ${s.kicker ? `<p class="spot-kicker"><span>${escHTML(u.practical)}</span> ${escHTML(s.kicker)}</p>` : ''}
+        ${s.place ? `<p class="spot-addr"><span class="addr" dir="ltr" lang="fr">${escHTML(s.place.addr)}</span><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(s.place.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg>${escHTML(u.mapBtn)}</a></p>` : ''}
+        ${s.photo ? print(s.photo, [-2, 1.8, -1.2, 2.2][k++ % 4], k === 1) : ''}
+${(s.p || []).map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
+${s.list ? `        <ul class="post-list-items">\n${s.list.map(x => `          <li>${escHTML(x)}</li>`).join('\n')}\n        </ul>` : ''}
+${s.table ? `        <div class="post-table-wrap"><table class="post-table">
+          <thead><tr>${s.table.head.map(h => `<th scope="col">${escHTML(h)}</th>`).join('')}</tr></thead>
+          <tbody>
+${s.table.rows.map(r => `            <tr>${r.map((c, ci) => ci === 0 ? `<th scope="row">${escHTML(c)}</th>` : `<td>${escHTML(c)}</td>`).join('')}</tr>`).join('\n')}
+          </tbody>
+        </table></div>${s.table.note ? `\n        <p class="table-note">${escHTML(s.table.note)}</p>` : ''}` : ''}
+${(s.after || []).map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
+      </section>`;
   const body = `<main class="lp-main post">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <a href="${blogPath(l)}">${escHTML(u.blog)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.title.split(':')[0].trim())}</span></nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <a href="${blogPath(l)}">${escHTML(u.blog)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.title.split(/[:?]/)[0].trim())}</span></nav>
   <article>
     <header class="lp-hero post-hero">
-      <p class="lp-kicker">${escHTML(u.blog)} · <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time></p>
+      <p class="lp-kicker"><span class="cat-chip">${escHTML(catLabel(p, l))}</span> · <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time> · ${escHTML(u.minRead(minutes))}</p>
       <h1>${escHTML(t.title)}</h1>
-      ${p.hero === 'bir-hakeim' ? heroBirHakeim(heroLabel) : ''}
+      ${p.hero === 'bir-hakeim' ? heroBirHakeim(heroLabel) : `<figure class="post-cover-hero">${print([p.cover, '', ''], -1.5, true)}</figure>`}
       <p class="lede">${escHTML(t.short)}</p>
-      <p class="post-by">${escHTML(u.by)}</p>
+      <p class="post-by">${escHTML(u.by)}${p.updated && p.updated !== p.date ? ` · ${escHTML(u.updatedOn)} ${escHTML(fmtDate(p.updated, l))}` : ''}</p>
     </header>
     <div class="post-body">
-${t.intro.map(x => `      <p class="reveal">${escHTML(x)}</p>`).join('\n')}
+${sections.length > 2 ? `      <nav class="post-toc" aria-label="${escAttr(u.toc)}">
+        <p>${escHTML(u.toc)}</p>
+        <ol>
+${sections.map(s => `          <li><a href="#${s.id}">${escHTML(s.h2.replace(/^\d+\.\s*/, ''))}</a></li>`).join('\n')}
+        </ol>
+      </nav>` : ''}
+${(t.intro || []).map(x => `      <p class="reveal">${escHTML(x)}</p>`).join('\n')}
 ${t.honest ? `      <aside class="honest reveal">
         <span class="honest-tape" aria-hidden="true"></span>
         <h2>${escHTML(t.honest.title)}</h2>
 ${t.honest.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
         <p class="honest-sign">${escHTML(t.honest.sign)}</p>
       </aside>` : ''}
-${t.spots.map((sp, si) => { const pl = (p.places || [])[si]; return `      <section class="post-spot reveal">
-        <h2>${escHTML(sp.h2)}</h2>
-        ${sp.kicker ? `<p class="spot-kicker"><span>${escHTML(u.practical)}</span> ${escHTML(sp.kicker)}</p>` : ''}
-        ${pl ? `<p class="spot-addr"><span class="addr" dir="ltr" lang="fr">${escHTML(pl.addr)}</span><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(pl.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg>${escHTML(u.mapBtn)}</a></p>` : ''}
-        ${sp.photo ? print(sp.photo, [-2, 1.8, -1.2, 2.2][k++ % 4], k === 1) : ''}
-${sp.p.map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
-      </section>`; }).join('\n')}
-      <aside class="lp-card post-tips reveal">
+${sections.map(sectionHTML).join('\n')}
+${t.tips && t.tips.length ? `      <aside class="lp-card post-tips reveal">
         <h2>${escHTML(u.tipsTitle)}</h2>
         <ul>
 ${t.tips.map(x => `          <li>${escHTML(x)}</li>`).join('\n')}
         </ul>
-      </aside>
+      </aside>` : ''}
       ${t.ending && t.ending.photo ? `<div class="post-ending reveal">${print(t.ending.photo, -1.5, false)}</div>` : ''}
+${t.sources && t.sources.length ? `      <aside class="post-sources reveal">
+        <h2>${escHTML(u.sources)}</h2>
+        <ul>
+${t.sources.map(([name, url]) => `          <li><a href="${escAttr(url)}" target="_blank" rel="noopener nofollow">${escHTML(name)}</a></li>`).join('\n')}
+        </ul>
+      </aside>` : ''}
+      <div class="post-share reveal">
+        <span>${escHTML(u.share)}</span>
+        <a href="https://wa.me/?text=${shareText}%20${shareUrl}" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://pinterest.com/pin/create/button/?url=${shareUrl}&amp;media=${encodeURIComponent(SITE + p.cover)}&amp;description=${shareText}" target="_blank" rel="noopener">Pinterest</a>
+      </div>
+      <aside class="author-box reveal">
+        <div class="about-avatar small"><svg viewBox="0 0 300 360" aria-hidden="true">${avatarArt}</svg></div>
+        <div>
+          <h2>${escHTML(u.authorTitle)}</h2>
+          <p>${escHTML(u.authorBio)}</p>
+          <a href="${aboutPath(l)}">${escHTML(u.authorLink)} →</a>
+        </div>
+      </aside>
     </div>
   </article>
   <section class="lp-final post-cta reveal">
@@ -468,16 +554,24 @@ ${t.tips.map(x => `          <li>${escHTML(x)}</li>`).join('\n')}
       ${svc ? `<a class="btn" href="${servicePath(svc, l)}">${escHTML(u.ctaMore)}</a>` : ''}
     </div>
   </section>
+${related.length ? `  <section class="post-related reveal">
+    <h2>${escHTML(u.related)}</h2>
+    <div class="post-grid">
+${related.map((x, i) => '      ' + postCard(x, l, 3, false)).join('\n')}
+    </div>
+  </section>` : ''}
   <p class="post-back"><a href="${blogPath(l)}">← ${escHTML(u.back)}</a></p>
 </main>
 ${REVEAL}`;
   write(here + 'index.html', shell({
-    l, title: `${t.title} · Melissa Photography Paris`, desc: t.desc, here, alt: blogAlternates(x => postPath(p, x)),
-    ogImage: p.cover, body, switchTo: x => (BLOG_LANGS.includes(x) && p[x] ? postPath(p, x) : homePath(x)),
+    l, title: `${t.title} · Melissa Photography Paris`, desc: t.desc, here,
+    alt: postLangs(p).map(x => `<link rel="alternate" hreflang="${x}" href="${SITE}${postPath(p, x)}">`).join('\n') + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${postPath(p, p.en ? 'en' : postLangs(p)[0])}">`,
+    ogImage: p.cover, body, switchTo: x => (BLOG_LANGS.includes(x) && p[x] ? postPath(p, x) : blogPath(BLOG_LANGS.includes(x) ? x : 'en')),
     jsonld: [
       { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: t.title, description: t.desc, image: SITE + p.cover,
         datePublished: p.date, dateModified: p.updated || p.date, inLanguage: l, mainEntityOfPage: SITE + here,
-        author: { '@type': 'Person', name: 'Melissa', url: SITE + home },
+        articleSection: catLabel(p, l), wordCount: postText(t).split(/\s+/).length, timeRequired: `PT${minutes}M`,
+        author: { '@type': 'Person', name: 'Melissa', url: SITE + aboutPath(l) },
         publisher: { '@type': 'Organization', name: 'Melissa Photography Paris', url: SITE + '/' } },
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: ui.home, item: SITE + home },
@@ -489,14 +583,7 @@ ${REVEAL}`;
 }
 
 /* ---------- about page ---------- */
-const avatarArt = (() => {
-  const a = template.indexOf('<g id="avatar-art">');
-  let depth = 0, i = a;
-  const re = /<g\b|<\/g>/g; re.lastIndex = a;
-  let m;
-  while ((m = re.exec(template))) { depth += m[0] === '</g>' ? -1 : 1; if (depth === 0) { i = m.index + 4; break; } }
-  return template.slice(a, i).replace('id="avatar-art"', '');
-})();
+
 function buildAbout(l) {
   const t = A[l], ui = C.ui[l], home = homePath(l), here = aboutPath(l);
   const body = `<main class="lp-main about">
@@ -627,5 +714,5 @@ C.services.forEach(s => LANGS.forEach(l => buildService(s, l)));
 LANGS.forEach(buildAbout);
 llms();
 BLOG_LANGS.forEach(buildBlogIndex);
-B.posts.forEach(p => BLOG_LANGS.forEach(l => p[l] && buildPost(p, l)));
+B.posts.forEach(p => postLangs(p).forEach(l => buildPost(p, l)));
 sitemap();

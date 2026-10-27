@@ -1,0 +1,416 @@
+{
+  "name": "Blog : nouvel article (brouillon FR/EN/AR)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Nouvel article pour le blog",
+        "formDescription": "Remplis ce formulaire après une séance. Claude écrit un brouillon en français, anglais et arabe, et GitHub prépare un aperçu du site. Rien n'est publié tant que tu n'as pas validé.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Sujet de l'article",
+              "placeholder": "Ex. : notre demande au pont de Bir-Hakeim un soir de pluie",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Recherche Google visée",
+              "placeholder": "Ex. : photographe demande en mariage Paris"
+            },
+            {
+              "fieldLabel": "Catégorie",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Vraies histoires"
+                  },
+                  {
+                    "option": "Lieux"
+                  },
+                  {
+                    "option": "Prix et conseils"
+                  },
+                  {
+                    "option": "Mariages"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Séance liée",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Demande en mariage"
+                  },
+                  {
+                    "option": "Mariage"
+                  },
+                  {
+                    "option": "Mariage oriental / musulman"
+                  },
+                  {
+                    "option": "Séance couple"
+                  },
+                  {
+                    "option": "Concert ou événement"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Mes notes (lieu, ce qui s'est passé, conseils)",
+              "fieldType": "textarea",
+              "placeholder": "Tout ce que tu sais : lieu, heure, météo, réaction, détails, conseils. Claude n'invente rien d'autre.",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Photo de couverture",
+              "placeholder": "/images/shop/proposal-16.webp",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "32f441b6-ae43-4342-bd89-d2c0aaedf6de",
+      "name": "Formulaire : nouvel article",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const f = $input.first().json;\nconst system = \"Tu es la plume du blog de Melissa Photography Paris (melissaphotographyparis.fr). Melissa est photographe \\u00e0 Paris : demandes en mariage, mariages (dont mariages orientaux et musulmans, en tant que photographe femme), s\\u00e9ances couple, concerts et \\u00e9v\\u00e9nements. Elle parle fran\\u00e7ais, anglais et arabe. Ses lieux pr\\u00e9f\\u00e9r\\u00e9s pour les demandes : pont de Bir-Hakeim, all\\u00e9e des Cygnes, avenue de Camo\\u00ebns, square du Vert-Galant, Palais-Royal. Elle \\u00e9vite le Trocad\\u00e9ro (trop de monde pour un moment intime). Tarifs : s\\u00e9ance couple d\\u00e8s 250 \\u20ac, demande d\\u00e8s 290 \\u20ac (1 h, 20+ photos, livr\\u00e9es en 24 h), demande + d\\u00e9coration d\\u00e8s 690 \\u20ac, mariage \\u00e0 la mairie 800 \\u20ac, demi-journ\\u00e9e 1 300 \\u20ac, journ\\u00e9e compl\\u00e8te 1 900 \\u20ac, concert ou \\u00e9v\\u00e9nement d\\u00e8s 300 \\u20ac.\\n\\nR\\u00e8gles strictes :\\n1. N'invente aucun fait : pas de chiffres, de noms de clients, d'anecdotes ou de lieux qui ne sont pas dans les notes de Melissa ou dans ce message. Si une info manque, \\u00e9cris autour sans l'inventer.\\n2. N'utilise JAMAIS de tiret cadratin ni de tiret demi-cadratin. Pour une fourchette, \\u00e9cris \\u00ab de 3 \\u00e0 4 h \\u00bb.\\n3. Ton : chaleureux, honn\\u00eate, \\u00e0 la premi\\u00e8re personne (Melissa), vouvoiement en fran\\u00e7ais. Phrases simples. Pas de jargon marketing.\\n4. SEO : le titre contient la recherche principale (ex. \\u00ab photographe demande en mariage Paris \\u00bb), il donne envie de cliquer. La description fait moins de 155 caract\\u00e8res.\\n5. Longueur : 700 \\u00e0 1000 mots en fran\\u00e7ais, m\\u00eames contenus en anglais et en arabe (arabe standard, simple).\\n6. R\\u00e9ponds uniquement avec un objet JSON valide, sans texte autour, au format exact suivant :\\n{\\\"slug\\\":{\\\"fr\\\":\\\"...\\\",\\\"en\\\":\\\"...\\\",\\\"ar\\\":\\\"(m\\u00eames mots que en)\\\"},\\n \\\"fr\\\":{\\\"title\\\":\\\"...\\\",\\\"short\\\":\\\"une phrase d'accroche\\\",\\\"desc\\\":\\\"...\\\",\\\"intro\\\":[\\\"...\\\"],\\n       \\\"sections\\\":[{\\\"h2\\\":\\\"1. ...\\\",\\\"p\\\":[\\\"...\\\",\\\"...\\\"],\\\"list\\\":[\\\"(optionnel)\\\"]}],\\n       \\\"tips\\\":[\\\"3 \\u00e0 5 conseils courts\\\"]},\\n \\\"en\\\":{ m\\u00eame structure },\\n \\\"ar\\\":{ m\\u00eame structure }}\\nLes slugs : minuscules, mots s\\u00e9par\\u00e9s par des tirets simples, sans accents, 3 \\u00e0 7 mots.\";\nconst user = [\n  'Sujet : ' + f[\"Sujet de l'article\"],\n  'Recherche Google visée : ' + (f['Recherche Google visée'] || '(à toi de choisir la plus naturelle)'),\n  'Catégorie : ' + f['Catégorie'],\n  'Séance liée : ' + f['Séance liée'],\n  'Notes de Melissa :',\n  f[\"Mes notes (lieu, ce qui s'est passé, conseils)\"],\n].join('\\n');\nreturn [{ json: { form: f, body: { model: 'claude-sonnet-5-5', max_tokens: 8000, system, messages: [{ role: 'user', content: user }] } } }];"
+      },
+      "id": "07ccfb66-33b3-4043-9e84-e735dc316893",
+      "name": "Préparer la demande à Claude",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {
+          "timeout": 180000
+        }
+      },
+      "id": "d8928a5d-cba0-43d1-8dda-53b91c39bc52",
+      "name": "Claude écrit l'article",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Anthropic API key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const form = $('Préparer la demande à Claude').first().json.form;\nconst text = ($input.first().json.content || []).map(c => c.text || '').join('');\nconst raw = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);\nlet a;\ntry { a = JSON.parse(raw); } catch (e) { throw new Error(\"Claude n'a pas renvoyé un JSON valide : \" + e.message); }\n// no em dash or en dash, ever\nconst clean = v => typeof v === 'string' ? v.replace(/\\s*[\\u2014\\u2013]\\s*/g, ', ') : Array.isArray(v) ? v.map(clean) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, clean(x)])) : v;\na = clean(a);\nfor (const l of ['fr', 'en', 'ar']) if (!a[l] || !a[l].title || !Array.isArray(a[l].sections)) throw new Error('Langue manquante ou incomplète : ' + l);\nconst slugify = s => String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70);\nconst slug = { fr: slugify(a.slug && a.slug.fr || a.fr.title), en: slugify(a.slug && a.slug.en || a.en.title) };\nslug.ar = slug.en;\nconst cats = { 'Vraies histoires': 'stories', 'Lieux': 'places', 'Prix et conseils': 'prices', 'Mariages': 'weddings' };\nconst svc = { 'Demande en mariage': ['proposal', 's-prop'], 'Mariage': ['wedding', 's-wed'], 'Mariage oriental / musulman': ['oriental', 's-wed'], 'Séance couple': ['couple', 's-couple'], 'Concert ou événement': ['concert', 's-event'] }[form['Séance liée']] || ['proposal', 's-prop'];\nconst date = new Date().toISOString().slice(0, 10);\nconst key = slug.en.slice(0, 40);\nconst post = { key, date, updated: date, category: cats[form['Catégorie']] || 'stories', service: svc[0], session: svc[1], cover: form['Photo de couverture'], slug };\nfor (const l of ['en', 'fr', 'ar']) post[l] = { title: a[l].title, short: a[l].short, desc: a[l].desc, intro: a[l].intro || [], sections: a[l].sections, tips: a[l].tips || [] };\nconst file = `WEBSITE/final-version/scripts/posts/${date}-${key}.json`;\nconst content = JSON.stringify(post, null, 2) + '\\n';\nreturn [{ json: { branch: `article/${date}-${key}`, file, title: a.fr.title, slugFr: slug.fr, base64: Buffer.from(content, 'utf8').toString('base64') } }];"
+      },
+      "id": "3da0d2cc-4130-4472-9d4e-d743ab12d302",
+      "name": "Vérifier et préparer le fichier",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/Mrxa69K/website1.2/git/ref/heads/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-melissa-blog"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e4b925d7-a5fc-41cb-ade2-8db9d642523c",
+      "name": "GitHub : dernier commit de main",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub token (website1.2)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/Mrxa69K/website1.2/git/refs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-melissa-blog"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ ref: 'refs/heads/' + $('Vérifier et préparer le fichier').first().json.branch, sha: $json.object.sha }) }}",
+        "options": {}
+      },
+      "id": "17d2924a-7fbe-4dce-b460-9be56c65bdef",
+      "name": "GitHub : créer la branche",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1300,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub token (website1.2)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ 'https://api.github.com/repos/Mrxa69K/website1.2/contents/' + $('Vérifier et préparer le fichier').first().json.file }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-melissa-blog"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'Blog : ' + $('Vérifier et préparer le fichier').first().json.title, content: $('Vérifier et préparer le fichier').first().json.base64, branch: $('Vérifier et préparer le fichier').first().json.branch }) }}",
+        "options": {}
+      },
+      "id": "49182d92-d5c4-477d-a012-f5265e2620c8",
+      "name": "GitHub : ajouter l'article",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1560,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub token (website1.2)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/Mrxa69K/website1.2/pulls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-melissa-blog"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ title: 'Blog : ' + $('Vérifier et préparer le fichier').first().json.title, head: $('Vérifier et préparer le fichier').first().json.branch, base: 'main', body: \"Brouillon écrit par Claude à partir du formulaire n8n.\\n\\n1. Attends 2 à 3 minutes : GitHub construit les pages, puis Vercel publie un aperçu (lien dans les commentaires ci-dessous).\\n2. Relis l'article dans l'aperçu (français, anglais, arabe).\\n3. Pour corriger : modifie le fichier JSON de l'article dans l'onglet Files changed.\\n4. Si tout est bon : Merge pull request. L'article est en ligne quelques minutes après.\" }) }}",
+        "options": {}
+      },
+      "id": "77f1b758-c753-432c-9eb1-c287ac2f1562",
+      "name": "GitHub : ouvrir la demande de fusion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub token (website1.2)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Brouillon prêt à relire",
+        "completionMessage": "={{ 'Ton article « ' + $('Vérifier et préparer le fichier').first().json.title + ' » est prêt à relire ici : ' + $json.html_url + '. L’aperçu du site apparaît dans les commentaires dans 2 à 3 minutes. Rien n’est en ligne tant que tu ne cliques pas sur Merge.' }}",
+        "options": {}
+      },
+      "id": "721cdaa0-51f2-42ff-bd04-d1b81cf7202a",
+      "name": "C'est prêt",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Formulaire : nouvel article": {
+      "main": [
+        [
+          {
+            "node": "Préparer la demande à Claude",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparer la demande à Claude": {
+      "main": [
+        [
+          {
+            "node": "Claude écrit l'article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude écrit l'article": {
+      "main": [
+        [
+          {
+            "node": "Vérifier et préparer le fichier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérifier et préparer le fichier": {
+      "main": [
+        [
+          {
+            "node": "GitHub : dernier commit de main",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub : dernier commit de main": {
+      "main": [
+        [
+          {
+            "node": "GitHub : créer la branche",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub : créer la branche": {
+      "main": [
+        [
+          {
+            "node": "GitHub : ajouter l'article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub : ajouter l'article": {
+      "main": [
+        [
+          {
+            "node": "GitHub : ouvrir la demande de fusion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub : ouvrir la demande de fusion": {
+      "main": [
+        [
+          {
+            "node": "C'est prêt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

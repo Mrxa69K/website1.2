@@ -49,8 +49,8 @@ module.exports = {
       ],
       en: {
         nav: 'Proposal photographer',
-        title: "Proposal Photographer in Paris · Melissa's Photography",
-        desc: 'Discreet marriage proposal photographer in Paris: Eiffel Tower, Trocadéro, Bir-Hakeim, the Louvre. 20+ photos delivered within 24 hours. French, English, Arabic. From €290.',
+        title: 'Proposal Photographer in Paris · Surprise Proposals & Engagement Photos · Melissa',
+        desc: 'Secret and surprise proposal photographer in Paris, also for engagement photos: Bir-Hakeim, the Eiffel Tower, the Palais-Royal. 20+ photos delivered within 24 hours. French, English, Arabic. From €290.',
         h1: 'Proposal photographer in Paris',
         lede: 'You plan the question, I hide in the crowd and catch the yes. Discreet proposal photos at Bir-Hakeim, by the Eiffel Tower, at the Palais-Royal or along the Seine, delivered within 24 hours.',
         story: [
@@ -64,11 +64,12 @@ module.exports = {
           ['How will my partner not notice you?', 'We agree on the exact spot and a signal beforehand. I arrive early, blend in with the other visitors and start shooting from a distance, then come closer once the yes is said.'],
           ['What if it rains?', 'We watch the forecast together. We can move the time, or pick a covered spot such as the Louvre arcades.'],
           ['When do we get the photos?', 'Within 24 hours, in a private online gallery you can download and share with family and friends.'],
+          ['Do you also do engagement photos?', 'Yes. If you are already engaged, the couple session (1h30, 25+ photos, from €250) is perfect for engagement photos in Paris, by the Eiffel Tower or in a quieter spot.'],
         ],
       },
       fr: {
         nav: 'Photographe demande en mariage',
-        title: "Photographe demande en mariage à Paris · Melissa's Photography",
+        title: 'Photographe demande en mariage à Paris : surprise, lieux et prix · Melissa',
         desc: 'Photographe discrète pour votre demande en mariage à Paris : tour Eiffel, Trocadéro, Bir-Hakeim, Louvre. 20+ photos livrées en 24 h. Français, anglais, arabe. Dès 290 €.',
         h1: 'Photographe de demande en mariage à Paris',
         lede: 'Vous préparez la question, je me cache dans la foule et je capture le oui. Des photos discrètes de votre demande à Bir-Hakeim, près de la tour Eiffel, au Palais-Royal ou sur les quais de Seine, livrées en 24 h.',
@@ -83,6 +84,7 @@ module.exports = {
           ['Comment faire pour que ma moitié ne vous remarque pas ?', "On convient à l'avance du lieu exact et d'un signal. J'arrive en avance, je me fonds parmi les visiteurs et je commence à photographier de loin, puis je m'approche une fois le oui prononcé."],
           ['Et s’il pleut ?', "On surveille la météo ensemble. On peut décaler l'heure, ou choisir un endroit abrité comme les arcades du Louvre."],
           ['Quand recevons-nous les photos ?', 'Sous 24 h, dans une galerie privée en ligne que vous pouvez télécharger et partager avec vos proches.'],
+          ['Combien coûte une photographe de demande en mariage à Paris ?', "Chez moi, une demande commence à 290 € (1 h, 20+ photos, livrées en 24 h). Sur le marché parisien, comptez en général de 200 € à plus de 500 € pour une heure. J'explique tout dans mon article sur les prix, sur le blog."],
         ],
       },
       ar: {
@@ -119,13 +121,13 @@ module.exports = {
         [P + 'wedding-019.webp', { en: 'Newlyweds hand in hand', fr: 'Les mariés main dans la main', ar: 'العروسان يداً بيد' }, { en: 'Hand in hand', fr: 'Main dans la main', ar: 'يداً بيد' }],
       ],
       packages: [
-        { name: { en: 'Town hall wedding', fr: 'Mariage à la mairie', ar: 'عقد القران في البلدية' }, info: { en: '3–4h · 80+ photos', fr: '3–4h · 80+ photos', ar: '3–4 ساعات · +80 صورة' }, price: 800, session: 's-wed-hall' },
+        { name: { en: 'Town hall wedding', fr: 'Mariage à la mairie', ar: 'عقد القران في البلدية' }, info: { en: '3 to 4h · 80+ photos', fr: '3 à 4 h · 80+ photos', ar: 'من 3 إلى 4 ساعات · +80 صورة' }, price: 800, session: 's-wed-hall' },
         { name: { en: 'Wedding, half day', fr: 'Mariage, demi-journée', ar: 'عرس، نصف يوم' }, info: { en: '6h · 120+ photos', fr: '6h · 120+ photos', ar: '6 ساعات · +120 صورة' }, price: 1300, session: 's-wed-half' },
-        { name: { en: 'Wedding, full day', fr: 'Mariage, journée complète', ar: 'عرس، يوم كامل' }, info: { en: '8–10h · 200+ photos', fr: '8–10h · 200+ photos', ar: '8–10 ساعات · +200 صورة' }, price: 1900, session: 's-wed' },
+        { name: { en: 'Wedding, full day', fr: 'Mariage, journée complète', ar: 'عرس، يوم كامل' }, info: { en: '8 to 10h · 200+ photos', fr: '8 à 10 h · 200+ photos', ar: 'من 8 إلى 10 ساعات · +200 صورة' }, price: 1900, session: 's-wed' },
       ],
       en: {
         nav: 'Wedding photographer',
-        title: "Wedding Photographer in Paris · Melissa's Photography",
+        title: 'Wedding Photographer in Paris · Packages from €800 · Melissa Photography',
         desc: 'Natural, warm wedding photography in Paris and Île-de-France, from the town hall to the last dance. French, English and Arabic speaking. Packages from €800.',
         h1: 'Wedding photographer in Paris',
         lede: 'From the town hall to the last dance: natural, warm wedding photos in Paris and Île-de-France, by a photographer who speaks French, English and Arabic.',
@@ -144,7 +146,7 @@ module.exports = {
       },
       fr: {
         nav: 'Photographe mariage',
-        title: "Photographe mariage à Paris · Melissa's Photography",
+        title: 'Photographe mariage à Paris : tarifs dès 800 € · Melissa Photography',
         desc: "Photographe de mariage à Paris et en Île-de-France, naturel et chaleureux, de la mairie à la dernière danse. Français, anglais et arabe. Formules dès 800 €.",
         h1: 'Photographe de mariage à Paris',
         lede: "De la mairie à la dernière danse : des photos de mariage naturelles et chaleureuses à Paris et en Île-de-France, par une photographe qui parle français, anglais et arabe.",
@@ -197,10 +199,10 @@ module.exports = {
       ],
       en: {
         nav: 'Couple photographer',
-        title: "Couple & Portrait Photographer in Paris · Melissa's Photography",
+        title: 'Couple Photoshoot in Paris with the Eiffel Tower · Couple Photographer · Melissa',
         desc: 'Relaxed couple and portrait photo sessions in Paris: 1h30, 25+ photos, Eiffel Tower, Louvre, Montmartre. Anniversaries, honeymoons, engagements. French, English, Arabic. From €250.',
         h1: 'Couple & portrait photographer in Paris',
-        lede: 'A relaxed 1h30 walk through Paris with the two of you, or just you, and 25+ photos that actually look like you.',
+        lede: 'A Paris couple photoshoot: a relaxed 1h30 walk for the two of you, or just you, by the Eiffel Tower or somewhere quieter, and 25+ photos that actually look like you.',
         story: [
           "No stiff posing. We walk, we talk, and I guide you gently: where to stand, where to look, when to just laugh. Most people forget the camera after ten minutes.",
           'Perfect for an anniversary, a honeymoon in Paris, engagement photos or simply a souvenir of your trip. Solo portraits are welcome too.',
@@ -216,10 +218,10 @@ module.exports = {
       },
       fr: {
         nav: 'Photographe couple',
-        title: "Photographe couple et portrait à Paris · Melissa's Photography",
+        title: 'Shooting photo couple à Paris et tour Eiffel · Photographe couple · Melissa',
         desc: "Séance photo couple ou portrait à Paris, détendue : 1h30, 25+ photos, tour Eiffel, Louvre, Montmartre. Anniversaire, lune de miel, fiançailles. Français, anglais, arabe. Dès 250 €.",
         h1: 'Photographe couple et portrait à Paris',
-        lede: "Une balade d'1h30 dans Paris à deux, ou en solo, et plus de 25 photos qui vous ressemblent vraiment.",
+        lede: "Un shooting photo couple à Paris : une balade d'1 h 30 à deux, ou en solo, face à la tour Eiffel ou dans un coin plus calme, et plus de 25 photos qui vous ressemblent vraiment.",
         story: [
           "Pas de pose figée. On marche, on discute, et je vous guide en douceur : où vous placer, où regarder, quand simplement rire. La plupart des gens oublient l'appareil au bout de dix minutes.",
           'Idéal pour un anniversaire, une lune de miel à Paris, des photos de fiançailles ou simplement un souvenir de votre voyage. Les portraits en solo sont aussi les bienvenus.',
@@ -290,7 +292,7 @@ module.exports = {
       },
       fr: {
         nav: 'Photographe concert',
-        title: "Photographe concert et événement à Paris · Melissa's Photography",
+        title: 'Photographe concert et événement à Paris · Tarifs dès 300 € · Melissa',
         desc: "Photographe de concerts, festivals et événements à Paris : premier rang, sans flash, que de l'émotion. Lollapalooza Paris, live, soirées privées. 60+ photos. Dès 300 €.",
         h1: 'Photographe concert et événement à Paris',
         lede: "Premier rang, sans flash, que de l'émotion. Photos de concerts, de festivals et d'événements privés à Paris, du Lollapalooza aux petites salles.",
@@ -327,5 +329,8 @@ module.exports = {
         ],
       },
     },
+
+    // ------------------------------------------------------------------ female photographer, Muslim & oriental weddings
+    {"key": "oriental", "album": "weddings", "session": "s-wed", "slug": {"en": "female-muslim-wedding-photographer-paris", "fr": "photographe-femme-mariage-oriental-paris", "ar": "female-muslim-wedding-photographer-paris"}, "photos": [["/images/shop/wedding-013.webp", {"en": "Newlyweds showing their wedding rings", "fr": "Les mariés montrent leurs alliances", "ar": "العروسان يعرضان خاتمي الزواج"}, {"en": "The rings", "fr": "Les alliances", "ar": "الخواتم"}], ["/images/shop/wedding-2.webp", {"en": "Bride and groom under a pink Paris sky", "fr": "Les mariés sous un ciel rose à Paris", "ar": "العروسان تحت سماء وردية في باريس"}, {"en": "Paris, pink sky", "fr": "Paris, ciel rose", "ar": "باريس، سماء وردية"}], ["/images/shop/wedding-019.webp", {"en": "Newlyweds hand in hand", "fr": "Les mariés main dans la main", "ar": "العروسان يداً بيد"}, {"en": "Hand in hand", "fr": "Main dans la main", "ar": "يداً بيد"}]], "packages": [{"name": {"en": "Town hall wedding", "fr": "Mariage à la mairie", "ar": "عقد القران في البلدية"}, "info": {"en": "3 to 4h · 80+ photos", "fr": "3 à 4 h · 80+ photos", "ar": "من 3 إلى 4 ساعات · +80 صورة"}, "price": 800, "session": "s-wed-hall"}, {"name": {"en": "Henna night or half day", "fr": "Henné ou demi-journée", "ar": "ليلة الحنّاء أو نصف يوم"}, "info": {"en": "6h · 120+ photos", "fr": "6 h · 120+ photos", "ar": "6 ساعات · +120 صورة"}, "price": 1300, "session": "s-wed-half"}, {"name": {"en": "Wedding, full day", "fr": "Mariage, journée complète", "ar": "عرس، يوم كامل"}, "info": {"en": "8 to 10h · 200+ photos", "fr": "8 à 10 h · 200+ photos", "ar": "من 8 إلى 10 ساعات · +200 صورة"}, "price": 1900, "session": "s-wed"}], "fr": {"nav": "Photographe femme mariage oriental", "title": "Photographe femme pour mariage oriental et musulman à Paris · Melissa Photography", "desc": "Photographe femme à Paris pour mariages orientaux et musulmans : discrète, respectueuse de votre intimité, elle parle arabe, français et anglais. Henné, mairie, fête. Formules dès 800 €.", "h1": "Photographe femme pour votre mariage oriental ou musulman à Paris", "lede": "Une photographe femme qui parle arabe, français et anglais, pour photographier votre henné, votre mariage et votre fête dans le respect de votre intimité et de vos traditions.", "story": ["Dans beaucoup de familles, certains moments du mariage se vivent entre femmes : les préparatifs de la mariée, le henné, la salle des femmes. Être une femme me permet d'être là, discrètement, sans que personne ne se sente gêné.", "Je parle arabe, français et anglais. Je comprends les deux familles, je sais attendre le bon moment pendant l'entrée des mariés ou les changements de tenue, et j'organise les photos de groupe vite, sans brusquer personne.", "Vos photos restent à vous : galerie privée protégée par mot de passe, et rien n'est publié sur mes réseaux sans votre accord écrit. Si certaines invitées préfèrent ne pas être photographiées, on le prévoit ensemble avant le jour J."], "included": ["Une photographe femme pour les moments entre femmes (préparatifs, henné, salle des femmes)", "Le henné, la mairie et la fête, selon la formule choisie", "Le respect de la pudeur : on décide ensemble de ce qui peut être photographié", "Une galerie privée protégée par mot de passe, rien de publié sans votre accord", "Des échanges en arabe, en français ou en anglais avec vous et votre famille"], "faq": [["Êtes-vous vraiment une femme photographe ?", "Oui. C'est moi, Melissa, qui viens photographier votre mariage. Je ne vous envoie pas quelqu'un d'autre."], ["Publiez-vous les photos sur Instagram ?", "Jamais sans votre accord écrit. Par défaut, vos photos restent uniquement dans votre galerie privée."], ["Pouvez-vous photographier le henné et la fête sur deux jours différents ?", "Oui. On adapte les formules, par exemple une demi-journée pour le henné et la journée complète pour la fête. Décrivez votre programme dans l'enveloppe de commande et je vous envoie un devis."], ["Vous déplacez-vous dans les salles de fêtes d'Île-de-France ?", "Oui, à Paris et dans toute l'Île-de-France. Indiquez la salle dans votre message et je vous confirme."]]}, "en": {"nav": "Female wedding photographer (Muslim & oriental)", "title": "Female Photographer for Muslim & Oriental Weddings in Paris · Melissa Photography", "desc": "Female wedding photographer in Paris for Muslim and oriental weddings: discreet, respectful of your privacy, speaks Arabic, French and English. Henna night, town hall, celebration. Packages from €800.", "h1": "Female photographer for your Muslim or oriental wedding in Paris", "lede": "A female photographer who speaks Arabic, French and English, to photograph your henna night, your wedding and your celebration with respect for your privacy and your traditions.", "story": ["In many families, some moments of the wedding happen among women: the bride getting ready, the henna night, the women's hall. Being a woman means I can be there, discreetly, without anyone feeling uncomfortable.", "I speak Arabic, French and English. I understand both families, I know how to wait for the right moment during the couple's entrance or the outfit changes, and I organise group photos quickly without rushing anyone.", "Your photos stay yours: a private, password-protected gallery, and nothing is posted on my social media without your written consent. If some guests prefer not to be photographed, we plan for it together before the day."], "included": ["A female photographer for the women-only moments (getting ready, henna, women's hall)", "The henna night, town hall and celebration, depending on the package", "Respect for modesty: we agree together on what can be photographed", "A private, password-protected gallery, nothing published without your consent", "Conversations in Arabic, French or English with you and your family"], "faq": [["Are you really a female photographer?", "Yes. I, Melissa, come and photograph your wedding myself. I don't send someone else."], ["Do you post the photos on Instagram?", "Never without your written consent. By default, your photos stay only in your private gallery."], ["Can you cover the henna night and the celebration on two different days?", "Yes. We combine packages, for example a half day for the henna and a full day for the celebration. Describe your programme in the order envelope and I will send you a quote."], ["Do you travel to venues across Île-de-France?", "Yes, in Paris and all of Île-de-France. Tell me the venue in your message and I will confirm."]]}, "ar": {"nav": "مصوّرة أعراس (عربية وإسلامية)", "title": "مصوّرة امرأة للأعراس العربية والإسلامية في باريس · Melissa Photography", "desc": "مصوّرة امرأة في باريس للأعراس العربية والإسلامية: متحفّظة وتحترم خصوصيتكم، تتحدث العربية والفرنسية والإنجليزية. ليلة الحنّاء، البلدية، الحفل. باقات من 800 €.", "h1": "مصوّرة امرأة لعرسكم العربي أو الإسلامي في باريس", "lede": "مصوّرة امرأة تتحدث العربية والفرنسية والإنجليزية، لتصوير ليلة الحنّاء والعرس والحفل مع احترام خصوصيتكم وتقاليدكم.", "story": ["في كثير من العائلات، بعض لحظات العرس تكون بين النساء فقط: تجهيز العروس، ليلة الحنّاء، قاعة النساء. كوني امرأة يسمح لي بأن أكون هناك بتحفّظ، دون أن يشعر أحد بالحرج.", "أتحدث العربية والفرنسية والإنجليزية. أفهم العائلتين، وأعرف كيف أنتظر اللحظة المناسبة أثناء دخول العروسين أو تغيير الأزياء، وأنظّم الصور الجماعية بسرعة دون أن أستعجل أحداً.", "صوركم تبقى لكم: معرض خاص محمي بكلمة مرور، ولا يُنشر شيء على حساباتي دون موافقتكم المكتوبة. وإن فضّلت بعض الضيفات عدم التصوير، نرتّب ذلك معاً قبل يوم العرس."], "included": ["مصوّرة امرأة للحظات النسائية (تجهيز العروس، الحنّاء، قاعة النساء)", "ليلة الحنّاء والبلدية والحفل، حسب الباقة", "احترام الحشمة: نتفق معاً على ما يمكن تصويره", "معرض خاص محمي بكلمة مرور، ولا يُنشر شيء دون موافقتكم", "التواصل بالعربية أو الفرنسية أو الإنجليزية معكم ومع عائلتكم"], "faq": [["هل أنتِ فعلاً مصوّرة امرأة؟", "نعم. أنا ميليسا، وآتي بنفسي لتصوير عرسكم. لا أرسل شخصاً آخر."], ["هل تنشرين الصور على إنستغرام؟", "أبداً دون موافقتكم المكتوبة. بشكل افتراضي، تبقى صوركم فقط في معرضكم الخاص."], ["هل يمكنكِ تصوير الحنّاء والحفل في يومين مختلفين؟", "نعم. نجمع بين الباقات، مثلاً نصف يوم للحنّاء ويوم كامل للحفل. صفوا لي برنامجكم في ظرف الطلب وسأرسل لكم عرض سعر."], ["هل تتنقلين إلى قاعات الأفراح في إيل دو فرانس؟", "نعم، في باريس وفي كل إيل دو فرانس. اذكروا القاعة في رسالتكم وسأؤكد لكم."]]}},
   ],
 };

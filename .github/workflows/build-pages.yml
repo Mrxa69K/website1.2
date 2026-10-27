@@ -1,0 +1,41 @@
+# Rebuilds the static pages (home, services, about, blog, sitemap) whenever their
+# sources change, on any branch. This is what lets the n8n workflow add an article
+# as a simple JSON file: GitHub builds the pages, Vercel shows a preview.
+name: Build site pages
+
+on:
+  push:
+    paths:
+      - 'WEBSITE/final-version/scripts/**'
+      - 'WEBSITE/final-version/js/shop-i18n.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build pages
+        working-directory: WEBSITE/final-version
+        run: node scripts/build-shop-pages.js
+      - name: Commit the generated pages
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A WEBSITE/final-version
+          if git diff --staged --quiet; then
+            echo "Pages already up to date"
+          else
+            git commit -m "Build pages"
+            git push
+          fi
