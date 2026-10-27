@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 %%ARABIC_FONTS%%
-<link rel="stylesheet" href="/css/shop.css?v=5">
+<link rel="stylesheet" href="/css/shop.css?v=8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>
   // This page is in %%LANG%%. On the English homepage only, send visitors who chose
@@ -55,12 +55,14 @@
     "@type": "OfferCatalog",
     "name": "Photo sessions",
     "itemListElement": [
-      { "@type": "Offer", "price": "290", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Proposal photography" } },
+      { "@type": "Offer", "price": "150", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Express proposal photography (30 min)" } },
+      { "@type": "Offer", "price": "290", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Proposal photography (1 hour)" } },
       { "@type": "Offer", "price": "690", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Proposal with decoration" } },
+      { "@type": "Offer", "price": "150", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Portrait session" } },
       { "@type": "Offer", "price": "250", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Couple session" } },
-      { "@type": "Offer", "price": "800", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Town hall wedding" } },
-      { "@type": "Offer", "price": "1300", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Wedding, half day" } },
-      { "@type": "Offer", "price": "1900", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Wedding, full day" } },
+      { "@type": "Offer", "price": "250", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Town hall wedding" } },
+      { "@type": "Offer", "price": "500", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Wedding, half day" } },
+      { "@type": "Offer", "price": "750", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Wedding, full day" } },
       { "@type": "Offer", "price": "300", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Concert or event" } },
       { "@type": "Offer", "price": "100", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Sport" } }
     ]
@@ -90,7 +92,7 @@
       <div class="shop-window" aria-hidden="true">
         <div class="transom"><span>Proposals &amp; Weddings</span></div>
         <div class="pane">
-          <div class="framed easel tilt"><img src="/images/shop/proposal-16.webp" alt=""><span class="ptag" data-from="290"></span></div>
+          <div class="framed easel tilt"><img src="/images/shop/proposal-16.webp" alt=""><span class="ptag" data-from="150"></span></div>
           <div class="framed small"><img src="/images/shop/wedding-016.webp" alt=""></div>
           <div class="ledge"></div>
         </div>
@@ -108,7 +110,7 @@
         <div class="transom"><span>Portraits &amp; Couples</span></div>
         <div class="pane">
           <div class="framed small"><img src="/images/shop/proposal-proposal3.webp" alt=""></div>
-          <div class="framed easel" style="transform: rotate(3deg)"><img src="/images/shop/portrait-2p.webp" alt=""><span class="ptag" data-from="250"></span></div>
+          <div class="framed easel" style="transform: rotate(3deg)"><img src="/images/shop/portrait-2p.webp" alt=""><span class="ptag" data-from="150"></span></div>
           <div class="ledge"></div>
         </div>
         <div class="kickplate"><i></i><i></i></div>
@@ -503,6 +505,7 @@
       <form id="order-form" novalidate>
         <fieldset>
           <legend>1 · Choose your session</legend>
+          <p class="sess-help">Pick a category, then a package.</p>
           <div class="sessions" id="sessions"></div>
         </fieldset>
         <div class="row2">
@@ -627,8 +630,8 @@
 </div>
 
 <script src="/js/supabase-config.js"></script>
-<script src="/js/shop-i18n.js?v=6"></script>
-<script src="/js/shop.js?v=3"></script>
+<script src="/js/shop-i18n.js?v=8"></script>
+<script src="/js/shop.js?v=5"></script>
 <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
 <script src="/js/cookieconsent-config.js" type="module"></script>
 </body>

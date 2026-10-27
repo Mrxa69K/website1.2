@@ -27,6 +27,7 @@ const B = require('./blog-content.js');
 const A = require('./about-content.js');
 const aboutPath = l => (l === 'en' ? `/${A.slug.en}/` : `/${l}/${A.slug[l]}/`);
 const BLOG_LANGS = ['en', 'fr', 'ar'];
+const PROMO_ON = TODAY <= '2026-12-31'; // blog readers' code CARNET
 const blogPath = l => (l === 'en' ? '/blog/' : `/${l}/blog/`);
 const postPath = (p, l) => blogPath(l) + p.slug[l] + '/';
 const template = fs.readFileSync(path.join(__dirname, 'shop-template.html'), 'utf8');
@@ -148,8 +149,8 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=5">
-<link rel="stylesheet" href="/css/landing.css?v=9">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=8">
+<link rel="stylesheet" href="/css/landing.css?v=10">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -268,8 +269,8 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=5">
-<link rel="stylesheet" href="/css/landing.css?v=9">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=8">
+<link rel="stylesheet" href="/css/landing.css?v=10">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -549,8 +550,9 @@ ${t.sources.map(([name, url]) => `          <li><a href="${escAttr(url)}" target
   <section class="lp-final post-cta reveal">
     <h2>${escHTML(u.ctaTitle)}</h2>
     <p>${escHTML(u.ctaText)}</p>
+    ${PROMO_ON ? `<p class="promo-note">${escHTML(u.promo)}</p>` : ''}
     <div class="lp-cta">
-      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}">${escHTML(u.ctaBtn)}</a>
+      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}${PROMO_ON ? '&amp;promo=CARNET' : ''}">${escHTML(u.ctaBtn)}</a>
       ${svc ? `<a class="btn" href="${servicePath(svc, l)}">${escHTML(u.ctaMore)}</a>` : ''}
     </div>
   </section>
@@ -653,7 +655,7 @@ function llms() {
 ## Key facts
 - Area: Paris and Île-de-France
 - Languages: French, English, Arabic
-- Prices: couple session from €250, proposal from €290, proposal with decoration from €690, town hall wedding €800, wedding half day €1,300, wedding full day €1,900, concert or event from €300, sport from €100
+- Prices (photography only): express proposal 30 min €150 (10 photos) or €200 (20+ photos), proposal 1 hour from €290, proposal with decoration from €690, portrait session from €150, couple session from €250, town hall wedding from €250 for 2 hours (up to €400), wedding half day €500, wedding full day €750, concert or event from €300, sport from €100
 - Favourite proposal spots: Bir-Hakeim bridge, Allée des Cygnes, Avenue de Camoëns, Square du Vert-Galant, Palais-Royal
 - Booking: ${SITE}/?go=book (replies within 24 hours)
 - Instagram: https://www.instagram.com/melissa_photography_paris

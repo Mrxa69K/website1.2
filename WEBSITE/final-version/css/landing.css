@@ -268,3 +268,5 @@ body.lp { min-height: 100%; }
 .post-related { margin-top: 50px; }
 .post-related > h2 { text-align: center; font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.4vw, 32px); color: #fff; text-shadow: 2px 2px 0 var(--navy), 4px 4px 0 var(--pink-deep); }
 .post-table td:last-child { white-space: nowrap; font-weight: 800; color: var(--rose-ink); }
+.post-cta .promo-note { margin: 4px auto 0; max-width: 560px; padding: 12px 14px; border: 2px dashed var(--rose-ink); border-radius: 10px; background: #fff0f3; font-weight: 700; font-size: 15px; }
+.post-cta .promo-note::before { content: "✦ "; color: var(--rose-ink); }

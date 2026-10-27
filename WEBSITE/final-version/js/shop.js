@@ -109,7 +109,7 @@
   const ALBUMS = {
     // each inner array is one album page: one or two photos [file, caption, orientation p|l]
     proposals: {
-      title: 'Proposals', category: 'proposal', color: '#e58aa2', ink: '#1f3a4d', from: 290, cover: S + 'proposal-16.webp',
+      title: 'Proposals', category: 'proposal', color: '#e58aa2', ink: '#1f3a4d', from: 150, cover: S + 'proposal-16.webp',
       note: 'Hidden in the crowd, waiting for the knee to drop.',
       pages: [
         [[S + 'proposal-16.webp', 'Trocadéro, after dark', 'p'], [S + 'proposal-13.webp', 'Candles & a yes', 'p']],
@@ -118,7 +118,7 @@
       ],
     },
     weddings: {
-      title: 'Weddings', category: 'wedding', color: '#fdf6ea', ink: '#1f3a4d', from: 800, cover: S + 'wedding-016.webp',
+      title: 'Weddings', category: 'wedding', color: '#fdf6ea', ink: '#1f3a4d', from: 250, cover: S + 'wedding-016.webp',
       note: 'The whole day, from the first look to the last dance.',
       pages: [
         [[S + 'wedding-016.webp', 'At the château gates', 'p'], [S + 'wedding-013.webp', 'Showing off the rings', 'p']],
@@ -128,7 +128,7 @@
       ],
     },
     portraits: {
-      title: 'Portraits', category: 'portrait', color: '#5e9fb4', from: 250, cover: S + 'portrait-2p.webp',
+      title: 'Portraits', category: 'portrait', color: '#5e9fb4', from: 150, cover: S + 'portrait-2p.webp',
       note: 'Just you, good light, and a city that loves the camera.',
       pages: [
         [[S + 'portrait-2p.webp', 'Golden light', 'p']],
@@ -159,15 +159,25 @@
     },
   };
 
+  // grouped so the order envelope reads like a menu: category first, then the package
+  const SESSION_GROUPS = [
+    { id: 'g-prop', label: 'Marriage proposal' },
+    { id: 'g-portrait', label: 'Portrait & couple' },
+    { id: 'g-wed', label: 'Wedding' },
+    { id: 'g-event', label: 'Event & sport' },
+  ];
   const SESSIONS = [
-    { id: 's-couple', name: 'Couple session', info: '1h30 · 25+ photos', price: 250, from: true, album: 'portraits' },
-    { id: 's-prop', name: 'Proposal', info: '1h · 20+ photos · 24h delivery', price: 290, from: true, album: 'proposals' },
-    { id: 's-propdeco', name: 'Proposal + decoration', info: '2h · lights, candles, carpet', price: 690, from: true, album: null },
-    { id: 's-wed', name: 'Wedding, full day', info: '8–10h · 200+ photos', price: 1900, album: 'weddings' },
-    { id: 's-wed-half', name: 'Wedding, half day', info: '6h · 120+ photos', price: 1300, album: null },
-    { id: 's-wed-hall', name: 'Town hall wedding', info: '3–4h · 80+ photos', price: 800, album: null },
-    { id: 's-event', name: 'Concert or event', info: '2h · 60+ photos', price: 300, from: true, album: 'concerts' },
-    { id: 's-sport', name: 'Sport', info: 'Competition coverage', price: 100, from: true, album: 'sport' },
+    { id: 's-prop-x10', group: 'g-prop', name: 'Express proposal', info: '30 min · 10 photos', price: 150, album: null },
+    { id: 's-prop-x20', group: 'g-prop', name: 'Express proposal, 20+ photos', info: '30 min · 20+ photos', price: 200, album: null },
+    { id: 's-prop', group: 'g-prop', name: 'Proposal', info: '1h · 20+ photos · 24h delivery', price: 290, from: true, album: 'proposals' },
+    { id: 's-propdeco', group: 'g-prop', name: 'Proposal + decoration', info: '2h · lights, candles, carpet', price: 690, from: true, album: null },
+    { id: 's-portrait', group: 'g-portrait', name: 'Portrait session', info: 'Solo portrait', price: 150, from: true, album: null },
+    { id: 's-couple', group: 'g-portrait', name: 'Couple session', info: '1h30 · 25+ photos', price: 250, from: true, album: 'portraits' },
+    { id: 's-wed-hall', group: 'g-wed', name: 'Town hall wedding', info: 'From 2h · up to €400', price: 250, from: true, album: null },
+    { id: 's-wed-half', group: 'g-wed', name: 'Wedding, half day', info: '6h · 120+ photos', price: 500, album: null },
+    { id: 's-wed', group: 'g-wed', name: 'Wedding, full day', info: '8 to 10h · 200+ photos', price: 750, album: 'weddings' },
+    { id: 's-event', group: 'g-event', name: 'Concert or event', info: '2h · 60+ photos', price: 300, from: true, album: 'concerts' },
+    { id: 's-sport', group: 'g-event', name: 'Sport', info: 'Competition coverage', price: 100, from: true, album: 'sport' },
   ];
 
   /* ---------- Photos from the admin page (Supabase) ---------- */
@@ -503,24 +513,75 @@
 
   /* ---------- Booking ---------- */
   const sessWrap = document.getElementById('sessions');
+  const priceOf = x => (x.from ? fromPrice(x.price) : money(x.price));
   function renderSessions() {
     const was = sessWrap.querySelector('input:checked')?.id || 's-prop';
     sessWrap.innerHTML = '';
-    SESSIONS.forEach(s => {
-      const d = document.createElement('div');
-      d.className = 'sess';
-      d.innerHTML = `<input type="radio" name="session" id="${s.id}" value="${esc(s.name)}" ${s.id === was ? 'checked' : ''}>
-        <label for="${s.id}"><b>${esc(t(s.name))}</b><span>${esc(t(s.info))}</span><em>${esc(s.from ? fromPrice(s.price) : money(s.price))}</em></label>`;
-      sessWrap.appendChild(d);
+    const cats = document.createElement('div');
+    cats.className = 'sess-cats';
+    cats.setAttribute('role', 'group');
+    cats.setAttribute('aria-label', t('Pick a category, then a package.'));
+    SESSION_GROUPS.forEach(g => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.dataset.group = g.id; b.textContent = t(g.label);
+      b.addEventListener('click', () => {
+        const first = SESSIONS.find(x => x.group === g.id);
+        document.getElementById(first.id).checked = true;
+        syncSessions();
+      });
+      cats.appendChild(b);
     });
+    sessWrap.appendChild(cats);
+    SESSION_GROUPS.forEach(g => {
+      const box = document.createElement('div');
+      box.className = 'sess-opts'; box.dataset.group = g.id;
+      SESSIONS.filter(x => x.group === g.id).forEach(x => {
+        const d = document.createElement('div');
+        d.className = 'sess';
+        d.innerHTML = `<input type="radio" name="session" id="${x.id}" value="${esc(x.name)}" ${x.id === was ? 'checked' : ''}>
+          <label for="${x.id}"><em>${esc(priceOf(x))}</em><b>${esc(t(x.name))}</b><span>${esc(t(x.info))}</span></label>`;
+        d.querySelector('input').addEventListener('change', syncSessions);
+        box.appendChild(d);
+      });
+      sessWrap.appendChild(box);
+    });
+    const sum = document.createElement('p');
+    sum.className = 'sess-choice'; sum.setAttribute('aria-live', 'polite');
+    sessWrap.appendChild(sum);
+    syncSessions();
+  }
+  // show the category of the chosen package, and spell out the choice
+  function syncSessions() {
+    const cur = SESSIONS.find(x => document.getElementById(x.id)?.checked) || SESSIONS[2];
+    sessWrap.querySelectorAll('.sess-cats button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.group === cur.group)));
+    sessWrap.querySelectorAll('.sess-opts').forEach(o => { o.hidden = o.dataset.group !== cur.group; });
+    const sum = sessWrap.querySelector('.sess-choice');
+    if (sum) sum.innerHTML = `<span>${esc(t('Your choice:'))}</span> <b>${esc(t(cur.name))}</b> · ${esc(priceOf(cur))}`;
   }
   function bookFor(key) {
     const s = SESSIONS.find(x => x.album === key);
-    if (s) document.getElementById(s.id).checked = true;
+    if (s) { document.getElementById(s.id).checked = true; syncSessions(); }
     go('book');
   }
 
   const form = document.getElementById('order-form');
+
+  /* ---------- Blog readers' offer: code CARNET (?promo=CARNET), until 31 Dec 2026 ---------- */
+  const PROMOS = { CARNET: { until: '2026-12-31', text: 'Blog readers: code CARNET applied. You get 5 extra edited photos (sessions booked by 31 December 2026).' } };
+  let promo = null;
+  (() => {
+    let code = null;
+    try { code = (new URLSearchParams(location.search).get('promo') || sessionStorage.getItem('shop-promo') || '').toUpperCase(); } catch (e) { /* ignore */ }
+    const p = PROMOS[code];
+    if (!p || new Date().toISOString().slice(0, 10) > p.until) return;
+    promo = code;
+    try { sessionStorage.setItem('shop-promo', code); } catch (e) { /* ignore */ }
+    const box = document.createElement('p');
+    box.className = 'promo-note';
+    box.textContent = t(p.text);
+    const row = form.querySelector('.submit-row');
+    row.parentNode.insertBefore(box, row);
+  })();
   const ticket = document.getElementById('ticket');
   const oops = document.getElementById('oops');
   const mail = document.getElementById('mail');
@@ -542,6 +603,7 @@
         language: o.language,
         message: o.message || '',
         site_language: o.site_lang,
+        promo: promo || undefined,
       }),
     }).then(r => { if (!r.ok) throw new Error('formspree ' + r.status); }));
     // 2. copy in the database, for the admin page
@@ -600,7 +662,7 @@
         session: sess, name, contact,
         preferred_date: dv || null,
         language: I18N.langNames.en[ol],
-        message: document.getElementById('o-msg').value.trim() || null,
+        message: ((document.getElementById('o-msg').value.trim() || '') + (promo ? `\n\n[Code ${promo} : 5 photos retouchées en plus]` : '')).trim() || null,
         site_lang: lang,
       },
     };
@@ -638,7 +700,7 @@
   const params = new URLSearchParams(location.search);
   const goParam = params.get('go');
   const sessParam = params.get('session');
-  if (sessParam && SESSIONS.some(x => x.id === sessParam)) document.getElementById(sessParam).checked = true;
+  if (sessParam && SESSIONS.some(x => x.id === sessParam)) { document.getElementById(sessParam).checked = true; syncSessions(); }
   if (sessParam) params.delete('session');
   if ((goParam || sessParam) && !location.hash) {
     const hash = !goParam ? '' : ALBUMS[goParam] ? `#album/${goParam}` : SCREENS.includes(goParam) ? `#${goParam}` : '';
