@@ -24,6 +24,8 @@ vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'js/shop-i18n.js'), 'utf8'), 
 const I18N = sandbox.window.SHOP_I18N;
 const C = require('./landing-content.js');
 const B = require('./blog-content.js');
+const A = require('./about-content.js');
+const aboutPath = l => (l === 'en' ? `/${A.slug.en}/` : `/${l}/${A.slug[l]}/`);
 const BLOG_LANGS = ['en', 'fr', 'ar'];
 const blogPath = l => (l === 'en' ? '/blog/' : `/${l}/blog/`);
 const postPath = (p, l) => blogPath(l) + p.slug[l] + '/';
@@ -73,7 +75,7 @@ function translateHTML(html, l) {
   return html;
 }
 function serviceLinks(l, cls) {
-  const links = C.services.map(s => `<a href="${servicePath(s, l)}">${escHTML(s[l].nav)}</a>`)
+  const links = [`<a href="${aboutPath(l)}">${escHTML(A[l].nav)}</a>`].concat(C.services.map(s => `<a href="${servicePath(s, l)}">${escHTML(s[l].nav)}</a>`))
     .concat(BLOG_LANGS.includes(l) ? [`<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a>`] : []).join('\n      ');
   return `<nav class="${cls}" aria-label="${escAttr(C.ui[l].more)}">\n      ${links}\n    </nav>`;
 }
@@ -147,7 +149,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=5">
-<link rel="stylesheet" href="/css/landing.css?v=6">
+<link rel="stylesheet" href="/css/landing.css?v=7">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -160,7 +162,7 @@ ${pixel}
     <a class="brand" href="${home}">Melissa's</a>
     <nav aria-label="${escAttr(ui.home)}">
       <a href="${home}#catalogue">${escHTML(ui.catalogue)}</a>
-      <a href="${home}#me">${escHTML(ui.about)}</a>
+      <a href="${aboutPath(l)}">${escHTML(ui.about)}</a>
       <a href="${home}?go=book&amp;session=${s.session}">${escHTML(ui.bookNav)}</a>
     </nav>
     <div class="lang-switch" role="group" aria-label="${escAttr(I18N.dict['Choose your language'][l] || 'Choose your language')}">
@@ -219,7 +221,7 @@ ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHT
 
   <nav class="lp-more" aria-label="${escAttr(ui.more)}">
     <h2>${escHTML(ui.more)}</h2>
-    <div>${others.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}${BLOG_LANGS.includes(l) ? `<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a>` : ''}</div>
+    <div><a href="${aboutPath(l)}">${escHTML(A[l].nav)}</a>${others.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}${BLOG_LANGS.includes(l) ? `<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a>` : ''}</div>
   </nav>
 </main>
 
@@ -267,7 +269,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=5">
-<link rel="stylesheet" href="/css/landing.css?v=6">
+<link rel="stylesheet" href="/css/landing.css?v=7">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -280,7 +282,7 @@ ${pixel}
     <a class="brand" href="${home}">Melissa's</a>
     <nav aria-label="${escAttr(ui.home)}">
       <a href="${home}#catalogue">${escHTML(ui.catalogue)}</a>
-      <a href="${home}#me">${escHTML(ui.about)}</a>
+      <a href="${aboutPath(l)}">${escHTML(ui.about)}</a>
       <a href="${home}#book">${escHTML(ui.bookNav)}</a>
     </nav>
     ${langSwitch(l, switchTo)}
@@ -486,9 +488,105 @@ ${REVEAL}`;
   }));
 }
 
+/* ---------- about page ---------- */
+const avatarArt = (() => {
+  const a = template.indexOf('<g id="avatar-art">');
+  let depth = 0, i = a;
+  const re = /<g\b|<\/g>/g; re.lastIndex = a;
+  let m;
+  while ((m = re.exec(template))) { depth += m[0] === '</g>' ? -1 : 1; if (depth === 0) { i = m.index + 4; break; } }
+  return template.slice(a, i).replace('id="avatar-art"', '');
+})();
+function buildAbout(l) {
+  const t = A[l], ui = C.ui[l], home = homePath(l), here = aboutPath(l);
+  const body = `<main class="lp-main about">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.nav)}</span></nav>
+  <header class="lp-hero about-hero">
+    <div class="about-avatar"><svg viewBox="0 0 300 360" role="img" aria-label="Melissa">${avatarArt}</svg></div>
+    <div>
+      <p class="lp-kicker">Melissa Photography · Paris</p>
+      <h1>${escHTML(t.h1)}</h1>
+      <p class="lede">${escHTML(t.lede)}</p>
+    </div>
+  </header>
+  <section class="lp-card about-facts reveal">
+    <h2>${escHTML(t.factsTitle)}</h2>
+    <dl>
+${t.facts.map(([k, v]) => `      <div><dt>${escHTML(k)}</dt><dd>${escHTML(v)}</dd></div>`).join('\n')}
+    </dl>
+  </section>
+  <section class="lp-story reveal">
+    <h2 class="about-h2">${escHTML(t.storyTitle)}</h2>
+${t.story.map(x => `    <p>${escHTML(x)}</p>`).join('\n')}
+  </section>
+  <section class="about-steps reveal">
+    <h2 class="about-h2">${escHTML(t.stepsTitle)}</h2>
+    <ol>
+${t.steps.map(([h, x]) => `      <li><b>${escHTML(h)}</b><span>${escHTML(x)}</span></li>`).join('\n')}
+    </ol>
+  </section>
+  <section class="lp-faq reveal">
+    <h2 class="about-h2">${escHTML(ui.faq)}</h2>
+${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHTML(a)}</p></details>`).join('\n')}
+  </section>
+  <section class="lp-final post-cta reveal">
+    <h2>${escHTML(t.ctaTitle)}</h2>
+    <div class="lp-cta">
+      <a class="btn orange" href="${home}?go=book">${escHTML(t.ctaBtn)}</a>
+      <a class="btn" href="${blogPath(l)}">${escHTML(t.ctaMore)}</a>
+    </div>
+  </section>
+  <nav class="lp-more" aria-label="${escAttr(ui.more)}">
+    <div>${C.services.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}</div>
+  </nav>
+</main>
+${REVEAL}`;
+  write(here + 'index.html', shell({
+    l, title: t.title, desc: t.desc, here, alt: alternates(aboutPath), ogImage: '/images/shop/proposal-22.webp', body,
+    switchTo: aboutPath,
+    jsonld: [
+      { '@context': 'https://schema.org', '@type': 'AboutPage', url: SITE + here, name: t.title, inLanguage: l,
+        mainEntity: { '@type': 'Person', name: 'Melissa', jobTitle: l === 'fr' ? 'Photographe' : l === 'ar' ? 'مصوّرة' : 'Photographer',
+          knowsLanguage: ['fr', 'en', 'ar'], homeLocation: { '@type': 'City', name: 'Paris' },
+          worksFor: { '@type': 'ProfessionalService', name: 'Melissa Photography Paris', url: SITE + '/' },
+          sameAs: ['https://www.instagram.com/melissa_photography_paris', 'https://www.tiktok.com/@thegirlwith0tattoo'] } },
+      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    ],
+  }));
+}
+
+/* ---------- llms.txt: a plain summary for AI assistants ---------- */
+function llms() {
+  const svc = C.services.map(s => `- [${s.en.nav}](${SITE}${servicePath(s, 'en')}): ${s.en.desc}`).join('\n');
+  const posts = B.posts.map(p => `- [${p.en.title}](${SITE}${postPath(p, 'en')}): ${p.en.desc}`).join('\n');
+  write('/llms.txt', `# Melissa Photography Paris
+
+> Melissa is an independent photographer based in Paris, France, specialising in marriage proposals, weddings and couple sessions. She also photographs concerts, events and combat sports. She speaks French, English and Arabic, delivers proposal photos within 24 hours in a private online gallery, and is rated 5.0 by 12 clients on Airbnb.
+
+## Key facts
+- Area: Paris and Île-de-France
+- Languages: French, English, Arabic
+- Prices: couple session from €250, proposal from €290, proposal with decoration from €690, town hall wedding €800, wedding half day €1,300, wedding full day €1,900, concert or event from €300, sport from €100
+- Favourite proposal spots: Bir-Hakeim bridge, Allée des Cygnes, Avenue de Camoëns, Square du Vert-Galant, Palais-Royal
+- Booking: ${SITE}/?go=book (replies within 24 hours)
+- Instagram: https://www.instagram.com/melissa_photography_paris
+
+## Pages
+- [About Melissa](${SITE}${aboutPath('en')})
+${svc}
+
+## Guides
+${posts}
+
+## Other languages
+- French: ${SITE}/fr/
+- Arabic: ${SITE}/ar/
+`);
+}
+
 /* ---------- 4. sitemap ---------- */
 function sitemap() {
-  const groups = [homePath, ...C.services.map(s => l => servicePath(s, l))];
+  const groups = [homePath, aboutPath, ...C.services.map(s => l => servicePath(s, l))];
   const urls = [];
   groups.forEach((pathFor, gi) => {
     LANGS.forEach(l => {
@@ -526,6 +624,8 @@ function write(rel, content) {
 
 LANGS.forEach(buildHome);
 C.services.forEach(s => LANGS.forEach(l => buildService(s, l)));
+LANGS.forEach(buildAbout);
+llms();
 BLOG_LANGS.forEach(buildBlogIndex);
 B.posts.forEach(p => BLOG_LANGS.forEach(l => p[l] && buildPost(p, l)));
 sitemap();

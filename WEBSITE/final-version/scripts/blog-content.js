@@ -40,7 +40,7 @@ module.exports = {
             "I avoid it. It's packed from late morning until midnight, with people walking through every shot, and that's not what you want for a moment this personal. A proposal deserves a little calm.",
             "So I now steer couples elsewhere. If you really want that view of the tower, go a few streets away (spots 1 to 3 below). You get the same magic, and you can actually enjoy the moment.",
           ],
-          sign: '— Melissa',
+          sign: 'xo Melissa',
         },
         spots: [
           { h2: '1. Bir-Hakeim bridge: my favourite', kicker: "Calmest early in the morning",
@@ -90,7 +90,7 @@ module.exports = {
             "Je l'évite. C'est bondé de la fin de matinée jusqu'à minuit, avec du monde qui passe dans chaque photo, et ce n'est pas ce qu'on veut pour un moment aussi intime. Une demande en mariage mérite un peu de calme.",
             "Alors aujourd'hui, j'oriente les couples ailleurs. Si vous tenez vraiment à cette vue sur la tour, allez à quelques rues de là (lieux 1 à 3 ci-dessous). Vous aurez la même magie, et vous pourrez vraiment profiter du moment.",
           ],
-          sign: '— Melissa',
+          sign: 'xo Melissa',
         },
         spots: [
           { h2: '1. Le pont de Bir-Hakeim : mon préféré', kicker: "Le plus calme tôt le matin",
@@ -140,7 +140,7 @@ module.exports = {
             'أتجنّبه. المكان مزدحم من آخر الصباح حتى منتصف الليل، والناس يمرّون في كل صورة، وهذا ليس ما تريدونه للحظة بهذه الخصوصية. طلب الزواج يستحق شيئاً من الهدوء.',
             'لذلك صرت أوجّه الأزواج إلى أماكن أخرى. إن كنتم تريدون هذه الإطلالة على البرج حقاً، فاذهبوا إلى شوارع قريبة (الأماكن من 1 إلى 3 أدناه). ستحصلون على السحر نفسه، وستستمتعون باللحظة فعلاً.',
           ],
-          sign: '— ميليسا',
+          sign: 'ميليسا',
         },
         spots: [
           { h2: '1. جسر بير حكيم: المفضّل لديّ', kicker: "الأهدأ في الصباح الباكر",
