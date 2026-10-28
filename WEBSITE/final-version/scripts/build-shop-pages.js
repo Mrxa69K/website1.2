@@ -152,7 +152,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
-<link rel="stylesheet" href="/css/landing.css?v=12">
+<link rel="stylesheet" href="/css/landing.css?v=13">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -273,7 +273,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
-<link rel="stylesheet" href="/css/landing.css?v=12">
+<link rel="stylesheet" href="/css/landing.css?v=13">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -434,31 +434,53 @@ function buildBlogIndex(l) {
   const u = B.ui[l], ui = C.ui[l], here = blogPath(l);
   const posts = B.posts.filter(p => p[l]);
   const cats = [...new Set(posts.map(p => p.category))];
+  const days = d => (new Date(TODAY) - new Date(d)) / 864e5;
+  const row = (p, i) => {
+    const t = p[l], url = postPath(p, l);
+    const secs = (t.sections || []).map((s, k) => ({ h: String(s.h2).replace(/^\d+\.\s*/, ''), id: `${k + 1}-${slugify(s.h2)}` }));
+    const shown = secs.slice(0, 4);
+    return `    <li class="bl-row reveal" data-cat="${p.category}">
+      <a class="bl-img" href="${url}" tabindex="-1" aria-hidden="true"><img src="${p.cover}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000">${days(p.date) <= 21 ? `<span class="bl-new">${escHTML(u.isNew)}</span>` : ''}</a>
+      <div class="bl-body">
+        <p class="post-meta"><span class="cat-chip">${escHTML(catLabel(p, l))}</span> <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time> · ${escHTML(u.minRead(readMinutes(t, l)))}</p>
+        <h2><a href="${url}">${escHTML(t.title)}</a></h2>
+        <p class="bl-short">${escHTML(t.short)}</p>
+        ${shown.length ? `<div class="bl-toc"><b>${escHTML(u.toc)}</b><ol>${shown.map(x => `<li><a href="${url}#${x.id}">${escHTML(x.h)}</a></li>`).join('')}</ol>${secs.length > shown.length ? `<span class="bl-more">${escHTML(u.moreParts(secs.length - shown.length))}</span>` : ''}</div>` : ''}
+        <a class="btn orange bl-btn" href="${url}">${escHTML(u.readArticle)} <span aria-hidden="true">${l === 'ar' ? '←' : '→'}</span></a>
+      </div>
+    </li>`;
+  };
+  const chip = (c, label, n, on) => `<button type="button" data-cat="${c}" aria-pressed="${on}">${escHTML(label)} <span>${n}</span></button>`;
   const body = `<main class="lp-main blog-index">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="${homePath(l)}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(u.blog)}</span></nav>
-  <header class="lp-hero">
+  <header class="lp-hero bl-hero">
     <p class="lp-kicker">Melissa Photography · Paris</p>
     <h1>${escHTML(u.blogTitle)}</h1>
     <p class="lede">${escHTML(u.blogLede)}</p>
   </header>
-  ${posts.length ? `<section class="post-featured" aria-label="${escAttr(u.featured)}">
-    <p class="featured-label">${escHTML(u.featured)}</p>
-    ${postCard(posts[0], l, 0, true)}
-  </section>` : ''}
-  ${cats.length > 1 ? `<div class="cat-filter" role="group" aria-label="${escAttr(u.blog)}">
-    <button type="button" data-cat="all" aria-pressed="true">${escHTML(u.all)}</button>${cats.map(c => `<button type="button" data-cat="${c}" aria-pressed="false">${escHTML((B.categories[c] || {})[l] || c)}</button>`).join('')}
-  </div>` : ''}
-  <section class="post-grid">
-${posts.slice(1).map((p, i) => '    ' + postCard(p, l, i + 1, false)).join('\n')}
+  <div class="bl-filter" role="group" aria-label="${escAttr(u.blog)}">
+    ${chip('all', u.all, posts.length, true)}${cats.map(c => chip(c, (B.categories[c] || {})[l] || c, posts.filter(p => p.category === c).length, false)).join('')}
+  </div>
+  <ol class="bl-list">
+${posts.map(row).join('\n')}
+  </ol>
+  <section class="post-cta bl-ask reveal">
+    <h2>${escHTML(u.askTitle)}</h2>
+    <p>${escHTML(u.askText)}</p>
+    <div class="lp-cta">
+      <a class="btn orange" href="https://ig.me/m/melissa_photography_paris" target="_blank" rel="noopener">${escHTML(u.askBtn)}</a>
+      <a class="btn" href="${homePath(l)}?go=book">${escHTML(C.ui[l].bookNav)}</a>
+    </div>
   </section>
 </main>
+${REVEAL}
 <script>
   (function () {
-    var btns = document.querySelectorAll('.cat-filter button');
+    var btns = document.querySelectorAll('.bl-filter button');
     btns.forEach(function (b) {
       b.addEventListener('click', function () {
         btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-        document.querySelectorAll('.post-grid .post-card, .post-featured .post-card').forEach(function (c) {
+        document.querySelectorAll('.bl-row').forEach(function (c) {
           c.hidden = b.dataset.cat !== 'all' && c.dataset.cat !== b.dataset.cat;
         });
       });
