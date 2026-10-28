@@ -964,3 +964,17 @@ a.choice { text-decoration: none; position: relative; }
   .sess-opts .sess label { min-height: 0; padding: 12px; }
   .sess-opts .sess label em { font-size: 20px; }
 }
+
+/* ---------- reviews pill on the "three doors" screen ---------- */
+.reviews-pill {
+  margin-top: 6px; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 20px;
+  background: var(--cream); color: var(--navy); border: 3px solid var(--navy); border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--pink-deep); text-decoration: none; font-family: var(--body); font-weight: 700; font-size: 16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.reviews-pill:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 6px 6px 0 var(--pink-deep); }
+.reviews-pill .rp-stars { color: var(--butter); -webkit-text-stroke: 1px var(--navy); letter-spacing: 1px; font-size: 18px; }
+.reviews-pill b { font-family: var(--display); font-weight: 400; font-size: 20px; }
+.reviews-pill svg { width: 18px; height: 18px; flex: none; }
+[dir="rtl"] .reviews-pill svg { transform: scaleX(-1); }
+@media (max-width: 420px) { .reviews-pill { font-size: 14.5px; gap: 7px; padding: 8px 14px; } .reviews-pill .rp-stars { font-size: 15px; } }

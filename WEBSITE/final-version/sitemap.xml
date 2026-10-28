@@ -55,6 +55,33 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/about-melissa/"/>
   </url>
   <url>
+    <loc>https://www.melissaphotographyparis.fr/reviews/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/avis/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/reviews/"/>
+  </url>
+  <url>
+    <loc>https://www.melissaphotographyparis.fr/fr/avis/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/avis/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/reviews/"/>
+  </url>
+  <url>
+    <loc>https://www.melissaphotographyparis.fr/ar/reviews/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.melissaphotographyparis.fr/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.melissaphotographyparis.fr/fr/avis/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.melissaphotographyparis.fr/ar/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.melissaphotographyparis.fr/reviews/"/>
+  </url>
+  <url>
     <loc>https://www.melissaphotographyparis.fr/proposal-photographer-paris/</loc>
     <lastmod>2026-10-28</lastmod>
     <priority>0.8</priority>

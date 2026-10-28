@@ -65,6 +65,8 @@ window.SHOP_I18N = {
       ar: 'أين يقول الباريسيون «نعم»، متى تذهبون وما الذي تتجنّبونه: نصائح صادقة من خلف الكاميرا.',
     },
     'Read my tips': { fr: 'Lire mes conseils', ar: 'اقرأوا نصائحي' },
+    "Read my clients' reviews": { fr: 'Lire les avis de mes clients', ar: 'اقرأوا آراء عملائي' },
+    '5.0': { fr: '5,0', ar: '5.0' },
     'Do you wanna get to know me?': { fr: 'Envie de me connaître ?', ar: 'هل تريدون التعرّف عليّ؟' },
     "Who's behind the camera, how I shoot, and the languages I'll chat with you in.": {
       fr: "Qui se cache derrière l'appareil, ma façon de photographier, et les langues dans lesquelles on peut discuter.",

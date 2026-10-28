@@ -25,6 +25,8 @@ const I18N = sandbox.window.SHOP_I18N;
 const C = require('./landing-content.js');
 const B = require('./blog-content.js');
 const A = require('./about-content.js');
+const R = require('./reviews-content.js');
+const reviewsPath = l => (l === 'en' ? `/${R.slug.en}/` : `/${l}/${R.slug[l]}/`);
 const aboutPath = l => (l === 'en' ? `/${A.slug.en}/` : `/${l}/${A.slug[l]}/`);
 const BLOG_LANGS = ['en', 'fr', 'ar'];
 const PROMO_ON = TODAY <= '2026-12-31'; // blog readers' code CARNET
@@ -76,7 +78,7 @@ function translateHTML(html, l) {
   return html;
 }
 function serviceLinks(l, cls) {
-  const links = [`<a href="${aboutPath(l)}">${escHTML(A[l].nav)}</a>`].concat(C.services.map(s => `<a href="${servicePath(s, l)}">${escHTML(s[l].nav)}</a>`))
+  const links = [`<a href="${aboutPath(l)}">${escHTML(A[l].nav)}</a>`, `<a href="${reviewsPath(l)}">${escHTML(R[l].nav)}</a>`].concat(C.services.map(s => `<a href="${servicePath(s, l)}">${escHTML(s[l].nav)}</a>`))
     .concat(BLOG_LANGS.includes(l) ? [`<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a>`] : []).join('\n      ');
   return `<nav class="${cls}" aria-label="${escAttr(C.ui[l].more)}">\n      ${links}\n    </nav>`;
 }
@@ -88,7 +90,7 @@ function buildHome(l) {
     CANONICAL: SITE + homePath(l), ALTERNATES: alternates(homePath), OG_LOCALE: ogLocale[l],
     ARABIC_FONTS: l === 'ar' ? ARABIC_FONTS : '',
     CAT_LINKS: serviceLinks(l, 'shelf-links'), SERVICE_LINKS: serviceLinks(l, 'foot-services'),
-    TERMS: legal(l).terms, PRIVACY: legal(l).privacy, BLOG_HREF: blogPath(BLOG_LANGS.includes(l) ? l : 'en'),
+    TERMS: legal(l).terms, PRIVACY: legal(l).privacy, BLOG_HREF: blogPath(BLOG_LANGS.includes(l) ? l : 'en'), REVIEWS_HREF: reviewsPath(l),
     ...switchVars(homePath, l),
   });
   write(homePath(l) + 'index.html', out);
@@ -149,8 +151,8 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=8">
-<link rel="stylesheet" href="/css/landing.css?v=10">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
+<link rel="stylesheet" href="/css/landing.css?v=11">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -228,6 +230,7 @@ ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHT
 
 <footer class="shopfoot">
   <span>Melissa Photography · Paris</span>
+  <a href="${reviewsPath(l)}">${escHTML(R[l].nav)}</a>
   <a href="https://www.instagram.com/melissa_photography_paris" target="_blank" rel="noopener">Instagram</a>
   <a href="https://www.tiktok.com/@thegirlwith0tattoo" target="_blank" rel="noopener">TikTok</a>
   <a href="${legal(l).terms}">${escHTML(I18N.dict['Terms of use'][l] || 'Terms of use')}</a>
@@ -269,8 +272,8 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=8">
-<link rel="stylesheet" href="/css/landing.css?v=10">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
+<link rel="stylesheet" href="/css/landing.css?v=11">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -292,6 +295,7 @@ ${pixel}
 ${body}
 <footer class="shopfoot">
   <span>Melissa Photography · Paris</span>
+  <a href="${reviewsPath(l)}">${escHTML(R[l].nav)}</a>
   <a href="https://www.instagram.com/melissa_photography_paris" target="_blank" rel="noopener">Instagram</a>
   <a href="https://www.tiktok.com/@thegirlwith0tattoo" target="_blank" rel="noopener">TikTok</a>
   <a href="${legal(l).terms}">${escHTML(I18N.dict['Terms of use'][l] || 'Terms of use')}</a>
@@ -644,6 +648,82 @@ ${REVEAL}`;
   }));
 }
 
+/* ---------- reviews page: real client words, never invented ---------- */
+function buildReviews(l) {
+  const t = R[l], ui = C.ui[l], home = homePath(l), here = reviewsPath(l);
+  const stars = '<span class="rv-stars" aria-hidden="true">★★★★★</span>';
+  const ext = (href, label, cls) => `<a class="btn${cls ? ' ' + cls : ''}" href="${escAttr(href)}" target="_blank" rel="noopener">${escHTML(label)}</a>`;
+  const tilts = [-1.6, 1.2, -0.8, 1.8, -1.2, 0.9];
+  const notes = R.reviews.map((r, i) => {
+    const tag = r.service && R.tags[r.service] ? `<span class="rv-tag">${escHTML(R.tags[r.service][l])}</span>` : '';
+    const src = `<span class="rv-src rv-src-${r.source}">${escHTML(R.sources[r.source][l])}</span>`;
+    const dir = r.lang === 'ar' ? ' dir="rtl"' : (l === 'ar' ? ' dir="ltr"' : '');
+    return `      <figure class="rv-note reveal" style="--tilt:${tilts[i % tilts.length]}deg">
+        ${stars}
+        <blockquote lang="${r.lang}"${dir}><p>${escHTML(r.text)}</p></blockquote>
+        <figcaption><b>${escHTML(r.name)}</b>${tag}${src}</figcaption>
+      </figure>`;
+  }).join('\n');
+  const anyForeign = R.reviews.some(r => r.lang !== l);
+  const score = l === 'fr' ? R.airbnb.score.replace('.', ',') : R.airbnb.score;
+  const body = `<main class="lp-main reviews">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.nav)}</span></nav>
+  <header class="lp-hero">
+    <p class="lp-kicker">${escHTML(t.kicker)}</p>
+    <h1>${escHTML(t.h1)}</h1>
+    <p class="lede">${escHTML(t.lede)}</p>
+  </header>
+  <section class="rv-platforms">
+    <div class="lp-card rv-platform rv-airbnb reveal">
+      <h2>${escHTML(t.airbnbTitle)}</h2>
+      <p class="rv-score"><b>${score}</b>${stars}</p>
+      <p>${escHTML(t.airbnbLine(R.airbnb.count))}</p>
+      ${R.links.airbnb ? ext(R.links.airbnb, t.airbnbBtn) : ''}
+    </div>
+    <div class="lp-card rv-platform rv-google reveal">
+      <h2>${escHTML(t.googleTitle)}</h2>
+      <p>${escHTML(t.googleLine)}</p>
+      ${ext(R.links.google, t.googleBtn, 'orange')}
+    </div>
+  </section>
+  <section class="rv-wall-wrap">
+    <h2 class="about-h2">${escHTML(t.wallTitle)}</h2>
+    ${anyForeign && t.origNote ? `<p class="rv-orig">${escHTML(t.origNote)}</p>` : ''}
+    <div class="rv-wall">
+${notes}
+    </div>
+  </section>
+  <section class="post-cta rv-leave reveal">
+    <h2>${escHTML(t.leaveTitle)}</h2>
+    <p>${escHTML(t.leaveText)}</p>
+    <div class="lp-cta">${ext(R.links.google, t.leaveBtn, 'orange')}</div>
+    <p class="rv-small">${escHTML(t.leaveAirbnb)}</p>
+  </section>
+  <section class="lp-final reveal">
+    <h2>${escHTML(t.ctaTitle)}</h2>
+    <div class="lp-cta">
+      <a class="btn orange" href="${home}?go=book">${escHTML(t.ctaBtn)}</a>
+      <a class="btn" href="${home}#catalogue">${escHTML(t.ctaMore)}</a>
+    </div>
+  </section>
+  <nav class="lp-more" aria-label="${escAttr(ui.more)}">
+    <div><a href="${aboutPath(l)}">${escHTML(A[l].nav)}</a>${C.services.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a></div>
+  </nav>
+</main>
+${REVEAL}`;
+  write(here + 'index.html', shell({
+    l, title: t.title, desc: t.desc, here, alt: alternates(reviewsPath), ogImage: '/images/shop/proposal-16.webp', body,
+    switchTo: reviewsPath,
+    jsonld: [
+      { '@context': 'https://schema.org', '@type': 'WebPage', url: SITE + here, name: t.title, description: t.desc, inLanguage: l,
+        about: { '@type': 'ProfessionalService', name: 'Melissa Photography Paris', url: SITE + '/', sameAs: [R.links.google, 'https://www.instagram.com/melissa_photography_paris'] } },
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: ui.home, item: SITE + home },
+        { '@type': 'ListItem', position: 2, name: t.nav, item: SITE + here } ] },
+    ],
+  }));
+}
+
 /* ---------- llms.txt: a plain summary for AI assistants ---------- */
 function llms() {
   const svc = C.services.map(s => `- [${s.en.nav}](${SITE}${servicePath(s, 'en')}): ${s.en.desc}`).join('\n');
@@ -662,6 +742,7 @@ function llms() {
 
 ## Pages
 - [About Melissa](${SITE}${aboutPath('en')})
+- [Client reviews](${SITE}${reviewsPath('en')}): what clients wrote after their session; Google profile: ${R.links.google}
 ${svc}
 
 ## Guides
@@ -675,7 +756,7 @@ ${posts}
 
 /* ---------- 4. sitemap ---------- */
 function sitemap() {
-  const groups = [homePath, aboutPath, ...C.services.map(s => l => servicePath(s, l))];
+  const groups = [homePath, aboutPath, reviewsPath, ...C.services.map(s => l => servicePath(s, l))];
   const urls = [];
   groups.forEach((pathFor, gi) => {
     LANGS.forEach(l => {
@@ -714,6 +795,7 @@ function write(rel, content) {
 LANGS.forEach(buildHome);
 C.services.forEach(s => LANGS.forEach(l => buildService(s, l)));
 LANGS.forEach(buildAbout);
+LANGS.forEach(buildReviews);
 llms();
 BLOG_LANGS.forEach(buildBlogIndex);
 B.posts.forEach(p => postLangs(p).forEach(l => buildPost(p, l)));

@@ -167,12 +167,12 @@
     },
     {
       "source": "/review.html",
-      "destination": "/?go=me",
+      "destination": "/reviews/",
       "permanent": true
     },
     {
       "source": "/reviewfr.html",
-      "destination": "/fr/?go=me",
+      "destination": "/fr/avis/",
       "permanent": true
     },
     {
@@ -242,22 +242,22 @@
     },
     {
       "source": "/review",
-      "destination": "/?go=me",
+      "destination": "/reviews/",
       "permanent": true
     },
     {
       "source": "/review/",
-      "destination": "/?go=me",
+      "destination": "/reviews/",
       "permanent": true
     },
     {
       "source": "/reviewfr",
-      "destination": "/fr/?go=me",
+      "destination": "/fr/avis/",
       "permanent": true
     },
     {
       "source": "/reviewfr/",
-      "destination": "/fr/?go=me",
+      "destination": "/fr/avis/",
       "permanent": true
     },
     {
