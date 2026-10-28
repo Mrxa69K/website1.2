@@ -5,7 +5,7 @@
   "category": "prices",
   "service": "proposal",
   "session": "s-prop",
-  "cover": "/images/shop/proposal-13.webp",
+  "cover": "/images/blog/proposal-candles-red.webp",
   "slug": {
     "en": "proposal-photographer-paris-price",
     "fr": "prix-photographe-demande-en-mariage-paris",
@@ -104,6 +104,11 @@
         },
         "after": [
           "Je parle français, anglais et arabe, ce qui simplifie la préparation pour les couples qui viennent de l'étranger."
+        ],
+        "photo": [
+          "/images/blog/after-the-yes.webp",
+          "Couple qui s'enlace devant la tour Eiffel juste après la demande",
+          "Juste après le oui"
         ]
       },
       {
@@ -129,6 +134,11 @@
           "les éventuels frais de déplacement ou de galerie",
           "ce qui se passe s'il pleut",
           "si le photographe vous aide à choisir le lieu et le moment"
+        ],
+        "photo": [
+          "/images/blog/ring-closeup.webp",
+          "Gros plan sur la bague de fiançailles dans la main de la future mariée",
+          "Le détail qu'on veut garder"
         ]
       },
       {
@@ -258,6 +268,11 @@
         },
         "after": [
           "I speak French, English and Arabic, which makes planning easier for couples travelling to Paris."
+        ],
+        "photo": [
+          "/images/blog/after-the-yes.webp",
+          "Couple hugging in front of the Eiffel Tower right after the proposal",
+          "Right after the yes"
         ]
       },
       {
@@ -283,6 +298,11 @@
           "any travel or gallery fees",
           "what happens if it rains",
           "whether the photographer helps you choose the spot and the moment"
+        ],
+        "photo": [
+          "/images/blog/ring-closeup.webp",
+          "Close-up of the engagement ring on the bride-to-be's hand",
+          "The detail you want to keep"
         ]
       },
       {
@@ -412,6 +432,11 @@
         },
         "after": [
           "أتحدث العربية والفرنسية والإنجليزية، وهذا يسهّل التحضير على الأزواج القادمين من الخارج."
+        ],
+        "photo": [
+          "/images/blog/after-the-yes.webp",
+          "زوجان يتعانقان أمام برج إيفل بعد طلب الزواج مباشرة",
+          "مباشرة بعد «نعم»"
         ]
       },
       {
@@ -437,6 +462,11 @@
           "أي رسوم تنقّل أو معرض",
           "ماذا يحدث إن أمطرت",
           "هل يساعدكم المصوّر في اختيار المكان واللحظة"
+        ],
+        "photo": [
+          "/images/blog/ring-closeup.webp",
+          "صورة قريبة لخاتم الخطوبة في يد العروس",
+          "التفصيل الذي نريد الاحتفاظ به"
         ]
       },
       {

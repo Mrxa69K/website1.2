@@ -574,12 +574,12 @@ ${t.sources.map(([name, url]) => `          <li><a href="${escAttr(url)}" target
     </div>
   </article>
   <section class="lp-final post-cta reveal">
-    <h2>${escHTML(u.ctaTitle)}</h2>
-    <p>${escHTML(u.ctaText)}</p>
+    <h2>${escHTML((t.cta || {}).title || u.ctaTitle)}</h2>
+    <p>${escHTML((t.cta || {}).text || u.ctaText)}</p>
     ${PROMO_ON ? `<p class="promo-note">${escHTML(u.promo)}</p>` : ''}
     <div class="lp-cta">
-      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}${PROMO_ON ? '&amp;promo=CARNET' : ''}">${escHTML(u.ctaBtn)}</a>
-      ${svc ? `<a class="btn" href="${servicePath(svc, l)}">${escHTML(u.ctaMore)}</a>` : ''}
+      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}${PROMO_ON ? '&amp;promo=CARNET' : ''}">${escHTML((t.cta || {}).btn || u.ctaBtn)}</a>
+      ${svc ? `<a class="btn" href="${servicePath(svc, l)}">${escHTML((t.cta || {}).more || u.ctaMore)}</a>` : ''}
     </div>
   </section>
 ${related.length ? `  <section class="post-related reveal">
