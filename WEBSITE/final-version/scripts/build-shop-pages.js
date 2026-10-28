@@ -152,7 +152,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
-<link rel="stylesheet" href="/css/landing.css?v=11">
+<link rel="stylesheet" href="/css/landing.css?v=12">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -273,7 +273,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
-<link rel="stylesheet" href="/css/landing.css?v=11">
+<link rel="stylesheet" href="/css/landing.css?v=12">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -653,18 +653,20 @@ function buildReviews(l) {
   const t = R[l], ui = C.ui[l], home = homePath(l), here = reviewsPath(l);
   const stars = '<span class="rv-stars" aria-hidden="true">★★★★★</span>';
   const ext = (href, label, cls) => `<a class="btn${cls ? ' ' + cls : ''}" href="${escAttr(href)}" target="_blank" rel="noopener">${escHTML(label)}</a>`;
-  const tilts = [-1.6, 1.2, -0.8, 1.8, -1.2, 0.9];
+  const tilts = [-1.4, 1.1, -0.7, 1.6, -1.1, 0.8, -0.4];
   const notes = R.reviews.map((r, i) => {
     const tag = r.service && R.tags[r.service] ? `<span class="rv-tag">${escHTML(R.tags[r.service][l])}</span>` : '';
     const src = `<span class="rv-src rv-src-${r.source}">${escHTML(R.sources[r.source][l])}</span>`;
     const dir = r.lang === 'ar' ? ' dir="rtl"' : (l === 'ar' ? ' dir="ltr"' : '');
-    return `      <figure class="rv-note reveal" style="--tilt:${tilts[i % tilts.length]}deg">
-        ${stars}
-        <blockquote lang="${r.lang}"${dir}><p>${escHTML(r.text)}</p></blockquote>
-        <figcaption><b>${escHTML(r.name)}</b>${tag}${src}</figcaption>
+    const when = r.date ? `<time datetime="${r.date}">${escHTML(new Date(r.date + '-15T12:00').toLocaleDateString({ fr: 'fr-FR', ar: 'ar-u-nu-latn' }[l] || 'en-GB', { month: 'long', year: 'numeric' }))}</time>` : '';
+    const more = r.more ? `… <a class="rv-more" href="${escAttr(R.links.google)}" target="_blank" rel="noopener" lang="${l}">${escHTML(t.moreLink)}</a>` : '';
+    const reply = r.reply ? `\n        <p class="rv-reply"><span>${escHTML(t.replyLabel)}</span> <q lang="${r.lang}"${dir}>${escHTML(r.reply)}</q></p>` : '';
+    return `      <figure class="rv-note reveal" data-src="${r.source}" style="--tilt:${tilts[i % tilts.length]}deg">
+        <div class="rv-top">${stars}${when}</div>
+        <blockquote lang="${r.lang}"${dir}><p>${escHTML(r.text)}${more}</p></blockquote>
+        <figcaption><b>${escHTML(r.name)}</b>${tag}${src}</figcaption>${reply}
       </figure>`;
   }).join('\n');
-  const anyForeign = R.reviews.some(r => r.lang !== l);
   const score = l === 'fr' ? R.airbnb.score.replace('.', ',') : R.airbnb.score;
   const body = `<main class="lp-main reviews">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="${home}">${escHTML(ui.home)}</a> <span aria-hidden="true">›</span> <span>${escHTML(t.nav)}</span></nav>
@@ -682,13 +684,17 @@ function buildReviews(l) {
     </div>
     <div class="lp-card rv-platform rv-google reveal">
       <h2>${escHTML(t.googleTitle)}</h2>
+      <p class="rv-score"><b>${l === 'fr' ? R.google.score.replace('.', ',') : R.google.score}</b>${stars}</p>
       <p>${escHTML(t.googleLine)}</p>
       ${ext(R.links.google, t.googleBtn, 'orange')}
     </div>
   </section>
   <section class="rv-wall-wrap">
     <h2 class="about-h2">${escHTML(t.wallTitle)}</h2>
-    ${anyForeign && t.origNote ? `<p class="rv-orig">${escHTML(t.origNote)}</p>` : ''}
+    <p class="rv-orig">${escHTML(t.origNote)}</p>
+    <div class="rv-filters" role="group" aria-label="${escAttr(t.wallTitle)}" hidden>
+      ${['all', 'google', 'airbnb', 'client'].map(k => { const n = k === 'all' ? R.reviews.length : R.reviews.filter(r => r.source === k).length; return n ? `<button type="button" data-f="${k}"${k === 'all' ? ' aria-pressed="true"' : ' aria-pressed="false"'}>${escHTML(t.filters[k])} <span>${n}</span></button>` : ''; }).join('')}
+    </div>
     <div class="rv-wall">
 ${notes}
     </div>
@@ -710,7 +716,19 @@ ${notes}
     <div><a href="${aboutPath(l)}">${escHTML(A[l].nav)}</a>${C.services.map(x => `<a href="${servicePath(x, l)}">${escHTML(x[l].nav)}</a>`).join('')}<a href="${blogPath(l)}">${escHTML(B.ui[l].blog)}</a></div>
   </nav>
 </main>
-${REVEAL}`;
+${REVEAL}
+<script>
+(function () {
+  var box = document.querySelector('.rv-filters'); if (!box) return;
+  box.hidden = false;
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var f = b.getAttribute('data-f');
+    box.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    document.querySelectorAll('.rv-note').forEach(function (n) { n.hidden = f !== 'all' && n.getAttribute('data-src') !== f; });
+  });
+})();
+</script>`;
   write(here + 'index.html', shell({
     l, title: t.title, desc: t.desc, here, alt: alternates(reviewsPath), ogImage: '/images/shop/proposal-16.webp', body,
     switchTo: reviewsPath,
@@ -730,7 +748,7 @@ function llms() {
   const posts = B.posts.map(p => `- [${p.en.title}](${SITE}${postPath(p, 'en')}): ${p.en.desc}`).join('\n');
   write('/llms.txt', `# Melissa Photography Paris
 
-> Melissa is an independent photographer based in Paris, France, specialising in marriage proposals, weddings and couple sessions. She also photographs concerts, events and combat sports. She speaks French, English and Arabic, delivers proposal photos within 24 hours in a private online gallery, and is rated 5.0 by 12 clients on Airbnb.
+> Melissa is an independent photographer based in Paris, France, specialising in marriage proposals, weddings and couple sessions. She also photographs concerts, events and combat sports. She speaks French, English and Arabic, delivers proposal photos within 24 hours in a private online gallery, and is rated 5.0 on Airbnb (12 reviews) and 5.0 on Google.
 
 ## Key facts
 - Area: Paris and Île-de-France

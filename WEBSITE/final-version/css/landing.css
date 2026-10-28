@@ -303,3 +303,18 @@ body.lp { min-height: 100%; }
   .rv-platforms { grid-template-columns: 1fr; }
   .rv-note { transform: none; }
 }
+.rv-wall { columns: 3 280px; }
+.rv-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rv-top time { font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+.rv-note blockquote { font-size: 17px; }
+.rv-more { color: var(--rose-ink); font-weight: 800; white-space: nowrap; }
+.rv-reply { margin-top: 12px; padding: 10px 12px; background: #eef6f9; border-inline-start: 3px solid var(--sky-2); border-radius: 6px; font-size: 14.5px; }
+.rv-reply span { display: block; font-weight: 800; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; color: var(--navy); margin-bottom: 2px; }
+.rv-reply q { quotes: none; font-style: italic; }
+.rv-src-google { background: #fff; color: var(--navy); border: 2px solid var(--navy); padding: 0 8px; }
+.rv-src-airbnb { background: var(--pink-deep); color: #fff; }
+.rv-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 26px; }
+.rv-filters button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 3px solid var(--navy); background: var(--cream); color: var(--navy); font-family: var(--body); font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 3px 3px 0 var(--navy); }
+.rv-filters button span { opacity: .65; font-weight: 700; }
+.rv-filters button[aria-pressed="true"] { background: var(--navy); color: var(--cream); box-shadow: 3px 3px 0 var(--pink-deep); }
+.rv-note[hidden] { display: none; }
