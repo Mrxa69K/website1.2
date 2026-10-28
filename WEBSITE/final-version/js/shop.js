@@ -237,7 +237,41 @@
     const h = document.getElementById(id).querySelector('h1, h2');
     if (h && !opts.noFocus) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
     if (id === 'album') sizeBook();
+    stageTheme(id === 'album' && albumKey === 'concerts');
     track('ViewContent', id === 'album' ? 'album-' + albumKey : id);
+  }
+  /* ---------- Concerts: lights down, red stage, a curtain that opens ---------- */
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  let beams = null;
+  function stageTheme(on) {
+    document.body.classList.toggle('theme-concert', on);
+    if (themeMeta) themeMeta.setAttribute('content', on ? '#090405' : '#7ab8cb');
+    if (on && !beams) {
+      beams = document.createElement('div');
+      beams.className = 'stage-beams'; beams.setAttribute('aria-hidden', 'true');
+      beams.innerHTML = '<i></i><i></i>';
+      document.body.appendChild(beams);
+    }
+  }
+  let curtain = null, curtainBusy = false;
+  function curtainOpen(then) {
+    if (reduce || curtainBusy) { then(); return; }
+    curtainBusy = true;
+    if (!curtain) {
+      curtain = document.createElement('div');
+      curtain.className = 'curtain'; curtain.setAttribute('aria-hidden', 'true');
+      curtain.innerHTML = `<div class="drape l"></div><div class="drape r"></div><div class="valance"></div>
+        <div class="curtain-sign"><b>${esc(t('Concerts'))}</b><span>${esc(t('Live in Paris'))}</span></div>`;
+      document.body.appendChild(curtain);
+    }
+    curtain.className = 'curtain';
+    curtain.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add('on')));
+    setTimeout(() => {
+      then();
+      setTimeout(() => curtain.classList.add('open'), 120);
+      setTimeout(() => { curtain.hidden = true; curtain.className = 'curtain'; curtainBusy = false; }, 1900);
+    }, 1050);
   }
   function go(id, opts = {}) {
     const hash = id === 'shop' ? '' : id === 'album' ? `#album/${albumKey}` : `#${id}`;
@@ -317,7 +351,7 @@
           <span class="label">${esc(t(a.title))}</span>
         </span>
         <span class="price-tag"><small>${esc(t('from'))}</small>${esc(money(a.from))}</span>`;
-      b.addEventListener('click', () => openAlbum(key));
+      b.addEventListener('click', () => (key === 'concerts' ? curtainOpen(() => openAlbum(key)) : openAlbum(key)));
       (a.shelf === 'night' ? night : love).appendChild(b);
     });
   }
@@ -409,7 +443,7 @@
   function updateCounter() {
     const n = leaves.length;
     if (!n) return;
-    counter.textContent = cur === 0 ? t('Cover') : cur === n ? t('The end') : t('Pages {a}–{b} of {n}', { a: cur * 2, b: cur * 2 + 1, n: n * 2 });
+    counter.textContent = cur === 0 ? t('Cover') : cur === n ? t('The end') : t('Pages {a} and {b} of {n}', { a: cur * 2, b: cur * 2 + 1, n: n * 2 });
   }
   function render(instant) {
     const n = leaves.length;

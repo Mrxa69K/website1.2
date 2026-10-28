@@ -151,7 +151,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=10">
 <link rel="stylesheet" href="/css/landing.css?v=13">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
@@ -272,7 +272,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=9">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=10">
 <link rel="stylesheet" href="/css/landing.css?v=13">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
