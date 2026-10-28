@@ -44,15 +44,15 @@ module.exports = {
         [P + 'proposal-7.webp', { en: 'The couple walking away engaged', fr: 'Le couple repart fiancé', ar: 'الخطيبان يغادران معاً' }, { en: 'Off as fiancés', fr: 'Repartis fiancés', ar: 'غادرا خطيبين' }],
       ],
       packages: [
-        { name: { en: 'Express proposal', fr: 'Demande express', ar: 'طلب زواج سريع' }, info: { en: '30 min · 10 edited photos', fr: '30 min · 10 photos retouchées', ar: '30 دقيقة · 10 صور معدّلة' }, price: 150, session: 's-prop-x10' },
-        { name: { en: 'Express proposal, 20+ photos', fr: 'Demande express, 20+ photos', ar: 'طلب زواج سريع، +20 صورة' }, info: { en: '30 min · 20+ edited photos', fr: '30 min · 20+ photos retouchées', ar: '30 دقيقة · +20 صورة معدّلة' }, price: 200, session: 's-prop-x20' },
+        { name: { en: 'Express proposal', fr: 'Demande express', ar: 'طلب زواج سريع' }, info: { en: '30 min · 10 edited photos · 24h delivery', fr: '30 min · 10 photos retouchées · livrées en 24 h', ar: '30 دقيقة · 10 صور معدّلة · تسليم خلال 24 ساعة' }, price: 150, session: 's-prop-x10' },
+        { name: { en: 'Express proposal, 20+ photos', fr: 'Demande express, 20+ photos', ar: 'طلب زواج سريع، +20 صورة' }, info: { en: '30 min · 20+ edited photos · 24h delivery', fr: '30 min · 20+ photos retouchées · livrées en 24 h', ar: '30 دقيقة · +20 صورة معدّلة · تسليم خلال 24 ساعة' }, price: 200, session: 's-prop-x20' },
         { name: { en: 'Proposal', fr: 'Demande en mariage', ar: 'طلب زواج' }, info: { en: '1h · 20+ photos · 24h delivery', fr: '1h · 20+ photos · livrées en 24 h', ar: 'ساعة · +20 صورة · تسليم خلال 24 ساعة' }, price: 290, from: true, session: 's-prop' },
         { name: { en: 'Proposal + decoration', fr: 'Demande + décoration', ar: 'طلب زواج + ديكور' }, info: { en: '2h · lights, candles, carpet', fr: '2h · lumières, bougies, tapis', ar: 'ساعتان · أضواء، شموع، سجادة' }, price: 690, from: true, session: 's-propdeco' },
       ],
       en: {
         nav: 'Proposal photographer',
         title: 'Proposal Photographer in Paris · Surprise Proposals & Engagement Photos · Melissa',
-        desc: 'Secret and surprise proposal photographer in Paris, also for engagement photos: Bir-Hakeim, the Eiffel Tower, the Palais-Royal. 30-minute express shoots from €150, one hour with 20+ photos delivered within 24 hours. French, English, Arabic.',
+        desc: 'Secret and surprise proposal photographer in Paris, also for engagement photos: Bir-Hakeim, the Eiffel Tower, the Palais-Royal. 30-minute express shoots from €150 or one hour with 20+ photos, always delivered within 24 hours. French, English, Arabic.',
         h1: 'Proposal photographer in Paris',
         lede: 'You plan the question, I hide in the crowd and catch the yes. Discreet proposal photos at Bir-Hakeim, by the Eiffel Tower, at the Palais-Royal or along the Seine, delivered within 24 hours.',
         story: [
@@ -72,7 +72,7 @@ module.exports = {
       fr: {
         nav: 'Photographe demande en mariage',
         title: 'Photographe demande en mariage à Paris : surprise, lieux et prix · Melissa',
-        desc: 'Photographe discrète pour votre demande en mariage à Paris : Bir-Hakeim, tour Eiffel, Palais-Royal. Formule express de 30 min dès 150 €, ou 1 h avec 20+ photos livrées en 24 h. Français, anglais, arabe.',
+        desc: 'Photographe discrète pour votre demande en mariage à Paris : Bir-Hakeim, tour Eiffel, Palais-Royal. Formule express de 30 min dès 150 € ou 1 h avec 20+ photos, toujours livrées en 24 h. Français, anglais, arabe.',
         h1: 'Photographe de demande en mariage à Paris',
         lede: 'Vous préparez la question, je me cache dans la foule et je capture le oui. Des photos discrètes de votre demande à Bir-Hakeim, près de la tour Eiffel, au Palais-Royal ou sur les quais de Seine, livrées en 24 h.',
         story: [
@@ -86,13 +86,13 @@ module.exports = {
           ['Comment faire pour que ma moitié ne vous remarque pas ?', "On convient à l'avance du lieu exact et d'un signal. J'arrive en avance, je me fonds parmi les visiteurs et je commence à photographier de loin, puis je m'approche une fois le oui prononcé."],
           ['Et s’il pleut ?', "On surveille la météo ensemble. On peut décaler l'heure, ou choisir un endroit abrité comme les arcades du Louvre."],
           ['Quand recevons-nous les photos ?', 'Sous 24 h, dans une galerie privée en ligne que vous pouvez télécharger et partager avec vos proches.'],
-          ['Combien coûte une photographe de demande en mariage à Paris ?', "Chez moi, une demande express de 30 minutes commence à 150 € (10 photos), 200 € avec 20+ photos, et 290 € pour une heure (20+ photos livrées en 24 h). Sur le marché parisien, comptez en général de 200 € à plus de 500 € pour une heure. J'explique tout dans mon article sur les prix, sur le blog."],
+          ['Combien coûte une photographe de demande en mariage à Paris ?', "Chez moi, une demande express de 30 minutes commence à 150 € (10 photos), 200 € avec 20+ photos, et 290 € pour une heure (20+ photos). Toutes les formules sont livrées en 24 h, express comprise. Sur le marché parisien, comptez en général de 200 € à plus de 500 € pour une heure. J'explique tout dans mon article sur les prix, sur le blog."],
         ],
       },
       ar: {
         nav: 'مصوّرة طلبات الزواج',
         title: 'مصوّرة طلبات الزواج في باريس · ميليسا للتصوير',
-        desc: 'مصوّرة متحفّظة لطلب الزواج في باريس: جسر بير حكيم، برج إيفل، القصر الملكي. جلسة سريعة 30 دقيقة من 150 €، أو ساعة مع أكثر من 20 صورة تُسلَّم خلال 24 ساعة. العربية والفرنسية والإنجليزية.',
+        desc: 'مصوّرة متحفّظة لطلب الزواج في باريس: جسر بير حكيم، برج إيفل، القصر الملكي. جلسة سريعة 30 دقيقة من 150 € أو ساعة مع أكثر من 20 صورة، والتسليم دائماً خلال 24 ساعة. العربية والفرنسية والإنجليزية.',
         h1: 'مصوّرة طلبات الزواج في باريس',
         lede: 'أنتم تحضّرون السؤال، وأنا أختبئ بين الحشود لألتقط لحظة «نعم». صور متحفّظة لطلب الزواج عند جسر بير حكيم أو قرب برج إيفل أو في القصر الملكي أو على ضفاف السين، تصلكم خلال 24 ساعة.',
         story: [

@@ -655,7 +655,7 @@ function llms() {
 ## Key facts
 - Area: Paris and Île-de-France
 - Languages: French, English, Arabic
-- Prices (photography only): express proposal 30 min €150 (10 photos) or €200 (20+ photos), proposal 1 hour from €290, proposal with decoration from €690, portrait session from €150, couple session from €250, town hall wedding from €250 for 2 hours (up to €400), wedding half day €500, wedding full day €750, concert or event from €300, sport from €100
+- Prices (photography only): express proposal 30 min €150 (10 photos) or €200 (20+ photos) delivered within 24 hours, proposal 1 hour from €290, proposal with decoration from €690, portrait session from €150, couple session from €250, town hall wedding from €250 for 2 hours (up to €400), wedding half day €500, wedding full day €750, concert or event from €300, sport from €100
 - Favourite proposal spots: Bir-Hakeim bridge, Allée des Cygnes, Avenue de Camoëns, Square du Vert-Galant, Palais-Royal
 - Booking: ${SITE}/?go=book (replies within 24 hours)
 - Instagram: https://www.instagram.com/melissa_photography_paris

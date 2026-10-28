@@ -167,8 +167,8 @@
     { id: 'g-event', label: 'Event & sport' },
   ];
   const SESSIONS = [
-    { id: 's-prop-x10', group: 'g-prop', name: 'Express proposal', info: '30 min · 10 photos', price: 150, album: null },
-    { id: 's-prop-x20', group: 'g-prop', name: 'Express proposal, 20+ photos', info: '30 min · 20+ photos', price: 200, album: null },
+    { id: 's-prop-x10', group: 'g-prop', name: 'Express proposal', info: '30 min · 10 photos · 24h delivery', price: 150, album: null },
+    { id: 's-prop-x20', group: 'g-prop', name: 'Express proposal, 20+ photos', info: '30 min · 20+ photos · 24h delivery', price: 200, album: null },
     { id: 's-prop', group: 'g-prop', name: 'Proposal', info: '1h · 20+ photos · 24h delivery', price: 290, from: true, album: 'proposals' },
     { id: 's-propdeco', group: 'g-prop', name: 'Proposal + decoration', info: '2h · lights, candles, carpet', price: 690, from: true, album: null },
     { id: 's-portrait', group: 'g-portrait', name: 'Portrait session', info: 'Solo portrait', price: 150, from: true, album: null },
