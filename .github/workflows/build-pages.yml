@@ -1,6 +1,7 @@
 # Rebuilds the static pages (home, services, about, blog, sitemap) whenever their
 # sources change, on any branch. This is what lets the n8n workflow add an article
 # as a simple JSON file: GitHub builds the pages, Vercel shows a preview.
+# On main, it then tells Bing (and other IndexNow engines) which pages changed.
 name: Build site pages
 
 on:
@@ -39,3 +40,13 @@ jobs:
             git commit -m "Build pages"
             git push
           fi
+      - name: Tell Bing about the pages (IndexNow, main only)
+        if: github.ref == 'refs/heads/main'
+        working-directory: WEBSITE/final-version
+        run: |
+          sleep 150  # let Vercel publish first
+          KEY=205d5aff08d577925f86d50f7aad5062
+          URLS=$(grep -o '<loc>[^<]*</loc>' sitemap.xml | sed 's#<loc>##;s#</loc>##' | grep -v '\.html$' | python3 -c 'import json,sys; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          BODY=$(python3 -c "import json,sys; print(json.dumps({'host':'www.melissaphotographyparis.fr','key':'$KEY','keyLocation':'https://www.melissaphotographyparis.fr/$KEY.txt','urlList':json.loads(sys.argv[1])}))" "$URLS")
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$BODY")
+          echo "IndexNow answered $CODE"
