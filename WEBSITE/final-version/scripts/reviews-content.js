@@ -7,7 +7,7 @@ module.exports = {
   slug: { en: 'reviews', fr: 'avis', ar: 'reviews' },
   links: {
     google: 'https://share.google/bHUUxKEcIEIxoztLe', // Google Business Profile "Melissa Photography Paris"
-    airbnb: '', // paste the Airbnb listing link here to show the "See my Airbnb reviews" button
+    airbnb: 'https://www.airbnb.fr/sv/melissaphotographerparis', // Airbnb services profile
   },
   airbnb: { score: '5.0', count: 12 },
   google: { score: '5.0' },
