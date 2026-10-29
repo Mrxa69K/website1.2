@@ -112,6 +112,12 @@ window.SHOP_I18N = {
     'The end': { fr: 'Fin', ar: 'النهاية' },
     'Pages {a} and {b} of {n}': { fr: 'Pages {a} et {b} sur {n}', ar: 'الصفحتان {a} و{b} من {n}' },
     'Live in Paris': { fr: 'En live à Paris', ar: 'مباشرة من باريس' },
+    'Marriage proposal in front of the sparkling Eiffel Tower': { fr: 'Demande en mariage devant la tour Eiffel qui scintille', ar: 'طلب زواج أمام برج إيفل المتلألئ' },
+    'Groom kneeling before the bride at the château gates': { fr: 'Le marié à genoux devant la mariée, aux grilles du château', ar: 'العريس راكعاً أمام العروس عند بوابة القصر' },
+    'Newly engaged couple showing the ring in front of the Eiffel Tower': { fr: 'Jeunes fiancés montrant la bague devant la tour Eiffel', ar: 'خطيبان يعرضان الخاتم أمام برج إيفل' },
+    'Portrait in golden light in Paris': { fr: 'Portrait dans la lumière dorée à Paris', ar: 'بورتريه في الضوء الذهبي في باريس' },
+    'Proposal photo in the private online gallery': { fr: 'Photo de demande dans la galerie privée en ligne', ar: 'صورة طلب زواج في المعرض الخاص على الإنترنت' },
+    'Enlarged photo': { fr: 'Photo agrandie', ar: 'صورة مكبّرة' },
     'Tap to skip': { fr: 'Touchez pour passer', ar: 'المسوا للتخطي' },
     'COMBATE!': { fr: 'COMBATE !', ar: 'ابدأ!' },
     'Swipe or tap the arrows to turn the page. Tap a photo to zoom in.': {

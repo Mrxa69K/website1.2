@@ -313,7 +313,7 @@
             <div class="booth-body">
               <div class="booth-window"><div class="booth-curtain"></div><div class="booth-flash"></div><span class="booth-count"></span></div>
               <div class="booth-slot"></div>
-              <div class="strip">${pics.map(src => `<span><img src="${src}" alt=""></span>`).join('')}</div>
+              <div class="strip">${pics.map(src => `<span><img src="${src}" alt="${esc(t('Portraits'))}"></span>`).join('')}</div>
             </div>
           </div>
           <p class="intro-title">${esc(t('Portraits'))}</p>`;
@@ -419,7 +419,7 @@
       b.setAttribute('aria-label', t('Open the {title} album, {price}', { title: t(a.title), price: fromPrice(a.from) }));
       b.innerHTML = `
         <span class="cover" style="background:${a.color}">
-          <img class="thumb" src="${a.cover}" alt="">
+          <img class="thumb" src="${a.cover}" alt="${esc(t(a.title))}">
           <span class="label">${esc(t(a.title))}</span>
         </span>
         <span class="price-tag"><small>${esc(t('from'))}</small>${esc(money(a.from))}</span>`;
@@ -460,7 +460,7 @@
         <span class="small" style="${ink}">${esc(t('Photo album'))}</span></div>`;
     }
     if (p.type === 'opener') {
-      const d = `<span class="deckle-wrap"><span class="print deckle p"><img src="${a.cover}" alt=""></span></span>`;
+      const d = `<span class="deckle-wrap"><span class="print deckle p"><img src="${a.cover}" alt="${esc(t(a.title))}"></span></span>`;
       return `<div class="${cls} opener"><div class="pile" aria-hidden="true">${d}${d}${d}${CLIP}</div>
         <p class="handnote">${esc(t(a.note))}</p><p class="sig">xo Melissa</p></div>`;
     }

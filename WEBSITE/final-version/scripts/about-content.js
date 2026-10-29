@@ -46,7 +46,7 @@ module.exports = {
   },
   fr: {
     nav: 'À propos de Melissa',
-    title: 'À propos de Melissa · Photographe demande en mariage et mariage à Paris',
+    title: 'À propos de Melissa · Photographe demande en mariage à Paris',
     desc: "Melissa est photographe de demandes en mariage, de mariages et de couples à Paris. Elle parle français, anglais et arabe, livre les photos de demande en 24 h et ses clients lui donnent 5,0.",
     h1: 'Coucou, moi c’est Melissa, votre photographe à Paris',
     lede: 'Depuis quatre ans, je cours après les vrais moments dans Paris : les mains qui tremblent avant une demande, le fou rire juste après le « oui », la seconde de silence entre deux rounds un soir de combat.',

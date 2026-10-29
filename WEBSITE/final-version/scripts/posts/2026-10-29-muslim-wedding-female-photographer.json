@@ -139,7 +139,9 @@
       "text": "Racontez-moi votre programme dans l'enveloppe de commande : mairie, henné, fête, moments entre femmes. Je vous réponds sous 24 h, en arabe, en français ou en anglais.",
       "btn": "Réserver mon mariage",
       "more": "Voir la page mariage oriental"
-    }
+    },
+    "seoTitle": "Photographe femme pour mariage musulman à Paris",
+    "coverAlt": "Mariés de dos, elle en caftan, marchant main dans la main dans une allée boisée"
   },
   "en": {
     "title": "Muslim or Arab wedding in Paris: why choose a female photographer",
@@ -269,7 +271,9 @@
       "text": "Tell me your programme in the order envelope: town hall, henna, reception, women-only moments. I reply within 24 hours, in Arabic, French or English.",
       "btn": "Book my wedding",
       "more": "See the Muslim wedding page"
-    }
+    },
+    "seoTitle": "Female photographer for a Muslim wedding in Paris",
+    "coverAlt": "Bride in a kaftan and groom walking hand in hand down a wooded path"
   },
   "ar": {
     "title": "عرس إسلامي أو عربي في باريس: لماذا تختارون مصوّرة امرأة",
@@ -399,6 +403,8 @@
       "text": "احكوا لي برنامجكم في ظرف الطلب: البلدية، الحناء، الحفل، لحظات النساء. أردّ خلال 24 ساعة بالعربية أو الفرنسية أو الإنجليزية.",
       "btn": "احجزوا تصوير عرسكم",
       "more": "صفحة الأعراس الإسلامية"
-    }
+    },
+    "seoTitle": "مصوّرة امرأة لعرس إسلامي في باريس",
+    "coverAlt": "عروسان بالقفطان والبدلة يمشيان يداً بيد في ممر مشجّر"
   }
 }

@@ -30,6 +30,7 @@ const reviewsPath = l => (l === 'en' ? `/${R.slug.en}/` : `/${l}/${R.slug[l]}/`)
 const aboutPath = l => (l === 'en' ? `/${A.slug.en}/` : `/${l}/${A.slug[l]}/`);
 const BLOG_LANGS = ['en', 'fr', 'ar'];
 const PROMO_ON = TODAY <= '2026-12-31'; // blog readers' code CARNET
+const fitTitle = s => [' · Melissa Photography Paris', ' · Melissa', ''].map(x => s + x).find(x => x.length <= 65) || s;
 const blogPath = l => (l === 'en' ? '/blog/' : `/${l}/blog/`);
 const postPath = (p, l) => blogPath(l) + p.slug[l] + '/';
 const template = fs.readFileSync(path.join(__dirname, 'shop-template.html'), 'utf8');
@@ -419,7 +420,7 @@ function postCard(p, l, i, big) {
   const u = B.ui[l], t = p[l];
   return `<article class="post-card${big ? ' post-card-big' : ''}" data-cat="${p.category}">
       <a href="${postPath(p, l)}">
-        <span class="post-cover"><img src="${p.cover}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000"></span>
+        <span class="post-cover"><img src="${p.cover}" alt="${escAttr(t.coverAlt || t.title)}" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000"></span>
         <span class="post-card-text">
           <span class="post-meta"><span class="cat-chip">${escHTML(catLabel(p, l))}</span> <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time> · ${escHTML(u.minRead(readMinutes(t, l)))}</span>
           <h2>${escHTML(t.title)}</h2>
@@ -440,7 +441,7 @@ function buildBlogIndex(l) {
     const secs = (t.sections || []).map((s, k) => ({ h: String(s.h2).replace(/^\d+\.\s*/, ''), id: `${k + 1}-${slugify(s.h2)}` }));
     const shown = secs.slice(0, 4);
     return `    <li class="bl-row reveal" data-cat="${p.category}">
-      <a class="bl-img" href="${url}" tabindex="-1" aria-hidden="true"><img src="${p.cover}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000">${days(p.date) <= 21 ? `<span class="bl-new">${escHTML(u.isNew)}</span>` : ''}</a>
+      <a class="bl-img" href="${url}" tabindex="-1" aria-hidden="true"><img src="${p.cover}" alt="${escAttr(t.coverAlt || t.title)}" loading="${i < 2 ? 'eager' : 'lazy'}" width="667" height="1000">${days(p.date) <= 21 ? `<span class="bl-new">${escHTML(u.isNew)}</span>` : ''}</a>
       <div class="bl-body">
         <p class="post-meta"><span class="cat-chip">${escHTML(catLabel(p, l))}</span> <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time> · ${escHTML(u.minRead(readMinutes(t, l)))}</p>
         <h2><a href="${url}">${escHTML(t.title)}</a></h2>
@@ -525,7 +526,7 @@ ${(s.after || []).map(x => `        <p>${escHTML(x)}</p>`).join('\n')}
     <header class="lp-hero post-hero">
       <p class="lp-kicker"><span class="cat-chip">${escHTML(catLabel(p, l))}</span> · <time datetime="${p.date}">${escHTML(fmtDate(p.date, l))}</time> · ${escHTML(u.minRead(minutes))}</p>
       <h1>${escHTML(t.title)}</h1>
-      ${p.hero === 'bir-hakeim' ? heroBirHakeim(heroLabel) : `<figure class="post-cover-hero">${print([p.cover, '', ''], -1.5, true)}</figure>`}
+      ${p.hero === 'bir-hakeim' ? heroBirHakeim(heroLabel) : `<figure class="post-cover-hero">${print([p.cover, t.coverAlt || t.title, ''], -1.5, true)}</figure>`}
       <p class="lede">${escHTML(t.short)}</p>
       <p class="post-by">${escHTML(u.by)}${p.updated && p.updated !== p.date ? ` · ${escHTML(u.updatedOn)} ${escHTML(fmtDate(p.updated, l))}` : ''}</p>
     </header>
@@ -592,7 +593,7 @@ ${related.map((x, i) => '      ' + postCard(x, l, 3, false)).join('\n')}
 </main>
 ${REVEAL}`;
   write(here + 'index.html', shell({
-    l, title: `${t.title} · Melissa Photography Paris`, desc: t.desc, here,
+    l, title: fitTitle(t.seoTitle || t.title), desc: t.desc, here,
     alt: postLangs(p).map(x => `<link rel="alternate" hreflang="${x}" href="${SITE}${postPath(p, x)}">`).join('\n') + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${postPath(p, p.en ? 'en' : postLangs(p)[0])}">`,
     ogImage: p.cover, body, switchTo: x => (BLOG_LANGS.includes(x) && p[x] ? postPath(p, x) : blogPath(BLOG_LANGS.includes(x) ? x : 'en')),
     jsonld: [

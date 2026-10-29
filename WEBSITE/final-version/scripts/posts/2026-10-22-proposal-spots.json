@@ -128,7 +128,9 @@
         "A couple walking away newly engaged",
         "Off as fiancés"
       ]
-    }
+    },
+    "seoTitle": "Best places to propose in Paris: 6 local spots",
+    "coverAlt": "Couple embracing under the arches of the Bir-Hakeim bridge at night"
   },
   "fr": {
     "title": "Oubliez le Trocadéro : 6 lieux où les Parisiens font vraiment leur demande en mariage",
@@ -246,7 +248,9 @@
         "Un couple qui repart fiancé",
         "Repartis fiancés"
       ]
-    }
+    },
+    "seoTitle": "Où faire sa demande en mariage à Paris : 6 lieux",
+    "coverAlt": "Couple enlacé sous les arches du pont de Bir-Hakeim, la nuit"
   },
   "ar": {
     "title": "انسوا تروكاديرو: 6 أماكن يختارها الباريسيون فعلاً لطلب الزواج",
@@ -364,6 +368,8 @@
         "زوجان يغادران خطيبين",
         "غادرا خطيبين"
       ]
-    }
+    },
+    "seoTitle": "أفضل أماكن طلب الزواج في باريس: 6 أماكن",
+    "coverAlt": "زوجان يتعانقان تحت أقواس جسر بير حكيم ليلاً"
   }
 }
