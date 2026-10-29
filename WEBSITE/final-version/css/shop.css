@@ -1085,3 +1085,149 @@ body.theme-concert .stage-beams { display: block; position: fixed; inset: 0; poi
 .curtain-sign span { font-weight: 800; font-size: 13px; letter-spacing: 5px; text-transform: uppercase; color: #ffd9a0; text-shadow: 0 0 10px rgba(255,190,90,.7); }
 .curtain.open .curtain-sign { opacity: 0; transform: translate(-50%, -60%); }
 @keyframes sign-flicker { 0% { opacity: .2; } 30% { opacity: 1; } 45% { opacity: .5; } 60%, 100% { opacity: 1; } }
+
+/* ================= album intros (one per album) ================= */
+.intro { position: fixed; inset: 0; z-index: 300; overflow: hidden; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.intro.on { opacity: 1; pointer-events: auto; cursor: pointer; }
+.intro-skip {
+  position: absolute; left: 50%; bottom: max(14px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 9;
+  font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.75); white-space: nowrap; transition: opacity .3s;
+}
+.intro.open .intro-skip { opacity: 0; }
+.intro-title {
+  position: absolute; left: 50%; bottom: 13vh; z-index: 6; transform: translateX(-50%); white-space: nowrap;
+  font-family: var(--display); font-weight: 400; font-size: clamp(38px, 7vw, 74px); line-height: 1; color: #fff;
+  opacity: 0; transition: opacity .45s ease .25s, transform .5s ease;
+}
+.intro.on .intro-title { opacity: 1; }
+.intro.open .intro-title { opacity: 0; transform: translate(-50%, 18px); transition: opacity .3s ease, transform .4s ease; }
+
+/* --- proposals: a ring box pops open --- */
+.intro-proposals { background: radial-gradient(circle at 50% 42%, #fff1f4 0%, #f6c3cf 42%, #e58aa2 100%); }
+.intro-proposals.open { opacity: 0; transition: opacity .6s ease .25s; }
+.intro-proposals .intro-title { color: #fff; text-shadow: 3px 3px 0 var(--rose-ink), 0 0 26px rgba(255,255,255,.7); }
+.intro-proposals .intro-skip { color: rgba(31,58,77,.7); }
+.rb-glow { position: absolute; left: 50%; top: 42%; width: 70vmin; height: 70vmin; transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.9), rgba(255,255,255,0) 62%); animation: rb-pulse 1.6s ease-in-out infinite alternate; }
+@keyframes rb-pulse { from { opacity: .55; transform: translate(-50%, -50%) scale(.92); } to { opacity: 1; transform: translate(-50%, -50%) scale(1.04); } }
+.rb { position: absolute; left: 50%; top: 42%; width: min(52vw, 250px); aspect-ratio: 1 / .9; perspective: 700px;
+  transform: translate(-50%, -50%) scale(.55); opacity: 0; transition: transform .55s cubic-bezier(.3,1.5,.5,1), opacity .3s ease; }
+.intro-proposals.on .rb { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.intro-proposals.open .rb { transform: translate(-50%, -50%) scale(7); transition: transform .95s cubic-bezier(.6,0,.4,1); }
+.rb-base { position: absolute; left: 0; right: 0; bottom: 0; height: 52%; border-radius: 12px 12px 22px 22px;
+  background: linear-gradient(180deg, #a52350 0%, #7d1636 60%, #5e0f28 100%);
+  box-shadow: inset 0 -12px 22px rgba(0,0,0,.35), inset 0 3px 0 rgba(255,255,255,.18), 0 22px 34px rgba(110,20,50,.45); }
+.rb-cushion { position: absolute; left: 9%; right: 9%; top: -2%; height: 48%; border-radius: 50% 50% 14px 14px / 70% 70% 14px 14px;
+  background: radial-gradient(ellipse at 50% 25%, #fde3ea, #e7a3b5 75%); box-shadow: inset 0 -6px 10px rgba(120,30,60,.3); }
+.rb-cushion::after { content: ""; position: absolute; left: 50%; top: 18%; width: 3px; height: 60%; margin-left: -1.5px; background: rgba(120,30,60,.35); border-radius: 2px; }
+.rb-ring { position: absolute; left: 50%; bottom: 30%; width: 60%; z-index: 2; transform: translate(-50%, 18px) scale(.7); opacity: 0;
+  transition: transform .5s cubic-bezier(.3,1.6,.5,1) .7s, opacity .3s ease .7s; filter: drop-shadow(0 4px 6px rgba(80,20,40,.35)); }
+.intro-proposals.on .rb-ring { transform: translate(-50%, 0) scale(1); opacity: 1; }
+.rb-glint { position: absolute; left: 55%; bottom: 76%; width: 20%; z-index: 3; transform: scale(0); }
+.intro-proposals.on .rb-glint { animation: rb-glint .8s ease 1.05s forwards; }
+@keyframes rb-glint { 0% { transform: scale(0) rotate(0); } 45% { transform: scale(1.25) rotate(40deg); } 100% { transform: scale(0) rotate(90deg); } }
+.rb-lid { position: absolute; left: -2%; right: -2%; bottom: 50%; height: 40%; z-index: 4; transform-origin: 50% 100%;
+  border-radius: 20px 20px 8px 8px; background: linear-gradient(180deg, #c33563 0%, #95203f 100%);
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.25), inset 0 -6px 12px rgba(0,0,0,.3), 0 6px 10px rgba(80,15,35,.3);
+  transition: transform .22s ease-in .4s; }
+.intro-proposals.on .rb-lid { transform: scaleY(0); }
+/* the open lid, standing behind the ring: velvet edge and satin lining */
+.rb-inside { position: absolute; left: -2%; right: -2%; bottom: 50%; height: 62%; z-index: 1; transform-origin: 50% 100%; transform: scaleY(0);
+  border-radius: 22px 22px 6px 6px; border: 10px solid #95203f; border-bottom-width: 6px;
+  background: radial-gradient(ellipse at 50% 35%, #fff6f8, #f1c4d0 80%); box-shadow: inset 0 0 18px rgba(150,40,70,.35);
+  transition: transform .35s cubic-bezier(.3,1.6,.5,1) .62s; }
+.intro-proposals.on .rb-inside { transform: scaleY(1); }
+
+/* --- weddings: the château gates swing open --- */
+.intro-weddings { perspective: 1500px; }
+.intro-weddings .intro-title { bottom: auto; top: 3.5vh; color: var(--navy); font-size: clamp(30px, 6vw, 56px); background: var(--cream); padding: 8px 26px 12px; border: 3px solid #c9a14a; border-radius: 999px; box-shadow: 0 6px 18px rgba(80,60,20,.25); }
+.intro-weddings .intro-skip { color: rgba(31,58,77,.7); }
+.wg-sky { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 70%, #fffdf6 0%, #f7ecd6 45%, #e9d6b0 100%); transition: opacity .9s ease .45s; }
+.intro-weddings.open .wg-sky { opacity: 0; }
+.wg-pillar { position: absolute; top: 4vh; bottom: 0; width: 7vw; min-width: 26px; z-index: 3;
+  background: linear-gradient(90deg, #cfc2a6, #efe7d6 45%, #c4b597); box-shadow: 0 0 22px rgba(80,60,20,.35); transition: opacity .6s ease .5s, transform 1s ease .3s; }
+.wg-pillar::before { content: ""; position: absolute; left: -18%; right: -18%; top: 0; height: 5vh; background: #e2d6bd; border-radius: 6px 6px 0 0; box-shadow: 0 4px 0 #bfae8c; }
+.wg-pillar.l { left: 0; } .wg-pillar.r { right: 0; }
+.intro-weddings.open .wg-pillar.l { transform: translateX(-120%); opacity: 0; }
+.intro-weddings.open .wg-pillar.r { transform: translateX(120%); opacity: 0; }
+.gate-leaf { position: absolute; top: 12vh; bottom: 0; width: calc(50% - max(7vw, 26px)); height: 88vh; z-index: 2;
+  filter: drop-shadow(0 8px 10px rgba(60,40,10,.35)); transition: transform 1.35s cubic-bezier(.6,0,.3,1); }
+.gate-leaf.l { left: max(7vw, 26px); transform-origin: left center; }
+.gate-leaf.r { right: max(7vw, 26px); transform-origin: right center; }
+.intro-weddings.open .gate-leaf.l { transform: rotateY(-100deg); }
+.intro-weddings.open .gate-leaf.r { transform: rotateY(100deg); }
+.wg-mono { position: absolute; left: 50%; top: calc(12vh + 88vh * 470 / 760); z-index: 4; transform: translate(-50%, -50%);
+  font-family: var(--display); font-size: clamp(30px, 5vw, 52px); color: #c9a14a; text-shadow: 0 2px 0 #6b5216; transition: opacity .25s ease; }
+.intro-weddings.open .wg-mono { opacity: 0; }
+.petals i { position: absolute; top: -6vh; left: var(--x); width: 12px; height: 16px; z-index: 5; border-radius: 70% 0 70% 0; background: #fff;
+  box-shadow: 0 2px 4px rgba(150,110,60,.25); opacity: 0; transform: rotate(var(--r)); }
+.petals i:nth-child(3n) { background: #f6c3cf; } .petals i:nth-child(4n) { background: #fde8c8; }
+.intro-weddings.on .petals i { animation: petal 2.8s linear var(--d) forwards; }
+@keyframes petal { 0% { opacity: 0; transform: translate(0, 0) rotate(var(--r)); } 10% { opacity: 1; } 100% { opacity: .9; transform: translate(6vw, 112vh) rotate(calc(var(--r) + 540deg)); } }
+
+/* --- sport: a dojo, blue puzzle mats with the red band, a fight clock, then the mats flip away --- */
+.intro-sport { background: transparent; }
+.dojo-wall { position: absolute; inset: 0 0 auto; height: 46vh; background: linear-gradient(180deg, #f4f5fb 0%, #e6e9f6 62%, #b8c3e8 62%, #b8c3e8 66%, #e6e9f6 66%, #dfe3f3 100%);
+  box-shadow: inset 0 18px 30px rgba(255,255,255,.8); transition: opacity .4s ease; }
+.dojo-wall::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 22px; background: linear-gradient(#fff, #e9ebf4);
+  box-shadow: 0 2px 0 rgba(0,0,0,.05); }
+.dojo-wall .bag { position: absolute; top: 4vh; left: calc(10vw + var(--i, 0) * max(7vw, 50px)); width: clamp(14px, 2.2vw, 26px); height: 17vh; border-radius: 8px; background: linear-gradient(90deg, #111, #333 45%, #111);
+  transform-origin: 50% -4vh; animation: bag-swing 2.2s ease-in-out infinite alternate; }
+.dojo-wall .bag::before { content: ""; position: absolute; left: 50%; top: -4vh; width: 2px; height: 4vh; background: #888; }
+.dojo-wall .bag:nth-child(2) { --i: 1; animation-delay: -.7s; } .dojo-wall .bag:nth-child(3) { --i: 2; animation-delay: -1.3s; }
+@keyframes bag-swing { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.dojo-wall .wall-pad { position: absolute; right: 12vw; bottom: 0; width: clamp(26px, 4vw, 52px); height: 20vh; border-radius: 4px;
+  background: repeating-linear-gradient(180deg, #2d4fb5 0 calc(5vh - 3px), #1f3d93 calc(5vh - 3px) 5vh); }
+.dojo-wall .wall-pad.r { right: auto; left: 46vw; }
+.dojo-floor { position: absolute; left: -35vw; right: -35vw; top: 36vh; height: 125vh; transform: perspective(900px) rotateX(52deg); transform-origin: 50% 0; }
+.tatami { position: absolute; left: 0; top: 0; display: grid; grid-auto-rows: var(--s); }
+.tatami i { width: var(--s); height: var(--s);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,.07) 0 1px, transparent 1px 6px),
+    #3a63cc;
+  box-shadow: inset 0 0 0 1px rgba(20,40,110,.35), inset 2px 2px 0 rgba(255,255,255,.08); }
+.tatami i.red { background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.08) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,.07) 0 1px, transparent 1px 6px),
+    #ff4b3e; box-shadow: inset 0 0 0 1px rgba(140,20,10,.35); }
+.intro-sport.open .tatami i { transform: rotateX(90deg) scale(.7); opacity: 0; transition: transform .45s ease var(--d), opacity .45s ease var(--d); }
+.intro-sport.open .dojo-wall { opacity: 0; }
+.intro-sport.open .scoreboard { opacity: 0; transition: opacity .25s; }
+.intro-sport .intro-skip { color: rgba(255,255,255,.85); }
+.scoreboard { position: absolute; left: 50%; top: 58%; z-index: 3; transform: translate(-50%, -50%) scale(.8); opacity: 0; transition: transform .4s cubic-bezier(.3,1.5,.5,1), opacity .3s;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 30px 18px; background: #0b0d10; border: 4px solid #2a2f36; border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.5), inset 0 0 0 2px #000; }
+.intro-sport.on .scoreboard { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.sb-l { font-weight: 800; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: #fff; }
+.sb-time { font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 800; font-size: clamp(46px, 10vw, 84px); line-height: 1; letter-spacing: 3px;
+  color: #ffcf3a; text-shadow: 0 0 14px rgba(255,190,40,.8); white-space: nowrap; }
+.intro-sport.go .sb-time { color: #ff3b3b; text-shadow: 0 0 18px rgba(255,60,60,.9); animation: sb-go .4s ease; font-family: var(--display); font-weight: 400; letter-spacing: 1px; }
+@keyframes sb-go { from { transform: scale(1.5); } to { transform: scale(1); } }
+
+/* --- portraits: a 70s photo booth, four flashes, a strip comes out --- */
+.intro-portraits { background: repeating-linear-gradient(90deg, #4a2a17 0 26px, #5a3420 26px 52px), #4a2a17; }
+.intro-portraits::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 35%, rgba(255,214,140,.35), rgba(0,0,0,.45) 75%); }
+.intro-portraits.open { opacity: 0; transition: opacity .6s ease .2s; }
+.intro-portraits .intro-title { bottom: auto; top: 3vh; color: #ffe6b0; text-shadow: 3px 3px 0 #a8441a; font-size: clamp(32px, 6vw, 58px); }
+.booth { position: absolute; left: 50%; top: 12vh; width: min(64vw, 270px, 34vh); transform: translateX(-50%) translateY(20px); opacity: 0; transition: transform .45s ease, opacity .35s ease; }
+.intro-portraits.on .booth { transform: translateX(-50%); opacity: 1; }
+.intro-portraits.open .booth { transform: translateX(-50%) scale(1.12); transition: transform .8s ease; }
+.booth-sign { margin: 0 8%; padding: 6px 0 8px; text-align: center; border-radius: 10px 10px 0 0; background: #fdf1d6; border: 3px solid #2b1a10; border-bottom: 0;
+  font-family: var(--display); font-size: clamp(24px, 6vw, 34px); color: #d23a1e; line-height: 1; text-shadow: 0 0 12px rgba(255,120,60,.6); }
+.booth-sign small { display: block; margin-top: 3px; font-family: var(--body); font-weight: 800; font-size: 10px; letter-spacing: 4px; color: #2b1a10; text-shadow: none; }
+.booth-body { position: relative; aspect-ratio: 4 / 5; border: 3px solid #2b1a10; border-radius: 6px;
+  background: linear-gradient(90deg, rgba(0,0,0,.18), transparent 12%, transparent 88%, rgba(0,0,0,.18)), linear-gradient(#e7b84a, #c9952c); }
+.booth-window { position: absolute; left: 12%; right: 12%; top: 8%; height: 52%; overflow: hidden; border: 3px solid #2b1a10; border-radius: 4px; background: #1d120b; }
+.booth-curtain { position: absolute; top: 0; bottom: 0; right: 0; width: 70%;
+  background: repeating-linear-gradient(90deg, #a8441a 0 10px, #d9622b 10px 20px); box-shadow: -6px 0 10px rgba(0,0,0,.4); }
+.booth-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+.booth-flash.pop { animation: booth-pop .32s ease-out; }
+@keyframes booth-pop { 0% { opacity: .95; } 100% { opacity: 0; } }
+.booth-count { position: absolute; left: 8px; top: 4px; font-family: var(--display); font-size: 28px; color: #ff5a3c; text-shadow: 0 0 10px rgba(255,80,40,.8); }
+.booth-slot { position: absolute; left: 30%; right: 30%; top: 70%; height: 9px; border-radius: 5px; background: #1d120b; box-shadow: inset 0 2px 3px #000; }
+.strip { position: absolute; left: 34%; right: 34%; top: calc(70% + 4px); z-index: 2; padding: 5px; display: grid; gap: 5px; background: #fbf7ee;
+  box-shadow: 0 6px 12px rgba(0,0,0,.45); clip-path: inset(0 0 100% 0); transition: clip-path .7s cubic-bezier(.4,0,.2,1); }
+.strip span { display: block; aspect-ratio: 1; overflow: hidden; background: #ccc; }
+.strip img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.12); }
+.intro-portraits.printed .strip { clip-path: inset(0 0 0 0); }

@@ -112,6 +112,8 @@ window.SHOP_I18N = {
     'The end': { fr: 'Fin', ar: 'النهاية' },
     'Pages {a} and {b} of {n}': { fr: 'Pages {a} et {b} sur {n}', ar: 'الصفحتان {a} و{b} من {n}' },
     'Live in Paris': { fr: 'En live à Paris', ar: 'مباشرة من باريس' },
+    'Tap to skip': { fr: 'Touchez pour passer', ar: 'المسوا للتخطي' },
+    'COMBATE!': { fr: 'COMBATE !', ar: 'ابدأ!' },
     'Swipe or tap the arrows to turn the page. Tap a photo to zoom in.': {
       fr: "Glissez ou touchez les flèches pour tourner la page. Touchez une photo pour l'agrandir.",
       ar: 'اسحبوا أو اضغطوا على الأسهم لقلب الصفحة. اضغطوا على صورة لتكبيرها.',

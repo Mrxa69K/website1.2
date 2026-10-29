@@ -253,25 +253,99 @@
       document.body.appendChild(beams);
     }
   }
-  let curtain = null, curtainBusy = false;
-  function curtainOpen(then) {
-    if (reduce || curtainBusy) { then(); return; }
-    curtainBusy = true;
-    if (!curtain) {
-      curtain = document.createElement('div');
-      curtain.className = 'curtain'; curtain.setAttribute('aria-hidden', 'true');
-      curtain.innerHTML = `<div class="drape l"></div><div class="drape r"></div><div class="valance"></div>
-        <div class="curtain-sign"><b>${esc(t('Concerts'))}</b><span>${esc(t('Live in Paris'))}</span></div>`;
-      document.body.appendChild(curtain);
-    }
-    curtain.className = 'curtain';
-    curtain.hidden = false;
-    requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add('on')));
-    setTimeout(() => {
-      then();
-      setTimeout(() => curtain.classList.add('open'), 120);
-      setTimeout(() => { curtain.hidden = true; curtain.className = 'curtain'; curtainBusy = false; }, 1900);
-    }, 1050);
+  /* ---------- Album intros: a little show before each album opens ----------
+     concerts: red curtain · proposals: ring box · weddings: château gates
+     sport: tatami countdown · portraits: photo booth.
+     Plays once per album per visit, tap to skip, never with reduced motion. */
+  const INTROS = {
+    concerts: { hold: 1050, out: 1900, html: () => `<div class="drape l"></div><div class="drape r"></div><div class="valance"></div>
+        <div class="curtain-sign"><b>${esc(t('Concerts'))}</b><span>${esc(t('Live in Paris'))}</span></div>` },
+    proposals: { hold: 1700, out: 900, html: () => `<div class="rb-glow"></div>
+        <div class="rb"><div class="rb-inside"></div><div class="rb-lid"></div><div class="rb-base"><div class="rb-cushion"></div>
+          <svg class="rb-ring" viewBox="0 0 120 120" aria-hidden="true">
+            <ellipse cx="60" cy="78" rx="30" ry="25" fill="none" stroke="#e8c36a" stroke-width="8"/>
+            <ellipse cx="60" cy="78" rx="30" ry="25" fill="none" stroke="#fff3c4" stroke-width="2" stroke-dasharray="22 120" stroke-dashoffset="-6"/>
+            <path d="M44 50 L52 38 H68 L76 50 L60 66 Z" fill="#eaf6ff" stroke="#9fc4dd" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M44 50 H76 M52 38 L56 50 L60 66 M68 38 L64 50 L60 66" fill="none" stroke="#9fc4dd" stroke-width="1.4"/>
+          </svg>
+          <svg class="rb-glint" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L23 17 L40 20 L23 23 L20 40 L17 23 L0 20 L17 17 Z" fill="#fff"/></svg>
+        </div></div>
+        <p class="intro-title">${esc(t('Proposals'))}</p>` },
+    weddings: { hold: 1250, out: 1500, html: () => {
+        const leaf = side => `<svg class="gate-leaf ${side}" viewBox="0 0 400 760" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="gold-${side}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f3d27a"/><stop offset="1" stop-color="#b98a2e"/></linearGradient></defs>
+            <path d="${side === 'l' ? 'M0 230 Q220 230 400 60' : 'M400 230 Q180 230 0 60'}" fill="none" stroke="#1d1a17" stroke-width="10"/>
+            <g stroke="#1d1a17" stroke-width="7">${Array.from({ length: 10 }, (_, i) => { const x = 20 + i * 40; const top = side === 'l' ? 230 - Math.pow(x / 400, 2) * 170 : 230 - Math.pow((400 - x) / 400, 2) * 170; return `<line x1="${x}" y1="${top}" x2="${x}" y2="760"/>`; }).join('')}</g>
+            <g fill="url(#gold-${side})">${Array.from({ length: 10 }, (_, i) => { const x = 20 + i * 40; const top = side === 'l' ? 230 - Math.pow(x / 400, 2) * 170 : 230 - Math.pow((400 - x) / 400, 2) * 170; return `<path d="M${x - 8} ${top} L${x} ${top - 26} L${x + 8} ${top} Z"/>`; }).join('')}</g>
+            <path d="M0 330 H400 M0 640 H400" stroke="#1d1a17" stroke-width="10"/>
+            <g fill="none" stroke="url(#gold-${side})" stroke-width="5">${Array.from({ length: 5 }, (_, i) => `<path d="M${20 + i * 80} 330 q40 -60 80 0 M${20 + i * 80} 640 q40 60 80 0"/>`).join('')}</g>
+            <circle cx="${side === 'l' ? 400 : 0}" cy="470" r="70" fill="none" stroke="url(#gold-${side})" stroke-width="9"/>
+          </svg>`;
+        return `<div class="wg-sky"></div><div class="wg-pillar l"></div><div class="wg-pillar r"></div>${leaf('l')}${leaf('r')}
+          <span class="wg-mono">M</span>
+          <div class="petals">${Array.from({ length: 16 }, (_, i) => `<i style="--x:${(i * 6.3 + 3) % 100}vw;--d:${(i % 5) * 0.14}s;--r:${(i * 47) % 360}deg"></i>`).join('')}</div>
+          <p class="intro-title">${esc(t('Weddings'))}</p>`;
+      } },
+    sport: { hold: 1900, out: 1100, html: () => {
+        // a blue puzzle-mat floor in perspective, with the red competition band
+        const s = innerWidth < 600 ? 54 : 78;
+        const cols = Math.ceil(innerWidth * 1.7 / s), rows = Math.ceil(innerHeight * 1.25 / s);
+        const c0 = Math.round(cols * .31), c1 = cols - 1 - c0, r0 = Math.round(rows * .1), r1 = Math.round(rows * .5);
+        const cx = (cols - 1) / 2, cy = rows - 1;
+        const tiles = [];
+        for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+          const band = ((r === r0 || r === r1) && c >= c0 && c <= c1) || ((c === c0 || c === c1) && r >= r0 && r <= r1);
+          const d = Math.hypot((c - cx) * .8, r - cy);
+          tiles.push(`<i style="--d:${(d * 0.03).toFixed(3)}s"${band ? ' class="red"' : ''}></i>`);
+        }
+        return `<div class="dojo-wall"><span class="bag"></span><span class="bag"></span><span class="bag"></span><span class="wall-pad"></span><span class="wall-pad r"></span></div>
+          <div class="dojo-floor"><div class="tatami" style="--s:${s}px;grid-template-columns:repeat(${cols},var(--s))">${tiles.join('')}</div></div>
+          <div class="scoreboard"><span class="sb-l">${esc(t('Sport'))}</span><b class="sb-time">00:03</b></div>`;
+      }, run: el => {
+        const tm = el.querySelector('.sb-time');
+        [['00:02', 450], ['00:01', 900], [t('COMBATE!'), 1350]].forEach(([v, ms]) => setTimeout(() => { tm.textContent = v; if (ms === 1350) el.classList.add('go'); }, ms));
+      } },
+    portraits: { hold: 2750, out: 900, html: () => {
+        const pics = [].concat(...ALBUMS.portraits.pages).map(p => p[0]).slice(0, 4);
+        while (pics.length < 4) pics.push(pics[0]);
+        return `<div class="booth">
+            <div class="booth-sign">PHOTO<small>4 POSES</small></div>
+            <div class="booth-body">
+              <div class="booth-window"><div class="booth-curtain"></div><div class="booth-flash"></div><span class="booth-count"></span></div>
+              <div class="booth-slot"></div>
+              <div class="strip">${pics.map(src => `<span><img src="${src}" alt=""></span>`).join('')}</div>
+            </div>
+          </div>
+          <p class="intro-title">${esc(t('Portraits'))}</p>`;
+      }, run: el => {
+        const n = el.querySelector('.booth-count'), f = el.querySelector('.booth-flash');
+        [0, 1, 2, 3].forEach(i => setTimeout(() => {
+          n.textContent = i + 1; f.classList.remove('pop'); void f.offsetWidth; f.classList.add('pop');
+        }, 300 + i * 360));
+        setTimeout(() => el.classList.add('printed'), 300 + 4 * 360);
+      } },
+  };
+  let introBusy = false;
+  const introSeen = k => { try { return sessionStorage.getItem('intro-' + k) === '1'; } catch (e) { return false; } };
+  function playIntro(key, then) {
+    const I = INTROS[key];
+    if (!I || reduce || introBusy || (introSeen(key) && !/[?&]intro=1/.test(location.search))) { then(); return; }
+    try { sessionStorage.setItem('intro-' + key, '1'); } catch (e) { /* private mode */ }
+    introBusy = true;
+    const el = document.createElement('div');
+    el.className = `intro intro-${key}${key === 'concerts' ? ' curtain' : ''}`;
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = I.html() + `<span class="intro-skip">${esc(t('Tap to skip'))}</span>`;
+    document.body.appendChild(el);
+    let opened = false, done = false;
+    const timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const open = () => { if (opened) return; opened = true; then(); setTimeout(() => el.classList.add('open'), 120); };
+    const finish = () => { if (done) return; done = true; timers.forEach(clearTimeout); open(); el.remove(); introBusy = false; };
+    el.addEventListener('click', finish);
+    requestAnimationFrame(() => requestAnimationFrame(() => { el.classList.add('on'); if (I.run) I.run(el); }));
+    later(open, I.hold);
+    later(finish, I.hold + 120 + I.out);
   }
   function go(id, opts = {}) {
     const hash = id === 'shop' ? '' : id === 'album' ? `#album/${albumKey}` : `#${id}`;
@@ -351,7 +425,7 @@
           <span class="label">${esc(t(a.title))}</span>
         </span>
         <span class="price-tag"><small>${esc(t('from'))}</small>${esc(money(a.from))}</span>`;
-      b.addEventListener('click', () => (key === 'concerts' ? curtainOpen(() => openAlbum(key)) : openAlbum(key)));
+      b.addEventListener('click', () => playIntro(key, () => openAlbum(key)));
       (a.shelf === 'night' ? night : love).appendChild(b);
     });
   }
