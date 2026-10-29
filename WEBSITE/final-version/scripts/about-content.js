@@ -7,7 +7,7 @@ module.exports = {
   en: {
     nav: 'About Melissa',
     title: 'About Melissa · Proposal & Wedding Photographer in Paris',
-    desc: 'Melissa is a proposal, wedding and couple photographer based in Paris. She speaks French, English and Arabic, delivers proposal photos within 24 hours and is rated 5.0 by her clients.',
+    desc: 'Melissa, proposal, wedding and couple photographer in Paris. Speaks French, English and Arabic, proposal photos in 24 hours, rated 5.0 by clients.',
     h1: "Hi, I'm Melissa, your photographer in Paris",
     lede: 'For four years I have been chasing real moments across Paris: the shaky hands before a proposal, the laugh right after "oui", the quiet second between rounds on a fight night.',
     factsTitle: 'In short',
@@ -47,7 +47,7 @@ module.exports = {
   fr: {
     nav: 'À propos de Melissa',
     title: 'À propos de Melissa · Photographe demande en mariage à Paris',
-    desc: "Melissa est photographe de demandes en mariage, de mariages et de couples à Paris. Elle parle français, anglais et arabe, livre les photos de demande en 24 h et ses clients lui donnent 5,0.",
+    desc: "Melissa, photographe de demandes en mariage, mariages et couples à Paris. Français, anglais, arabe, photos de demande livrées en 24 h, notée 5,0.",
     h1: 'Coucou, moi c’est Melissa, votre photographe à Paris',
     lede: 'Depuis quatre ans, je cours après les vrais moments dans Paris : les mains qui tremblent avant une demande, le fou rire juste après le « oui », la seconde de silence entre deux rounds un soir de combat.',
     factsTitle: 'En bref',

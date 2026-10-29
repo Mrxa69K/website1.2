@@ -11,15 +11,15 @@ window.SHOP_I18N = {
   meta: {
     en: {
       title: "Melissa's Photography Paris · Proposal & Wedding Photographer",
-      description: 'Proposal, wedding, couple and event photographer in Paris. Discreet, natural photos at Bir-Hakeim, by the Eiffel Tower, the Palais-Royal and beyond. Speaks French, English and Arabic. Proposals from €150.',
+      description: 'Proposal, wedding and couple photographer in Paris: discreet, natural photos at Bir-Hakeim and the Eiffel Tower. French, English, Arabic. From €150.',
     },
     fr: {
       title: "Melissa's Photography Paris · Photographe demande en mariage & mariage",
-      description: "Photographe de demande en mariage, mariage, couple et événements à Paris. Des photos discrètes et naturelles à Bir-Hakeim, près de la tour Eiffel, au Palais-Royal et ailleurs. Français, anglais et arabe. Demandes dès 150 €.",
+      description: "Photographe demande en mariage, mariage et couple à Paris : photos discrètes et naturelles, Bir-Hakeim, tour Eiffel. Français, anglais, arabe. Dès 150 €.",
     },
     ar: {
       title: 'ميليسا للتصوير باريس · مصوّرة طلبات الزواج والأعراس',
-      description: 'مصوّرة طلبات زواج وأعراس وأزواج ومناسبات في باريس. صور طبيعية وبتكتّم عند جسر بير حكيم وقرب برج إيفل وفي القصر الملكي وغيرها. أتحدث الفرنسية والإنجليزية والعربية. طلبات الزواج ابتداءً من 150 €.',
+      description: 'مصوّرة طلبات زواج وأعراس وأزواج في باريس: صور طبيعية وبتكتّم عند جسر بير حكيم وبرج إيفل. العربية والفرنسية والإنجليزية. من 150 €.',
     },
   },
   // names of the languages, as written in each UI language
