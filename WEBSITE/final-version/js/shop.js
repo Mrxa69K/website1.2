@@ -256,7 +256,7 @@
   /* ---------- Album intros: a little show before each album opens ----------
      concerts: red curtain · proposals: ring box · weddings: château gates
      sport: tatami countdown · portraits: photo booth.
-     Plays once per album per visit, tap to skip, never with reduced motion. */
+     Plays every time an album is opened from the shelf, tap to skip, never with reduced motion. */
   const INTROS = {
     concerts: { hold: 1050, out: 1900, html: () => `<div class="drape l"></div><div class="drape r"></div><div class="valance"></div>
         <div class="curtain-sign"><b>${esc(t('Concerts'))}</b><span>${esc(t('Live in Paris'))}</span></div>` },
@@ -326,11 +326,9 @@
       } },
   };
   let introBusy = false;
-  const introSeen = k => { try { return sessionStorage.getItem('intro-' + k) === '1'; } catch (e) { return false; } };
   function playIntro(key, then) {
     const I = INTROS[key];
-    if (!I || reduce || introBusy || (introSeen(key) && !/[?&]intro=1/.test(location.search))) { then(); return; }
-    try { sessionStorage.setItem('intro-' + key, '1'); } catch (e) { /* private mode */ }
+    if (!I || reduce || introBusy) { then(); return; }
     introBusy = true;
     const el = document.createElement('div');
     el.className = `intro intro-${key}${key === 'concerts' ? ' curtain' : ''}`;
