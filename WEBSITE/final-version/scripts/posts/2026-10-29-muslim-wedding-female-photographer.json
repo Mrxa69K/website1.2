@@ -12,9 +12,9 @@
     "ar": "female-photographer-muslim-wedding-paris"
   },
   "fr": {
-    "title": "Mariage musulman ou oriental à Paris : pourquoi choisir une photographe femme",
+    "title": "Photographe femme pour mariage religieux ou oriental à Paris",
     "short": "Préparatifs, henné, salle des femmes, pudeur : ce qu'une photographe femme change le jour J, et comment tout préparer avant.",
-    "desc": "Photographe femme pour un mariage musulman ou oriental à Paris : les moments entre femmes, la pudeur, l'organisation de la journée (mairie, henné, fête) et les tarifs de Melissa, dès 250 €.",
+    "desc": "Photographe femme pour un mariage religieux ou oriental à Paris : les moments entre femmes, la pudeur, l'organisation de la journée (mairie, henné, fête) et les tarifs de Melissa, dès 250 €.",
     "intro": [
       "Dans beaucoup de familles, une partie du mariage se vit entre femmes : la mariée qui se prépare, le henné, parfois toute une salle de fête. Un photographe homme ne peut pas y entrer, ou alors tout le monde se crispe. C'est souvent là que se trouvent les plus belles photos de la journée.",
       "Je suis photographe à Paris, je parle arabe, français et anglais, et c'est exactement pour ces mariages que j'ai créé une formule à part. Voici ce que ça change, et comment bien préparer votre jour J."
@@ -140,13 +140,12 @@
       "btn": "Réserver mon mariage",
       "more": "Voir la page mariage oriental"
     },
-    "seoTitle": "Photographe femme pour mariage musulman à Paris",
     "coverAlt": "Mariés de dos, elle en caftan, marchant main dans la main dans une allée boisée"
   },
   "en": {
-    "title": "Muslim or Arab wedding in Paris: why choose a female photographer",
+    "title": "Female photographer for a religious or oriental wedding in Paris",
     "short": "Bridal preparations, henna night, the women's hall, modesty: what a female photographer changes on the day, and how to plan it all.",
-    "desc": "Female photographer for a Muslim or Arab wedding in Paris: women-only moments, modesty, planning the day (town hall, henna, celebration) and Melissa's prices, from €250.",
+    "desc": "Female photographer for a religious or oriental wedding in Paris: women-only moments, modesty, planning the day (town hall, henna, celebration) and Melissa's prices, from €250.",
     "intro": [
       "In many families, part of the wedding happens among women: the bride getting ready, the henna night, sometimes a whole reception hall. A male photographer can't go in, or everyone tenses up. That is often where the most beautiful photos of the day are.",
       "I'm a photographer in Paris, I speak Arabic, French and English, and I created a dedicated package for exactly these weddings. Here is what it changes, and how to prepare your day."
@@ -270,15 +269,14 @@
       "title": "Planning your wedding?",
       "text": "Tell me your programme in the order envelope: town hall, henna, reception, women-only moments. I reply within 24 hours, in Arabic, French or English.",
       "btn": "Book my wedding",
-      "more": "See the Muslim wedding page"
+      "more": "See the oriental wedding page"
     },
-    "seoTitle": "Female photographer for a Muslim wedding in Paris",
     "coverAlt": "Bride in a kaftan and groom walking hand in hand down a wooded path"
   },
   "ar": {
-    "title": "عرس إسلامي أو عربي في باريس: لماذا تختارون مصوّرة امرأة",
+    "title": "مصوّرة امرأة لعرس ديني أو شرقي في باريس",
     "short": "تجهيزات العروس، ليلة الحناء، قاعة النساء، الحشمة: ما الذي تغيّره المصوّرة المرأة يوم العرس، وكيف تحضّرون لكل شيء.",
-    "desc": "مصوّرة امرأة لعرس إسلامي أو عربي في باريس: لحظات النساء، الحشمة، تنظيم اليوم (البلدية، الحناء، الحفل) وأسعار ميليسا ابتداءً من 250 €.",
+    "desc": "مصوّرة امرأة لعرس ديني أو شرقي في باريس: لحظات النساء، الحشمة، تنظيم اليوم (البلدية، الحناء، الحفل) وأسعار ميليسا ابتداءً من 250 €.",
     "intro": [
       "في عائلات كثيرة، يُعاش جزء من العرس بين النساء: العروس وهي تتجهّز، ليلة الحناء، وأحياناً قاعة الحفل بأكملها. المصوّر الرجل لا يستطيع الدخول، أو يشعر الجميع بالحرج. وغالباً ما تكون هناك أجمل صور اليوم.",
       "أنا مصوّرة في باريس، أتحدث العربية والفرنسية والإنجليزية، وقد أنشأت باقة خاصة لهذه الأعراس تحديداً. إليكم ما تغيّره، وكيف تحضّرون ليومكم."
@@ -402,9 +400,8 @@
       "title": "تحضّرون لعرسكم؟",
       "text": "احكوا لي برنامجكم في ظرف الطلب: البلدية، الحناء، الحفل، لحظات النساء. أردّ خلال 24 ساعة بالعربية أو الفرنسية أو الإنجليزية.",
       "btn": "احجزوا تصوير عرسكم",
-      "more": "صفحة الأعراس الإسلامية"
+      "more": "صفحة الأعراس الشرقية"
     },
-    "seoTitle": "مصوّرة امرأة لعرس إسلامي في باريس",
     "coverAlt": "عروسان بالقفطان والبدلة يمشيان يداً بيد في ممر مشجّر"
   }
 }
