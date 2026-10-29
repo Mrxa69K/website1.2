@@ -1,0 +1,257 @@
+{
+  "key": "wedding-photos-hauts-de-seine",
+  "date": "2026-10-29",
+  "updated": "2026-10-29",
+  "category": "places",
+  "service": "west",
+  "session": "s-wed-hall",
+  "cover": "/images/blog/park-walk.webp",
+  "slug": {
+    "en": "wedding-photo-spots-hauts-de-seine-versailles",
+    "fr": "photos-mariage-hauts-de-seine-versailles",
+    "ar": "wedding-photo-spots-hauts-de-seine-versailles"
+  },
+  "fr": {
+    "title": "Photos de mariage dans le 92 : 6 lieux, de Boulogne à Versailles",
+    "short": "Vous vous mariez à Boulogne, Issy, Meudon ou Versailles ? Les plus beaux décors juste à côté de la mairie pour vos photos de couple.",
+    "desc": "Où faire ses photos de mariage dans les Hauts-de-Seine : Issy-les-Moulineaux, Meudon, Saint-Cloud, Sceaux, Boulogne et Versailles. 6 lieux et conseils.",
+    "coverAlt": "Mariés de dos, main dans la main, dans l'allée d'un parc",
+    "intro": [
+      "Vous vous mariez à la mairie de Boulogne-Billancourt, d'Issy-les-Moulineaux, de Meudon ou de Versailles, et vous vous demandez où faire les photos de couple juste après ? Bonne nouvelle : l'ouest parisien a des décors magnifiques, souvent plus calmes que ceux de Paris.",
+      "Voici six lieux que je conseille, avec le moment idéal pour y aller. Pour certains domaines, une séance photo professionnelle demande une autorisation : on vérifie toujours ensemble avant le jour J."
+    ],
+    "sections": [
+      {
+        "h2": "1. Le parc de l'île Saint-Germain, à Issy-les-Moulineaux",
+        "kicker": "Idéal juste après la mairie d'Issy",
+        "place": { "addr": "Parc de l'île Saint-Germain, 92130 Issy-les-Moulineaux", "q": "Parc de l'Île Saint-Germain, Issy-les-Moulineaux" },
+        "p": [
+          "Une île dans la Seine, de grandes pelouses, des allées d'arbres et la Tour aux figures de Jean Dubuffet, une sculpture monumentale en noir et blanc qui fait un fond très graphique.",
+          "C'est un parc de quartier, donc pas de foule de touristes : on peut prendre le temps, poser sans pression et faire de belles photos au bord de l'eau."
+        ]
+      },
+      {
+        "h2": "2. La terrasse de l'Observatoire, à Meudon",
+        "kicker": "La plus belle vue sur Paris, surtout au coucher du soleil",
+        "place": { "addr": "Terrasse de l'Observatoire, 92190 Meudon", "q": "Terrasse de l'Observatoire de Meudon" },
+        "photo": ["/images/blog/park-bride.webp", "Mariée en robe blanche assise sur un muret de pierre dans un parc", "Un muret, une robe, la lumière du soir"],
+        "p": [
+          "Une longue terrasse bordée d'arbres, en hauteur, avec tout Paris à vos pieds et la tour Eiffel au loin. C'est le décor parfait pour une photo de couple avec la ville en arrière-plan, sans traverser le périphérique.",
+          "Allez-y en fin de journée : la lumière dorée arrive de face et le ciel se colore au-dessus de Paris."
+        ]
+      },
+      {
+        "h2": "3. Le domaine national de Saint-Cloud",
+        "kicker": "Pour les grands espaces et les jardins à la française",
+        "place": { "addr": "Domaine national de Saint-Cloud, 92210 Saint-Cloud", "q": "Domaine national de Saint-Cloud" },
+        "p": [
+          "Un immense parc avec la Grande Cascade, des allées à perte de vue et des points de vue sur Paris. On a l'impression d'un château, sans avoir à aller loin.",
+          "C'est un domaine national : pour une séance professionnelle, une autorisation peut être demandée. Je vous aide à faire le point avant de réserver."
+        ]
+      },
+      {
+        "h2": "4. Le parc de Sceaux",
+        "kicker": "Au printemps, les cerisiers en fleurs",
+        "place": { "addr": "Domaine départemental de Sceaux, 92330 Sceaux", "q": "Parc de Sceaux" },
+        "p": [
+          "Le château, le Grand Canal et les jardins dessinés par Le Nôtre : c'est l'un des plus beaux parcs d'Île-de-France. En avril, les cerisiers japonais du parc attirent beaucoup de monde, alors on y va tôt le matin.",
+          "Le reste de l'année, les allées et les bassins offrent des photos très élégantes, parfaites pour un mariage."
+        ]
+      },
+      {
+        "h2": "5. Boulogne-Billancourt : l'hôtel de ville et l'île Seguin",
+        "kicker": "Art déco et architecture moderne",
+        "place": { "addr": "La Seine Musicale, île Seguin, 92100 Boulogne-Billancourt", "q": "La Seine Musicale, Boulogne-Billancourt" },
+        "photo": ["/images/blog/townhall-door.webp", "Les mariés, bouquet à la main, devant la porte décorée de la mairie", "Devant la mairie, bouquet à la main"],
+        "p": [
+          "L'hôtel de ville de Boulogne-Billancourt, signé Tony Garnier dans les années 1930, a une façade art déco qui donne tout de suite du caractère aux photos de sortie de mairie.",
+          "Pour un style plus moderne, l'île Seguin et La Seine Musicale offrent des lignes contemporaines et la Seine tout autour, à quelques minutes de là."
+        ]
+      },
+      {
+        "h2": "6. Versailles, au-delà du château",
+        "kicker": "Prévoir l'autorisation pour le domaine",
+        "place": { "addr": "Quartier Notre-Dame, 78000 Versailles", "q": "Place du Marché Notre-Dame, Versailles" },
+        "p": [
+          "Se marier à Versailles fait rêver, et le parc du château est un décor unique. Pour une séance professionnelle dans le domaine, il faut en général une autorisation : à anticiper bien avant le mariage.",
+          "Si vous voulez rester simple, les rues du quartier Notre-Dame, ses façades anciennes et ses places offrent déjà une ambiance très royale, à deux pas de la mairie."
+        ]
+      }
+    ],
+    "tips": [
+      "Prévoyez 30 à 45 minutes de photos de couple juste après la mairie : c'est souvent le seul moment calme de la journée.",
+      "Choisissez un lieu à moins de 15 minutes de la mairie ou de la salle, pour ne pas perdre de temps dans les trajets.",
+      "Vérifiez les règles du lieu (autorisation, horaires) quelques semaines avant. Je vous aide à le faire.",
+      "Prévoyez un plan B en cas de pluie : un porche, une galerie ou la mairie elle-même."
+    ],
+    "sources": [],
+    "cta": {
+      "title": "Vous vous mariez dans le 92 ?",
+      "text": "Dites-moi votre mairie et votre lieu de réception dans l'enveloppe de commande. Je vous conseille le meilleur endroit pour vos photos de couple, en français, en anglais ou en arabe.",
+      "btn": "Réserver mon mariage",
+      "more": "Voir la page Hauts-de-Seine et Versailles"
+    }
+  },
+  "en": {
+    "title": "Wedding photos in the Hauts-de-Seine: 6 spots, Boulogne to Versailles",
+    "short": "Getting married in Boulogne, Issy, Meudon or Versailles? The most beautiful backdrops right next to the town hall for your couple photos.",
+    "desc": "Where to take wedding photos in the Hauts-de-Seine: Issy-les-Moulineaux, Meudon, Saint-Cloud, Sceaux, Boulogne and Versailles. 6 spots and tips.",
+    "coverAlt": "Bride and groom seen from behind, hand in hand along a park path",
+    "intro": [
+      "Getting married at the town hall of Boulogne-Billancourt, Issy-les-Moulineaux, Meudon or Versailles, and wondering where to take your couple photos right after? Good news: the west of Paris has beautiful backdrops, often calmer than the ones in Paris.",
+      "Here are six spots I recommend, with the best time to go. Some estates require permission for a professional photo session: we always check together before the day."
+    ],
+    "sections": [
+      {
+        "h2": "1. Île Saint-Germain park, Issy-les-Moulineaux",
+        "kicker": "Perfect right after the Issy town hall",
+        "place": { "addr": "Parc de l'île Saint-Germain, 92130 Issy-les-Moulineaux", "q": "Parc de l'Île Saint-Germain, Issy-les-Moulineaux" },
+        "p": [
+          "An island in the Seine, wide lawns, tree-lined paths and Jean Dubuffet's Tour aux figures, a monumental black and white sculpture that makes a very graphic background.",
+          "It is a local park, so no tourist crowds: we can take our time, pose without pressure and take lovely photos by the water."
+        ]
+      },
+      {
+        "h2": "2. The Observatory terrace, Meudon",
+        "kicker": "The best view of Paris, especially at sunset",
+        "place": { "addr": "Terrasse de l'Observatoire, 92190 Meudon", "q": "Terrasse de l'Observatoire de Meudon" },
+        "photo": ["/images/blog/park-bride.webp", "Bride in a white gown sitting on a stone wall in a park", "A stone wall, a gown, the evening light"],
+        "p": [
+          "A long, tree-lined terrace up on the hill, with all of Paris at your feet and the Eiffel Tower in the distance. It is the perfect backdrop for a couple photo with the city behind you, without crossing the ring road.",
+          "Go at the end of the day: the golden light comes from the front and the sky turns pink above Paris."
+        ]
+      },
+      {
+        "h2": "3. Domaine national de Saint-Cloud",
+        "kicker": "For wide open spaces and French formal gardens",
+        "place": { "addr": "Domaine national de Saint-Cloud, 92210 Saint-Cloud", "q": "Domaine national de Saint-Cloud" },
+        "p": [
+          "A huge park with the Grande Cascade, endless avenues and viewpoints over Paris. It feels like a château, without going far.",
+          "It is a national estate: permission may be required for a professional session. I will help you check before you book."
+        ]
+      },
+      {
+        "h2": "4. Parc de Sceaux",
+        "kicker": "In spring, the cherry blossoms",
+        "place": { "addr": "Domaine départemental de Sceaux, 92330 Sceaux", "q": "Parc de Sceaux" },
+        "p": [
+          "The château, the Grand Canal and gardens designed by Le Nôtre: it is one of the most beautiful parks in the Île-de-France. In April, the park's Japanese cherry trees draw big crowds, so we go early in the morning.",
+          "The rest of the year, the avenues and pools make for very elegant photos, perfect for a wedding."
+        ]
+      },
+      {
+        "h2": "5. Boulogne-Billancourt: the town hall and Île Seguin",
+        "kicker": "Art deco and modern architecture",
+        "place": { "addr": "La Seine Musicale, île Seguin, 92100 Boulogne-Billancourt", "q": "La Seine Musicale, Boulogne-Billancourt" },
+        "photo": ["/images/blog/townhall-door.webp", "The couple, bouquet in hand, in front of the decorated town hall door", "At the town hall door, bouquet in hand"],
+        "p": [
+          "Boulogne-Billancourt's town hall, designed by Tony Garnier in the 1930s, has an art deco façade that instantly gives character to your photos as you walk out.",
+          "For a more modern look, Île Seguin and La Seine Musicale offer contemporary lines with the Seine all around, just a few minutes away."
+        ]
+      },
+      {
+        "h2": "6. Versailles, beyond the château",
+        "kicker": "Plan the permission for the estate",
+        "place": { "addr": "Quartier Notre-Dame, 78000 Versailles", "q": "Place du Marché Notre-Dame, Versailles" },
+        "p": [
+          "Getting married in Versailles is a dream, and the château park is a unique backdrop. A professional session inside the estate usually requires permission: plan it well before the wedding.",
+          "If you want to keep it simple, the streets of the Notre-Dame quarter, with their old façades and squares, already have a very royal feel, close to the town hall."
+        ]
+      }
+    ],
+    "tips": [
+      "Plan 30 to 45 minutes of couple photos right after the town hall: it is often the only calm moment of the day.",
+      "Choose a spot less than 15 minutes from the town hall or the venue, so you don't lose time on the road.",
+      "Check the rules of the place (permission, opening hours) a few weeks before. I will help you.",
+      "Have a plan B for rain: a porch, an arcade or the town hall itself."
+    ],
+    "sources": [],
+    "cta": {
+      "title": "Getting married in the 92?",
+      "text": "Tell me your town hall and your venue in the order envelope. I will suggest the best spot for your couple photos, in French, English or Arabic.",
+      "btn": "Book my wedding",
+      "more": "See the Hauts-de-Seine & Versailles page"
+    }
+  },
+  "ar": {
+    "title": "صور العرس في الـ92: 6 أماكن من بولونيا إلى فرساي",
+    "short": "تتزوّجون في بولونيا أو إيسي أو مودون أو فرساي؟ أجمل الخلفيات قرب البلدية لصوركما بعد عقد القران.",
+    "desc": "أين تلتقطون صور العرس في أو دو سين: إيسي لي مولينو، مودون، سان كلو، سو، بولونيا وفرساي. 6 أماكن ونصائح.",
+    "coverAlt": "العروسان من الخلف يمشيان يداً بيد في ممر حديقة",
+    "intro": [
+      "تعقدون قرانكم في بلدية بولونيا بيانكور أو إيسي لي مولينو أو مودون أو فرساي، وتتساءلون أين تلتقطون صوركما بعدها مباشرة؟ الخبر السار: في غرب باريس خلفيات رائعة، وغالباً أهدأ من باريس نفسها.",
+      "إليكم ستة أماكن أنصح بها، مع أفضل وقت للذهاب. بعض المواقع تتطلّب إذناً لجلسة تصوير احترافية: نتحقّق من ذلك دائماً معاً قبل اليوم الكبير."
+    ],
+    "sections": [
+      {
+        "h2": "1. حديقة جزيرة سان جيرمان، إيسي لي مولينو",
+        "kicker": "مثالية بعد بلدية إيسي مباشرة",
+        "place": { "addr": "Parc de l'île Saint-Germain, 92130 Issy-les-Moulineaux", "q": "Parc de l'Île Saint-Germain, Issy-les-Moulineaux" },
+        "p": [
+          "جزيرة في نهر السين، مروج واسعة، ممرات مشجّرة، و«برج الأشكال» لجان دوبوفيه، منحوتة ضخمة بالأبيض والأسود تصنع خلفية مميزة جداً.",
+          "إنها حديقة حيّ، فلا زحام سياح: نأخذ وقتنا ونلتقط صوراً جميلة على ضفة الماء دون ضغط."
+        ]
+      },
+      {
+        "h2": "2. شرفة المرصد في مودون",
+        "kicker": "أجمل إطلالة على باريس، خاصة عند الغروب",
+        "place": { "addr": "Terrasse de l'Observatoire, 92190 Meudon", "q": "Terrasse de l'Observatoire de Meudon" },
+        "photo": ["/images/blog/park-bride.webp", "عروس بفستان أبيض تجلس على سور حجري في حديقة", "سور حجري، فستان، وضوء المساء"],
+        "p": [
+          "شرفة طويلة مرتفعة تحفّها الأشجار، وباريس كلها تحت أقدامكم وبرج إيفل في الأفق. خلفية مثالية لصورة زوجين والمدينة خلفهما، دون عبور الطريق الدائري.",
+          "اذهبوا في آخر النهار: يأتي الضوء الذهبي من الأمام وتتلوّن السماء فوق باريس."
+        ]
+      },
+      {
+        "h2": "3. حديقة سان كلو الوطنية",
+        "kicker": "للمساحات الواسعة والحدائق الفرنسية",
+        "place": { "addr": "Domaine national de Saint-Cloud, 92210 Saint-Cloud", "q": "Domaine national de Saint-Cloud" },
+        "p": [
+          "حديقة ضخمة فيها الشلال الكبير، وممرات بلا نهاية، وإطلالات على باريس. تشعرون أنكم في قصر دون أن تبتعدوا.",
+          "إنها ملكية وطنية: قد يُطلب إذن لجلسة تصوير احترافية. أساعدكم في التحقّق قبل الحجز."
+        ]
+      },
+      {
+        "h2": "4. حديقة سو",
+        "kicker": "في الربيع، أزهار الكرز",
+        "place": { "addr": "Domaine départemental de Sceaux, 92330 Sceaux", "q": "Parc de Sceaux" },
+        "p": [
+          "القصر والقناة الكبرى والحدائق التي صمّمها لو نوتر: من أجمل حدائق إيل دو فرانس. في أبريل، تجذب أشجار الكرز اليابانية زواراً كثيرين، لذا نذهب باكراً في الصباح.",
+          "وفي باقي السنة، تمنح الممرات والأحواض صوراً أنيقة جداً، مثالية للعرس."
+        ]
+      },
+      {
+        "h2": "5. بولونيا بيانكور: البلدية وجزيرة سوغان",
+        "kicker": "آرت ديكو وعمارة حديثة",
+        "place": { "addr": "La Seine Musicale, île Seguin, 92100 Boulogne-Billancourt", "q": "La Seine Musicale, Boulogne-Billancourt" },
+        "photo": ["/images/blog/townhall-door.webp", "العروسان والباقة في اليد أمام باب البلدية المزيّن", "أمام البلدية، والباقة في اليد"],
+        "p": [
+          "بلدية بولونيا بيانكور، من تصميم توني غارنييه في ثلاثينيات القرن الماضي، لها واجهة آرت ديكو تمنح صور الخروج من البلدية طابعاً مميزاً.",
+          "ولأسلوب أكثر حداثة، تقدّم جزيرة سوغان و«لا سين ميوزيكال» خطوطاً معاصرة ونهر السين من حولها، على بعد دقائق."
+        ]
+      },
+      {
+        "h2": "6. فرساي، أبعد من القصر",
+        "kicker": "خطّطوا للإذن الخاص بالقصر",
+        "place": { "addr": "Quartier Notre-Dame, 78000 Versailles", "q": "Place du Marché Notre-Dame, Versailles" },
+        "p": [
+          "الزواج في فرساي حلم، وحديقة القصر خلفية فريدة. جلسة احترافية داخل الموقع تتطلّب عادة إذناً: خطّطوا لها قبل العرس بوقت طويل.",
+          "وإن أردتم البساطة، فشوارع حيّ نوتردام بواجهاتها القديمة وساحاتها تمنح أجواء ملكية حقاً، قرب البلدية."
+        ]
+      }
+    ],
+    "tips": [
+      "خصّصوا من 30 إلى 45 دقيقة لصوركما بعد البلدية مباشرة: غالباً هي اللحظة الهادئة الوحيدة في اليوم.",
+      "اختاروا مكاناً على بعد أقل من 15 دقيقة من البلدية أو القاعة، حتى لا يضيع الوقت في الطريق.",
+      "تحقّقوا من قواعد المكان (الإذن، المواعيد) قبل أسابيع. سأساعدكم في ذلك.",
+      "جهّزوا خطة بديلة للمطر: مدخل مسقوف، رواق، أو البلدية نفسها."
+    ],
+    "sources": [],
+    "cta": {
+      "title": "تتزوّجون في الـ92؟",
+      "text": "أخبروني ببلديتكم وقاعة الحفل في ظرف الطلب. سأقترح عليكم أفضل مكان لصوركما، بالعربية أو الفرنسية أو الإنجليزية.",
+      "btn": "احجزوا تصوير عرسكم",
+      "more": "صفحة أو دو سين وفرساي"
+    }
+  }
+}

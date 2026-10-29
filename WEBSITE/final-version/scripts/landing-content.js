@@ -281,7 +281,7 @@ module.exports = {
         h1: 'Concert & event photographer in Paris',
         lede: 'Front row, no flash, all feeling. Concert, festival and private event photography in Paris, from Lollapalooza to intimate shows.',
         story: [
-          "I've photographed Fever 333 and Owen at Lollapalooza Paris 2023, Celia Maqam, Kader and Chemsou Freeklane. I love the dark, the sweat and the second where the whole room sings along.",
+          "I've photographed Fever 333 and Owen at Lollapalooza Paris 2023, Celia Maqam, Kader, Chemsou Freeklane and, in October 2026, Kamel Aziz. I love the dark, the sweat and the second where the whole room sings along.",
           'For artists, managers and venues: photos for the press, your social media and your next poster, edited to keep the mood of the night.',
           'For private events and parties, I stay discreet and catch the people, not just the stage.',
         ],
@@ -300,7 +300,7 @@ module.exports = {
         h1: 'Photographe concert et événement à Paris',
         lede: "Premier rang, sans flash, que de l'émotion. Photos de concerts, de festivals et d'événements privés à Paris, du Lollapalooza aux petites salles.",
         story: [
-          "J'ai photographié Fever 333 et Owen au Lollapalooza Paris 2023, Celia Maqam, Kader et Chemsou Freeklane. J'aime le noir, la sueur et cette seconde où toute la salle chante en chœur.",
+          "J'ai photographié Fever 333 et Owen au Lollapalooza Paris 2023, Celia Maqam, Kader, Chemsou Freeklane et, en octobre 2026, Kamel Aziz. J'aime le noir, la sueur et cette seconde où toute la salle chante en chœur.",
           "Pour les artistes, managers et salles : des photos pour la presse, vos réseaux sociaux et votre prochaine affiche, retouchées pour garder l'ambiance de la soirée.",
           'Pour les événements privés et les soirées, je reste discrète et je photographie les gens, pas seulement la scène.',
         ],
@@ -319,7 +319,7 @@ module.exports = {
         h1: 'مصوّرة حفلات ومناسبات في باريس',
         lede: 'الصف الأول، بلا فلاش، كلّه إحساس. تصوير الحفلات الموسيقية والمهرجانات والمناسبات الخاصة في باريس، من لولابالوزا إلى الحفلات الصغيرة.',
         story: [
-          'صوّرت فرقة Fever 333 والفنان Owen في لولابالوزا باريس 2023، كما صوّرت Celia Maqam، Kader، و Chemsou Freeklane. أحب العتمة والحماس وتلك اللحظة التي تغني فيها القاعة كلها معاً.',
+          'صوّرت فرقة Fever 333 والفنان Owen في لولابالوزا باريس 2023، كما صوّرت Celia Maqam وKader وChemsou Freeklane، وKamel Aziz في أكتوبر 2026. أحب العتمة والحماس وتلك اللحظة التي تغني فيها القاعة كلها معاً.',
           'للفنانين والمديرين والقاعات: صور للصحافة ولحساباتكم على مواقع التواصل ولملصقكم القادم، معدّلة لتحافظ على أجواء الليلة.',
           'في المناسبات والحفلات الخاصة، أبقى متحفّظة وألتقط الناس، لا المسرح فقط.',
         ],

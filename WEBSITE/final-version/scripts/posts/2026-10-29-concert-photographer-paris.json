@@ -1,0 +1,258 @@
+{
+  "key": "concert-photographer-paris",
+  "date": "2026-10-29",
+  "updated": "2026-10-29",
+  "category": "live",
+  "service": "concert",
+  "session": "s-event",
+  "featured": true,
+  "cover": "/images/shop/live-fever333-red.webp",
+  "slug": {
+    "en": "concert-photographer-paris-no-flash",
+    "fr": "photographe-concert-paris-sans-flash",
+    "ar": "concert-photographer-paris-no-flash"
+  },
+  "fr": {
+    "title": "Photographe de concert à Paris : la scène, sans flash",
+    "short": "Du Lollapalooza aux petites salles : comment je photographie un concert, ce que reçoivent les artistes, et comment me faire venir.",
+    "desc": "Photographe de concert et d'événement à Paris : Lollapalooza, Celia Maqam, Kader, Kamel Aziz. Sans flash, au premier rang. Dès 300 € pour 2 h.",
+    "coverAlt": "Le chanteur de Fever 333 baigné de lumière rouge sur scène, micro levé",
+    "intro": [
+      "La lumière qui tombe d'un coup, la sueur, la salle qui chante plus fort que le micro : c'est pour ces secondes-là que je photographie des concerts.",
+      "Je suis photographe à Paris. Je fais aussi des demandes en mariage et des mariages, mais la scène est mon autre amour. Voici comment je travaille, ce que j'ai déjà photographié, et ce que vous recevez si vous êtes artiste, manager, salle ou organisateur."
+    ],
+    "sections": [
+      {
+        "h2": "1. La réponse courte",
+        "p": [
+          "Je photographie les concerts, les festivals et les soirées à Paris et en Île-de-France. Premier rang, sans flash, avec la lumière de la scène.",
+          "La formule commence à 300 € pour 2 heures, avec 60+ photos retouchées dans une galerie privée en ligne. Pour une soirée plus longue ou un festival, je fais un devis."
+        ]
+      },
+      {
+        "h2": "2. Les scènes où j'ai déjà shooté",
+        "photo": ["/images/shop/live-celia.webp", "Celia Maqam chante et joue de la guitare sur scène sous les projecteurs bleus", "Celia Maqam"],
+        "list": [
+          "Fever 333 et Owen au Lollapalooza Paris 2023.",
+          "Celia Maqam et son groupe.",
+          "Kader, Chemsou Freeklane.",
+          "Kamel Aziz, en octobre 2026."
+        ],
+        "after": [
+          "Du festival géant à la petite salle, j'aime autant les grosses scènes que les concerts intimes où l'on voit chaque expression."
+        ]
+      },
+      {
+        "h2": "3. Pourquoi je ne mets jamais de flash",
+        "p": [
+          "Le flash écrase la lumière de scène, gêne l'artiste et le public, et il est souvent interdit. Je travaille avec ce que l'éclairagiste a créé : les rouges, les contre-jours, les faisceaux dans la fumée.",
+          "Pour ça, j'utilise un boîtier plein format et un objectif 50 mm très lumineux, qui capte les visages même quand la salle est presque noire."
+        ]
+      },
+      {
+        "h2": "4. Pour les artistes, managers et labels",
+        "p": [
+          "Vous recevez des photos prêtes à servir :"
+        ],
+        "list": [
+          "pour la presse et vos dossiers de presse ;",
+          "pour vos réseaux sociaux, le soir même ou le lendemain ;",
+          "pour une affiche, une pochette ou votre site ;",
+          "retouchées pour garder l'ambiance réelle de la soirée, sans effet artificiel."
+        ],
+        "after": [
+          "On définit ensemble, avant le concert, l'usage prévu des photos et les crédits."
+        ]
+      },
+      {
+        "h2": "5. L'accréditation photo",
+        "p": [
+          "Pour un concert public, l'accréditation est en général demandée par l'artiste, le label ou l'organisateur. Si vous me faites venir, je peux vous aider à rédiger la demande.",
+          "Dans beaucoup de salles et de festivals, les photographes n'ont que les trois premières chansons. On prépare donc à l'avance les moments à ne pas rater."
+        ]
+      },
+      {
+        "h2": "6. Soirées privées et événements",
+        "photo": ["/images/shop/live-kader.webp", "Kader et ses musiciens sur scène, chèches blancs et guitare électrique", "Kader"],
+        "p": [
+          "Anniversaires, fiançailles, soirées d'entreprise, concerts privés : même approche. Je reste discrète et je photographie les gens, pas seulement la scène.",
+          "Et comme je parle français, anglais et arabe, je suis à l'aise avec tous les publics, de la musique orientale au rock."
+        ]
+      }
+    ],
+    "tips": [
+      "Envoyez-moi la setlist et les moments clés (entrée sur scène, invité surprise, chanson phare).",
+      "Prévenez-moi des règles de la salle : accès à la fosse, nombre de chansons autorisées, zones interdites.",
+      "Pour vos réseaux, je peux vous envoyer une sélection rapide dès la fin du concert, puis la galerie complète."
+    ],
+    "sources": [],
+    "cta": {
+      "title": "Un concert ou une soirée à venir ?",
+      "text": "Indiquez la date, la salle et la durée dans l'enveloppe de commande. Je vous réponds sous 24 h.",
+      "btn": "Réserver un concert",
+      "more": "Voir la page concerts et événements"
+    }
+  },
+  "en": {
+    "title": "Concert photographer in Paris: the stage, without flash",
+    "short": "From Lollapalooza to small venues: how I photograph a concert, what artists receive, and how to book me.",
+    "desc": "Concert and event photographer in Paris: Lollapalooza, Celia Maqam, Kader, Kamel Aziz. No flash, front row. From €300 for 2 hours.",
+    "coverAlt": "Fever 333's singer bathed in red light on stage, microphone raised",
+    "intro": [
+      "The light dropping all at once, the sweat, the crowd singing louder than the mic: those are the seconds I photograph concerts for.",
+      "I am a photographer in Paris. I also shoot proposals and weddings, but the stage is my other love. Here is how I work, what I have already photographed, and what you get if you are an artist, a manager, a venue or an organiser."
+    ],
+    "sections": [
+      {
+        "h2": "1. The short answer",
+        "p": [
+          "I photograph concerts, festivals and parties in Paris and the Île-de-France region. Front row, no flash, with the stage lighting.",
+          "The package starts at €300 for 2 hours, with 60+ edited photos in a private online gallery. For a longer night or a festival, I send a quote."
+        ]
+      },
+      {
+        "h2": "2. Stages I have shot",
+        "photo": ["/images/shop/live-celia.webp", "Celia Maqam singing and playing guitar on stage under blue lights", "Celia Maqam"],
+        "list": [
+          "Fever 333 and Owen at Lollapalooza Paris 2023.",
+          "Celia Maqam and her band.",
+          "Kader, Chemsou Freeklane.",
+          "Kamel Aziz, in October 2026."
+        ],
+        "after": [
+          "From huge festivals to small venues, I love big stages as much as intimate gigs where you can see every expression."
+        ]
+      },
+      {
+        "h2": "3. Why I never use flash",
+        "p": [
+          "Flash flattens the stage lighting, bothers the artist and the crowd, and is often forbidden. I work with what the lighting designer created: the reds, the backlight, the beams in the haze.",
+          "For that, I use a full-frame camera and a very bright 50 mm lens that catches faces even when the room is almost dark."
+        ]
+      },
+      {
+        "h2": "4. For artists, managers and labels",
+        "p": [
+          "You get photos ready to use:"
+        ],
+        "list": [
+          "for the press and your press kits;",
+          "for your social media, the same night or the next day;",
+          "for a poster, a cover or your website;",
+          "edited to keep the real atmosphere of the night, with no artificial effects."
+        ],
+        "after": [
+          "Before the concert, we agree together on how the photos will be used and on credits."
+        ]
+      },
+      {
+        "h2": "5. Photo accreditation",
+        "p": [
+          "For a public concert, accreditation is usually requested by the artist, the label or the organiser. If you book me, I can help you write the request.",
+          "In many venues and festivals, photographers only get the first three songs. So we plan the moments not to miss in advance."
+        ]
+      },
+      {
+        "h2": "6. Private parties and events",
+        "photo": ["/images/shop/live-kader.webp", "Kader and his musicians on stage, white turbans and electric guitar", "Kader"],
+        "p": [
+          "Birthdays, engagement parties, company nights, private concerts: same approach. I stay discreet and photograph the people, not just the stage.",
+          "And since I speak French, English and Arabic, I am at ease with every crowd, from oriental music to rock."
+        ]
+      }
+    ],
+    "tips": [
+      "Send me the setlist and the key moments (stage entrance, surprise guest, the big song).",
+      "Tell me the venue rules: pit access, number of songs allowed, no-go areas.",
+      "For your socials, I can send a quick selection right after the show, then the full gallery."
+    ],
+    "sources": [],
+    "cta": {
+      "title": "A concert or a party coming up?",
+      "text": "Give me the date, the venue and the length in the order envelope. I reply within 24 hours.",
+      "btn": "Book a concert",
+      "more": "See the concerts and events page"
+    }
+  },
+  "ar": {
+    "title": "مصوّرة حفلات في باريس: المسرح دون فلاش",
+    "short": "من لولابالوزا إلى القاعات الصغيرة: كيف أصوّر الحفلات، وماذا يحصل عليه الفنانون، وكيف تحجزونني.",
+    "desc": "مصوّرة حفلات ومناسبات في باريس: لولابالوزا، سيليا مقام، قادر، كمال عزيز. دون فلاش، في الصف الأول. من 300 € لساعتين.",
+    "coverAlt": "مغنّي فرقة Fever 333 على المسرح تحت ضوء أحمر والميكروفون مرفوع",
+    "intro": [
+      "الضوء الذي ينطفئ فجأة، العرق، والجمهور الذي يغنّي أعلى من الميكروفون: من أجل هذه الثواني أصوّر الحفلات.",
+      "أنا مصوّرة في باريس. أصوّر أيضاً طلبات الزواج والأعراس، لكن المسرح حبّي الآخر. إليكم كيف أعمل، وما صوّرته من قبل، وما تحصلون عليه إن كنتم فنانين أو مديري أعمال أو قاعات أو منظّمين."
+    ],
+    "sections": [
+      {
+        "h2": "1. الجواب المختصر",
+        "p": [
+          "أصوّر الحفلات والمهرجانات والسهرات في باريس وإيل دو فرانس. في الصف الأول، دون فلاش، بإضاءة المسرح.",
+          "تبدأ الباقة من 300 € لساعتين، مع أكثر من 60 صورة معدّلة في معرض خاص على الإنترنت. لسهرة أطول أو مهرجان، أرسل عرض سعر."
+        ]
+      },
+      {
+        "h2": "2. المسارح التي صوّرت فيها",
+        "photo": ["/images/shop/live-celia.webp", "سيليا مقام تغنّي وتعزف على الغيتار على المسرح تحت أضواء زرقاء", "سيليا مقام"],
+        "list": [
+          "Fever 333 وOwen في لولابالوزا باريس 2023.",
+          "سيليا مقام وفرقتها.",
+          "قادر، شمسو فريكلان.",
+          "كمال عزيز، في أكتوبر 2026."
+        ],
+        "after": [
+          "من المهرجانات الضخمة إلى القاعات الصغيرة، أحبّ المسارح الكبيرة بقدر الحفلات الحميمة التي نرى فيها كل تعبير."
+        ]
+      },
+      {
+        "h2": "3. لماذا لا أستعمل الفلاش أبداً",
+        "p": [
+          "الفلاش يطمس إضاءة المسرح ويزعج الفنان والجمهور، وغالباً ما يكون ممنوعاً. أعمل بما صنعه مهندس الإضاءة: الأحمر، الإضاءة الخلفية، والأشعة في الدخان.",
+          "ولذلك أستعمل كاميرا بمستشعر كامل وعدسة 50 مم شديدة السطوع، تلتقط الوجوه حتى حين تكون القاعة شبه مظلمة."
+        ]
+      },
+      {
+        "h2": "4. للفنانين ومديري الأعمال وشركات الإنتاج",
+        "p": [
+          "تحصلون على صور جاهزة للاستعمال:"
+        ],
+        "list": [
+          "للصحافة والملفات الصحفية؛",
+          "لحساباتكم على مواقع التواصل، في الليلة نفسها أو في اليوم التالي؛",
+          "لملصق أو غلاف أو موقعكم؛",
+          "معدّلة لتحافظ على الأجواء الحقيقية للسهرة، دون مؤثرات مصطنعة."
+        ],
+        "after": [
+          "نتّفق معاً قبل الحفل على طريقة استعمال الصور وعلى ذكر اسم المصوّرة."
+        ]
+      },
+      {
+        "h2": "5. تصريح التصوير",
+        "p": [
+          "في الحفلات العامة، يطلب الفنان أو شركة الإنتاج أو المنظّم تصريح التصوير عادة. إن حجزتموني، أساعدكم في كتابة الطلب.",
+          "في كثير من القاعات والمهرجانات، لا يُسمح للمصوّرين إلا بالأغاني الثلاث الأولى. لذلك نحضّر مسبقاً اللحظات التي لا يجب أن تفوتنا."
+        ]
+      },
+      {
+        "h2": "6. السهرات الخاصة والمناسبات",
+        "photo": ["/images/shop/live-kader.webp", "قادر وموسيقيّوه على المسرح بالعمائم البيضاء والغيتار الكهربائي", "قادر"],
+        "p": [
+          "أعياد الميلاد، الخطوبة، سهرات الشركات، الحفلات الخاصة: الأسلوب نفسه. أبقى متحفّظة وأصوّر الناس، لا المسرح فقط.",
+          "وبما أنني أتحدث العربية والفرنسية والإنجليزية، أرتاح مع كل الجماهير، من الموسيقى الشرقية إلى الروك."
+        ]
+      }
+    ],
+    "tips": [
+      "أرسلوا لي قائمة الأغاني واللحظات المهمة (الدخول إلى المسرح، ضيف مفاجئ، الأغنية الأشهر).",
+      "أخبروني بقواعد القاعة: الوصول إلى مقدّمة المسرح، عدد الأغاني المسموح بها، الأماكن الممنوعة.",
+      "لحساباتكم، أستطيع إرسال مجموعة سريعة بعد الحفل مباشرة، ثم المعرض الكامل."
+    ],
+    "sources": [],
+    "cta": {
+      "title": "حفل أو سهرة قريباً؟",
+      "text": "اذكروا التاريخ والقاعة والمدة في ظرف الطلب. أردّ خلال 24 ساعة.",
+      "btn": "احجزوا تصوير حفل",
+      "more": "صفحة الحفلات والمناسبات"
+    }
+  }
+}
