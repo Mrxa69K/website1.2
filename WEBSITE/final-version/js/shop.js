@@ -114,7 +114,7 @@
       pages: [
         [[S + 'proposal-16.webp', 'Trocadéro, after dark', 'p'], [S + 'proposal-13.webp', 'Candles & a yes', 'p']],
         [[S + 'proposal-proposal2.webp', 'Sunset at the Troca', 'p'], [S + 'proposal-22.webp', 'When the tower sparkles', 'p']],
-        [[S + 'proposal-2.webp', 'Louvre arcades', 'p'], [S + 'proposal-7.webp', 'Off as fiancés', 'p']],
+        [[S + 'proposal-7.webp', 'Off as fiancés', 'p']],
       ],
     },
     weddings: {
