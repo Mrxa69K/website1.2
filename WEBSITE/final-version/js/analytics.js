@@ -5,7 +5,7 @@
    - After "Refuse": PostHog stays in memory-only mode, no replay.
    The project key is public by design (it can only send events, not read them). */
 (function () {
-  var KEY = 'phc_rfWhxqEM3ichucdoS4WBCa8ZNcSk2UC5mxkERqrdZHWz';
+  var KEY = 'phc_uctvmmKWuLd9R5kbcg9CyQdAU74gmKLKKsKYqJhSkAUL';
   var HOST = 'https://eu.i.posthog.com';
   if (!KEY) return;
 
