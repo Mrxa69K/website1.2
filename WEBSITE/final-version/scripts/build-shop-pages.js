@@ -241,7 +241,7 @@ ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHT
   </div>
 </footer>
 <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
-<script src="/js/analytics.js?v=1" defer></script>
+<script src="/js/analytics.js?v=2" defer></script>
 <script src="/js/cookieconsent-config.js" type="module"></script>
 </body>
 </html>
@@ -305,7 +305,7 @@ ${body}
   ${langSwitch(l, switchTo)}
 </footer>
 <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
-<script src="/js/analytics.js?v=1" defer></script>
+<script src="/js/analytics.js?v=2" defer></script>
 <script src="/js/cookieconsent-config.js" type="module"></script>
 </body>
 </html>
