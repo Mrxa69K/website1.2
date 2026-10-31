@@ -742,7 +742,7 @@
       track('Contact', o.row.session);
       if (!o.spam && o.confirm && !o.confirmSent) {
         o.confirmSent = true; // automatic "request received" email to the client
-        fetch('/api/confirm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o.confirm) }).catch(() => {});
+        fetch('/api/confirm/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o.confirm) }).catch(() => {});
       }
     } else {
       mail.hidden = true;
