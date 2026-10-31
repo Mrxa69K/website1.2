@@ -87,20 +87,20 @@ function text(t, { name, session, date }) {
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).end(); return; }
   const origin = req.headers.origin || '';
-  if (origin && !/^https:\/\/(www\.)?melissaphotographyparis\.fr$/.test(origin) && !/\.vercel\.app$/.test(origin)) { res.status(403).end(); return; }
+  if (origin && !/^https:\/\/(www\.)?melissaphotographyparis\.fr$/.test(origin) && !/\.vercel\.app$/.test(origin)) { console.log('confirm: blocked origin', origin); res.status(403).end(); return; }
   if (!process.env.MAIL_USER || !process.env.MAIL_APP_PASSWORD) { res.status(204).end(); return; }
 
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
   const now = Date.now();
   const hits = (recent.get(ip) || []).filter(x => now - x < 3600e3);
-  if (hits.length >= 3) { res.status(429).end(); return; }
+  if (hits.length >= 5) { console.log('confirm: too many requests from one visitor'); res.status(429).end(); return; }
   hits.push(now); recent.set(ip, hits);
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
   body = body || {};
   const email = String(body.email || '').trim().slice(0, 120);
-  if (!/^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(email)) { res.status(400).end(); return; }
+  if (!/^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(email)) { console.log('confirm: not an email address'); res.status(400).end(); return; }
   const lang = T[body.lang] ? body.lang : 'en';
   const t = T[lang];
   const data = { name: clean(body.name, 60) || '', session: clean(body.session, 80), date: clean(body.date, 60) };
@@ -115,6 +115,7 @@ module.exports = async (req, res) => {
       text: text(t, data),
       html: html(t, data),
     });
+    console.log('confirm: sent to', email.replace(/^(.).*(@.*)$/, '$1***$2'), 'lang', lang);
     res.status(200).json({ ok: true });
   } catch (e) {
     console.error('confirm mail failed', e && e.message);
