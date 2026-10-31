@@ -35,6 +35,7 @@ const blogPath = l => (l === 'en' ? '/blog/' : `/${l}/blog/`);
 const postPath = (p, l) => blogPath(l) + p.slug[l] + '/';
 const template = fs.readFileSync(path.join(__dirname, 'shop-template.html'), 'utf8');
 
+const absUrl = u => (/^https?:/.test(u) ? u : SITE + u);
 const escHTML = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = s => escHTML(s).replace(/"/g, '&quot;');
 const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -268,7 +269,7 @@ ${alt}
 <meta property="og:url" content="${SITE}${here}">
 <meta property="og:title" content="${escAttr(title)}">
 <meta property="og:description" content="${escAttr(desc)}">
-<meta property="og:image" content="${SITE}${ogImage}">
+<meta property="og:image" content="${absUrl(ogImage)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -564,7 +565,7 @@ ${t.sources.map(([name, url]) => `          <li><a href="${escAttr(url)}" target
         <span>${escHTML(u.share)}</span>
         <a href="https://wa.me/?text=${shareText}%20${shareUrl}" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://pinterest.com/pin/create/button/?url=${shareUrl}&amp;media=${encodeURIComponent(SITE + p.cover)}&amp;description=${shareText}" target="_blank" rel="noopener">Pinterest</a>
+        <a href="https://pinterest.com/pin/create/button/?url=${shareUrl}&amp;media=${encodeURIComponent(absUrl(p.cover))}&amp;description=${shareText}" target="_blank" rel="noopener">Pinterest</a>
       </div>
       <aside class="author-box reveal">
         <div class="about-avatar small"><svg viewBox="0 0 300 360" aria-hidden="true">${avatarArt}</svg></div>
@@ -599,7 +600,7 @@ ${REVEAL}`;
     alt: postLangs(p).map(x => `<link rel="alternate" hreflang="${x}" href="${SITE}${postPath(p, x)}">`).join('\n') + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${postPath(p, p.en ? 'en' : postLangs(p)[0])}">`,
     ogImage: p.cover, body, switchTo: x => (BLOG_LANGS.includes(x) && p[x] ? postPath(p, x) : blogPath(BLOG_LANGS.includes(x) ? x : 'en')),
     jsonld: [
-      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: t.title, description: t.desc, image: SITE + p.cover,
+      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: t.title, description: t.desc, image: absUrl(p.cover),
         datePublished: p.date, dateModified: p.updated || p.date, inLanguage: l, mainEntityOfPage: SITE + here,
         articleSection: catLabel(p, l), wordCount: postText(t).split(/\s+/).length, timeRequired: `PT${minutes}M`,
         author: { '@type': 'Person', name: 'Melissa', url: SITE + aboutPath(l) },

@@ -1,0 +1,39 @@
+# Telegram blog assistant. Started by the Telegram bot (api/telegram.js on Vercel, through a
+# repository_dispatch "blog-bot") or every Monday morning for the weekly ideas.
+# Secrets needed (Settings > Secrets and variables > Actions): ANTHROPIC_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+name: Blog bot
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # Monday 9:00 Paris (winter time)
+  workflow_dispatch:
+  repository_dispatch:
+    types: [blog-bot]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: blog-bot
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run the bot
+        run: node automation/bot/run.js
+        env:
+          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GH_TOKEN: ${{ github.token }}
