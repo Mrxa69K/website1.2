@@ -1,0 +1,8 @@
+{
+  "name": "melissa-photography-paris",
+  "private": true,
+  "description": "Static site; the only dependency is for the /api/confirm email function.",
+  "dependencies": {
+    "nodemailer": "6.9.16"
+  }
+}

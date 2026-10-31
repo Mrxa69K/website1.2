@@ -740,6 +740,10 @@
       document.getElementById('ticket-text').textContent = view.ticket;
       ticket.hidden = false; ticket.focus({ preventScroll: true });
       track('Contact', o.row.session);
+      if (!o.spam && o.confirm && !o.confirmSent) {
+        o.confirmSent = true; // automatic "request received" email to the client
+        fetch('/api/confirm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o.confirm) }).catch(() => {});
+      }
     } else {
       mail.hidden = true;
       oops.hidden = false; oops.focus({ preventScroll: true });
@@ -778,6 +782,14 @@
       ticket: t('{session}, {date}, in {lang}. Melissa will reply at {contact} within 24 hours.', { session: sessLabel, date: date || t('a date we pick together'), lang: langName, contact }),
     };
     lastOrder.view = view;
+    if (/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(contact)) {
+      const oLocale = ol === 'fr' ? 'fr-FR' : ol === 'ar' ? 'ar-u-nu-latn' : 'en-GB';
+      lastOrder.confirm = {
+        email: contact, name, lang: ['fr', 'en', 'ar'].includes(ol) ? ol : 'en',
+        session: ol === 'en' ? sess : ((I18N.dict[sess] || {})[ol] || sess),
+        date: dv ? new Date(dv + 'T12:00').toLocaleDateString(oLocale, { day: 'numeric', month: 'long', year: 'numeric' }) : '',
+      };
+    }
     submitOrder(lastOrder, view);
   });
   document.getElementById('retry').addEventListener('click', () => { if (lastOrder) submitOrder(lastOrder, lastOrder.view); });
