@@ -57,16 +57,10 @@ CookieConsent.run({
                                 },
                                 body: [
                                     {
-                                        name: '_ga',
+                                        name: 'ph_*_posthog',
                                         domain: 'melissaphotographyparis.fr',
-                                        description: 'Cookie Google Analytics pour distinguer les utilisateurs',
-                                        expiration: '2 ans'
-                                    },
-                                    {
-                                        name: '_ga_*',
-                                        domain: 'melissaphotographyparis.fr',
-                                        description: 'Cookie Google Analytics pour maintenir l\'état de session',
-                                        expiration: '2 ans'
+                                        description: 'PostHog : mesure d\'audience (pages vues, clics) et revisionnage anonymisé des visites, champs de formulaire masqués',
+                                        expiration: '1 an'
                                     }
                                 ]
                             }
@@ -122,16 +116,10 @@ CookieConsent.run({
                                 },
                                 body: [
                                     {
-                                        name: '_ga',
+                                        name: 'ph_*_posthog',
                                         domain: 'melissaphotographyparis.fr',
-                                        description: 'Google Analytics cookie to distinguish users',
-                                        expiration: '2 years'
-                                    },
-                                    {
-                                        name: '_ga_*',
-                                        domain: 'melissaphotographyparis.fr',
-                                        description: 'Google Analytics cookie to maintain session state',
-                                        expiration: '2 years'
+                                        description: 'PostHog: audience measurement (page views, clicks) and anonymised session replay, form fields masked',
+                                        expiration: '1 year'
                                     }
                                 ]
                             }
@@ -166,12 +154,10 @@ CookieConsent.run({
         }
     },
 
-    onFirstConsent: function (cookie) {
-        console.log('First consent given:', cookie);
-    },
+    onFirstConsent: function (cookie) {},
 
     onConsent: function (cookie) {
-        console.log('Consent updated:', cookie);
+        if (window.mpAnalytics) window.mpAnalytics.consent(CookieConsent.acceptedCategory('analytics'));
 
         if (CookieConsent.acceptedCategory('analytics')) {
             console.log('Analytics cookies accepted');
@@ -183,6 +169,6 @@ CookieConsent.run({
     },
 
     onChange: function (cookie, changedCategories) {
-        console.log('Cookie preferences changed:', cookie, changedCategories);
+        if (window.mpAnalytics) window.mpAnalytics.consent(CookieConsent.acceptedCategory('analytics'));
     }
 });

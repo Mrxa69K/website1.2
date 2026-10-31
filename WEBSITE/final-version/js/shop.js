@@ -792,6 +792,7 @@
 
   /* ---------- TikTok pixel events (only if the pixel loaded) ---------- */
   function track(ev, what) {
+    try { if (window.mpAnalytics) mpAnalytics.track(ev === 'Contact' ? 'order_sent' : 'screen_view', { item: String(what) }); } catch (e) { /* ignore */ }
     try { if (window.ttq && ttq.track) ttq.track(ev, { contents: [{ content_id: String(what), content_type: 'product', content_name: String(what) }], value: 0, currency: 'EUR' }); } catch (e) { /* ignore */ }
   }
 
