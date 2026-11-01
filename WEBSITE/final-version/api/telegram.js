@@ -121,6 +121,8 @@ module.exports = async (req, res) => {
       const reply = msg.reply_to_message && msg.reply_to_message.text;
       const ref = reply && (reply.match(/Réf\s*:\s*blog\/([a-z0-9]+)/) || [])[1];
       if (ref && !text.startsWith('/')) {
+        // the old version can no longer be published by mistake: the corrected draft comes with new buttons
+        await tg('editMessageReplyMarkup', { chat_id: OWNER, message_id: msg.reply_to_message.message_id, reply_markup: { inline_keyboard: [] } });
         await go({ action: 'revise', id: ref, comment: text.slice(0, 2000) }, '✏️ Bien noté, je corrige et je te renvoie l’aperçu.');
       } else if (/^\/idees?\b/i.test(text)) {
         await go({ action: 'ideas' }, '💡 Je cherche 5 idées…');

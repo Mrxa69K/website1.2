@@ -161,7 +161,11 @@ function gitSetup() {
   sh('git fetch origin --prune');
 }
 const build = () => sh('node scripts/build-shop-pages.js', { cwd: SITE_DIR });
-const draftFile = id => sh(`git diff --name-only origin/main...origin/blog/${id} -- WEBSITE/final-version/scripts/posts`).split('\n').filter(Boolean)[0];
+// '' when the draft branch is gone (already published or discarded)
+const draftFile = id => {
+  try { return sh(`git diff --name-only origin/main...origin/blog/${id} -- WEBSITE/final-version/scripts/posts`).split('\n').filter(Boolean)[0] || ''; }
+  catch (e) { return ''; }
+};
 
 async function previewUrl(sha) {
   for (let i = 0; i < 36; i++) {
@@ -272,7 +276,7 @@ async function write({ title, query, category, notes }) {
 async function revise({ id, comment }) {
   gitSetup();
   const rel = draftFile(id);
-  if (!rel) { await say('❌ Je ne retrouve pas ce brouillon (peut-être déjà publié ou abandonné).'); return; }
+  if (!rel) { await say('ℹ️ Ce brouillon est déjà publié ou abandonné, je ne peux plus le corriger d’ici.'); return; }
   sh(`git checkout -B blog/${id} origin/blog/${id}`);
   const file = path.join(ROOT, rel);
   const post = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -294,7 +298,7 @@ async function revise({ id, comment }) {
 async function publish({ id }) {
   gitSetup();
   const rel = draftFile(id);
-  if (!rel) { await say('❌ Je ne retrouve pas ce brouillon.'); return; }
+  if (!rel) { await say('ℹ️ Ce brouillon est déjà publié ou abandonné.'); return; }
   const content = sh(`git show origin/blog/${id}:${rel}`);
   sh('git checkout -B main origin/main');
   const post = JSON.parse(content);

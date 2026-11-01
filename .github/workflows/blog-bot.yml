@@ -14,8 +14,10 @@ permissions:
   contents: write
   pull-requests: write
 
+# Drafts run side by side (picking 3 ideas at once gives 3 drafts). Only publishing, which
+# writes to main, waits for the previous one.
 concurrency:
-  group: blog-bot
+  group: ${{ (github.event.client_payload.action == 'publish' || github.event.client_payload.action == 'discard') && 'blog-bot-main' || format('blog-bot-{0}', github.run_id) }}
   cancel-in-progress: false
 
 jobs:
