@@ -103,7 +103,7 @@ const RULES = `Règles strictes :
 1. N'invente aucun fait : pas de chiffres, de noms de clients, d'anecdotes, de récompenses ou d'expériences qui ne sont pas dans ce message ou dans les notes de Melissa. Les faits généraux et vérifiables sur des lieux publics sont permis s'ils sont exacts ; dans le doute, reste général. Si une autorisation peut être nécessaire pour photographier un lieu, dis-le.
 2. N'utilise JAMAIS de tiret cadratin ni de tiret demi-cadratin. Pour une fourchette, écris « de 3 à 4 h ».
 3. Ton : chaleureux, honnête, première personne (Melissa), vouvoiement en français. Phrases simples, pas de jargon marketing.
-4. SEO : le titre fait au maximum 60 caractères et contient la recherche visée. « desc » fait moins de 155 caractères. « short » est une phrase d'accroche.
+4. SEO : le titre fait au maximum 60 caractères, reprend le sujet proposé et contient l'idée de la recherche visée. Chaque titre est entièrement écrit dans la langue de sa version : si la recherche visée est en anglais, le titre français utilise son équivalent français (« demande en mariage surprise », pas « surprise proposal »), et inversement. Jamais de mots anglais dans le titre français. « desc » fait moins de 155 caractères. « short » est une phrase d'accroche.
 5. Longueur : 700 à 1000 mots en français ; mêmes contenus en anglais et en arabe (arabe standard simple).
 6. Structure : 4 à 7 sections, titres numérotés « 1. ... ». Une section peut avoir "p" (paragraphes), "list" (puces) et "after" (paragraphes après la liste). Pour un guide de lieux, une section peut avoir "kicker" (conseil pratique court) et "place": {"addr": "adresse exacte", "q": "requête Google Maps"} seulement si tu es sûr de l'adresse.`;
 
@@ -167,8 +167,17 @@ async function previewUrl(sha) {
   for (let i = 0; i < 36; i++) {
     try {
       const st = JSON.parse(sh(`gh api repos/${REPO}/commits/${sha}/statuses`));
-      const v = st.find(s => /vercel/i.test(s.context || '') && s.state === 'success' && s.target_url);
-      if (v) return v.target_url.replace(/\/$/, '');
+      const v = st.find(s => /vercel/i.test(s.context || '') && s.state === 'success');
+      if (v) {
+        // the status links to the Vercel dashboard; the real preview address is on the GitHub deployment
+        const deps = JSON.parse(sh(`gh api "repos/${REPO}/deployments?sha=${sha}"`));
+        for (const d of deps) {
+          const ds = JSON.parse(sh(`gh api repos/${REPO}/deployments/${d.id}/statuses`));
+          const ok = ds.find(x => x.state === 'success' && /\.vercel\.app/.test(x.environment_url || ''));
+          if (ok) return ok.environment_url.replace(/\/$/, '');
+        }
+        if (/\.vercel\.app/.test(v.target_url || '')) return v.target_url.replace(/\/$/, '');
+      }
       if (st.find(s => /vercel/i.test(s.context || '') && (s.state === 'failure' || s.state === 'error'))) return '';
     } catch (e) { /* not yet */ }
     await sleep(10000);
