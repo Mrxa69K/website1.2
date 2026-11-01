@@ -1,0 +1,263 @@
+{
+  "key": "gift-photo-session-paris-christmas",
+  "date": "2026-11-01",
+  "updated": "2026-11-01",
+  "category": "prices",
+  "service": "gift",
+  "session": "s-couple",
+  "cover": "/images/blog/park-walk.webp",
+  "slug": {
+    "fr": "idee-cadeau-noel-seance-photo-paris",
+    "en": "gift-idea-photo-session-paris",
+    "ar": "gift-idea-photo-session-paris"
+  },
+  "fr": {
+    "title": "Idée cadeau de Noël : offrir une séance photo à Paris",
+    "short": "Un cadeau qui ne finit pas au fond d'un placard : pour qui, quelle séance, quel prix, et comment recevoir le bon à temps pour Noël.",
+    "desc": "Offrir une séance photo à Paris pour Noël : idées selon la personne, prix dès 150 €, bon cadeau personnalisé en PDF, valable 12 mois.",
+    "coverAlt": "Un couple qui se promène main dans la main dans un parc",
+    "intro": [
+      "Chaque année, c'est la même question : quoi offrir à quelqu'un qui a déjà tout ? Un objet de plus risque de finir au fond d'un tiroir. Une séance photo, elle, devient un vrai moment, puis des images que l'on garde toute sa vie.",
+      "Je suis photographe à Paris, et toutes mes séances peuvent être offertes en bon cadeau. Voici comment choisir la bonne séance selon la personne, ce que cela coûte, et comment recevoir le bon à temps pour le mettre sous le sapin."
+    ],
+    "sections": [
+      {
+        "h2": "1. Pourquoi offrir une séance photo",
+        "p": [
+          "Parce que c'est un cadeau en deux temps. D'abord un moment à vivre : une balade dans Paris, à deux ou en solo, sans se soucier de rien. Ensuite des photos retouchées, à garder, à imprimer, à encadrer.",
+          "Et parce que la plupart des gens n'ont presque aucune belle photo d'eux. Ils prennent les autres en photo, mais rarement l'inverse."
+        ]
+      },
+      {
+        "h2": "2. Quelle séance pour qui ?",
+        "list": [
+          "Pour votre moitié : une séance couple, pour un anniversaire de rencontre, la Saint-Valentin ou simplement pour avoir enfin de belles photos à deux.",
+          "Pour une amie, une sœur, une maman : une séance portrait, idéale pour un anniversaire ou une nouvelle étape de vie.",
+          "Pour un ami qui prépare sa demande en mariage : la demande express, pour qu'il n'ait plus qu'à poser le genou à terre.",
+          "Pour des amis qui se marient à la mairie : quelques heures de reportage, un cadeau qu'ils n'auraient peut-être pas osé s'offrir.",
+          "Si vous hésitez : un montant libre, et la personne choisit elle-même sa séance."
+        ]
+      },
+      {
+        "h2": "3. Les prix",
+        "p": [
+          "Voici mes tarifs. Le bon cadeau coûte exactement le prix de la séance, sans supplément."
+        ],
+        "table": {
+          "head": ["Séance", "Ce qui est inclus", "Prix"],
+          "rows": [
+            ["Portrait", "Séance solo, photos retouchées dans une galerie privée", "dès 150 €"],
+            ["Couple", "1 h 30, 25+ photos retouchées", "dès 250 €"],
+            ["Demande express", "30 min, 10 photos ou 20+ photos, livrées en 24 h", "150 € ou 200 €"],
+            ["Demande en mariage", "1 h, 20+ photos, livrées en 24 h", "dès 290 €"],
+            ["Mariage à la mairie", "Dès 2 h de reportage", "dès 250 €"],
+            ["Montant libre", "La personne choisit sa séance", "au choix"]
+          ],
+          "note": "Toutes les séances du site peuvent être offertes, y compris concert, événement et sport."
+        }
+      },
+      {
+        "h2": "4. Comment ça marche",
+        "list": [
+          "Vous choisissez la séance dans l'enveloppe de commande et vous cochez « C'est un cadeau ».",
+          "Vous indiquez le prénom de la personne, le vôtre et, si vous le souhaitez, un petit message.",
+          "Je vous réponds sous 24 h avec le lien de paiement PayPal.",
+          "Dès réception du paiement, je vous envoie le bon cadeau en PDF, à son nom, avec votre message et un code personnel.",
+          "La personne m'écrit quand elle veut dans les 12 mois, et nous choisissons ensemble la date, le lieu et l'heure."
+        ]
+      },
+      {
+        "h2": "5. Où et quand se fait la séance",
+        "p": [
+          "Partout à Paris et dans l'ouest parisien, jusqu'à Versailles : le pont de Bir-Hakeim et sa vue sur la tour Eiffel, le Louvre, les quais de Seine, un parc. On choisit ensemble selon la saison et les envies de la personne.",
+          "En hiver, le soleil se couche tôt, ce qui permet de profiter de la belle lumière de fin de journée puis des illuminations sans se coucher tard. Et comme le bon est valable 12 mois, la personne peut aussi attendre le printemps."
+        ]
+      },
+      {
+        "h2": "6. Est-il trop tard pour Noël ?",
+        "p": [
+          "Non. Je réponds sous 24 h et j'envoie le bon dès réception du paiement. Vous pouvez donc commander quelques jours avant Noël et l'imprimer vous-même, ou l'envoyer par message le jour J.",
+          "La séance peut se faire en français, en anglais ou en arabe : pratique si vous l'offrez à quelqu'un de votre famille qui vient visiter Paris."
+        ]
+      }
+    ],
+    "tips": [
+      "Imprimez le bon sur un papier épais et glissez-le dans une enveloppe : l'effet est garanti sous le sapin.",
+      "Ajoutez un message personnel, il apparaît sur le bon.",
+      "Vous ne savez pas quelle séance choisir ? Offrez un montant libre.",
+      "Le bon est valable 12 mois : pas de pression pour la date."
+    ],
+    "cta": {
+      "title": "Offrir une séance photo",
+      "text": "Choisissez la séance, cochez « C'est un cadeau », et je vous envoie le bon en PDF dès réception du paiement.",
+      "btn": "Offrir une séance",
+      "more": "Tout sur le bon cadeau"
+    }
+  },
+  "en": {
+    "title": "Christmas gift idea: a photo session in Paris",
+    "short": "A present that will not end up at the back of a cupboard: who it suits, which session, how much, and how to get the voucher in time for Christmas.",
+    "desc": "Gift a photo session in Paris for Christmas: ideas for everyone, prices from €150, personalised PDF gift voucher, valid 12 months.",
+    "coverAlt": "A couple walking hand in hand in a park",
+    "intro": [
+      "Every year it is the same question: what do you give someone who already has everything? One more object may end up in a drawer. A photo session becomes a real moment, then pictures you keep for life.",
+      "I am a photographer in Paris, and every one of my sessions can be offered as a gift voucher. Here is how to choose the right session for the person, what it costs, and how to get the voucher in time for Christmas."
+    ],
+    "sections": [
+      {
+        "h2": "1. Why gift a photo session",
+        "p": [
+          "Because it is a gift in two parts. First a moment to enjoy: a walk through Paris, as a couple or solo, with nothing to worry about. Then edited photos to keep, print and frame.",
+          "And because most people have almost no beautiful photos of themselves. They take pictures of others, rarely the other way round."
+        ]
+      },
+      {
+        "h2": "2. Which session for whom?",
+        "list": [
+          "For your partner: a couple session, for an anniversary, Valentine's Day or simply to finally have beautiful photos together.",
+          "For a friend, a sister, a mother: a portrait session, perfect for a birthday or a new chapter in life.",
+          "For a friend who is planning to propose: the express proposal shoot, so all they have to do is get down on one knee.",
+          "For friends getting married at the town hall: a few hours of coverage, a present they might not have treated themselves to.",
+          "If you are not sure: a free amount, and they choose their session themselves."
+        ]
+      },
+      {
+        "h2": "3. Prices",
+        "p": [
+          "Here are my prices. The gift voucher costs exactly the price of the session, with no extra fee."
+        ],
+        "table": {
+          "head": ["Session", "What is included", "Price"],
+          "rows": [
+            ["Portrait", "Solo session, edited photos in a private gallery", "from €150"],
+            ["Couple", "1h30, 25+ edited photos", "from €250"],
+            ["Express proposal", "30 min, 10 photos or 20+ photos, delivered in 24h", "€150 or €200"],
+            ["Proposal", "1h, 20+ photos, delivered in 24h", "from €290"],
+            ["Town hall wedding", "From 2 hours of coverage", "from €250"],
+            ["Free amount", "They choose their session", "your choice"]
+          ],
+          "note": "Every session on the site can be offered, including concert, event and sport."
+        }
+      },
+      {
+        "h2": "4. How it works",
+        "list": [
+          "Choose the session in the order envelope and tick “It's a gift”.",
+          "Add their first name, yours and, if you like, a short message.",
+          "I reply within 24 hours with the PayPal payment link.",
+          "As soon as the payment arrives, I send you the gift voucher as a PDF, in their name, with your message and a personal code.",
+          "They write to me whenever they like within 12 months, and we choose the date, the place and the time together."
+        ]
+      },
+      {
+        "h2": "5. Where and when the session takes place",
+        "p": [
+          "Anywhere in Paris and the west of Paris, as far as Versailles: the Bir-Hakeim bridge and its view of the Eiffel Tower, the Louvre, the banks of the Seine, a park. We choose together depending on the season and what they love.",
+          "In winter the sun sets early, so you can enjoy the soft late-afternoon light and then the city lights without a late night. And since the voucher is valid for 12 months, they can also wait for spring."
+        ]
+      },
+      {
+        "h2": "6. Is it too late for Christmas?",
+        "p": [
+          "No. I reply within 24 hours and send the voucher as soon as the payment arrives. You can order a few days before Christmas and print it yourself, or send it by message on the day.",
+          "The session can be in English, French or Arabic: handy if you are giving it to a family member visiting Paris."
+        ]
+      }
+    ],
+    "tips": [
+      "Print the voucher on thick paper and slip it into an envelope: it looks lovely under the tree.",
+      "Add a personal message, it appears on the voucher.",
+      "Not sure which session to choose? Give a free amount.",
+      "The voucher is valid for 12 months: no pressure on the date."
+    ],
+    "cta": {
+      "title": "Gift a photo session",
+      "text": "Choose the session, tick “It's a gift”, and I send you the voucher as a PDF as soon as the payment arrives.",
+      "btn": "Gift a session",
+      "more": "All about the gift voucher"
+    }
+  },
+  "ar": {
+    "title": "فكرة هدية لعيد الميلاد: جلسة تصوير في باريس",
+    "short": "هدية لن تنتهي في خزانة: لمن تناسب، أي جلسة تختارون، كم تكلّف، وكيف تحصلون على القسيمة في الوقت المناسب.",
+    "desc": "أهدوا جلسة تصوير في باريس: أفكار حسب الشخص، أسعار من 150 €، قسيمة هدية شخصية بصيغة PDF صالحة 12 شهراً.",
+    "coverAlt": "زوجان يتنزهان يداً بيد في حديقة",
+    "intro": [
+      "كل عام نطرح السؤال نفسه: ماذا نهدي شخصاً يملك كل شيء؟ غرض إضافي قد ينتهي في درج. أما جلسة التصوير فتصبح لحظة حقيقية، ثم صوراً تبقى مدى الحياة.",
+      "أنا مصوّرة في باريس، وكل جلساتي يمكن إهداؤها بقسيمة هدية. إليكم كيف تختارون الجلسة المناسبة، وكم تكلّف، وكيف تحصلون على القسيمة في الوقت المناسب."
+    ],
+    "sections": [
+      {
+        "h2": "1. لماذا تهدون جلسة تصوير",
+        "p": [
+          "لأنها هدية على مرحلتين. أولاً لحظة نعيشها: نزهة في باريس، لشخصين أو لشخص واحد، دون أي قلق. ثم صور معدّلة نحتفظ بها ونطبعها ونضعها في إطار.",
+          "ولأن معظم الناس لا يملكون تقريباً أي صورة جميلة لأنفسهم. يصوّرون الآخرين، ونادراً ما يحدث العكس."
+        ]
+      },
+      {
+        "h2": "2. أي جلسة لمن؟",
+        "list": [
+          "لشريك حياتكم: جلسة أزواج، لذكرى التعارف أو عيد الحب أو ببساطة للحصول أخيراً على صور جميلة معاً.",
+          "لصديقة أو أخت أو أم: جلسة بورتريه، مثالية لعيد ميلاد أو لمرحلة جديدة في الحياة.",
+          "لصديق يحضّر لطلب الزواج: جلسة طلب الزواج السريعة، ولا يبقى عليه إلا أن يجثو على ركبته.",
+          "لأصدقاء يعقدون قرانهم في البلدية: بضع ساعات من التصوير، هدية ربما لم يجرؤوا على تقديمها لأنفسهم.",
+          "إذا كنتم مترددين: مبلغ حر، ويختار الشخص جلسته بنفسه."
+        ]
+      },
+      {
+        "h2": "3. الأسعار",
+        "p": [
+          "هذه أسعاري. القسيمة تكلّف سعر الجلسة نفسه، دون أي إضافة."
+        ],
+        "table": {
+          "head": ["الجلسة", "ما تتضمنه", "السعر"],
+          "rows": [
+            ["بورتريه", "جلسة فردية، صور معدّلة في معرض خاص", "من 150 €"],
+            ["أزواج", "ساعة ونصف، أكثر من 25 صورة معدّلة", "من 250 €"],
+            ["طلب زواج سريع", "30 دقيقة، 10 صور أو أكثر من 20 صورة، تسليم خلال 24 ساعة", "150 € أو 200 €"],
+            ["طلب زواج", "ساعة، أكثر من 20 صورة، تسليم خلال 24 ساعة", "من 290 €"],
+            ["عقد القران في البلدية", "من ساعتين من التصوير", "من 250 €"],
+            ["مبلغ حر", "يختار الشخص جلسته", "حسب اختياركم"]
+          ],
+          "note": "يمكن إهداء كل جلسات الموقع، بما فيها الحفلات والمناسبات والرياضة."
+        }
+      },
+      {
+        "h2": "4. كيف تعمل القسيمة",
+        "list": [
+          "اختاروا الجلسة في ظرف الطلب واختاروا «إنها هدية».",
+          "اكتبوا اسم الشخص واسمكم، ورسالة قصيرة إن أردتم.",
+          "أردّ عليكم خلال 24 ساعة برابط الدفع عبر PayPal.",
+          "فور وصول الدفع، أرسل لكم القسيمة بصيغة PDF باسم الشخص، مع رسالتكم ورمز شخصي.",
+          "يراسلني الشخص متى شاء خلال 12 شهراً، ونختار معاً التاريخ والمكان والوقت."
+        ]
+      },
+      {
+        "h2": "5. أين ومتى تكون الجلسة",
+        "p": [
+          "في كل باريس وغربها حتى فرساي: جسر بير حكيم وإطلالته على برج إيفل، اللوفر، ضفاف السين، أو حديقة. نختار معاً حسب الموسم وذوق الشخص.",
+          "في الشتاء تغرب الشمس باكراً، فنستمتع بضوء آخر النهار ثم بأنوار المدينة دون السهر طويلاً. وبما أن القسيمة صالحة 12 شهراً، يمكن أيضاً انتظار الربيع."
+        ]
+      },
+      {
+        "h2": "6. هل فات الأوان لعيد الميلاد؟",
+        "p": [
+          "لا. أردّ خلال 24 ساعة وأرسل القسيمة فور وصول الدفع. يمكنكم الطلب قبل العيد بأيام قليلة وطباعتها بأنفسكم، أو إرسالها برسالة في اليوم نفسه.",
+          "يمكن أن تكون الجلسة بالعربية أو الفرنسية أو الإنجليزية: وهذا مفيد إذا أهديتموها لأحد أفراد العائلة القادم لزيارة باريس."
+        ]
+      }
+    ],
+    "tips": [
+      "اطبعوا القسيمة على ورق سميك وضعوها في ظرف: ستكون مفاجأة جميلة.",
+      "أضيفوا رسالة شخصية، فهي تظهر على القسيمة.",
+      "لا تعرفون أي جلسة تختارون؟ أهدوا مبلغاً حراً.",
+      "القسيمة صالحة 12 شهراً: لا داعي للاستعجال في اختيار الموعد."
+    ],
+    "cta": {
+      "title": "أهدوا جلسة تصوير",
+      "text": "اختاروا الجلسة واختاروا «إنها هدية»، وأرسل لكم القسيمة بصيغة PDF فور وصول الدفع.",
+      "btn": "أهدوا جلسة",
+      "more": "كل شيء عن قسيمة الهدية"
+    }
+  }
+}

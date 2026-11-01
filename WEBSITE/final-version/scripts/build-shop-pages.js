@@ -583,7 +583,7 @@ ${t.sources.map(([name, url]) => `          <li><a href="${escAttr(url)}" target
     <p>${escHTML((t.cta || {}).text || u.ctaText)}</p>
     ${PROMO_ON ? `<p class="promo-note">${escHTML(u.promo)}</p>` : ''}
     <div class="lp-cta">
-      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}${PROMO_ON ? '&amp;promo=CARNET' : ''}">${escHTML((t.cta || {}).btn || u.ctaBtn)}</a>
+      <a class="btn orange" href="${home}?go=book&amp;session=${p.session}${svc && svc.query ? svc.query.replace(/&/g, '&amp;') : ''}${PROMO_ON ? '&amp;promo=CARNET' : ''}">${escHTML((t.cta || {}).btn || u.ctaBtn)}</a>
       ${svc ? `<a class="btn" href="${servicePath(svc, l)}">${escHTML((t.cta || {}).more || u.ctaMore)}</a>` : ''}
     </div>
   </section>
