@@ -40,7 +40,7 @@ const say = (text, extra = {}) => tg('sendMessage', { text, parse_mode: 'HTML', 
 // Gemini is used when GEMINI_API_KEY is set (free key from aistudio.google.com),
 // otherwise Claude with ANTHROPIC_API_KEY. Set BLOG_PROVIDER=anthropic to force Claude.
 const USE_GEMINI = !!process.env.GEMINI_API_KEY && process.env.BLOG_PROVIDER !== 'anthropic';
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const GEMINI_MODELS = (process.env.GEMINI_MODEL || 'gemini-3.8-flash,gemini-3.6-flash,gemini-3.5-flash-lite').split(',').map(x => x.trim()).filter(Boolean);
 
 function parseJson(text) {
   const iObj = text.indexOf('{'), iArr = text.indexOf('[');
@@ -51,20 +51,32 @@ function parseJson(text) {
 }
 
 async function gemini(system, user, maxTokens) {
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${process.env.GEMINI_API_KEY}`, {
-    method: 'POST', headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      systemInstruction: { parts: [{ text: system }] },
-      contents: [{ role: 'user', parts: [{ text: user }] }],
-      generationConfig: { maxOutputTokens: Math.max(maxTokens, 8192), responseMimeType: 'application/json', temperature: 0.7 },
-    }),
-  });
-  const j = await r.json();
-  if (!r.ok) throw new Error('Gemini: ' + ((j.error && j.error.message) || r.status));
-  const c = (j.candidates || [])[0];
-  const text = ((c && c.content && c.content.parts) || []).map(p => p.text || '').join('');
-  if (!text) throw new Error('Gemini: empty answer (' + ((c && c.finishReason) || 'no candidate') + ')');
-  return parseJson(text);
+  // free models are sometimes busy: try each model, with one short retry, until one answers
+  let last = '';
+  for (const model of GEMINI_MODELS) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+        method: 'POST', headers: { 'content-type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: system }] },
+          contents: [{ role: 'user', parts: [{ text: user }] }],
+          generationConfig: { maxOutputTokens: Math.max(maxTokens, 8192), responseMimeType: 'application/json', temperature: 0.7 },
+        }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok) {
+        const c = (j.candidates || [])[0];
+        const text = ((c && c.content && c.content.parts) || []).map(p => p.text || '').join('');
+        if (text) { console.log('written by', model); return parseJson(text); }
+        last = `${model}: empty answer (${(c && c.finishReason) || 'no candidate'})`;
+        break;
+      }
+      last = `${model}: ${(j.error && j.error.message) || r.status}`;
+      if (r.status === 503 || r.status === 429) { await sleep(20000); continue; }
+      break; // 404 or other: next model
+    }
+  }
+  throw new Error('Gemini: ' + last.slice(0, 160));
 }
 
 async function claude(system, user, maxTokens = 16000) {
