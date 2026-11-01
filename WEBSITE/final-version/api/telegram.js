@@ -56,6 +56,7 @@ const HELP = [
   'Commandes :',
   '/idees : 5 nouvelles idées maintenant',
   '/ecrire ton sujet : un article sur le sujet de ton choix (ajoute tes notes après le sujet)',
+  '/google : vérifier si Google a indexé tes articles récents',
 ].join('\n');
 
 module.exports = async (req, res) => {
@@ -70,6 +71,7 @@ module.exports = async (req, res) => {
     await tg('setMyCommands', { commands: [
       { command: 'idees', description: '5 nouvelles idées d’articles' },
       { command: 'ecrire', description: 'Écrire un article sur un sujet' },
+      { command: 'google', description: 'Google a-t-il indexé mes articles ?' },
       { command: 'aide', description: 'Comment ça marche' },
     ] });
     res.status(200).json({ connected: !!hook.ok, url, telegram: hook.description || '' });
@@ -126,6 +128,8 @@ module.exports = async (req, res) => {
         await go({ action: 'revise', id: ref, comment: text.slice(0, 2000) }, '✏️ Bien noté, je corrige et je te renvoie l’aperçu.');
       } else if (/^\/idees?\b/i.test(text)) {
         await go({ action: 'ideas' }, '💡 Je cherche 5 idées…');
+      } else if (/^\/google\b/i.test(text)) {
+        await go({ action: 'check', all: true }, '🔎 Je demande à Google, réponse dans une minute…');
       } else if (/^\/ecrire\b/i.test(text)) {
         const rest = text.replace(/^\/ecrire(@\w+)?/i, '').trim();
         if (!rest) await say('Écris le sujet juste après la commande, par exemple :\n/ecrire Photos de mariage au parc de Sceaux. Mes notes : …');
@@ -136,7 +140,7 @@ module.exports = async (req, res) => {
       } else if (/^\/(start|aide|help)\b/i.test(text)) {
         await say(HELP);
       } else {
-        await say('Pour corriger un brouillon, réponds directement à son message (appui long, puis « Répondre »).\nSinon : /idees ou /ecrire ton sujet.');
+        await say('Pour corriger un brouillon, réponds directement à son message (appui long, puis « Répondre »).\nSinon : /idees, /ecrire ton sujet ou /google.');
       }
     }
   } catch (e) {

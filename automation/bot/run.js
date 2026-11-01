@@ -5,9 +5,12 @@
 //   revise  : apply Melissa's comment to the draft, rebuild, send a new preview
 //   publish : copy the article to main, rebuild, push, tell Bing (IndexNow), send the live link
 //   discard : delete the draft
+//   check   : ask Google Search Console whether articles are indexed (daily schedule, or /google)
 // Needs secrets: GEMINI_API_KEY (free) or ANTHROPIC_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID. GH_TOKEN is the workflow token.
+// Optional: GOOGLE_SERVICE_ACCOUNT (the JSON key of a Google Cloud service account added as a user in Search Console).
 
 const fs = require('fs');
+const crypto = require('crypto');
 const path = require('path');
 const { execSync } = require('child_process');
 
@@ -316,7 +319,11 @@ async function publish({ id }) {
     await fetch('https://api.indexnow.org/indexnow', { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({ host: 'www.melissaphotographyparis.fr', key: INDEXNOW_KEY, keyLocation: `${SITE}/${INDEXNOW_KEY}.txt`, urlList: urls }) });
   } catch (e) { console.error('indexnow', e.message); }
-  await say(`✅ <b>Publié !</b>\n${escH(post.fr.title)}\n\n${urls[0]}\n\nBing est prévenu. Pour Google : Search Console, Inspection de l’URL, puis « Demander l’indexation ».`);
+  let google = false;
+  try { google = await submitSitemap(); } catch (e) { console.error('sitemap', e.message); }
+  await say(`✅ <b>Publié !</b>\n${escH(post.fr.title)}\n\n${urls[0]}\n\n` + (google
+    ? 'Bing est prévenu et Google a reçu le plan du site. Je te dis dans 3 jours si Google l’a indexé.'
+    : 'Bing est prévenu. Pour Google : Search Console, Inspection de l’URL, puis « Demander l’indexation ».'));
 }
 
 async function discard({ id }) {
@@ -324,17 +331,107 @@ async function discard({ id }) {
   try { sh(`gh pr close blog/${id} --delete-branch`); } catch (e) { try { sh(`git push -q origin --delete blog/${id}`); } catch (e2) { /* gone */ } }
 }
 
+/* ---------- Google Search Console (optional) ---------- */
+async function googleToken() {
+  const raw = process.env.GOOGLE_SERVICE_ACCOUNT;
+  if (!raw) return null;
+  let sa;
+  try { sa = JSON.parse(raw); } catch (e) { throw new Error('Google : la clé GOOGLE_SERVICE_ACCOUNT n’est pas un JSON valide'); }
+  const now = Math.floor(Date.now() / 1000);
+  const b64 = o => Buffer.from(JSON.stringify(o)).toString('base64url');
+  const unsigned = b64({ alg: 'RS256', typ: 'JWT' }) + '.' + b64({
+    iss: sa.client_email, scope: 'https://www.googleapis.com/auth/webmasters',
+    aud: 'https://oauth2.googleapis.com/token', iat: now, exp: now + 3600,
+  });
+  const sig = crypto.createSign('RSA-SHA256').update(unsigned).sign(sa.private_key, 'base64url');
+  const r = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer', assertion: unsigned + '.' + sig }),
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!j.access_token) throw new Error('Google : ' + (j.error_description || j.error || r.status));
+  return j.access_token;
+}
+
+async function gsc(token, url, opts = {}) {
+  const r = await fetch(url, { ...opts, headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json', ...(opts.headers || {}) } });
+  const text = await r.text();
+  if (!r.ok) throw new Error(`Search Console ${r.status} : ${text.slice(0, 160)}`);
+  return text ? JSON.parse(text) : {};
+}
+
+// the Search Console property the service account can use (domain property first)
+async function gscSite(token) {
+  const j = await gsc(token, 'https://www.googleapis.com/webmasters/v3/sites');
+  const sites = (j.siteEntry || []).filter(x => /melissaphotographyparis\.fr/.test(x.siteUrl) && x.permissionLevel !== 'siteUnverifiedUser');
+  const pick = sites.find(x => x.siteUrl.startsWith('sc-domain:')) || sites.find(x => x.siteUrl.startsWith('https://www.')) || sites[0];
+  if (!pick) throw new Error('Search Console : le compte de service n’a pas encore accès au site (ajoute-le dans Paramètres, Utilisateurs et autorisations)');
+  return pick.siteUrl;
+}
+
+async function submitSitemap() {
+  const token = await googleToken();
+  if (!token) return false;
+  const site = await gscSite(token);
+  await gsc(token, `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(site)}/sitemaps/${encodeURIComponent(SITE + '/sitemap.xml')}`, { method: 'PUT' });
+  return true;
+}
+
+async function inspect(token, site, url) {
+  const j = await gsc(token, 'https://searchconsole.googleapis.com/v1/urlInspection/index:inspect', {
+    method: 'POST', body: JSON.stringify({ inspectionUrl: url, siteUrl: site, languageCode: 'fr-FR' }),
+  });
+  const r = (j.inspectionResult && j.inspectionResult.indexStatusResult) || {};
+  return { indexed: r.verdict === 'PASS', state: r.coverageState || '' };
+}
+
+const postUrl = (post, l) => `${SITE}${l === 'en' ? '' : '/' + l}/blog/${post.slug[l]}/`;
+const daysSince = d => Math.floor((Date.now() - new Date(d + 'T00:00:00Z').getTime()) / 86400000);
+
+// all: every article from the last 30 days (/google). Otherwise (daily): articles published 3, 7 or 14 days ago;
+// after day 3 Melissa only hears about the ones that are still missing.
+async function check({ all }) {
+  const token = await googleToken();
+  if (!token) { if (all) await say('ℹ️ La vérification Google n’est pas encore configurée (il manque le secret GOOGLE_SERVICE_ACCOUNT dans GitHub).'); return; }
+  const site = await gscSite(token);
+  const posts = existingPosts().filter(p => p.date && p.slug && (all ? daysSince(p.date) <= 30 : [3, 7, 14].includes(daysSince(p.date))))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  if (!posts.length) { if (all) await say('ℹ️ Aucun article publié ces 30 derniers jours.'); return; }
+  const blocks = [];
+  for (const post of posts) {
+    const res = {};
+    for (const l of ['fr', 'en', 'ar']) res[l] = await inspect(token, site, postUrl(post, l));
+    const done = Object.values(res).every(x => x.indexed);
+    if (!all && daysSince(post.date) > 3 && done) continue;
+    const line = ['fr', 'en', 'ar'].map(l => `${l.toUpperCase()} ${res[l].indexed ? '✅' : '⏳'}`).join(' · ');
+    const missing = ['fr', 'en', 'ar'].filter(l => !res[l].indexed);
+    const links = missing.map(l => `<a href="https://search.google.com/search-console/inspect?resource_id=${encodeURIComponent(site)}&id=${encodeURIComponent(postUrl(post, l))}">demander pour ${l.toUpperCase()}</a>`).join(' · ');
+    blocks.push(`<b>${escH(post.fr.title)}</b>\npublié il y a ${daysSince(post.date)} j : ${line}` + (missing.length ? `\n${links}` : ''));
+  }
+  if (!blocks.length) return;
+  blocks.unshift('🔎 <b>Google et tes articles</b>\n✅ indexé · ⏳ pas encore');
+  blocks.push('Pour un ⏳ : touche le lien, puis « Demander l’indexation ». Google passe aussi tout seul, ça peut prendre 1 à 2 semaines.');
+  let msg = '';
+  for (const b of blocks) { // Telegram messages stop at 4096 characters
+    if (msg && (msg + '\n\n' + b).length > 3800) { await say(msg); msg = ''; }
+    msg = msg ? msg + '\n\n' + b : b;
+  }
+  if (msg) await say(msg);
+}
+
 /* ---------- main ---------- */
 (async () => {
   let p = {};
   try { p = JSON.parse(process.env.PAYLOAD || '{}') || {}; } catch (e) { p = {}; }
-  const action = p.action || 'ideas'; // the Monday schedule sends ideas
+  // schedules: Monday morning sends ideas, the daily one checks Google
+  const action = p.action || (process.env.SCHEDULE && process.env.SCHEDULE !== '0 8 * * 1' ? 'check' : 'ideas');
   try {
     if (action === 'ideas') await ideas();
     else if (action === 'write') await write(p);
     else if (action === 'revise') await revise(p);
     else if (action === 'publish') await publish(p);
     else if (action === 'discard') await discard(p);
+    else if (action === 'check') await check(p);
   } catch (e) {
     console.error(e);
     await say('❌ Oups, ça n’a pas marché (' + escH(String(e.message || e).slice(0, 200)) + '). Réessaie, ou regarde l’onglet Actions sur GitHub.');
