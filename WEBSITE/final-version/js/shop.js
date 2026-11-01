@@ -719,6 +719,12 @@
         body: JSON.stringify(o),
       }).then(r => { if (!r.ok) throw new Error('supabase ' + r.status); }));
     }
+    // 3. instant alert on Melissa's Telegram, with reply and status buttons
+    jobs.push(fetch('/api/lead/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(o),
+    }).then(r => { if (!r.ok) throw new Error('lead ' + r.status); }));
     const res = await Promise.allSettled(jobs);
     return res.some(r => r.status === 'fulfilled');
   }

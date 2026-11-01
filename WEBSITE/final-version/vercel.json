@@ -377,5 +377,11 @@
       ]
     }
   ],
-  "trailingSlash": true
+  "trailingSlash": true,
+  "crons": [
+    {
+      "path": "/api/daily/",
+      "schedule": "7 8 * * *"
+    }
+  ]
 }

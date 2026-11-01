@@ -11,6 +11,7 @@
 // Connect the bot once by opening: https://www.melissaphotographyparis.fr/api/telegram/?setup=<TELEGRAM_WEBHOOK_SECRET>
 
 const REPO = 'Mrxa69K/website1.2';
+const L = require('./_lib');
 
 async function tg(method, body) {
   const r = await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/${method}`, {
@@ -59,6 +60,40 @@ const HELP = [
   '/google : vérifier si Google a indexé tes articles récents',
 ].join('\n');
 
+// status buttons under a client request: lead:<r|b|d|x>:<id>
+async function leadStatus(cb, data) {
+  const [, code, id] = data.split(':');
+  const status = L.CODES[code];
+  if (!status || !/^[0-9a-f-]{36}$/.test(id || '')) { await tg('answerCallbackQuery', { callback_query_id: cb.id }); return; }
+  if (!L.hasDb()) { await tg('answerCallbackQuery', { callback_query_id: cb.id, text: 'Base de données pas encore reliée (SUPABASE_SECRET_KEY)', show_alert: true }); return; }
+  const patch = { status };
+  if (L.STAMP[status]) patch[L.STAMP[status]] = new Date().toISOString();
+  if (status === 'delivered') patch.review_sent_at = null; // a new delivery date restarts the 2-day wait
+  const rows = await L.sb(`leads?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(patch) });
+  const lead = rows && rows[0];
+  if (!lead) { await tg('answerCallbackQuery', { callback_query_id: cb.id, text: 'Demande introuvable' }); return; }
+  const owner = process.env.TELEGRAM_CHAT_ID;
+  await tg('editMessageText', { chat_id: owner, message_id: cb.message.message_id, text: L.leadText(lead), parse_mode: 'HTML', disable_web_page_preview: true, reply_markup: L.leadButtons(lead) });
+  let note = L.STATUS[status];
+  if (status === 'delivered') {
+    if (lead.email) note = '📦 Livré. La demande d’avis partira par e-mail dans 2 jours.';
+    else {
+      note = '📦 Livré';
+      const lc = L.langCode(lead.lang || lead.language);
+      const text = L.ASK_REVIEW[lc](lead.name);
+      const phone = L.phoneOf(lead.contact);
+      await tg('sendMessage', {
+        chat_id: owner, reply_to_message_id: cb.message.message_id,
+        text: phone
+          ? `⭐ ${lead.name} n’a pas laissé d’e-mail. Dans 1 ou 2 jours, envoie-lui la demande d’avis sur WhatsApp :`
+          : `⭐ ${lead.name} n’a pas laissé d’e-mail. Dans 1 ou 2 jours, envoie-lui ce message pour demander un avis :\n\n${text}`,
+        reply_markup: phone ? { inline_keyboard: [[{ text: '⭐ Demander un avis sur WhatsApp', url: `https://wa.me/${phone}?text=${encodeURIComponent(text)}` }]] } : undefined,
+      });
+    }
+  }
+  await tg('answerCallbackQuery', { callback_query_id: cb.id, text: note });
+}
+
 module.exports = async (req, res) => {
   const SECRET = process.env.TELEGRAM_WEBHOOK_SECRET;
   if (!process.env.TELEGRAM_BOT_TOKEN || !SECRET) { res.status(204).end(); return; }
@@ -100,7 +135,9 @@ module.exports = async (req, res) => {
   try {
     if (cb) {
       const data = String(cb.data || '');
-      if (data.startsWith('pick:')) {
+      if (data.startsWith('lead:')) {
+        await leadStatus(cb, data);
+      } else if (data.startsWith('pick:')) {
         const idea = ideaFrom(cb.message.text, data.slice(5));
         await tg('answerCallbackQuery', { callback_query_id: cb.id, text: idea ? 'C’est parti ✍️' : 'Idée introuvable' });
         if (idea) await go({ action: 'write', ...idea }, `✍️ J’écris « ${idea.title} ». Je t’envoie l’aperçu dans quelques minutes.`);
