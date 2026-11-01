@@ -9,8 +9,8 @@
 
 const SB_URL = 'https://amrzoqmnkfnewujbeqdn.supabase.co';
 const SITE = 'https://www.melissaphotographyparis.fr';
-// until GOOGLE_REVIEW_URL is set: the share link of the Google profile (reviews are one tap away)
-const REVIEW_URL = process.env.GOOGLE_REVIEW_URL || 'https://share.google/bHUUxKEcIEIxoztLe';
+// "leave a review" link of the Google Business Profile (can be overridden with GOOGLE_REVIEW_URL)
+const REVIEW_URL = process.env.GOOGLE_REVIEW_URL || 'https://g.page/r/CXUNvsfIdXCOEAE/review';
 const INSTA = 'https://www.instagram.com/melissa_photography_paris';
 
 async function tg(method, body) {
