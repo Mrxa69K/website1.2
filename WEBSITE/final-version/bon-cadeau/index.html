@@ -27,7 +27,11 @@
   .full { grid-column: 1 / -1; }
   .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   button { font: inherit; font-weight: 800; font-size: 17px; padding: 12px 22px; border-radius: 999px; border: 3px solid var(--navy); background: var(--orange); color: var(--navy); cursor: pointer; box-shadow: 3px 3px 0 var(--navy); }
+  button.ghost { background: var(--cream); }
+  button[disabled] { opacity: .6; cursor: wait; }
   .hint { font-size: 14px; color: var(--ink-soft); font-style: italic; }
+  /* while the PDF is drawn: flat card, no rounded corners or shadow */
+  .card.capture { border: 0; border-radius: 0; box-shadow: none; }
 
   /* ---------- the voucher (A5 landscape, sizes in cqw so the screen preview matches the print) ---------- */
   .stage { container-type: inline-size; width: 100%; max-width: 840px; margin: 0 auto; }
@@ -60,8 +64,9 @@
     html, body { background: #fff; }
     .wrap { max-width: none; padding: 0; margin: 0; }
     h1, .intro, form { display: none !important; }
-    .stage { max-width: none; width: 210mm; }
-    .card { width: 210mm; height: 148mm; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none; }
+    /* fits any paper size (A5 ideally): full width, A5 proportions */
+    .stage { max-width: none; width: 100%; }
+    .card { width: 100%; aspect-ratio: 210 / 148; border: 0; border-radius: 0; box-shadow: none; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
   [hidden] { display: none !important; }
@@ -70,7 +75,7 @@
 <body>
 <div class="wrap">
   <h1>Bon cadeau</h1>
-  <p class="intro">Remplis les champs, vérifie l'aperçu, puis touche « Imprimer / PDF » et choisis « Enregistrer en PDF ». Envoie le PDF au client une fois le paiement PayPal reçu.</p>
+  <p class="intro">Remplis les champs, vérifie l'aperçu, puis touche « Télécharger le PDF ». Envoie le PDF au client une fois le paiement PayPal reçu.</p>
 
   <form id="f" onsubmit="return false">
     <label>Pour (prénom de la personne)<input id="to" maxlength="60"></label>
@@ -99,8 +104,9 @@
     <label>Valable jusqu'au<input id="until" type="date"></label>
     <label class="full">Message (facultatif)<textarea id="msg" maxlength="300"></textarea></label>
     <div class="actions">
-      <button type="button" id="print">Imprimer / PDF</button>
-      <span class="hint">Format A5 paysage. Sur iPhone : Partager, puis Imprimer, puis écarte deux doigts sur l'aperçu pour obtenir le PDF.</span>
+      <button type="button" id="pdf">Télécharger le PDF</button>
+      <button type="button" id="print" class="ghost">Imprimer</button>
+      <span class="hint" id="pdf-hint">Le PDF fait exactement la taille du bon (A5 paysage), prêt à envoyer au client.</span>
     </div>
   </form>
 
@@ -184,6 +190,35 @@
   }
   document.querySelectorAll('#f input, #f select, #f textarea').forEach(function (el) { el.addEventListener('input', render); });
   $('print').addEventListener('click', function () { render(); window.print(); });
+
+  // exact A5 landscape PDF, drawn from the preview (html2canvas + jsPDF, loaded on first use)
+  function load(src) {
+    return new Promise(function (ok, ko) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = ko; document.head.appendChild(s); });
+  }
+  $('pdf').addEventListener('click', async function () {
+    var btn = this, hint = $('pdf-hint'), old = hint.textContent;
+    btn.disabled = true; hint.textContent = 'Préparation du PDF…';
+    try {
+      render();
+      if (!window.html2canvas) await load('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+      if (!window.jspdf) await load('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      var card = $('card');
+      card.classList.add('capture');
+      var canvas = await window.html2canvas(card, { scale: 2480 / card.offsetWidth, useCORS: true, backgroundColor: '#fdf6ea', logging: false });
+      card.classList.remove('capture');
+      var doc = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a5' });
+      doc.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 210, 148);
+      var name = ('Bon-cadeau-' + ($('to').value.trim() || 'Melissa') + '-' + $('code').value).replace(/[^\w\u00C0-\u024F\u0600-\u06FF-]+/g, '-');
+      doc.save(name + '.pdf');
+      hint.textContent = 'PDF téléchargé ✓';
+    } catch (e) {
+      $('card').classList.remove('capture');
+      hint.textContent = 'Le PDF n’a pas pu être créé. Utilise « Imprimer » en choisissant le format A5 paysage.';
+    }
+    btn.disabled = false;
+    setTimeout(function () { hint.textContent = old; }, 6000);
+  });
   render();
 })();
 </script>
