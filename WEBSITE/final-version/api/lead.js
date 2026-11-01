@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
   const lead = {
     name, contact,
     email: isEmail(contact) ? contact : null,
-    session: cut(b.session, 120),
+    session: (b.gift && b.gift.to ? '🎁 Bon cadeau : ' : '') + cut(b.session, 120),
     preferred_date: /^\d{4}-\d{2}-\d{2}$/.test(b.preferred_date || '') ? b.preferred_date : null,
     language: cut(b.language, 40),
     lang: langCode(b.language),

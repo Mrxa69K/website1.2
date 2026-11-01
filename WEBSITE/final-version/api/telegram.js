@@ -68,14 +68,21 @@ async function leadStatus(cb, data) {
   if (!L.hasDb()) { await tg('answerCallbackQuery', { callback_query_id: cb.id, text: 'Base de données pas encore reliée (SUPABASE_SECRET_KEY)', show_alert: true }); return; }
   const patch = { status };
   if (L.STAMP[status]) patch[L.STAMP[status]] = new Date().toISOString();
-  if (status === 'delivered') patch.review_sent_at = null; // a new delivery date restarts the 2-day wait
-  const rows = await L.sb(`leads?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(patch) });
-  const lead = rows && rows[0];
+  // a new delivery date restarts the 2-day wait; a gift voucher buyer gets no review request (no photos yet)
+  if (status === 'delivered') patch.review_sent_at = null;
+  let rows = await L.sb(`leads?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(patch) });
+  let lead = rows && rows[0];
   if (!lead) { await tg('answerCallbackQuery', { callback_query_id: cb.id, text: 'Demande introuvable' }); return; }
+  const isGift = !!L.giftOf(lead);
+  if (status === 'delivered' && isGift) {
+    rows = await L.sb(`leads?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ review_sent_at: new Date().toISOString() }) });
+    lead = (rows && rows[0]) || lead;
+  }
   const owner = process.env.TELEGRAM_CHAT_ID;
   await tg('editMessageText', { chat_id: owner, message_id: cb.message.message_id, text: L.leadText(lead), parse_mode: 'HTML', disable_web_page_preview: true, reply_markup: L.leadButtons(lead) });
   let note = L.STATUS[status];
-  if (status === 'delivered') {
+  if (status === 'delivered' && isGift) note = '📦 Bon cadeau livré. Pas de demande d’avis : la personne réservera sa séance plus tard.';
+  else if (status === 'delivered') {
     if (lead.email) note = '📦 Livré. La demande d’avis partira par e-mail dans 2 jours.';
     else {
       note = '📦 Livré';

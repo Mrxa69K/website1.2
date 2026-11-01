@@ -18,6 +18,8 @@ const T = {
     next: 'I will reply personally within 24 hours with my availability and a few questions to plan everything perfectly.',
     meanwhile: 'In the meantime, you can see more of my work and read what other couples say:',
     reviews: '★ Read my 5.0 reviews', insta: 'See my work on Instagram',
+    giftFor: 'Gift voucher for',
+    giftNext: 'I will reply personally within 24 hours with the PayPal payment link, then send you the gift voucher as a PDF as soon as the payment arrives.',
     sign: 'Speak soon!', foot: 'Paris · French, English, Arabic',
     note: 'This is an automatic confirmation. Simply reply to this email if you want to add anything.',
     dir: 'ltr', reviewsPath: '/reviews/',
@@ -31,6 +33,8 @@ const T = {
     next: 'Je vous réponds personnellement sous 24 h avec mes disponibilités et quelques questions pour tout préparer.',
     meanwhile: 'En attendant, vous pouvez voir mon travail et lire ce que disent les autres couples :',
     reviews: '★ Lire mes avis 5,0', insta: 'Voir mon travail sur Instagram',
+    giftFor: 'Bon cadeau pour',
+    giftNext: 'Je vous réponds personnellement sous 24 h avec le lien de paiement PayPal, puis je vous envoie le bon cadeau en PDF dès réception du paiement.',
     sign: 'À très vite !', foot: 'Paris · français, anglais, arabe',
     note: 'Ceci est une confirmation automatique. Répondez simplement à cet e-mail pour ajouter quelque chose.',
     dir: 'ltr', reviewsPath: '/fr/avis/',
@@ -44,6 +48,8 @@ const T = {
     next: 'سأردّ عليكم شخصياً خلال 24 ساعة بمواعيدي المتاحة وبعض الأسئلة لتحضير كل شيء.',
     meanwhile: 'في الأثناء، يمكنكم مشاهدة أعمالي وقراءة آراء الأزواج الآخرين:',
     reviews: '★ آراء عملائي 5.0', insta: 'أعمالي على إنستغرام',
+    giftFor: 'قسيمة هدية لـ',
+    giftNext: 'سأردّ عليكم شخصياً خلال 24 ساعة برابط الدفع عبر PayPal، ثم أرسل لكم قسيمة الهدية كملف PDF فور وصول الدفع.',
     sign: 'إلى اللقاء قريباً!', foot: 'باريس · العربية والفرنسية والإنجليزية',
     note: 'هذا تأكيد تلقائي. يكفي أن تردّوا على هذا البريد لإضافة أي شيء.',
     dir: 'rtl', reviewsPath: '/ar/reviews/',
@@ -53,7 +59,7 @@ const T = {
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const clean = (s, max) => String(s || '').replace(/https?:\/\/\S+|www\.\S+/gi, '').replace(/[\r\n]+/g, ' ').trim().slice(0, max);
 
-function html(t, { name, session, date }) {
+function html(t, { name, session, date, gift }) {
   const row = (k, v) => `<tr><td style="padding:8px 18px;font-size:14px;color:#4b6474;">${esc(k)}</td><td style="padding:8px 18px;font-size:15px;font-weight:bold;color:#1f3a4d;text-align:${t.dir === 'rtl' ? 'left' : 'right'};">${esc(v)}</td></tr>`;
   const btn = (href, label, dark) => `<a href="${href}" style="display:inline-block;margin:6px;padding:12px 22px;background:${dark ? '#1f3a4d' : '#f6c3cf'};color:${dark ? '#fdf6ea' : '#1f3a4d'};font-family:Georgia,serif;font-style:italic;font-weight:bold;font-size:16px;text-decoration:none;border-radius:999px;${dark ? '' : 'border:2px solid #1f3a4d;'}">${esc(label)}</a>`;
   return `<!doctype html><html dir="${t.dir}"><body style="margin:0;padding:0;background:#7ab8cb;">
@@ -67,9 +73,9 @@ function html(t, { name, session, date }) {
 <p style="margin:0 0 14px;">${esc(t.hi(name))}</p><p style="margin:0 0 14px;">${esc(t.thanks)}</p></td></tr>
 <tr><td style="padding:0 30px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fff;border:2px dashed #e58aa2;border-radius:12px;font-family:Arial,sans-serif;">
 <tr><td colspan="2" style="padding:14px 18px 4px;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a83a5a;">${esc(t.recap)}</td></tr>
-${row(t.session, session)}${row(t.date, date || t.toPick)}<tr><td colspan="2" style="height:8px;"></td></tr></table></td></tr>
+${row(t.session, session)}${gift ? row(t.giftFor, gift) : row(t.date, date || t.toPick)}<tr><td colspan="2" style="height:8px;"></td></tr></table></td></tr>
 <tr><td style="padding:20px 30px 6px;font-family:Georgia,serif;font-size:17px;line-height:1.6;color:#1f3a4d;text-align:${t.dir === 'rtl' ? 'right' : 'left'};">
-<p style="margin:0 0 14px;"><b>${esc(t.next)}</b></p><p style="margin:0;">${esc(t.meanwhile)}</p></td></tr>
+<p style="margin:0 0 14px;"><b>${esc(gift ? t.giftNext : t.next)}</b></p><p style="margin:0;">${esc(t.meanwhile)}</p></td></tr>
 <tr><td align="center" style="padding:14px 24px 6px;">${btn(SITE + t.reviewsPath, t.reviews, true)}${btn('https://www.instagram.com/melissa_photography_paris', t.insta, false)}</td></tr>
 <tr><td style="padding:16px 30px 22px;font-family:Georgia,serif;font-size:17px;color:#1f3a4d;text-align:${t.dir === 'rtl' ? 'right' : 'left'};">
 <p style="margin:0 0 4px;">${esc(t.sign)}</p><p style="margin:0;font-size:22px;font-style:italic;font-weight:bold;color:#a83a5a;">Melissa</p>
@@ -79,8 +85,8 @@ ${row(t.session, session)}${row(t.date, date || t.toPick)}<tr><td colspan="2" st
 </table></td></tr></table></body></html>`;
 }
 
-function text(t, { name, session, date }) {
-  return [t.hi(name), '', t.thanks, '', `${t.session}: ${session}`, `${t.date}: ${date || t.toPick}`, '', t.next, '', t.meanwhile,
+function text(t, { name, session, date, gift }) {
+  return [t.hi(name), '', t.thanks, '', `${t.session}: ${session}`, gift ? `${t.giftFor}: ${gift}` : `${t.date}: ${date || t.toPick}`, '', gift ? t.giftNext : t.next, '', t.meanwhile,
     SITE + t.reviewsPath, 'https://www.instagram.com/melissa_photography_paris', '', t.sign, 'Melissa', 'Melissa Photography Paris', '', t.note].join('\n');
 }
 
@@ -103,7 +109,7 @@ module.exports = async (req, res) => {
   if (!/^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(email)) { console.log('confirm: not an email address'); res.status(400).end(); return; }
   const lang = T[body.lang] ? body.lang : 'en';
   const t = T[lang];
-  const data = { name: clean(body.name, 60) || '', session: clean(body.session, 80), date: clean(body.date, 60) };
+  const data = { name: clean(body.name, 60) || '', session: clean(body.session, 80), date: clean(body.date, 60), gift: clean(body.gift, 60) };
 
   try {
     const tx = nodemailer.createTransport({ service: 'gmail', auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_APP_PASSWORD } });

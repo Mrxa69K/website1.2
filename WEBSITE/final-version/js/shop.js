@@ -687,12 +687,18 @@
     const row = form.querySelector('.submit-row');
     row.parentNode.insertBefore(box, row);
   })();
+  /* ---------- Gift voucher ("It's a gift" box, or ?gift=1 from the gift page) ---------- */
+  const giftBox = document.getElementById('o-gift');
+  const giftFields = document.getElementById('gift-fields');
+  function syncGift() { giftFields.hidden = !giftBox.checked; form.classList.toggle('is-gift', giftBox.checked); }
+  giftBox.addEventListener('change', () => { syncGift(); if (giftBox.checked) document.getElementById('o-gift-to').focus(); });
+
   const ticket = document.getElementById('ticket');
   const oops = document.getElementById('oops');
   const mail = document.getElementById('mail');
   let lastOrder = null;
 
-  async function sendOrder(o) {
+  async function sendOrder(o, gift) {
     const jobs = [];
     // 1. email to Melissa (Formspree)
     jobs.push(fetch(FORMSPREE, {
@@ -723,7 +729,7 @@
     jobs.push(fetch('/api/lead/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(o),
+      body: JSON.stringify(gift ? { ...o, gift } : o),
     }).then(r => { if (!r.ok) throw new Error('lead ' + r.status); }));
     const res = await Promise.allSettled(jobs);
     return res.some(r => r.status === 'fulfilled');
@@ -741,7 +747,7 @@
     form.hidden = true; ticket.hidden = true; oops.hidden = true;
     document.getElementById('l-body').textContent = view.letter;
     document.getElementById('l-sign').textContent = o.name;
-    const [ok] = await Promise.all([o.spam ? Promise.resolve(true) : sendOrder(o.row), playEnvelope()]);
+    const [ok] = await Promise.all([o.spam ? Promise.resolve(true) : sendOrder(o.row, o.gift), playEnvelope()]);
     if (ok) {
       document.getElementById('ticket-text').textContent = view.ticket;
       ticket.hidden = false; ticket.focus({ preventScroll: true });
@@ -765,6 +771,11 @@
     const err = document.getElementById('o-err');
     if (!name || contact.length < 3) { err.hidden = false; (name ? fContact : fName).focus(); return; }
     err.hidden = true;
+    const gv = id => document.getElementById(id).value.trim();
+    const gift = giftBox.checked ? { to: gv('o-gift-to'), from: gv('o-gift-from'), msg: gv('o-gift-msg') } : null;
+    const gErr = document.getElementById('o-gift-err');
+    if (gift && !gift.to) { gErr.hidden = false; document.getElementById('o-gift-to').focus(); return; }
+    gErr.hidden = true;
     const sess = form.querySelector('input[name="session"]:checked').value;
     const ol = form.querySelector('input[name="lang"]:checked').value;
     const dv = document.getElementById('o-date').value;
@@ -779,15 +790,21 @@
         session: sess, name, contact,
         preferred_date: dv || null,
         language: I18N.langNames.en[ol],
-        message: ((document.getElementById('o-msg').value.trim() || '') + (promo ? `\n\n[Code ${promo} : 5 photos retouchées en plus]` : '')).trim() || null,
+        message: ((gift ? `🎁 BON CADEAU pour ${gift.to}${gift.from ? ` (de ${gift.from})` : ''}\n${gift.msg ? `Message sur le bon : ${gift.msg}\n` : ''}\n` : '')
+          + (document.getElementById('o-msg').value.trim() || '') + (promo ? `\n\n[Code ${promo} : 5 photos retouchées en plus]` : '')).trim() || null,
         site_lang: lang,
       },
     };
+    lastOrder.gift = gift;
     const view = {
-      letter: dv
+      letter: gift
+        ? t("We'd like to offer a {session} session to {to}, as a gift voucher.", { session: lang === 'en' ? sessLabel.toLowerCase() : sessLabel, to: gift.to })
+        : dv
         ? t("We'd love a {session} session on {date}, in {lang}.", { session: lang === 'en' ? sessLabel.toLowerCase() : sessLabel, date, lang: langName })
         : t("We'd love a {session} session, on a date we pick together, in {lang}.", { session: lang === 'en' ? sessLabel.toLowerCase() : sessLabel, lang: langName }),
-      ticket: t('{session}, {date}, in {lang}. Melissa will reply at {contact} within 24 hours.', { session: sessLabel, date: date || t('a date we pick together'), lang: langName, contact }),
+      ticket: gift
+        ? t('Gift voucher: {session} for {to}. Melissa will send the PayPal link to {contact} within 24 hours, then the voucher as a PDF.', { session: sessLabel, to: gift.to, contact })
+        : t('{session}, {date}, in {lang}. Melissa will reply at {contact} within 24 hours.', { session: sessLabel, date: date || t('a date we pick together'), lang: langName, contact }),
     };
     lastOrder.view = view;
     if (/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(contact)) {
@@ -796,13 +813,14 @@
         email: contact, name, lang: ['fr', 'en', 'ar'].includes(ol) ? ol : 'en',
         session: ol === 'en' ? sess : ((I18N.dict[sess] || {})[ol] || sess),
         date: dv ? new Date(dv + 'T12:00').toLocaleDateString(oLocale, { day: 'numeric', month: 'long', year: 'numeric' }) : '',
+        gift: gift ? gift.to : undefined,
       };
     }
     submitOrder(lastOrder, view);
   });
   document.getElementById('retry').addEventListener('click', () => { if (lastOrder) submitOrder(lastOrder, lastOrder.view); });
   document.getElementById('new-order').addEventListener('click', () => {
-    form.reset(); renderSessions();
+    form.reset(); renderSessions(); syncGift();
     const ol = document.getElementById('o-' + lang); if (ol) ol.checked = true;
     form.hidden = false; ticket.hidden = true; oops.hidden = true;
     mail.hidden = true; mail.classList.remove('go');
@@ -828,6 +846,7 @@
   const sessParam = params.get('session');
   if (sessParam && SESSIONS.some(x => x.id === sessParam)) { document.getElementById(sessParam).checked = true; syncSessions(); }
   if (sessParam) params.delete('session');
+  if (params.get('gift') === '1') { giftBox.checked = true; syncGift(); params.delete('gift'); if (!goParam) history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params : '') + location.hash); }
   if ((goParam || sessParam) && !location.hash) {
     const hash = !goParam ? '' : ALBUMS[goParam] ? `#album/${goParam}` : SCREENS.includes(goParam) ? `#${goParam}` : '';
     params.delete('go');

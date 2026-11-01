@@ -100,6 +100,7 @@ Lieux préférés pour les demandes : pont de Bir-Hakeim, allée des Cygnes, ave
 Concerts déjà photographiés : Fever 333 et Owen au Lollapalooza Paris 2023, Celia Maqam, Kader, Chemsou Freeklane, Kamel Aziz (octobre 2026). Toujours sans flash.
 Tarifs : demande express 30 min 150 € (10 photos) ou 200 € (20+ photos), livrées en 24 h ; demande 1 h dès 290 € (20+ photos, livrées en 24 h) ; demande + décoration dès 690 € ; portrait dès 150 € ; séance couple dès 250 € (1 h 30, 25+ photos) ; mariage à la mairie dès 250 € pour 2 h (jusqu'à 400 € selon la durée) ; demi-journée 500 € ; journée complète 750 € ; concert ou événement dès 300 € (2 h, 60+ photos) ; sport dès 100 €. Galerie privée en ligne.
 Avis : 5,0 sur Airbnb (12 avis) et 5,0 sur Google.
+Bon cadeau : on peut offrir une séance (couple, portrait, demande express, mariage à la mairie) ; bon personnalisé en PDF, valable 12 mois, paiement par PayPal. Page : /fr/offrir-une-seance-photo-paris/ (anglais : /gift-photo-session-paris/).
 Pour les mariages, dire « mariage religieux ou oriental » plutôt que « mariage musulman ». Ne jamais écrire que Melissa est basée à Boulogne.`;
 
 const RULES = `Règles strictes :

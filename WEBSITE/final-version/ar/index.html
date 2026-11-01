@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&amp;family=Tajawal:wght@400;500;700;800&amp;family=Aref+Ruqaa:wght@400;700&amp;display=swap">
-<link rel="stylesheet" href="/css/shop.css?v=11">
+<link rel="stylesheet" href="/css/shop.css?v=12">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>
   // This page is in ar. On the English homepage only, send visitors who chose
@@ -292,6 +292,7 @@
       <a href="/ar/concert-photographer-paris/">مصوّرة حفلات</a>
       <a href="/ar/female-muslim-wedding-photographer-paris/">مصوّرة أعراس (عربية وإسلامية)</a>
       <a href="/ar/wedding-photographer-hauts-de-seine/">مصوّرة في أو دو سين وفرساي</a>
+      <a href="/ar/gift-photo-session-paris/">أهدوا جلسة تصوير</a>
       <a href="/ar/blog/">المدونة</a>
     </nav>
     <div id="ad-slot-cat"></div>
@@ -551,6 +552,27 @@
           <label class="lbl" for="o-msg">6 · احكوا لي القصة</label>
           <textarea id="o-msg" name="msg" placeholder="لا يعلم شيئاً. بير حكيم عند الغروب؟" maxlength="4000"></textarea>
         </div>
+        <div class="gift-box">
+          <label class="gift-toggle"><input type="checkbox" id="o-gift"> <span aria-hidden="true">🎁</span> <span>إنها هدية: أريد قسيمة هدية</span></label>
+          <div class="gift-fields" id="gift-fields" hidden>
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="o-gift-to">لمن؟</label>
+                <input type="text" id="o-gift-to" maxlength="80" placeholder="اسمه أو اسمها">
+              </div>
+              <div class="field">
+                <label class="lbl" for="o-gift-from">من</label>
+                <input type="text" id="o-gift-from" maxlength="80" placeholder="اسمكم">
+              </div>
+            </div>
+            <div class="field">
+              <label class="lbl" for="o-gift-msg">رسالتكم على القسيمة (اختياري)</label>
+              <textarea id="o-gift-msg" maxlength="300" rows="2" placeholder="عيد ميلاد سعيد يا حبيبي!"></textarea>
+            </div>
+            <p class="gift-note">أردّ عليكم خلال 24 ساعة برابط دفع PayPal، ثم أرسل لكم القسيمة كملف PDF. صالحة لمدة 12 شهراً ويختار الشخص الموعد معي.</p>
+            <p class="err" id="o-gift-err" hidden>أضيفوا اسم الشخص الذي سيتلقى الهدية.</p>
+          </div>
+        </div>
         <div class="hp" aria-hidden="true">
           <label for="o-company">Company</label>
           <input type="text" id="o-company" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -636,6 +658,7 @@
       <a href="/ar/concert-photographer-paris/">مصوّرة حفلات</a>
       <a href="/ar/female-muslim-wedding-photographer-paris/">مصوّرة أعراس (عربية وإسلامية)</a>
       <a href="/ar/wedding-photographer-hauts-de-seine/">مصوّرة في أو دو سين وفرساي</a>
+      <a href="/ar/gift-photo-session-paris/">أهدوا جلسة تصوير</a>
       <a href="/ar/blog/">المدونة</a>
     </nav>
     <span>Melissa Photography · Paris</span>
@@ -656,7 +679,7 @@
 
 <script src="/js/supabase-config.js"></script>
 <script src="/js/shop-i18n.js?v=12"></script>
-<script src="/js/shop.js?v=17"></script>
+<script src="/js/shop.js?v=18"></script>
 <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
 <script src="/js/analytics.js?v=3" defer></script>
 <script src="/js/cookieconsent-config.js" type="module"></script>

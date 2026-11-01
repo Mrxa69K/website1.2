@@ -77,9 +77,22 @@ const fmtDate = d => {
   return isNaN(x) ? String(d) : x.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' });
 };
 
+// gift details, read back from the message the form writes ("🎁 BON CADEAU pour X (de Y)\nMessage sur le bon : ...")
+function giftOf(l) {
+  const m = String(l.message || '').match(/^🎁 BON CADEAU pour (.+?)(?: \(de (.+?)\))?\n(?:Message sur le bon : (.*)\n)?/);
+  return m ? { to: m[1], from: m[2] || '', msg: m[3] || '' } : null;
+}
+const voucherCode = l => 'MPP-' + String(l.id || Math.random().toString(16).slice(2)).replace(/-/g, '').slice(0, 6).toUpperCase();
+function voucherUrl(l) {
+  const g = giftOf(l);
+  if (!g) return '';
+  const q = new URLSearchParams({ to: g.to, from: g.from, msg: g.msg, s: String(l.session || '').replace(/^🎁 Bon cadeau : /, ''), lang: langCode(l.lang || l.language), code: voucherCode(l) });
+  return `${SITE}/bon-cadeau/?${q}`;
+}
+
 function leadText(l) {
   const lines = [
-    `🔔 <b>Nouvelle demande</b>`,
+    giftOf(l) ? `🎁 <b>Nouveau bon cadeau</b> · code ${voucherCode(l)}` : `🔔 <b>Nouvelle demande</b>`,
     '',
     `👤 <b>${esc(l.name)}</b>`,
     `📸 ${esc(l.session)}`,
@@ -98,6 +111,8 @@ function leadButtons(l) {
   const phone = phoneOf(l.contact), insta = instaOf(l.contact);
   if (phone) rows.push([{ text: '💬 Répondre sur WhatsApp', url: `https://wa.me/${phone}?text=${encodeURIComponent(GREET[lc](l.name, l.session))}` }]);
   else if (insta) rows.push([{ text: '📷 Répondre sur Instagram', url: `https://ig.me/m/${insta}` }]);
+  const vurl = voucherUrl(l);
+  if (vurl) rows.push([{ text: '🎁 Préparer le bon cadeau (PDF)', url: vurl }]);
   if (l.id) {
     const b = (code, label) => ({ text: (CODES[code] === l.status ? '• ' : '') + label, callback_data: `lead:${code}:${l.id}` });
     rows.push([b('r', '✉️ Répondu'), b('b', '📅 Réservé')]);
@@ -108,5 +123,5 @@ function leadButtons(l) {
 
 module.exports = {
   SITE, REVIEW_URL, INSTA, tg, sb, hasDb, esc, isEmail, langCode, phoneOf, instaOf,
-  STATUS, CODES, STAMP, ASK_REVIEW, leadText, leadButtons,
+  STATUS, CODES, STAMP, ASK_REVIEW, leadText, leadButtons, giftOf, voucherCode,
 };

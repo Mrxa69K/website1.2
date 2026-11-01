@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bon cadeau · Melissa Photography Paris</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Caveat:wght@500;700&amp;family=Lalezar&amp;family=Tajawal:wght@400;700;800&amp;family=Aref+Ruqaa:wght@400;700&amp;display=swap">
+<style>
+  /* Melissa's private tool: fills a gift voucher, then "Imprimer" saves it as a PDF (A5 landscape). */
+  :root {
+    --sky: #7ab8cb; --navy: #1f3a4d; --pink: #f6c3cf; --pink-deep: #e58aa2; --rose-ink: #a83a5a;
+    --butter: #f5d67f; --orange: #e9893a; --cream: #fdf6ea; --ink-soft: #4b6474;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--sky); color: var(--navy); font-family: Fraunces, Georgia, serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 40px; }
+  h1 { font-family: Shrikhand, Georgia, serif; font-weight: 400; color: var(--cream); text-shadow: 3px 3px 0 var(--navy); margin: 0 0 6px; font-size: clamp(28px, 5vw, 40px); }
+  .intro { margin: 0 0 18px; color: var(--navy); font-size: 16px; }
+  form { background: var(--cream); border: 3px solid var(--navy); border-radius: 14px; padding: 16px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 22px; }
+  label { display: grid; gap: 4px; font-weight: 700; font-size: 14px; }
+  input, select, textarea { font: inherit; font-weight: 400; font-size: 16px; padding: 9px 10px; border: 2px solid var(--navy); border-radius: 8px; background: #fff; color: var(--navy); width: 100%; }
+  textarea { min-height: 70px; resize: vertical; }
+  .full { grid-column: 1 / -1; }
+  .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  button { font: inherit; font-weight: 800; font-size: 17px; padding: 12px 22px; border-radius: 999px; border: 3px solid var(--navy); background: var(--orange); color: var(--navy); cursor: pointer; box-shadow: 3px 3px 0 var(--navy); }
+  .hint { font-size: 14px; color: var(--ink-soft); font-style: italic; }
+
+  /* ---------- the voucher (A5 landscape, sizes in cqw so the screen preview matches the print) ---------- */
+  .stage { container-type: inline-size; width: 100%; max-width: 840px; margin: 0 auto; }
+  .card { position: relative; width: 100%; aspect-ratio: 210 / 148; background: var(--cream); border: 0.5cqw solid var(--navy); border-radius: 2cqw; overflow: hidden; display: grid; grid-template-columns: 38% 1fr; box-shadow: 1.2cqw 1.2cqw 0 var(--navy); }
+  .photo { position: relative; background: var(--pink) url('/images/email/louvre-couple.jpg') 58% center / cover no-repeat; }
+  .photo::after { content: ""; position: absolute; inset: 0 0 0 auto; width: 4.2cqw; background: linear-gradient(90deg, var(--orange) 0 33%, var(--pink-deep) 33% 66%, var(--sky) 66%); }
+  [dir="rtl"] .photo::after { inset: 0 auto 0 0; }
+  .body { position: relative; padding: 3.2cqw 3.6cqw 0; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 1cqw; font-style: italic; font-weight: 700; font-size: 2.1cqw; color: var(--navy); direction: ltr; }
+  [dir="rtl"] .brand { justify-content: flex-end; }
+  .brand svg { width: 4.2cqw; height: auto; flex: none; }
+  .title { margin: 1.2cqw 0 0; font-family: Shrikhand, Georgia, serif; font-weight: 400; font-size: 7.4cqw; line-height: 1; color: var(--rose-ink); text-shadow: 0.45cqw 0.45cqw 0 var(--butter); }
+  [dir="rtl"] .title { font-family: Lalezar, Tajawal, sans-serif; font-size: 7cqw; }
+  .for { margin: 1.6cqw 0 0; font-size: 2cqw; color: var(--ink-soft); }
+  .to { font-family: Caveat, cursive; font-weight: 700; font-size: 5.4cqw; line-height: 1; color: var(--navy); }
+  [dir="rtl"] .to { font-family: 'Aref Ruqaa', Tajawal, serif; font-size: 4.6cqw; }
+  .session { margin: 1.6cqw 0 0; font-weight: 800; font-size: 2.7cqw; line-height: 1.15; }
+  .detail { margin: 0.4cqw 0 0; font-size: 1.9cqw; color: var(--ink-soft); }
+  .msg { margin: 1.6cqw 0 0; padding: 1.1cqw 1.6cqw; border: 0.3cqw dashed var(--pink-deep); border-radius: 1.2cqw; background: #fff6f8; font-family: Caveat, cursive; font-size: 2.9cqw; line-height: 1.15; color: var(--navy); }
+  [dir="rtl"] .msg { font-family: Tajawal, sans-serif; font-size: 2.2cqw; }
+  .from { margin: 1.2cqw 0 0; font-size: 2cqw; }
+  .from b { font-family: Caveat, cursive; font-size: 3cqw; }
+  [dir="rtl"] .from b { font-family: 'Aref Ruqaa', Tajawal, serif; font-size: 2.6cqw; }
+  .foot { margin: auto -3.6cqw 0; padding: 1.3cqw 3.6cqw; background: var(--navy); color: var(--cream); font-family: Arial, sans-serif; font-size: 1.55cqw; line-height: 1.5; }
+  .foot strong { color: var(--butter); letter-spacing: 0.1cqw; }
+  [dir="rtl"], [dir="rtl"] .body { font-family: Tajawal, sans-serif; }
+
+  @page { size: A5 landscape; margin: 0; }
+  @media print {
+    html, body { background: #fff; }
+    .wrap { max-width: none; padding: 0; margin: 0; }
+    h1, .intro, form { display: none !important; }
+    .stage { max-width: none; width: 210mm; }
+    .card { width: 210mm; height: 148mm; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Bon cadeau</h1>
+  <p class="intro">Remplis les champs, vérifie l'aperçu, puis touche « Imprimer / PDF » et choisis « Enregistrer en PDF ». Envoie le PDF au client une fois le paiement PayPal reçu.</p>
+
+  <form id="f" onsubmit="return false">
+    <label>Pour (prénom de la personne)<input id="to" maxlength="60"></label>
+    <label>De la part de<input id="from" maxlength="60"></label>
+    <label>Séance
+      <select id="s">
+        <option value="Couple session">Séance couple</option>
+        <option value="Portrait session">Séance portrait</option>
+        <option value="Express proposal">Demande express (10 photos)</option>
+        <option value="Express proposal, 20+ photos">Demande express (20+ photos)</option>
+        <option value="Proposal">Demande en mariage 1 h</option>
+        <option value="Proposal + decoration">Demande + décoration</option>
+        <option value="Town hall wedding">Mariage à la mairie</option>
+        <option value="Wedding, half day">Mariage, demi-journée</option>
+        <option value="Wedding, full day">Mariage, journée complète</option>
+        <option value="Concert or event">Concert ou événement</option>
+        <option value="Sport">Sport</option>
+      </select>
+    </label>
+    <label>Langue du bon
+      <select id="lang"><option value="fr">Français</option><option value="en">English</option><option value="ar">العربية</option></select>
+    </label>
+    <label>Code<input id="code" maxlength="20"></label>
+    <label>Valable jusqu'au<input id="until" type="date"></label>
+    <label class="full">Message (facultatif)<textarea id="msg" maxlength="300"></textarea></label>
+    <div class="actions">
+      <button type="button" id="print">Imprimer / PDF</button>
+      <span class="hint">Format A5 paysage. Sur iPhone : Partager, puis Imprimer, puis écarte deux doigts sur l'aperçu pour obtenir le PDF.</span>
+    </div>
+  </form>
+
+  <div class="stage">
+    <article class="card" id="card">
+      <div class="photo" role="img" aria-label=""></div>
+      <div class="body">
+        <div class="brand"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M4 22 A16 16 0 0 1 36 22Z" fill="#f6c3cf"/><path d="M20 22 L20 6 M20 22 L9 11 M20 22 L31 11 M20 22 L5 17 M20 22 L35 17" stroke="#1f3a4d" stroke-width="2.6" stroke-linecap="round"/></svg><span>Melissa Photography Paris</span></div>
+        <h2 class="title" id="c-title"></h2>
+        <p class="for" id="c-for"></p>
+        <div class="to" id="c-to"></div>
+        <p class="session" id="c-session"></p>
+        <p class="detail" id="c-detail"></p>
+        <p class="msg" id="c-msg"></p>
+        <p class="from" id="c-from"></p>
+        <div class="foot" id="c-foot"></div>
+      </div>
+    </article>
+  </div>
+</div>
+<script>
+(function () {
+  var S = {
+    'Couple session': { fr: ['Séance photo couple', '1 h 30 · 25+ photos retouchées'], en: ['Couple photo session', '1h30 · 25+ edited photos'], ar: ['جلسة تصوير للأزواج', 'ساعة ونصف · أكثر من 25 صورة معدّلة'] },
+    'Portrait session': { fr: ['Séance portrait', 'Photos retouchées dans une galerie privée'], en: ['Portrait session', 'Edited photos in a private gallery'], ar: ['جلسة بورتريه', 'صور معدّلة في معرض خاص'] },
+    'Express proposal': { fr: ['Demande en mariage express', '30 min · 10 photos retouchées · livrées en 24 h'], en: ['Express proposal shoot', '30 min · 10 edited photos · delivered in 24h'], ar: ['تصوير طلب زواج سريع', '30 دقيقة · 10 صور معدّلة · تسليم خلال 24 ساعة'] },
+    'Express proposal, 20+ photos': { fr: ['Demande en mariage express', '30 min · 20+ photos retouchées · livrées en 24 h'], en: ['Express proposal shoot', '30 min · 20+ edited photos · delivered in 24h'], ar: ['تصوير طلب زواج سريع', '30 دقيقة · أكثر من 20 صورة معدّلة · تسليم خلال 24 ساعة'] },
+    'Proposal': { fr: ['Photos de demande en mariage', '1 h · 20+ photos retouchées · livrées en 24 h'], en: ['Proposal photo shoot', '1h · 20+ edited photos · delivered in 24h'], ar: ['تصوير طلب الزواج', 'ساعة · أكثر من 20 صورة معدّلة · تسليم خلال 24 ساعة'] },
+    'Proposal + decoration': { fr: ['Demande en mariage avec décoration', '2 h · lumières, bougies, tapis'], en: ['Proposal with decoration', '2h · lights, candles, carpet'], ar: ['طلب زواج مع ديكور', 'ساعتان · أضواء، شموع، سجادة'] },
+    'Town hall wedding': { fr: ['Reportage de mariage à la mairie', 'Dès 2 h de reportage'], en: ['Town hall wedding photography', 'From 2 hours of coverage'], ar: ['تصوير عقد القران في البلدية', 'من ساعتين'] },
+    'Wedding, half day': { fr: ['Reportage de mariage, demi-journée', '6 h · 120+ photos'], en: ['Wedding photography, half day', '6h · 120+ photos'], ar: ['تصوير عرس، نصف يوم', '6 ساعات · أكثر من 120 صورة'] },
+    'Wedding, full day': { fr: ['Reportage de mariage, journée complète', '8 à 10 h · 200+ photos'], en: ['Wedding photography, full day', '8 to 10h · 200+ photos'], ar: ['تصوير عرس، يوم كامل', 'من 8 إلى 10 ساعات · أكثر من 200 صورة'] },
+    'Concert or event': { fr: ['Photos de concert ou d’événement', '2 h · 60+ photos'], en: ['Concert or event photography', '2h · 60+ photos'], ar: ['تصوير حفل أو مناسبة', 'ساعتان · أكثر من 60 صورة'] },
+    'Sport': { fr: ['Photos de sport', 'Reportage de compétition'], en: ['Sport photography', 'Competition coverage'], ar: ['تصوير رياضي', 'تغطية منافسة'] }
+  };
+  var T = {
+    fr: { title: 'Bon cadeau', for: 'Pour', from: 'De la part de', until: 'Valable jusqu’au', code: 'Code', book: 'Réservation : melissaphotographyparis.fr · Instagram @melissa_photography_paris · en indiquant ce code', loc: 'fr-FR' },
+    en: { title: 'Gift voucher', for: 'For', from: 'With love from', until: 'Valid until', code: 'Code', book: 'To book: melissaphotographyparis.fr · Instagram @melissa_photography_paris · quote this code', loc: 'en-GB' },
+    ar: { title: 'قسيمة هدية', for: 'إلى', from: 'مع محبة', until: 'صالحة حتى', code: 'الرمز', book: 'للحجز: melissaphotographyparis.fr · إنستغرام ‎@melissa_photography_paris · مع ذكر هذا الرمز', loc: 'ar-u-nu-latn' }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var p = new URLSearchParams(location.search);
+  var plusYear = new Date(); plusYear.setFullYear(plusYear.getFullYear() + 1);
+  $('to').value = p.get('to') || '';
+  $('from').value = p.get('from') || '';
+  $('msg').value = p.get('msg') || '';
+  if (S[p.get('s')]) $('s').value = p.get('s');
+  if (T[p.get('lang')]) $('lang').value = p.get('lang');
+  $('code').value = p.get('code') || 'MPP-' + Math.random().toString(16).slice(2, 8).toUpperCase();
+  $('until').value = plusYear.toISOString().slice(0, 10);
+
+  function render() {
+    var l = $('lang').value, t = T[l], s = S[$('s').value][l];
+    var card = $('card');
+    card.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    card.setAttribute('lang', l);
+    $('c-title').textContent = t.title;
+    $('c-for').textContent = t.for;
+    $('c-to').textContent = $('to').value || '…';
+    $('c-session').textContent = s[0];
+    $('c-detail').textContent = s[1];
+    var m = $('msg').value.trim();
+    $('c-msg').textContent = m; $('c-msg').hidden = !m;
+    var f = $('from').value.trim();
+    $('c-from').hidden = !f;
+    $('c-from').innerHTML = '';
+    if (f) { $('c-from').append(t.from + ' '); var b = document.createElement('b'); b.textContent = f; $('c-from').append(b); }
+    var until = $('until').value ? new Date($('until').value + 'T12:00:00').toLocaleDateString(t.loc, { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+    $('c-foot').innerHTML = '';
+    var line1 = document.createElement('div');
+    line1.append(t.until + ' ' + until + ' · ' + t.code + ' ');
+    var code = document.createElement('strong'); code.textContent = $('code').value; code.dir = 'ltr'; line1.append(code);
+    var line2 = document.createElement('div'); line2.textContent = t.book;
+    $('c-foot').append(line1, line2);
+    document.title = t.title + ' ' + ($('to').value || '') + ' · ' + $('code').value;
+  }
+  document.querySelectorAll('#f input, #f select, #f textarea').forEach(function (el) { el.addEventListener('input', render); });
+  $('print').addEventListener('click', function () { render(); window.print(); });
+  render();
+})();
+</script>
+</body>
+</html>

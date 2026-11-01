@@ -114,6 +114,7 @@ const pixel = (() => {
 
 function buildService(s, l) {
   const ui = C.ui[l], t = s[l], here = servicePath(s, l), home = homePath(l);
+  const q = (s.query || '').replace(/&/g, '&amp;'), bookLabel = t.book || ui.book;
   const price = p => (p.from ? ui.from(ui.money(p.price)) : ui.money(p.price));
   const others = C.services.filter(x => x !== s);
   const jsonld = [
@@ -153,7 +154,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=11">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=12">
 <link rel="stylesheet" href="/css/landing.css?v=13">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
@@ -168,7 +169,7 @@ ${pixel}
     <nav aria-label="${escAttr(ui.home)}">
       <a href="${home}#catalogue">${escHTML(ui.catalogue)}</a>
       <a href="${aboutPath(l)}">${escHTML(ui.about)}</a>
-      <a href="${home}?go=book&amp;session=${s.session}">${escHTML(ui.bookNav)}</a>
+      <a href="${home}?go=book&amp;session=${s.session}${q}">${escHTML(ui.bookNav)}</a>
     </nav>
     <div class="lang-switch" role="group" aria-label="${escAttr(I18N.dict['Choose your language'][l] || 'Choose your language')}">
       ${LANGS.map(x => `<a href="${servicePath(s, x)}" lang="${x}" hreflang="${x}" data-lang="${x}"${x === l ? ' aria-current="true"' : ''}>${x === 'ar' ? 'ع' : x.toUpperCase()}</a>`).join('')}
@@ -185,7 +186,7 @@ ${pixel}
     <p class="lede">${escHTML(t.lede)}</p>
     <p class="lp-stars"><span aria-hidden="true">★★★★★</span> ${escHTML(ui.reviews)}</p>
     <div class="lp-cta">
-      <a class="btn orange" href="${home}?go=book&amp;session=${s.session}">${escHTML(ui.book)}</a>
+      <a class="btn orange" href="${home}?go=book&amp;session=${s.session}${q}">${escHTML(bookLabel)}</a>
       <a class="btn" href="${home}#album/${s.album}">${escHTML(ui.album)}</a>
     </div>
   </header>
@@ -208,7 +209,7 @@ ${t.included.map(x => `        <li>${escHTML(x)}</li>`).join('\n')}
     <div class="lp-card lp-price">
       <h2>${escHTML(ui.price)}</h2>
       <ul class="lp-packages">
-${s.packages.map(p => `        <li><a href="${home}?go=book&amp;session=${p.session}"><b>${escHTML(p.name[l])}</b><span>${escHTML(p.info[l])}</span><em>${escHTML(price(p))}</em></a></li>`).join('\n')}
+${s.packages.map(p => `        <li><a href="${home}?go=book&amp;session=${p.session}${q}"><b>${escHTML(p.name[l])}</b><span>${escHTML(p.info[l])}</span><em>${escHTML(price(p))}</em></a></li>`).join('\n')}
       </ul>
     </div>
   </section>
@@ -219,9 +220,9 @@ ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHT
   </section>
 
   <section class="lp-final">
-    <h2>${escHTML(ui.finalTitle)}</h2>
-    <p>${escHTML(ui.finalText)}</p>
-    <a class="btn orange" href="${home}?go=book&amp;session=${s.session}">${escHTML(ui.book)}</a>
+    <h2>${escHTML(t.finalTitle || ui.finalTitle)}</h2>
+    <p>${escHTML(t.finalText || ui.finalText)}</p>
+    <a class="btn orange" href="${home}?go=book&amp;session=${s.session}${q}">${escHTML(bookLabel)}</a>
   </section>
 
   <nav class="lp-more" aria-label="${escAttr(ui.more)}">
@@ -275,7 +276,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
-${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=11">
+${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=12">
 <link rel="stylesheet" href="/css/landing.css?v=13">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
