@@ -64,6 +64,7 @@
     .card { width: 210mm; height: 148mm; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+  [hidden] { display: none !important; }
 </style>
 </head>
 <body>
@@ -87,8 +88,10 @@
         <option value="Wedding, full day">Mariage, journée complète</option>
         <option value="Concert or event">Concert ou événement</option>
         <option value="Sport">Sport</option>
+        <option value="Amount">Montant libre (la personne choisit sa séance)</option>
       </select>
     </label>
+    <label id="amount-wrap" hidden>Montant offert (€)<input id="amount" type="number" min="50" step="10" value="150"></label>
     <label>Langue du bon
       <select id="lang"><option value="fr">Français</option><option value="en">English</option><option value="ar">العربية</option></select>
     </label>
@@ -131,7 +134,8 @@
     'Wedding, half day': { fr: ['Reportage de mariage, demi-journée', '6 h · 120+ photos'], en: ['Wedding photography, half day', '6h · 120+ photos'], ar: ['تصوير عرس، نصف يوم', '6 ساعات · أكثر من 120 صورة'] },
     'Wedding, full day': { fr: ['Reportage de mariage, journée complète', '8 à 10 h · 200+ photos'], en: ['Wedding photography, full day', '8 to 10h · 200+ photos'], ar: ['تصوير عرس، يوم كامل', 'من 8 إلى 10 ساعات · أكثر من 200 صورة'] },
     'Concert or event': { fr: ['Photos de concert ou d’événement', '2 h · 60+ photos'], en: ['Concert or event photography', '2h · 60+ photos'], ar: ['تصوير حفل أو مناسبة', 'ساعتان · أكثر من 60 صورة'] },
-    'Sport': { fr: ['Photos de sport', 'Reportage de compétition'], en: ['Sport photography', 'Competition coverage'], ar: ['تصوير رياضي', 'تغطية منافسة'] }
+    'Sport': { fr: ['Photos de sport', 'Reportage de compétition'], en: ['Sport photography', 'Competition coverage'], ar: ['تصوير رياضي', 'تغطية منافسة'] },
+    'Amount': { fr: ['Séance photo de votre choix', 'Montant offert : {a} €'], en: ['Photo session of your choice', 'Gift amount: €{a}'], ar: ['جلسة تصوير من اختياركم', 'المبلغ المهدى: {a} €'] }
   };
   var T = {
     fr: { title: 'Bon cadeau', for: 'Pour', from: 'De la part de', until: 'Valable jusqu’au', code: 'Code', book: 'Réservation : melissaphotographyparis.fr · Instagram @melissa_photography_paris · en indiquant ce code', loc: 'fr-FR' },
@@ -145,12 +149,16 @@
   $('from').value = p.get('from') || '';
   $('msg').value = p.get('msg') || '';
   if (S[p.get('s')]) $('s').value = p.get('s');
+  if (/^\d+$/.test(p.get('a') || '')) { $('s').value = 'Amount'; $('amount').value = p.get('a'); }
   if (T[p.get('lang')]) $('lang').value = p.get('lang');
   $('code').value = p.get('code') || 'MPP-' + Math.random().toString(16).slice(2, 8).toUpperCase();
   $('until').value = plusYear.toISOString().slice(0, 10);
 
   function render() {
     var l = $('lang').value, t = T[l], s = S[$('s').value][l];
+    var isAmount = $('s').value === 'Amount';
+    $('amount-wrap').hidden = !isAmount;
+    var amt = String(Math.max(0, parseInt($('amount').value, 10) || 0));
     var card = $('card');
     card.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
     card.setAttribute('lang', l);
@@ -158,7 +166,7 @@
     $('c-for').textContent = t.for;
     $('c-to').textContent = $('to').value || '…';
     $('c-session').textContent = s[0];
-    $('c-detail').textContent = s[1];
+    $('c-detail').textContent = isAmount ? s[1].replace('{a}', amt) : s[1];
     var m = $('msg').value.trim();
     $('c-msg').textContent = m; $('c-msg').hidden = !m;
     var f = $('from').value.trim();
