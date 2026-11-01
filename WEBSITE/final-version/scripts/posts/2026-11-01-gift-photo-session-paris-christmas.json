@@ -5,7 +5,7 @@
   "category": "prices",
   "service": "gift",
   "session": "s-couple",
-  "cover": "/images/blog/park-walk.webp",
+  "cover": "/images/blog/portrait-golden-hour.webp",
   "slug": {
     "fr": "idee-cadeau-noel-seance-photo-paris",
     "en": "gift-idea-photo-session-paris",
@@ -15,7 +15,7 @@
     "title": "Idée cadeau de Noël : offrir une séance photo à Paris",
     "short": "Un cadeau qui ne finit pas au fond d'un placard : pour qui, quelle séance, quel prix, et comment recevoir le bon à temps pour Noël.",
     "desc": "Offrir une séance photo à Paris pour Noël : idées selon la personne, prix dès 150 €, bon cadeau personnalisé en PDF, valable 12 mois.",
-    "coverAlt": "Un couple qui se promène main dans la main dans un parc",
+    "coverAlt": "Portrait d'une jeune femme souriante, lunettes de soleil sur la tête, dans la lumière dorée de fin de journée",
     "intro": [
       "Chaque année, c'est la même question : quoi offrir à quelqu'un qui a déjà tout ? Un objet de plus risque de finir au fond d'un tiroir. Une séance photo, elle, devient un vrai moment, puis des images que l'on garde toute sa vie.",
       "Je suis photographe à Paris, et toutes mes séances peuvent être offertes en bon cadeau. Voici comment choisir la bonne séance selon la personne, ce que cela coûte, et comment recevoir le bon à temps pour le mettre sous le sapin."
@@ -44,14 +44,42 @@
           "Voici mes tarifs. Le bon cadeau coûte exactement le prix de la séance, sans supplément."
         ],
         "table": {
-          "head": ["Séance", "Ce qui est inclus", "Prix"],
+          "head": [
+            "Séance",
+            "Ce qui est inclus",
+            "Prix"
+          ],
           "rows": [
-            ["Portrait", "Séance solo, photos retouchées dans une galerie privée", "dès 150 €"],
-            ["Couple", "1 h 30, 25+ photos retouchées", "dès 250 €"],
-            ["Demande express", "30 min, 10 photos ou 20+ photos, livrées en 24 h", "150 € ou 200 €"],
-            ["Demande en mariage", "1 h, 20+ photos, livrées en 24 h", "dès 290 €"],
-            ["Mariage à la mairie", "Dès 2 h de reportage", "dès 250 €"],
-            ["Montant libre", "La personne choisit sa séance", "au choix"]
+            [
+              "Portrait",
+              "Séance solo, photos retouchées dans une galerie privée",
+              "dès 150 €"
+            ],
+            [
+              "Couple",
+              "1 h 30, 25+ photos retouchées",
+              "dès 250 €"
+            ],
+            [
+              "Demande express",
+              "30 min, 10 photos ou 20+ photos, livrées en 24 h",
+              "150 € ou 200 €"
+            ],
+            [
+              "Demande en mariage",
+              "1 h, 20+ photos, livrées en 24 h",
+              "dès 290 €"
+            ],
+            [
+              "Mariage à la mairie",
+              "Dès 2 h de reportage",
+              "dès 250 €"
+            ],
+            [
+              "Montant libre",
+              "La personne choisit sa séance",
+              "au choix"
+            ]
           ],
           "note": "Toutes les séances du site peuvent être offertes, y compris concert, événement et sport."
         }
@@ -98,7 +126,7 @@
     "title": "Christmas gift idea: a photo session in Paris",
     "short": "A present that will not end up at the back of a cupboard: who it suits, which session, how much, and how to get the voucher in time for Christmas.",
     "desc": "Gift a photo session in Paris for Christmas: ideas for everyone, prices from €150, personalised PDF gift voucher, valid 12 months.",
-    "coverAlt": "A couple walking hand in hand in a park",
+    "coverAlt": "Portrait of a smiling young woman, sunglasses on her head, in the golden late-afternoon light",
     "intro": [
       "Every year it is the same question: what do you give someone who already has everything? One more object may end up in a drawer. A photo session becomes a real moment, then pictures you keep for life.",
       "I am a photographer in Paris, and every one of my sessions can be offered as a gift voucher. Here is how to choose the right session for the person, what it costs, and how to get the voucher in time for Christmas."
@@ -127,14 +155,42 @@
           "Here are my prices. The gift voucher costs exactly the price of the session, with no extra fee."
         ],
         "table": {
-          "head": ["Session", "What is included", "Price"],
+          "head": [
+            "Session",
+            "What is included",
+            "Price"
+          ],
           "rows": [
-            ["Portrait", "Solo session, edited photos in a private gallery", "from €150"],
-            ["Couple", "1h30, 25+ edited photos", "from €250"],
-            ["Express proposal", "30 min, 10 photos or 20+ photos, delivered in 24h", "€150 or €200"],
-            ["Proposal", "1h, 20+ photos, delivered in 24h", "from €290"],
-            ["Town hall wedding", "From 2 hours of coverage", "from €250"],
-            ["Free amount", "They choose their session", "your choice"]
+            [
+              "Portrait",
+              "Solo session, edited photos in a private gallery",
+              "from €150"
+            ],
+            [
+              "Couple",
+              "1h30, 25+ edited photos",
+              "from €250"
+            ],
+            [
+              "Express proposal",
+              "30 min, 10 photos or 20+ photos, delivered in 24h",
+              "€150 or €200"
+            ],
+            [
+              "Proposal",
+              "1h, 20+ photos, delivered in 24h",
+              "from €290"
+            ],
+            [
+              "Town hall wedding",
+              "From 2 hours of coverage",
+              "from €250"
+            ],
+            [
+              "Free amount",
+              "They choose their session",
+              "your choice"
+            ]
           ],
           "note": "Every session on the site can be offered, including concert, event and sport."
         }
@@ -181,7 +237,7 @@
     "title": "فكرة هدية لعيد الميلاد: جلسة تصوير في باريس",
     "short": "هدية لن تنتهي في خزانة: لمن تناسب، أي جلسة تختارون، كم تكلّف، وكيف تحصلون على القسيمة في الوقت المناسب.",
     "desc": "أهدوا جلسة تصوير في باريس: أفكار حسب الشخص، أسعار من 150 €، قسيمة هدية شخصية بصيغة PDF صالحة 12 شهراً.",
-    "coverAlt": "زوجان يتنزهان يداً بيد في حديقة",
+    "coverAlt": "بورتريه لشابة مبتسمة، نظارتها الشمسية على رأسها، في ضوء آخر النهار الذهبي",
     "intro": [
       "كل عام نطرح السؤال نفسه: ماذا نهدي شخصاً يملك كل شيء؟ غرض إضافي قد ينتهي في درج. أما جلسة التصوير فتصبح لحظة حقيقية، ثم صوراً تبقى مدى الحياة.",
       "أنا مصوّرة في باريس، وكل جلساتي يمكن إهداؤها بقسيمة هدية. إليكم كيف تختارون الجلسة المناسبة، وكم تكلّف، وكيف تحصلون على القسيمة في الوقت المناسب."
@@ -210,14 +266,42 @@
           "هذه أسعاري. القسيمة تكلّف سعر الجلسة نفسه، دون أي إضافة."
         ],
         "table": {
-          "head": ["الجلسة", "ما تتضمنه", "السعر"],
+          "head": [
+            "الجلسة",
+            "ما تتضمنه",
+            "السعر"
+          ],
           "rows": [
-            ["بورتريه", "جلسة فردية، صور معدّلة في معرض خاص", "من 150 €"],
-            ["أزواج", "ساعة ونصف، أكثر من 25 صورة معدّلة", "من 250 €"],
-            ["طلب زواج سريع", "30 دقيقة، 10 صور أو أكثر من 20 صورة، تسليم خلال 24 ساعة", "150 € أو 200 €"],
-            ["طلب زواج", "ساعة، أكثر من 20 صورة، تسليم خلال 24 ساعة", "من 290 €"],
-            ["عقد القران في البلدية", "من ساعتين من التصوير", "من 250 €"],
-            ["مبلغ حر", "يختار الشخص جلسته", "حسب اختياركم"]
+            [
+              "بورتريه",
+              "جلسة فردية، صور معدّلة في معرض خاص",
+              "من 150 €"
+            ],
+            [
+              "أزواج",
+              "ساعة ونصف، أكثر من 25 صورة معدّلة",
+              "من 250 €"
+            ],
+            [
+              "طلب زواج سريع",
+              "30 دقيقة، 10 صور أو أكثر من 20 صورة، تسليم خلال 24 ساعة",
+              "150 € أو 200 €"
+            ],
+            [
+              "طلب زواج",
+              "ساعة، أكثر من 20 صورة، تسليم خلال 24 ساعة",
+              "من 290 €"
+            ],
+            [
+              "عقد القران في البلدية",
+              "من ساعتين من التصوير",
+              "من 250 €"
+            ],
+            [
+              "مبلغ حر",
+              "يختار الشخص جلسته",
+              "حسب اختياركم"
+            ]
           ],
           "note": "يمكن إهداء كل جلسات الموقع، بما فيها الحفلات والمناسبات والرياضة."
         }
