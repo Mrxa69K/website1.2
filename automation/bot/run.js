@@ -5,7 +5,7 @@
 //   revise  : apply Melissa's comment to the draft, rebuild, send a new preview
 //   publish : copy the article to main, rebuild, push, tell Bing (IndexNow), send the live link
 //   discard : delete the draft
-// Needs secrets: ANTHROPIC_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID. GH_TOKEN is the workflow token.
+// Needs secrets: GEMINI_API_KEY (free) or ANTHROPIC_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID. GH_TOKEN is the workflow token.
 
 const fs = require('fs');
 const path = require('path');
@@ -36,8 +36,39 @@ async function tg(method, body) {
 }
 const say = (text, extra = {}) => tg('sendMessage', { text, parse_mode: 'HTML', disable_web_page_preview: true, ...extra });
 
-/* ---------- Claude ---------- */
+/* ---------- AI writer: Google Gemini (free tier) or Anthropic Claude ---------- */
+// Gemini is used when GEMINI_API_KEY is set (free key from aistudio.google.com),
+// otherwise Claude with ANTHROPIC_API_KEY. Set BLOG_PROVIDER=anthropic to force Claude.
+const USE_GEMINI = !!process.env.GEMINI_API_KEY && process.env.BLOG_PROVIDER !== 'anthropic';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+
+function parseJson(text) {
+  const iObj = text.indexOf('{'), iArr = text.indexOf('[');
+  const a = iObj >= 0 && (iArr < 0 || iObj < iArr) ? iObj : iArr;
+  const b = Math.max(text.lastIndexOf('}'), text.lastIndexOf(']'));
+  if (a < 0 || b < a) throw new Error('the AI did not return JSON');
+  return JSON.parse(text.slice(a, b + 1));
+}
+
+async function gemini(system, user, maxTokens) {
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: system }] },
+      contents: [{ role: 'user', parts: [{ text: user }] }],
+      generationConfig: { maxOutputTokens: Math.max(maxTokens, 8192), responseMimeType: 'application/json', temperature: 0.7 },
+    }),
+  });
+  const j = await r.json();
+  if (!r.ok) throw new Error('Gemini: ' + ((j.error && j.error.message) || r.status));
+  const c = (j.candidates || [])[0];
+  const text = ((c && c.content && c.content.parts) || []).map(p => p.text || '').join('');
+  if (!text) throw new Error('Gemini: empty answer (' + ((c && c.finishReason) || 'no candidate') + ')');
+  return parseJson(text);
+}
+
 async function claude(system, user, maxTokens = 16000) {
+  if (USE_GEMINI) return gemini(system, user, maxTokens);
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
@@ -45,11 +76,7 @@ async function claude(system, user, maxTokens = 16000) {
   });
   const j = await r.json();
   if (!r.ok) throw new Error('Claude: ' + ((j.error && j.error.message) || r.status));
-  const text = (j.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-  const a = text.indexOf('{') >= 0 && (text.indexOf('[') < 0 || text.indexOf('{') < text.indexOf('[')) ? text.indexOf('{') : text.indexOf('[');
-  const b = Math.max(text.lastIndexOf('}'), text.lastIndexOf(']'));
-  if (a < 0 || b < a) throw new Error('Claude did not return JSON');
-  return JSON.parse(text.slice(a, b + 1));
+  return parseJson((j.content || []).filter(b => b.type === 'text').map(b => b.text).join(''));
 }
 
 /* ---------- site knowledge ---------- */
