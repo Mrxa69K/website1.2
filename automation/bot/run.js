@@ -118,13 +118,13 @@ const SCHEMA = `Réponds uniquement avec un objet JSON valide, sans texte autour
        "sections":[{"h2":"1. ...","p":["..."],"list":["(optionnel)"],"after":["(optionnel)"]}],
        "tips":["3 à 5 conseils courts"],
        "cta":{"title":"...","text":"...","btn":"...","more":"..."}},
- "en":{ même structure },
- "ar":{ même structure }}
+ "en":{ même structure, entièrement en anglais },
+ "ar":{ même structure, entièrement rédigée en arabe : jamais en anglais ni en français }}
 Slugs : minuscules, mots séparés par des tirets simples, sans accents, 3 à 7 mots.`;
 
 const CATEGORIES = ['places', 'prices', 'weddings', 'stories', 'live'];
-const SESSION_FOR = { proposal: 's-prop', wedding: 's-wed', couple: 's-couple', concert: 's-event', oriental: 's-wed', west: 's-wed-hall' };
-const PHOTO_CAT_FOR = { proposal: 'proposal', wedding: 'wedding', couple: 'portrait', concert: 'event', oriental: 'wedding', west: 'wedding' };
+const SESSION_FOR = { proposal: 's-prop', wedding: 's-wed', couple: 's-couple', concert: 's-event', oriental: 's-wed', west: 's-wed-hall', gift: 's-couple' };
+const PHOTO_CAT_FOR = { proposal: 'proposal', wedding: 'wedding', couple: 'portrait', concert: 'event', oriental: 'wedding', west: 'wedding', gift: 'portrait' };
 
 function existingPosts() {
   return fs.readdirSync(POSTS).filter(f => f.endsWith('.json')).map(f => ({ file: f, ...JSON.parse(fs.readFileSync(path.join(POSTS, f), 'utf8')) }));
@@ -156,6 +156,23 @@ function validate(a) {
     if (t.desc.length > 158) t.desc = t.desc.slice(0, 155).replace(/\s+\S*$/, '') + '…';
   }
   if (!a.slug || !a.slug.fr || !a.slug.en) throw new Error('slugs manquants');
+}
+
+// The model sometimes copies the English text into "ar". Check that the Arabic version is really
+// in Arabic; if not, ask for a dedicated translation of the French version.
+const isArabic = t => {
+  const s = JSON.stringify(t || {});
+  return !!(t && t.title) && (s.match(/[\u0600-\u06FF]/g) || []).length > (s.match(/[A-Za-z]/g) || []).length;
+};
+async function ensureArabic(a) {
+  if (isArabic(a.ar)) return;
+  console.log('Arabic version missing or in another language: translating');
+  const out = clean(await claude(
+    `Tu traduis un article du blog de Melissa Photography Paris en arabe standard moderne, naturel et chaleureux, en t'adressant aux lecteurs au pluriel (أنتم). Garde exactement la même structure JSON que l'entrée (title, short, desc, coverAlt, intro, sections avec h2, p, list, after, table, puis tips et cta) et le même sens, sans rien ajouter. Garde les prix en € et le nom « Melissa Photography Paris » en lettres latines ; pour les lieux, écris le nom en arabe avec le nom français entre parenthèses si utile. Titre de 60 caractères maximum, desc de moins de 155 caractères. Pas de tiret cadratin ni demi-cadratin. Réponds uniquement avec le JSON de la version arabe.`,
+    JSON.stringify(a.fr)));
+  const ar = out && out.ar && out.ar.title ? out.ar : out;
+  if (!isArabic(ar)) throw new Error('la version arabe n’a pas pu être écrite, réessaie');
+  a.ar = ar;
 }
 
 /* ---------- git helpers ---------- */
@@ -251,6 +268,7 @@ async function write({ title, query, category, notes }) {
     posts.map(p => `- ${p.fr.title}`).join('\n'),
   ].join('\n');
   const a = clean(await claude(`Tu es la plume du blog de Melissa Photography Paris. ${FACTS}\n\n${RULES}\n\n${SCHEMA}`, user));
+  await ensureArabic(a);
   validate(a);
   const taken = new Set(posts.flatMap(p => Object.values(p.slug || {})));
   for (const l of ['fr', 'en']) { let s = a.slug[l], n = 2; while (taken.has(s)) s = `${a.slug[l]}-${n++}`; a.slug[l] = s; }
@@ -289,6 +307,7 @@ async function revise({ id, comment }) {
     `Tu es la plume du blog de Melissa Photography Paris. ${FACTS}\n\n${RULES}\nTu reçois un article (JSON avec fr, en, ar) et une correction demandée par Melissa. Applique la correction dans les trois langues, garde tout le reste, et réponds uniquement avec le JSON complet {"fr":{...},"en":{...},"ar":{...}} dans la même structure.`,
     `Correction de Melissa : ${comment}\n\nArticle actuel :\n${JSON.stringify(current)}`));
   for (const l of ['fr', 'en', 'ar']) if (fixed[l] && fixed[l].title) post[l] = fixed[l];
+  await ensureArabic(post);
   validate({ ...post });
   post.updated = today();
   fs.writeFileSync(file, JSON.stringify(post, null, 2) + '\n');
