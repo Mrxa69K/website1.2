@@ -1,0 +1,224 @@
+{
+  "key": "wedding-photographer-prices-hauts-de-seine",
+  "date": "2026-11-09",
+  "updated": "2026-11-09",
+  "category": "prices",
+  "service": "wedding",
+  "session": "s-wed",
+  "cover": "/images/blog/after-the-yes.webp",
+  "slug": {
+    "fr": "prix-photographe-mariage-hauts-de-seine",
+    "en": "wedding-photographer-prices-hauts-de-seine",
+    "ar": "wedding-photographer-prices-hauts-de-seine"
+  },
+  "fr": {
+    "title": "Prix d'un photographe de mariage dans les Hauts-de-Seine",
+    "short": "Découvrez mes tarifs de photographe de mariage dans les Hauts-de-Seine, de Boulogne à Versailles, avec des formules adaptées à chaque envie.",
+    "desc": "Quels sont les tarifs d'un photographe de mariage dans les Hauts-de-Seine ? Découvrez mes prix doux pour votre union, de la mairie à la journée complète.",
+    "coverAlt": "Un couple souriant lors de leur mariage dans les Hauts-de-Seine photographié par Melissa Photography Paris.",
+    "intro": [
+      "Vous préparez votre union dans les Hauts-de-Seine et vous vous demandez quel budget prévoir pour vos photos ? C'est une question tout à fait légitime. Choisir la bonne personne pour immortaliser votre journée demande de la réflexion, tant sur le style que sur le plan financier.",
+      "Je vous propose des tarifs doux et transparents pour tous vos projets de mariage, que vous célébriez une union civile à la mairie ou une journée complète de festivités, y compris pour les mariages religieux ou orientaux en tant que photographe femme."
+    ],
+    "sections": [
+      {
+        "h2": "1. Le mariage à la mairie dans les Hauts-de-Seine",
+        "p": [
+          "Pour une cérémonie civile, le temps est souvent compté mais l'émotion est bien présente. C'est un moment privilégié pour se retrouver en comité restreint avec vos proches."
+        ],
+        "list": [
+          "Formule de base dès 250 € pour 2 h de présence.",
+          "Possibilité d'adapter le tarif jusqu'à 400 € selon la durée exacte de votre passage à la mairie et des photos de groupe sur le parvis."
+        ],
+        "after": [
+          "Je vous accompagne pour capturer les sourires, l'échange des alliances et les premiers moments de complicité en tant que mariés."
+        ]
+      },
+      {
+        "h2": "2. La demi-journée de reportage",
+        "p": [
+          "Si vous souhaitez couvrir les préparatifs, la cérémonie civile ou religieuse ainsi que le début du vin d'honneur, la formule demi-journée est idéale."
+        ],
+        "list": [
+          "Tarif unique de 500 € pour la demi-journée.",
+          "Idéal pour suivre le fil de votre journée sans tout photographier de l'aube à la nuit."
+        ],
+        "after": [
+          "Je me déplace dans tout l'ouest parisien, de Boulogne à Versailles, pour capturer chaque instant important."
+        ]
+      },
+      {
+        "h2": "3. La journée complète de mariage",
+        "p": [
+          "Pour ne rien rater, des préparatifs matinaux jusqu'aux premières danses de la soirée, la formule journée complète vous offre un souvenir exhaustif et fidèle de votre union."
+        ],
+        "list": [
+          "Tarif de 750 € pour la journée complète.",
+          "Inclus : les moments forts, les rires, les larmes de joie et l'ambiance de votre réception."
+        ],
+        "after": [
+          "Toutes vos photos sont ensuite triées et retouchées avec soin, puis mises à disposition dans une galerie privée en ligne sécurisée."
+        ]
+      },
+      {
+        "h2": "4. Mariage religieux, oriental et autres spécificités",
+        "p": [
+          "Chaque mariage est unique et possède ses propres traditions. En tant que photographe femme, je vous accompagne avec discrétion et professionnalisme pour vos mariages religieux ou orientaux dans les Hauts-de-Seine.",
+          "Mes prix restent doux et accessibles, sans compromis sur la qualité des images. Le paiement est simple et chaque formule est pensée pour s'ajuster au mieux à votre organisation."
+        ]
+      }
+    ],
+    "tips": [
+      "Définissez vos priorités : cérémonie, mairie ou soirée.",
+      "Prévoyez un échange préalable pour discuter de vos attentes.",
+      "Pensez à réserver à l'avance pour votre date.",
+      "Optez pour une galerie en ligne pour partager facilement vos souvenirs."
+    ],
+    "cta": {
+      "title": "Prêts à immortaliser votre mariage ?",
+      "text": "Parlons de votre projet dans les Hauts-de-Seine et écrivons ensemble l'histoire de votre journée.",
+      "btn": "Me contacter",
+      "more": "Découvrir mes autres séances"
+    }
+  },
+  "en": {
+    "title": "Wedding Photographer Prices in Hauts-de-Seine",
+    "short": "Discover my wedding photographer rates in Hauts-de-Seine, from Boulogne to Versailles, with affordable options for every desire.",
+    "desc": "What are the rates for a wedding photographer in Hauts-de-Seine? Discover my affordable prices for your union, from town hall to full day.",
+    "coverAlt": "A smiling couple during their wedding in Hauts-de-Seine photographed by Melissa Photography Paris.",
+    "intro": [
+      "Are you planning your union in Hauts-de-Seine and wondering what budget to allocate for your photos? It is a completely legitimate question. Choosing the right person to immortalize your day requires reflection, both on style and financial terms.",
+      "I offer affordable and transparent prices for all your wedding projects, whether you are celebrating a civil union at the town hall or a full day of festivities, including religious or oriental weddings as a female photographer."
+    ],
+    "sections": [
+      {
+        "h2": "1. Town Hall Wedding in Hauts-de-Seine",
+        "p": [
+          "For a civil ceremony, time is often short but the emotion is very present. It is a privileged moment to gather in small committee with your loved ones."
+        ],
+        "list": [
+          "Basic package starting at €250 for 2 hours of presence.",
+          "Possibility to adjust the rate up to €400 depending on the exact duration of your town hall visit and group photos on the steps."
+        ],
+        "after": [
+          "I accompany you to capture smiles, the exchange of rings, and the first moments of complicity as newlyweds."
+        ]
+      },
+      {
+        "h2": "2. Half-Day Coverage",
+        "p": [
+          "If you want to cover preparations, the civil or religious ceremony, and the beginning of the cocktail party, the half-day package is ideal."
+        ],
+        "list": [
+          "Flat rate of €500 for the half-day.",
+          "Ideal to follow the thread of your day without photographing everything from dawn to night."
+        ],
+        "after": [
+          "I travel throughout the western Paris suburbs, from Boulogne to Versailles, to capture every important moment."
+        ]
+      },
+      {
+        "h2": "3. Full-Day Wedding Coverage",
+        "p": [
+          "To miss nothing, from morning preparations to the first dances of the evening, the full-day package offers you an exhaustive and faithful memory of your union."
+        ],
+        "list": [
+          "Rate of €750 for the full day.",
+          "Included: highlights, laughter, tears of joy, and the atmosphere of your reception."
+        ],
+        "after": [
+          "All your photos are then carefully sorted and edited, then made available in a secure private online gallery."
+        ]
+      },
+      {
+        "h2": "4. Religious, Oriental Weddings and Specifics",
+        "p": [
+          "Every wedding is unique and has its own traditions. As a female photographer, I accompany you with discretion and professionalism for your religious or oriental weddings in Hauts-de-Seine.",
+          "My prices remain affordable without compromising image quality. Payment is simple and each package is designed to best fit your organization."
+        ]
+      }
+    ],
+    "tips": [
+      "Define your priorities: ceremony, town hall, or evening.",
+      "Schedule an initial chat to discuss your expectations.",
+      "Remember to book well in advance for your date.",
+      "Choose an online gallery to easily share your memories."
+    ],
+    "cta": {
+      "title": "Ready to immortalize your wedding?",
+      "text": "Let's talk about your project in Hauts-de-Seine and write the story of your day together.",
+      "btn": "Contact me",
+      "more": "Discover my other sessions"
+    }
+  },
+  "ar": {
+    "title": "Wedding Photographer Prices in Hauts-de-Seine",
+    "short": "Discover my wedding photographer rates in Hauts-de-Seine, from Boulogne to Versailles, with affordable options for every desire.",
+    "desc": "What are the rates for a wedding photographer in Hauts-de-Seine? Discover my affordable prices for your union, from town hall to full day.",
+    "coverAlt": "A smiling couple during their wedding in Hauts-de-Seine photographed by Melissa Photography Paris.",
+    "intro": [
+      "Are you planning your union in Hauts-de-Seine and wondering what budget to allocate for your photos? It is a completely legitimate question. Choosing the right person to immortalize your day requires reflection, both on style and financial terms.",
+      "I offer affordable and transparent prices for all your wedding projects, whether you are celebrating a civil union at the town hall or a full day of festivities, including religious or oriental weddings as a female photographer."
+    ],
+    "sections": [
+      {
+        "h2": "1. Town Hall Wedding in Hauts-de-Seine",
+        "p": [
+          "For a civil ceremony, time is often short but the emotion is very present. It is a privileged moment to gather in small committee with your loved ones."
+        ],
+        "list": [
+          "Basic package starting at €250 for 2 hours of presence.",
+          "Possibility to adjust the rate up to €400 depending on the exact duration of your town hall visit and group photos on the steps."
+        ],
+        "after": [
+          "I accompany you to capture smiles, the exchange of rings, and the first moments of complicity as newlyweds."
+        ]
+      },
+      {
+        "h2": "2. Half-Day Coverage",
+        "p": [
+          "If you want to cover preparations, the civil or religious ceremony, and the beginning of the cocktail party, the half-day package is ideal."
+        ],
+        "list": [
+          "Flat rate of €500 for the half-day.",
+          "Ideal to follow the thread of your day without photographing everything from dawn to night."
+        ],
+        "after": [
+          "I travel throughout the western Paris suburbs, from Boulogne to Versailles, to capture every important moment."
+        ]
+      },
+      {
+        "h2": "3. Full-Day Wedding Coverage",
+        "p": [
+          "To miss nothing, from morning preparations to the first dances of the evening, the full-day package offers you an exhaustive and faithful memory of your union."
+        ],
+        "list": [
+          "Rate of €750 for the full day.",
+          "Included: highlights, laughter, tears of joy, and the atmosphere of your reception."
+        ],
+        "after": [
+          "All your photos are then carefully sorted and edited, then made available in a secure private online gallery."
+        ]
+      },
+      {
+        "h2": "4. Religious, Oriental Weddings and Specifics",
+        "p": [
+          "Every wedding is unique and has its own traditions. As a female photographer, I accompany you with discretion and professionalism for your religious or oriental weddings in Hauts-de-Seine.",
+          "My prices remain affordable without compromising image quality. Payment is simple and each package is designed to best fit your organization."
+        ]
+      }
+    ],
+    "tips": [
+      "Define your priorities: ceremony, town hall, or evening.",
+      "Schedule an initial chat to discuss your expectations.",
+      "Remember to book well in advance for your date.",
+      "Choose an online gallery to easily share your memories."
+    ],
+    "cta": {
+      "title": "Ready to immortalize your wedding?",
+      "text": "Let's talk about your project in Hauts-de-Seine and write the story of your day together.",
+      "btn": "Contact me",
+      "more": "Discover my other sessions"
+    }
+  }
+}
