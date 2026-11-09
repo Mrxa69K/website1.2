@@ -1,0 +1,197 @@
+{
+  "key": "sports-jiu-jitsu-photographer-paris",
+  "date": "2026-11-09",
+  "updated": "2026-11-09",
+  "category": "live",
+  "service": "concert",
+  "session": "s-event",
+  "cover": "https://amrzoqmnkfnewujbeqdn.supabase.co/storage/v1/object/public/photos/1790200777055-a85wf7.jpg",
+  "slug": {
+    "fr": "photographe-sport-jiu-jitsu-paris",
+    "en": "sports-jiu-jitsu-photographer-paris",
+    "ar": "sports-jiu-jitsu-photographer-paris"
+  },
+  "fr": {
+    "title": "Photographe de sport à Paris et jiu-jitsu",
+    "short": "Des photos dynamiques et nettes pour vos compétitions, séances d'entraînement et portraits sportifs à Paris.",
+    "desc": "Photographe de sport à Paris et jiu-jitsu brésilien. Vos combats et entraînements en images nettes dès 100 €.",
+    "coverAlt": "Photographe de jiu-jitsu brésilien et de sport en plein action à Paris",
+    "intro": [
+      "Le sport est une discipline de passion, d'effort et de dépassement de soi. Qu'il s'agisse d'un art martial exigeant comme le jiu-jitsu brésilien ou d'une autre discipline sportive à Paris et dans l'ouest parisien, figer l'instant demande de la précision, de la réactivité et une vraie compréhension du mouvement.",
+      "En tant que photographe passionnée par le mouvement et la dynamique sportive, je mets mon objectif au service des athlètes, des clubs et des passionnés. Mon but est de capturer l'intensité d'un combat, la précision d'une technique et l'émotion brute d'une compétition.",
+      "Que ce soit pour enrichir le site web de votre club, alimenter vos réseaux sociaux ou conserver des souvenirs marquants de votre parcours sportif, je vous propose des prestations adaptées avec un rendu professionnel et naturel."
+    ],
+    "sections": [
+      {
+        "h2": "1. Pourquoi faire appel à une photographe de sport à Paris ?",
+        "p": [
+          "Photographier le sport ne s'improvise pas. Entre la vitesse des mouvements, la gestion des éclairages souvent complexes dans les gymnases ou en extérieur, et la nécessité de ne pas gêner les athlètes, chaque détail compte.",
+          "Faire appel à une photographe professionnelle vous garantit des images d'une haute netteté, saisies au moment exact de l'action. Je capte la détermination dans le regard, la tension musculaire et l'énergie collective qui caractérisent votre pratique.",
+          "Ces photos vous permettent de valoriser votre travail quotidien, de promouvoir vos événements ou simplement d'immortaliser vos progrès et vos victoires personnelles."
+        ]
+      },
+      {
+        "h2": "2. Photographier le jiu-jitsu brésilien : capturer l'art doux",
+        "p": [
+          "Le jiu-jitsu brésilien est une discipline fascinante à photographier. Entre les passages de garde, les soumissions, les projections et le travail au sol, chaque seconde recèle un détail technique ou une émotion intense.",
+          "La photographie de jiu-jitsu brésilien exige de connaître le rythme des combats pour anticiper les transitions et se placer au bon endroit autour du tatami sans perturber le déroulement du spar. Je privilégie les angles serrés et les compositions dynamiques pour mettre en valeur la fluidité et la force de cet art martial.",
+          "Que ce soit lors d'un open, d'un stage ou d'une session d'entraînement au club, je retransmets l'atmosphère unique de la communauté du jiu-jitsu."
+        ]
+      },
+      {
+        "h2": "3. Mes formules et tarifs pour le sport",
+        "p": [
+          "Je propose des tarifs clairs et abordables pour répondre aux besoins des athlètes individuels comme des structures sportives :",
+          "Toutes les photos retenues sont retouchées individuellement avec soin et livrées sur une galerie en ligne privée, téléchargeables en haute définition sous quelques jours."
+        ],
+        "list": [
+          "Séance sport et portrait individuel : dès 100 € pour immortaliser votre discipline et votre préparation.",
+          "Couverture d'événement sportif ou compétition : sur devis ou à partir de 300 € pour 2 h de prises de vues (avec plus de 60 photos livrées).",
+          "Forfait demi-journée ou journée complète pour clubs et compétitions : 500 € la demi-journée et 750 € la journée."
+        ]
+      },
+      {
+        "h2": "4. Déroulement d'un shooting photo sportif",
+        "p": [
+          "Avant le jour J, nous échangeons sur vos attentes : les moments clés à couvrir, le style d'images souhaité (portraits posés, action pure, coulisses) et le lieu de la séance à Paris ou dans les Hauts-de-Seine (de Boulogne à Versailles).",
+          "Pendant l'événement ou la séance, je travaille en toute discrétion. J'utilise la lumière ambiante sans flash gênant afin de préserver la concentration des sportifs et de conserver l'authenticité du moment.",
+          "À la suite de la prestation, vous recevez vos identifiants pour accéder à votre galerie privée et télécharger facilement vos images."
+        ]
+      }
+    ],
+    "tips": [
+      "Préparez vos équipements et tenues propres avant la séance photo.",
+      "Indiquez-moi à l'avance les mouvements ou techniques spécifiques que vous souhaitez immortaliser.",
+      "Vérifiez l'autorisation de prise de vue auprès de votre salle ou du lieu de compétition.",
+      "N'hésitez pas à varier les expressions : entre concentration intense et sourires de fin d'entraînement."
+    ],
+    "cta": {
+      "title": "Besoin d'une photographe pour votre prochain événement sportif ?",
+      "text": "Réservez votre séance photo de sport ou de jiu-jitsu brésilien à Paris. Contactez-moi pour discuter de votre projet !",
+      "btn": "Réserver une séance sport",
+      "more": "Découvrez aussi mon offre de bon cadeau à offrir sur la page dédiée."
+    }
+  },
+  "en": {
+    "title": "Sports and Brazilian Jiu-Jitsu Photographer in Paris",
+    "short": "Dynamic and sharp photos for your sports competitions, training sessions, and portraits in Paris.",
+    "desc": "Sports and Brazilian Jiu-Jitsu photographer in Paris. Clear and dynamic pictures of your fights and training from 100 €.",
+    "coverAlt": "Brazilian Jiu-Jitsu and sports photographer captured in action in Paris",
+    "intro": [
+      "Sports represent passion, dedication, and pushing limits. Whether it is a demanding martial art like Brazilian Jiu-Jitsu or another athletic discipline in Paris and Western Paris, capturing the moment requires precision, responsiveness, and a deep understanding of movement.",
+      "As a photographer passionate about movement and athletic action, I put my lens at the service of athletes, clubs, and sports enthusiasts. My goal is to capture the intensity of a fight, the technical precision of a move, and the raw emotion of a tournament.",
+      "Whether you want to update your club website, feed your social channels, or keep memorable milestones of your athletic journey, I offer tailored packages with a professional and natural finish."
+    ],
+    "sections": [
+      {
+        "h2": "1. Why hire a sports photographer in Paris?",
+        "p": [
+          "Sports photography requires technical skill. Between fast movements, complex indoor lighting, and the necessity not to disturb athletes during performance, every detail matters.",
+          "Hiring a professional photographer ensures sharp images captured at the exact right instant. I capture the determination in your eyes, muscle tension, and collective energy.",
+          "These pictures allow you to showcase your daily effort, promote your events, or simply document your personal victories and progress."
+        ]
+      },
+      {
+        "h2": "2. Photographing Brazilian Jiu-Jitsu: capturing the gentle art",
+        "p": [
+          "Brazilian Jiu-Jitsu is a fascinating discipline to photograph. From guard passes and submissions to takedowns and ground control, every second holds technical detail and intense emotion.",
+          "BJJ photography requires understanding the rhythm of fights to anticipate transitions and position oneself around the mat without interfering with spars. I focus on tight angles and dynamic compositions to highlight the strength and flow of this martial art.",
+          "Whether during an open tournament, a seminar, or a regular club training session, I capture the authentic vibe of the Jiu-Jitsu community."
+        ]
+      },
+      {
+        "h2": "3. Packages and rates for sports photography",
+        "p": [
+          "I offer clear and affordable pricing for individual athletes as well as sports organizations:",
+          "All selected photos are carefully edited individually and delivered in a private online gallery, ready for high-definition download within a few days."
+        ],
+        "list": [
+          "Individual sports portrait and action session: starting at 100 €.",
+          "Sports event or tournament coverage: starting at 300 € for 2 hours (60+ delivered photos).",
+          "Half-day package (500 €) or full-day package (750 €) for clubs and major events."
+        ]
+      },
+      {
+        "h2": "4. How a sports photo session works",
+        "p": [
+          "Before the shoot, we discuss your goals: key moments to cover, desired photo style (action, portrait, behind-the-scenes), and location in Paris or Hauts-de-Seine.",
+          "During the event or session, I work discreetly. I use ambient light without intrusive flashes to maintain the athletes' concentration.",
+          "After the event, you will receive access to your private online gallery to easily download all your high-resolution images."
+        ]
+      }
+    ],
+    "tips": [
+      "Prepare clean gear and uniforms ahead of the shoot.",
+      "Inform me in advance about specific techniques or key moments you want captured.",
+      "Check photography permissions with your gym or tournament organizers.",
+      "Embrace natural emotions, from intense focus to post-training smiles."
+    ],
+    "cta": {
+      "title": "Need a photographer for your next sports event?",
+      "text": "Book your sports or Brazilian Jiu-Jitsu photo session in Paris today. Get in touch to discuss your project!",
+      "btn": "Book a sports session",
+      "more": "Gift vouchers are also available for sports sessions on our dedicated gift page."
+    }
+  },
+  "ar": {
+    "title": "مصورة رياضية وجيوجيتسو برازيلية في باريس",
+    "short": "صور ديناميكية وواضحة لمسابقاتك، تدريباتك، وبورتريهاتك الرياضية في باريس.",
+    "desc": "مصورة رياضية وجيوجيتسو برازيلية في باريس. صور واضحة لدوراتك وتدريباتك ابتداءً من 100 يورو.",
+    "coverAlt": "مصورة جيوجيتسو برازيلية ورياضة أثناء التغطية في باريس",
+    "intro": [
+      "الرياضة هي الشغف والجهد وتجاوز الذات. سواء كانت رياضة قتالية تتطلب الجهد مثل الجيوجيتسو البرازيلية أو أي تخصص رياضي آخر في باريس وضواحيها الغربية، فإن التقاط اللحظة يتطلب الدقة والسرعة وفهماً حقيقياً للحركة.",
+      "بصفتي مصورة شغوفة بالحركة والأنشطة الرياضية، أضع عدستي في خدمة الرياضيين والنوادي والمتحمسين. هدفي هو التقاط شدة القتال، ودقة الحركة الفنية، والحيويّة التي تميز المنافسة.",
+      "سواء كنت ترغب في إثراء الموقع الإلكتروني لناديك، أو تغذية حساباتك على مواقع التواصل الاجتماعي، أو الاحتفاظ بذكرايات مميزة لربحك وتطورك الرياضي، فإنني أقدم لك خدمات مناسبة بنتيجة احترافية وطبيعية."
+    ],
+    "sections": [
+      {
+        "h2": "1. لماذا تستعين بمصورة رياضية في باريس؟",
+        "p": [
+          "تصوير الرياضة يحتاج إلى مهارة خاصة. بين سرعة الحركات، وإدارة الإضاءة المعقدة في القاعات المغلقة أو الهواء الطلق، وضرورة عدم إزعاج الرياضيين، كل تفصيل يصنع الفارق.",
+          "الاستعانة بمصورة محترفة تضمن لك الحصول على صور عالية الدقة تُتقط في اللحظة المناسبة تماماً. أركز على التقاط الإصرار في النظرات، وتوتر العضلات، والطاقة الجماعية.",
+          "تتيح لك هذه الصور إبراز عملك اليومي، أو الترويج لفعالياتك، أو ببساطة توثيق تقدمك وإنجازاتك الشخصية."
+        ]
+      },
+      {
+        "h2": "2. تصوير الجيوجيتسو البرازيلية: التقاط الفن اللطيف",
+        "p": [
+          "الجيوجيتسو البرازيلية رياضة ممتعة ومثيرة للتصوير. بين حركات التثبيت والإخضاع والإسقاط والقتال الأرضي، تحوي كل ثانية تفصيلاً تقنياً أو عاطفة قوية.",
+          "يتطلب تصوير الجيوجيتسو البرازيلية معرفة بإيقاع النزالات للتنبؤ بالتحركات والتواجد في المكان المناسب حول البساط دون إزعاج المتبارين. أفضّل الزوايا القريبة والتكاوين الديناميكية لإبراز مرونة وقوة هذا الفن القتالي.",
+          "سواء كان ذلك خلال بطولات مفتوحة، أو دورات تدريبية، أو حصص يومية في النادي، أنقل الأجواء الفريدة لمجتمع الجيوجيتسو."
+        ]
+      },
+      {
+        "h2": "3. العروض والأسعار للتصوير الرياضي",
+        "p": [
+          "أقدم أسعاراً واضحة ومناسبة لتلبية احتياجات الرياضيين الأفراد وكذلك المؤسسات والنوادي الرياضية:",
+          "يتم تعديل جميع الصور المختارة بعناية وتسليمها عبر معرض خاص على الإنترنت وجاهزة للتنزيل بجودة عالية خلال أيام قليلة."
+        ],
+        "list": [
+          "جلسة تصوير رياضية وبورتريه فردي: ابتداءً من 100 يورو.",
+          "تغطية حدث رياضي أو بطولة: ابتداءً من 300 يورو لمدة ساعتين (أكثر من 60 صورة).",
+          "عرض نصف يوم (500 يورو) أو يوم كامل (750 يورو) للنوادي والبطولات."
+        ]
+      },
+      {
+        "h2": "4. كيف تتم جلسة التصوير الرياضي",
+        "p": [
+          "قبل يوم التصوير، نتحدث عن تطلعاتك: اللحظات الأساسية المراد تغطيتها، نمط الصور المطلوب (بورتريه، أكشن، كواليس)، والمكان في باريس أو أوت دو سين.",
+          "خلال الحدث أو الجلسة، أعمل بكل هدوء وودون إزعاج. أعتمد على الإضاءة المحيطة دون استخدام الفلاش كي لا أشتت تركيز الرياضيين.",
+          "بعد انتهاء الخدمة، تستلم رابط معرضك الخاص لتنزيل جميع الصور بسهولة."
+        ]
+      }
+    ],
+    "tips": [
+      "قم بتحضير معداتك وملابسك الرياضية النظيفة قبل جلسة التصوير.",
+      "أخبرني مسبقاً بالحركات أو التقنيات الخاصة التي ترغب في توثيقها.",
+      "تأكد من الحصول على إذن التصوير في القاعة أو مكان البطولة.",
+      "احرص على إظهار تعابيرك الطبيعية بين التركيز الشديد والابتسامات بعد التدريب."
+    ],
+    "cta": {
+      "title": "هل تبحث عن مصورة لحدثك الرياضي القادم؟",
+      "text": "احجز جلستك لتصوير الرياضة أو الجيوجيتسو البرازيلية في باريس. تواصل معي لمناقشة مشروعك!",
+      "btn": "حجز جلسة تصوير رياضية",
+      "more": "تتوفر أيضاً قسائم هدايا لإهداء جلسة تصوير على صفحة الهدايا المخصصة."
+    }
+  }
+}
