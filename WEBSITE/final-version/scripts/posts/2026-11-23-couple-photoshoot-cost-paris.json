@@ -1,0 +1,245 @@
+{
+  "key": "couple-photoshoot-cost-paris",
+  "date": "2026-11-23",
+  "updated": "2026-11-23",
+  "category": "prices",
+  "service": "couple",
+  "session": "s-couple",
+  "cover": "https://amrzoqmnkfnewujbeqdn.supabase.co/storage/v1/object/public/photos/1793479289599-bajbjb.webp",
+  "slug": {
+    "fr": "tarif-seance-photo-couple-paris",
+    "en": "couple-photoshoot-cost-paris",
+    "ar": "couple-photoshoot-cost-paris"
+  },
+  "fr": {
+    "title": "Tarif photographe couple à Paris : combien ça coûte ?",
+    "short": "Découvrez tout ce qu'il faut savoir sur les prix d'une séance photo de couple à Paris et les formules adaptées à votre budget.",
+    "desc": "Découvrez les tarifs d'une séance photo de couple à Paris. Formules, durée, retouche et conseils pour choisir votre photographe à prix doux.",
+    "coverAlt": "Un couple souriant se promenant à Paris lors d'une séance photo",
+    "intro": [
+      "Planifier une séance photo de couple à Paris est une merveilleuse façon de garder un souvenir impérissable de votre histoire, que vous soyez de passage pour les vacances ou résidents parisiens. Toutefois, lorsqu'il s'agit d'évaluer le budget nécessaire, on constate une grande diversité d'offres sur le marché.",
+      "Entre les prestations express de quelques minutes et les séances haut de gamme s'étalant sur une journée entière, les écarts de prix sont parfois difficiles à comprendre. Dans cet article, je vous explique en toute transparence comment se décomposent les tarifs d'un photographe de couple à Paris et ce que comprend réellement votre investissement."
+    ],
+    "sections": [
+      {
+        "h2": "1. Les critères qui influencent le tarif d'un photographe",
+        "p": [
+          "À Paris, les tarifs d'une séance photo en amoureux varient généralement de 100 € à plus de 600 €. Cette différence s'explique par plusieurs éléments clés qui composent le travail du photographe."
+        ],
+        "list": [
+          "La durée de la séance : une séance de 30 minutes demande moins de temps de prise de vue qu'une session de 2 h.",
+          "Le travail de sélection et de retouche : pour chaque heure passée sur le terrain, plusieurs heures sont consacrées au tri et à la retouche individuelle de vos images.",
+          "La livraison et le nombre de photos : l'accès à une galerie en ligne privée sécurisée et la remise d'images en haute définition sans filigrane.",
+          "L'expérience et le matériel : l'utilisation d'équipements professionnels garantissant un rendu optimal même par temps couvert."
+        ]
+      },
+      {
+        "h2": "2. Ma formule séance couple à Paris : un tarif clair et doux",
+        "p": [
+          "Pour que chacun puisse s'offrir des beaux souvenirs sans surprise, je privilégie une approche transparente avec des prix doux. Ma formule principale pour une séance photo de couple est proposée au tarif de 250 €."
+        ],
+        "list": [
+          "Une durée de 1 h 30 : le temps idéal pour se détendre, tester plusieurs poses naturelles et se déplacer entre deux points de vue.",
+          "Un minimum de 25 photos retouchées : livrées en haute définition dans votre galerie privée en ligne.",
+          "Un accompagnement personnalisé : nous choisissons ensemble le lieu qui correspond à votre histoire, comme le pont de Bir-Hakeim, le square du Vert-Galant ou le Palais-Royal."
+        ]
+      },
+      {
+        "h2": "3. Comparatif des options : de la séance portrait à la demande",
+        "p": [
+          "En fonction de votre projet, d'autres formules peuvent mieux répondre à vos besoins. Si vous souhaitez des photos individuelles ou un format très rapide, la séance portrait débute à 150 €."
+        ],
+        "list": [
+          "Séance portrait individuel : dès 150 € pour avoir de beaux portraits professionnels ou personnels.",
+          "Demande en mariage express (30 min) : 150 € pour 10 photos ou 200 € pour 20 photos et plus, livrées sous 24 h.",
+          "Demande en mariage (1 h) : dès 290 € avec plus de 20 photos livrées sous 24 h.",
+          "Mariage à la mairie : dès 250 € pour 2 h de présence afin d'immortaliser votre union."
+        ]
+      },
+      {
+        "h2": "4. Offrir une séance photo de couple en bon cadeau",
+        "p": [
+          "Si vous cherchez une idée cadeau originale pour un anniversaire, un mariage ou les fêtes de fin d'année, sachez qu'il est possible d'offrir une séance photo de couple. Vous pouvez opter pour la formule complète à 250 € ou définir un montant libre.",
+          "Le bon cadeau est personnalisé au format PDF avec le prénom des destinataires et votre message. Il est valable 12 mois, ce qui laisse amplement le temps au couple de fixer la date idéale pour sa promenade photographique."
+        ]
+      },
+      {
+        "h2": "5. Conseils pour optimiser le rendu de votre séance photo",
+        "p": [
+          "Quel que soit le tarif investi, quelques détails permettent d'obtenir un résultat exceptionnel pour votre séance à deux."
+        ],
+        "list": [
+          "Harmonisez vos tenues : privilégiez des couleurs complémentaires et des tons neutres ou intemporels.",
+          "Choisissez le bon moment : la lumière du début de matinée ou de la fin d'après-midi offre de magnifiques nuances.",
+          "Restez vous-mêmes : pas besoin de savoir poser, je vous guide en douceur pour capter vos regards et vos déambulations spontanées."
+        ]
+      }
+    ],
+    "tips": [
+      "Prévoyez des chaussures confortables pour marcher facilement entre les lieux de prise de vue.",
+      "Optez pour des tenues sans grands logos ou motifs distrayants.",
+      "Privilégiez les créneaux matinaux pour profiter de rues plus calmes à Paris.",
+      "Réservez votre séance quelques semaines à l'avance pour sécuriser la date."
+    ],
+    "cta": {
+      "title": "Envie de réserver votre séance photo de couple ?",
+      "text": "Contactez-moi pour discuter de votre projet, choisir votre lieu préféré et réserver votre date au meilleur tarif.",
+      "btn": "Réserver une séance couple",
+      "more": "Découvrez aussi la possibilité d'offrir un bon cadeau valable 12 mois."
+    }
+  },
+  "en": {
+    "title": "Couple Photoshoot Cost in Paris: Pricing Guide",
+    "short": "Learn everything about the average cost of a couple photoshoot in Paris and find transparent packages tailored to your budget.",
+    "desc": "Find out couple photoshoot costs in Paris. Learn about duration, pricing, retouched photos, and budget tips with Melissa Photography.",
+    "coverAlt": "Happy couple strolling in Paris during a photoshoot",
+    "intro": [
+      "Planning a couple photoshoot in Paris is a wonderful way to capture lasting memories of your romantic journey, whether you are visiting on vacation or living in the city. However, when evaluating the budget required, prices across the market can vary significantly.",
+      "From short express sessions to full-day luxury packages, pricing differences can sometimes feel confusing. In this article, I transparently break down the cost of hiring a couple photographer in Paris and what is included in your investment."
+    ],
+    "sections": [
+      {
+        "h2": "1. Key factors influencing couple photography rates",
+        "p": [
+          "In Paris, couple photo session rates typically range from 100 € to over 600 €. This variance depends on several core aspects of the photographer's work."
+        ],
+        "list": [
+          "Session duration: a 30-minute shoot requires less shooting time than a 2-hour session.",
+          "Selection and editing time: for every hour spent shooting, several hours are dedicated to sorting and color-correcting your images.",
+          "Delivery and photo count: access to a secure private online gallery and high-resolution images delivered without watermarks.",
+          "Experience and professional gear: ensuring crisp results even on overcast days."
+        ]
+      },
+      {
+        "h2": "2. My couple photoshoot package: clear and affordable",
+        "p": [
+          "I believe everyone deserves beautiful romantic portraits without hidden fees. My standard couple photo shoot package is set at an affordable rate of 250 €."
+        ],
+        "list": [
+          "1 hour 30 minutes duration: plenty of time to relax, enjoy spontaneous moments, and walk between scenic spots.",
+          "At least 25 edited photos: delivered in high resolution in your private online gallery.",
+          "Personalized guidance: we pick iconic locations together, such as Bir-Hakeim bridge, Square du Vert-Galant, or Palais-Royal."
+        ]
+      },
+      {
+        "h2": "3. Price breakdown: from solo portraits to marriage proposals",
+        "p": [
+          "Depending on your event or needs, other photoshoot options may suit you better. For individual headshots or quick sessions, portrait photography starts at 150 €."
+        ],
+        "list": [
+          "Solo portrait session: from 150 € for clean personal or professional portraits.",
+          "Express surprise proposal (30 min): 150 € for 10 photos or 200 € for 20+ photos, delivered within 24 hours.",
+          "Full proposal photoshoot (1 hr): from 290 € with 20+ photos delivered within 24 hours.",
+          "Civil wedding photography: from 250 € for 2 hours of coverage."
+        ]
+      },
+      {
+        "h2": "4. Gifting a couple photoshoot voucher",
+        "p": [
+          "If you are looking for a unique gift for a wedding, anniversary, or holiday, you can give a couple photography gift card. You can choose the full 250 € package or select a custom amount.",
+          "The gift voucher is sent as a personalized PDF including the recipients' names and your message. It remains valid for 12 months, giving the couple ample time to schedule their shoot."
+        ]
+      },
+      {
+        "h2": "5. Helpful tips to get the most out of your session budget",
+        "p": [
+          "Regardless of the package you select, a few simple preparation steps ensure stunning photos."
+        ],
+        "list": [
+          "Coordinate outfits: choose complementary colors and soft or classic tones.",
+          "Pick the right hour: early morning or late afternoon light creates romantic atmospheres.",
+          "Be yourselves: no posing skills needed, as I guide you gently through natural movements."
+        ]
+      }
+    ],
+    "tips": [
+      "Bring comfortable walking shoes to transition easily between photo spots.",
+      "Select outfits without large visible logos or distracting patterns.",
+      "Schedule your shoot in the early morning for quieter Paris streets.",
+      "Book a few weeks in advance to secure your preferred date."
+    ],
+    "cta": {
+      "title": "Ready to book your couple photoshoot in Paris?",
+      "text": "Get in touch to discuss your ideas, select your favorite location, and reserve your photoshoot at an accessible price.",
+      "btn": "Book a couple session",
+      "more": "You can also buy a photo session gift voucher valid for 12 months."
+    }
+  },
+  "ar": {
+    "title": "سعر جلسة تصوير الأزواج في باريس: دليل الأسعار",
+    "short": "اكتشفوا كل ما يتعلق بأسعار جلسات تصوير الأزواج في باريس والخيارات المتاحة التي تناسب ميزانيتكم.",
+    "desc": "تعرفوا على أسعار جلسة تصوير الأزواج في باريس. معلومات عن المدة، عدد الصور المعدلة، والخدمات المقدمة من المصورة ماليسا.",
+    "coverAlt": "زوجان مبتسمان أثناء جلسة تصوير في باريس",
+    "intro": [
+      "تعد جلسة تصوير الأزواج في باريس طريقة رائعة للارتقاء بذكرياتكم والاحتفاظ بلحظات مميزة، سواء كنتم تلتvisiting في عطلة أو تقيمون في المدينة. ومع ذلك، عند التفكير في الميزانية المطلوبة، تختلف العروض المتاحة في السوق بشكل كبير.",
+      "من الجلسات السريعة التي تستغرق دقائق إلى الجلسات الكاملة، قد تكون الفروق في الأسعار غير واضحة أحياناً. في هذا المقال، أوضح لكم بكل شفافية تفاصيل تكلفة جلسة تصوير الأزواج في باريس وما تتضمنه ميزانيتكم."
+    ],
+    "sections": [
+      {
+        "h2": "1. العوامل التي تؤثر على سعر تصوير الأزواج",
+        "p": [
+          "في باريس، تتراوح أسعار جلسة تصوير الأزواج عموماً بين 100 يورو وأكثر من 600 يورو. يعود هذا التفاوت إلى عدة عناصر أساسية في عمل المصور."
+        ],
+        "list": [
+          "مدة الجلسة: الجلسة التي تستغرق 30 دقيقة تتطلب وقتاً أقل من جلسة تستغرق ساعتين.",
+          "جهد الفرز والتعديل: مقابل كل ساعة تصوير، يتم قضاء عدة ساعات في فرز الصور وتحسين ألوانها.",
+          "تسليم الصور وعددها: توفير معرض إلكتروني خاص وآمن وتسليم صور عالية الدقة.",
+          "الخبرة والمعدات: استخدام معدات احترافية تضمن الحصول على نتائج ممتازة في مختلف ظروف الإضاءة."
+        ]
+      },
+      {
+        "h2": "2. عرض جلسة الأزواج الخاص بي: أسعار واضحة ومناسبة",
+        "p": [
+          "لكي يتمكن الجميع من الحصول على صور زفاف أو صور رومانسية بأسعار مناسبة، أحرص على تقديم أسعار شفافة. العرض الأساسي لجلسة تصوير الأزواج هو 250 يورو."
+        ],
+        "list": [
+          "مدة الجلسة ساعة ونصف: وقت كافٍ للاسترخاء والتقاط صور طبيعية والتنقل بين موقعين.",
+          "25 صورة معدلة على الأقل: يتم تسليمها بدقة عالية عبر معرض إلكتروني خاص.",
+          "توجيه شخصي: نختار معاً الموقع الذي يناسبكم مثل جسر بئر حكيم أو ساحة فيرت غالانت أو باليه رويال."
+        ]
+      },
+      {
+        "h2": "3. مقارنة الخيارات: من جلسات البورتريه إلى طلب الزواج",
+        "p": [
+          "حسب احتياجاتكم، قد تناسبكم خيارات أخرى من الجلسات. إذا كنتم ترغبون في صور فردية، تبدأ جلسة البورتريه من 150 يورو."
+        ],
+        "list": [
+          "جلسة بورتريه فردية: ابتداءً من 150 يورو لصور شخصية أو مهنية.",
+          "طلب زواج سريع (30 دقيقة): 150 يورو لـ 10 صور أو 200 يورو لـ 20 صورة وأكثر، يتم تسليمها خلال 24 ساعة.",
+          "جلسة طلب زواج (ساعة واحدة): ابتداءً من 290 يورو مع تسليم أكثر من 20 صورة خلال 24 ساعة.",
+          "تصوير زواج في البلدية: ابتداءً من 250 يورو لساعتين من الحضور."
+        ]
+      },
+      {
+        "h2": "4. تقديم جلسة تصوير كبطاقة هدية",
+        "p": [
+          "إذا كنتم تبحثون عن فكرة هدية مميزة لمناسبة زواج أو عيد ميلاد، يمكنكم تقديم جلسة تصوير كهدية. يمكنكم اختيار العرض الكامل بقيمة 250 يورو أو تحديد مبلغ حر.",
+          "تأتي بطاقة الهدية على شكل ملف PDF مخصص يحتوي على اسم المستلم ورسالتكم الشائقة، وتكون صالحة لمدة 12 شهراً مما يتيح للزوجين اختيار الوقت المناسب."
+        ]
+      },
+      {
+        "h2": "5. نصائح للحصول على أفضل نتائج لجلسة التصوير",
+        "p": [
+          "مهما كانت الميزانية المحددة، تساهم بعض التفاصيل البسيطة في إنجاح جلسة التصوير."
+        ],
+        "list": [
+          "تنسيق الملابس: اختاروا ألواناً متناسقة وهادئة.",
+          "اختيار التوقيت المناسب: الإضاءة في الصباح الباكر أو متأخراً في بعد الظهر تعطيك نتائج جميلة.",
+          "التصرف بتركيز وطبيعية: لا داعي للقلق بشأن الوضعيات، سأقوم بتوجيهكم بلطف."
+        ]
+      }
+    ],
+    "tips": [
+      "احرصوا على ارتداء أحذية مريحة للتنقل بين مواقع التصوير.",
+      "اختاروا ملابس خالية من الشعارات الكبيرة أو النقوش المشتتة.",
+      "يفضل حجز الجلسة في الصباح الباكر للاستمتاع بأجواء هادئة في باريس.",
+      "احجزوا تاريخ الجلسة قبل بضعة أسابيع لضمان التوفر."
+    ],
+    "cta": {
+      "title": "هل ترغبون في حجز جلسة تصوير للأزواج في باريس؟",
+      "text": "تواصلوا معي لمناقشة تفاصيل الجلسة واختيار المكان المناسب وتحديد الموعد بسعر مناسب.",
+      "btn": "حجز جلسة تصوير",
+      "more": "يمكنكم أيضاً شراء بطاقة هدية صالحة لمدة 12 شهراً."
+    }
+  }
+}
