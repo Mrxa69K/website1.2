@@ -155,7 +155,7 @@ ${alternates(x => servicePath(s, x))}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=12">
-<link rel="stylesheet" href="/css/landing.css?v=13">
+<link rel="stylesheet" href="/css/landing.css?v=14">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -214,6 +214,13 @@ ${s.packages.map(p => `        <li><a href="${home}?go=book&amp;session=${p.sess
     </div>
   </section>
 
+${(t.guides || []).map(g => `  <section class="lp-guide">
+    <h2>${escHTML(g.h2)}</h2>
+${(g.p || []).map(x => `    <p>${escHTML(x)}</p>`).join('\n')}
+${g.list ? `    <ul>\n${g.list.map(x => `      <li>${escHTML(x)}</li>`).join('\n')}\n    </ul>` : ''}
+${(g.after || []).map(x => `    <p>${escHTML(x)}</p>`).join('\n')}
+  </section>
+`).join('\n')}
   <section class="lp-faq">
     <h2>${escHTML(ui.faq)}</h2>
 ${t.faq.map(([q, a]) => `    <details><summary>${escHTML(q)}</summary><p>${escHTML(a)}</p></details>`).join('\n')}
@@ -277,7 +284,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,100;1,9..144,400..700,100&amp;family=Caveat:wght@500;700&amp;display=swap">
 ${l === 'ar' ? ARABIC_FONTS + '\n' : ''}<link rel="stylesheet" href="/css/shop.css?v=12">
-<link rel="stylesheet" href="/css/landing.css?v=13">
+<link rel="stylesheet" href="/css/landing.css?v=14">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 <script>document.documentElement.classList.add('js'); try { localStorage.setItem('shop-lang', '${l}'); } catch (e) {}</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}

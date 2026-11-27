@@ -51,8 +51,8 @@ module.exports = {
       ],
       en: {
         nav: 'Proposal photographer',
-        title: 'Proposal Photographer in Paris · Surprise & Engagement · Melissa',
-        desc: 'Surprise proposal and engagement photographer in Paris: Bir-Hakeim, Eiffel Tower. Express 30 min from €150, photos within 24 hours. FR, EN, Arabic.',
+        title: 'Paris Proposal Photographer · Surprise Proposals, Photos in 24h',
+        desc: 'Paris proposal photographer for surprise proposals by the Eiffel Tower and at Bir-Hakeim. Express 30 min from €150, photos delivered within 24 hours.',
         h1: 'Proposal photographer in Paris',
         lede: 'You plan the question, I hide in the crowd and catch the yes. Discreet proposal photos at Bir-Hakeim, by the Eiffel Tower, at the Palais-Royal or along the Seine, delivered within 24 hours.',
         story: [
@@ -61,6 +61,30 @@ module.exports = {
           'Want the full fairytale? I can also set up the decoration for you: lights, candles, flowers, a carpet, or the big "MARRY ME" letters.',
         ],
         included: ['1 hour on location', '20+ edited photos', 'Delivered within 24 hours', 'A private online gallery to download and share', 'Help choosing the spot and the right time'],
+        guides: [
+          {
+            h2: 'An Eiffel Tower proposal: where and when',
+            p: ['The Eiffel Tower is the backdrop everyone dreams of, but Trocadéro, the classic spot, is crowded from morning to night. These are the places I recommend to have the tower behind you, with far fewer people around:'],
+            list: [
+              'Bir-Hakeim bridge: the iconic view of the tower framed by the metro arches. My favourite.',
+              'Allée des Cygnes: a quiet tree-lined path on the island just below Bir-Hakeim.',
+              'Avenue de Camoëns: a small terrace with a balustrade and a direct view of the tower, often empty.',
+              'Champ de Mars, early in the morning: the lawns are still calm just after sunrise.',
+            ],
+            after: ['After dark, the tower sparkles for five minutes at the start of every hour: a magical moment to time the question. The sun sets around 5 pm in December and around 10 pm in June, so in winter you can have golden light and the sparkle without a late night. Tell me your date and I will suggest the best time.'],
+          },
+          {
+            h2: 'Planning your proposal from abroad?',
+            p: ['Many couples fly to Paris for the big moment. Everything can be organised before you travel:'],
+            list: [
+              'We choose the spot, the time and your signal together by WhatsApp or email, in English.',
+              'You send your request online from anywhere, and I reply within 24 hours.',
+              'On the day, I am already there when you arrive. Your partner will not suspect a thing.',
+              'Your photos arrive within 24 hours, so you can share the news with family back home before you even fly back.',
+              'If the weather turns, we adjust the time or move to a covered spot such as the Louvre arcades.',
+            ],
+          },
+        ],
         faq: [
           ['Where are the best places to propose in Paris?', 'My favourite is the Bir-Hakeim bridge, with the Allée des Cygnes just below it. Avenue de Camoëns, Square du Vert-Galant and the Palais-Royal are lovely too. I avoid Trocadéro: it is far too crowded for such a personal moment. Read my full guide on the blog.'],
           ['How will my partner not notice you?', 'We agree on the exact spot and a signal beforehand. I arrive early, blend in with the other visitors and start shooting from a distance, then come closer once the yes is said.'],
@@ -81,6 +105,30 @@ module.exports = {
           'Envie du conte de fées complet ? Je peux aussi installer la décoration : lumières, bougies, fleurs, tapis, ou les grandes lettres « MARRY ME ».',
         ],
         included: ['1 heure sur place', '20+ photos retouchées', 'Livrées en 24 h', 'Une galerie privée en ligne pour télécharger et partager', "Mes conseils pour choisir le lieu et l'heure"],
+        guides: [
+          {
+            h2: 'Une demande face à la tour Eiffel : où et quand',
+            p: ["La tour Eiffel, c'est le décor dont tout le monde rêve, mais le Trocadéro, l'endroit classique, est bondé du matin au soir. Voici les lieux que je conseille pour avoir la tour derrière vous, avec beaucoup moins de monde :"],
+            list: [
+              'Le pont de Bir-Hakeim : la vue iconique, la tour encadrée par les arches du métro. Mon préféré.',
+              "L'allée des Cygnes : une promenade calme et arborée sur l'île, juste sous Bir-Hakeim.",
+              "L'avenue de Camoëns : une petite terrasse à balustrade avec vue directe sur la tour, souvent déserte.",
+              'Le Champ-de-Mars, tôt le matin : les pelouses sont encore calmes juste après le lever du soleil.',
+            ],
+            after: ["Une fois la nuit tombée, la tour scintille pendant cinq minutes au début de chaque heure : un moment magique pour poser la question. Le soleil se couche vers 17 h en décembre et vers 22 h en juin : en hiver, on profite de la belle lumière puis du scintillement sans se coucher tard. Donnez-moi votre date, je vous propose le meilleur horaire."],
+          },
+          {
+            h2: "Vous venez de l'étranger ?",
+            p: ['Beaucoup de couples viennent à Paris spécialement pour ce moment. Tout peut être organisé avant votre voyage :'],
+            list: [
+              "On choisit ensemble le lieu, l'heure et votre signal par WhatsApp ou par e-mail, en français, en anglais ou en arabe.",
+              "Vous envoyez votre demande en ligne d'où vous voulez, et je vous réponds sous 24 h.",
+              "Le jour J, je suis déjà sur place à votre arrivée. Votre moitié ne se doutera de rien.",
+              'Vos photos arrivent sous 24 h : vous pouvez annoncer la nouvelle à votre famille avant même de rentrer.',
+              "Si la météo tourne, on décale l'heure ou on se replie sous les arcades du Louvre.",
+            ],
+          },
+        ],
         faq: [
           ['Quels sont les plus beaux endroits pour une demande à Paris ?', "Mon préféré, c'est le pont de Bir-Hakeim, avec l'allée des Cygnes juste en dessous. L'avenue de Camoëns, le square du Vert-Galant et le Palais-Royal sont superbes aussi. J'évite le Trocadéro : il y a beaucoup trop de monde pour un moment aussi intime. Lisez mon guide complet sur le blog."],
           ['Comment faire pour que ma moitié ne vous remarque pas ?', "On convient à l'avance du lieu exact et d'un signal. J'arrive en avance, je me fonds parmi les visiteurs et je commence à photographier de loin, puis je m'approche une fois le oui prononcé."],
@@ -101,6 +149,30 @@ module.exports = {
           'تريدون الحكاية كاملة؟ يمكنني أيضاً تجهيز الديكور: أضواء، شموع، زهور، سجادة، أو حروف «MARRY ME» الكبيرة.',
         ],
         included: ['ساعة في المكان', 'أكثر من 20 صورة معدّلة', 'التسليم خلال 24 ساعة', 'معرض خاص على الإنترنت للتحميل والمشاركة', 'مساعدة في اختيار المكان والتوقيت المناسب'],
+        guides: [
+          {
+            h2: 'طلب زواج أمام برج إيفل: أين ومتى',
+            p: ['برج إيفل هو الخلفية التي يحلم بها الجميع، لكن تروكاديرو، المكان التقليدي، مزدحم من الصباح حتى المساء. هذه هي الأماكن التي أنصح بها ليكون البرج خلفكم مع عدد أقل بكثير من الناس:'],
+            list: [
+              'جسر بير حكيم: الإطلالة الشهيرة على البرج بين أقواس المترو. مكاني المفضل.',
+              'ممشى البجع (Allée des Cygnes): ممر هادئ تظلّله الأشجار على الجزيرة أسفل بير حكيم مباشرة.',
+              'شارع كامويش (Avenue de Camoëns): شرفة صغيرة بدرابزين وإطلالة مباشرة على البرج، غالباً خالية.',
+              'ساحة شان دو مارس في الصباح الباكر: المروج ما زالت هادئة بعد شروق الشمس.',
+            ],
+            after: ['بعد حلول الظلام، يتلألأ البرج لمدة خمس دقائق في بداية كل ساعة: لحظة ساحرة لطرح السؤال. تغرب الشمس نحو الساعة 17:00 في ديسمبر ونحو 22:00 في يونيو، فيمكنكم في الشتاء الاستمتاع بالضوء الذهبي ثم بتلألؤ البرج دون السهر طويلاً. أخبروني بتاريخكم وأقترح عليكم أفضل توقيت.'],
+          },
+          {
+            h2: 'تحضّرون لطلب الزواج من خارج فرنسا؟',
+            p: ['كثير من الأزواج يأتون إلى باريس خصيصاً لهذه اللحظة. يمكن تنظيم كل شيء قبل سفركم:'],
+            list: [
+              'نختار معاً المكان والتوقيت والإشارة عبر واتساب أو البريد الإلكتروني، بالعربية أو الفرنسية أو الإنجليزية.',
+              'ترسلون طلبكم عبر الموقع من أي مكان، وأردّ عليكم خلال 24 ساعة.',
+              'في اليوم الموعود أكون في المكان قبل وصولكم، ولن يشكّ شريككم في شيء.',
+              'تصلكم الصور خلال 24 ساعة، فتشاركون الخبر مع العائلة قبل حتى أن تعودوا.',
+              'إذا تغيّر الطقس، نغيّر التوقيت أو ننتقل إلى مكان مسقوف مثل أروقة اللوفر.',
+            ],
+          },
+        ],
         faq: [
           ['ما هي أجمل الأماكن لطلب الزواج في باريس؟', 'المكان المفضل لدي هو جسر بير حكيم، مع ممشى البجع (Allée des Cygnes) أسفله مباشرة. شارع كامويش وحديقة فير غالان والقصر الملكي (Palais-Royal) جميلة أيضاً. أتجنب تروكاديرو: فهو مزدحم جداً للحظة بهذه الخصوصية.'],
           ['كيف لن يلاحظكِ شريكي؟', 'نتفق مسبقاً على المكان بالضبط وعلى إشارة. أصل مبكراً وأندمج بين الزوار وأبدأ التصوير من بعيد، ثم أقترب بعد قول «نعم».'],
